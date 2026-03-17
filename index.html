@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GCSE Physics Revision Tracker – Edexcel (9-1) Separate Science</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f1117;--s1:#1a1f2e;--s2:#141925;
+  --bd:rgba(255,255,255,0.07);--bd2:rgba(255,255,255,0.12);
+  --tx:#e2e8f0;--mu:#94a3b8;--hi:#4b5563;
+  --r:10px;--font:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  --c1:#3b82f6;--c2:#f59e0b;--c3:#10b981;
+}
+body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px;line-height:1.5;min-height:100vh}
+.hdr{padding:14px 20px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:rgba(15,17,23,0.95);backdrop-filter:blur(8px);z-index:200}
+.hdr h1{font-size:15px;font-weight:600}
+.hdr-sub{font-size:11px;color:var(--mu);margin-top:1px}
+.nav{padding:10px 16px;display:flex;gap:6px;overflow-x:auto;border-bottom:1px solid var(--bd);background:var(--s2);scrollbar-width:thin;scrollbar-color:var(--hi) transparent}
+.nav::-webkit-scrollbar{height:3px}.nav::-webkit-scrollbar-thumb{background:var(--hi);border-radius:3px}
+.nb{padding:5px 11px;border:1px solid var(--bd);border-radius:6px;background:transparent;color:var(--mu);font-size:11px;font-weight:500;cursor:pointer;white-space:nowrap;transition:all 0.15s;font-family:var(--font)}
+.nb:hover{background:var(--s1);color:var(--tx);border-color:var(--bd2)}
+.nb.active{color:#fff;border-color:var(--tc,var(--c1));background:color-mix(in srgb,var(--tc,var(--c1)) 18%,transparent)}
+.main{padding:20px;max-width:1080px;margin:0 auto}
+/* Dashboard */
+.dsb-top{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:16px 20px;margin-bottom:18px}
+.dsb-title{font-size:13px;font-weight:600;margin-bottom:12px;color:var(--mu)}
+.dsb-stats{display:flex;gap:20px;flex-wrap:wrap}
+.dstat{flex:1;min-width:110px}
+.dstat-lbl{font-size:10px;color:var(--hi);margin-bottom:3px;text-transform:uppercase;letter-spacing:.4px}
+.dstat-val{font-size:24px;font-weight:700;line-height:1}
+.dstat-sub{font-size:11px;color:var(--mu);margin-top:2px}
+.dsb-legend{display:flex;gap:14px;margin-top:14px;padding-top:14px;border-top:1px solid var(--bd)}
+.leg-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--mu)}
+.leg-dot{width:8px;height:8px;border-radius:50%}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+/* Topic card */
+.tc{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:14px;cursor:pointer;transition:all 0.18s;position:relative;overflow:hidden}
+.tc::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--tc,#3b82f6)}
+.tc:hover{border-color:var(--bd2);transform:translateY(-1px)}
+.tc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.tc-badge{font-size:10px;font-weight:700;color:var(--tc,#3b82f6);background:color-mix(in srgb,var(--tc,#3b82f6) 14%,transparent);padding:2px 6px;border-radius:4px}
+.tc-paper{font-size:10px;color:var(--hi);background:rgba(255,255,255,0.05);padding:2px 5px;border-radius:4px}
+.tc-name{font-size:13px;font-weight:600;margin-bottom:3px}
+.tc-cnt{font-size:11px;color:var(--mu)}
+.prows{margin-top:10px;display:flex;flex-direction:column;gap:4px}
+.prow{display:flex;align-items:center;gap:7px}
+.plbl{font-size:10px;color:var(--hi);width:40px;flex-shrink:0}
+.ptrack{flex:1;height:4px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden}
+.pfill{height:100%;border-radius:3px;transition:width 0.5s ease}
+.ppct{font-size:10px;color:var(--mu);width:26px;text-align:right;flex-shrink:0}
+/* Topic view */
+.back-row{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.back-btn{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--mu);background:none;border:1px solid var(--bd);border-radius:6px;padding:5px 10px;cursor:pointer;font-family:var(--font);transition:all 0.15s}
+.back-btn:hover{background:var(--s1);color:var(--tx)}
+.tv-hdr{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:16px 20px;margin-bottom:14px;border-left:3px solid var(--tc,#3b82f6)}
+.tv-title{font-size:17px;font-weight:700;margin-bottom:10px}
+.tv-stats{display:flex;gap:16px;flex-wrap:wrap}
+.tvs{display:flex;align-items:center;gap:7px}
+.tvs-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.tvs-text{font-size:12px;color:var(--mu)}
+.tvs-val{font-size:13px;font-weight:600;color:var(--tx);margin-left:2px}
+/* Subtopic */
+.sub{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.sub-hdr{padding:11px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;transition:background 0.1s}
+.sub-hdr:hover{background:rgba(255,255,255,0.02)}
+.sub-left{display:flex;align-items:center;gap:0}
+.sub-id{font-size:11px;font-weight:600;color:var(--tc,#3b82f6);margin-right:8px;min-width:36px}
+.sub-name{font-size:12.5px;font-weight:600}
+.sub-right{display:flex;align-items:center;gap:8px}
+.mini-pips{display:flex;gap:3px}
+.pip{width:6px;height:6px;border-radius:50%;opacity:0.2}
+.pip.on{opacity:1}
+.chev{font-size:11px;color:var(--hi);transition:transform 0.2s;line-height:1}
+.chev.open{transform:rotate(180deg)}
+/* Outcome table */
+.col-hdr{display:grid;grid-template-columns:1fr 32px 32px 32px;padding:6px 14px;border-bottom:1px solid var(--bd);background:rgba(255,255,255,0.02)}
+.ch{font-size:10px;color:var(--hi);text-align:center}
+.or{display:grid;grid-template-columns:1fr 32px 32px 32px;padding:7px 14px;border-bottom:1px solid rgba(255,255,255,0.03);align-items:center;transition:background 0.1s}
+.or:last-child{border-bottom:none}
+.or:hover{background:rgba(255,255,255,0.02)}
+.ot{font-size:12.5px;color:var(--tx);padding-right:10px;line-height:1.45}
+.hb{display:inline-flex;align-items:center;font-size:9px;font-weight:700;color:#f97316;background:rgba(249,115,22,0.13);padding:1px 4px;border-radius:3px;margin-left:5px;vertical-align:middle;line-height:1.2}
+.cbw{display:flex;justify-content:center;align-items:center}
+.cb{width:20px;height:20px;border-radius:5px;border:1.5px solid rgba(255,255,255,0.15);cursor:pointer;transition:all 0.15s;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cb:hover{border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.04)}
+.cb.on{border-color:transparent}
+.cb.on svg{display:block}
+.cb svg{display:none;width:11px;height:11px}
+.cb.r1.on{background:var(--c1)}.cb.r2.on{background:var(--c2)}.cb.r3.on{background:var(--c3)}
+.sub-body.hide{display:none}
+/* Reset */
+.rbtn{font-size:11px;color:var(--hi);background:none;border:1px solid var(--bd);border-radius:5px;padding:4px 8px;cursor:pointer;font-family:var(--font);transition:all 0.15s}
+.rbtn:hover{background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#ef4444}
+.mark-all{font-size:10px;color:var(--hi);background:none;border:1px solid var(--bd);border-radius:4px;padding:3px 7px;cursor:pointer;font-family:var(--font);transition:all 0.15s;margin-left:auto}
+.mark-all:hover{background:var(--s2);color:var(--mu)}
+@media(max-width:600px){.main{padding:12px}.grid{grid-template-columns:1fr 1fr;gap:8px}.tv-stats{gap:10px}.dsb-stats{gap:14px}}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div>
+    <div class="h1">GCSE Physics Revision Tracker</div>
+    <div class="hdr-sub">Edexcel (9-1) Separate Science &mdash; SP1 to SP15</div>
+  </div>
+  <button class="rbtn" onclick="confirmReset()">Reset all progress</button>
+</div>
+<div class="nav" id="nav"></div>
+<div class="main" id="main"></div>
+
+<script>
+// ── DATA ─────────────────────────────────────────────────────────────────────
+// Each outcome: [id, text, isHigher]
+const COLORS=['#6366f1','#3b82f6','#f59e0b','#10b981','#06b6d4','#ef4444','#8b5cf6','#f97316','#84cc16','#ec4899','#14b8a6','#f43f5e','#a855f7','#22c55e','#0ea5e9'];
+
+const TOPICS=[
+{id:'SP1',name:'Motion',paper:1,sub:[
+  {id:'SP1a',name:'Vectors and scalars',o:[
+    ['SP1a1','Describe the difference between weight and mass',0],
+    ['SP1a2','Explain the difference between a vector and a scalar quantity',0],
+    ['SP1a3','Describe the difference between displacement and distance',0],
+    ['SP1a4','Describe the difference between velocity and speed',0],
+    ['SP1a5','Define the terms: acceleration, force, momentum, energy',0],
+  ]},
+  {id:'SP1b',name:'Distance/time graphs',o:[
+    ['SP1b1','Recall and use equations relating distance, speed and time',0],
+    ['SP1b2','Describe how speed can be measured in a school laboratory',0],
+    ['SP1b3','Recall typical speeds for walking, running, cycling and travelling by car',0],
+    ['SP1b4','Interpret distance/time graphs, including what the steepness of the line tells you',0],
+    ['SP1b5','Represent journeys on distance/time graphs',0],
+    ['SP1b6','Determine speed from the gradient of a distance/time graph',0],
+  ]},
+  {id:'SP1c',name:'Acceleration',o:[
+    ['SP1c1','Recall the formula relating acceleration, velocity and time',0],
+    ['SP1c2','Use the formula relating acceleration, velocity and time',0],
+    ['SP1c3','Recall the equation relating acceleration, velocity and distance',0],
+    ['SP1c4','Use the equation relating acceleration, velocity and distance',0],
+    ['SP1c5','Recall the acceleration in free fall (g = 9.8 m/s²)',0],
+    ['SP1c6','Estimate the magnitudes of some everyday accelerations',0],
+  ]},
+  {id:'SP1d',name:'Velocity/time graphs',o:[
+    ['SP1d1','Represent journeys on velocity/time graphs',0],
+    ['SP1d2','Interpret velocity/time graphs qualitatively',0],
+    ['SP1d3','Calculate uniform accelerations from the gradients of velocity/time graphs',0],
+    ['SP1d4','Determine the distance travelled from the area under a velocity/time graph',0],
+  ]},
+]},
+{id:'SP2',name:'Motion and Forces',paper:1,sub:[
+  {id:'SP2a',name:'Resultant forces',o:[
+    ['SP2a1','Explain the difference between scalar and vector quantities',0],
+    ['SP2a2','Use arrows to represent the direction and magnitude of forces',0],
+    ['SP2a3','Define a resultant force',0],
+    ['SP2a4','Calculate resultant forces',0],
+    ['SP2a5','Explain whether forces on an object are balanced or unbalanced',0],
+  ]},
+  {id:'SP2b',name:"Newton's First Law",o:[
+    ['SP2b1','Describe the effect of balanced forces on moving and stationary objects',0],
+    ['SP2b2','Describe the effect of a non-zero resultant force on moving and stationary objects',0],
+    ['SP2b3','Describe circular motion at constant speed as a changing velocity and hence as an acceleration',1],
+    ['SP2b4','Describe the force needed to keep an object moving in a circular path',1],
+    ['SP2b5','Give examples of objects moving in circular paths and the type of centripetal force involved',1],
+  ]},
+  {id:'SP2c',name:'Mass and weight',o:[
+    ['SP2c1','Describe the difference between mass and weight',0],
+    ['SP2c2','List the factors that determine the weight of an object',0],
+    ['SP2c3','Recall the equation for calculating weight (W = mg)',0],
+    ['SP2c4','Use the equation relating weight, mass and gravitational field strength',0],
+    ['SP2c5','Describe how weight is measured',0],
+    ['SP2c6','Describe how the weight of an object is affected by gravitational field strength',0],
+  ]},
+  {id:'SP2d',name:"Newton's Second Law",o:[
+    ['SP2d1','Describe what an acceleration is',0],
+    ['SP2d2','List the factors that affect the acceleration of an object',0],
+    ['SP2d3','Recall the equation relating the factors affecting acceleration (F = ma)',0],
+    ['SP2d4','Use the equation relating force, mass and acceleration',0],
+    ['SP2d5','Change the subject of the equation relating force, mass and acceleration',0],
+    ['SP2d6','Explain what inertial mass means',1],
+  ]},
+  {id:'SP2e',name:"Newton's Third Law",o:[
+    ['SP2e1',"Describe what Newton's Third Law says",0],
+    ['SP2e2',"Recall the meaning of 'equilibrium situation'",0],
+    ['SP2e3','Identify action–reaction pairs in familiar situations',0],
+    ['SP2e4','Distinguish between action–reaction pairs and balanced forces',0],
+    ['SP2e5','Describe how objects affect each other when they collide',1],
+  ]},
+  {id:'SP2f',name:'Momentum',o:[
+    ['SP2f1','Describe the factors that affect the momentum of an object',0],
+    ['SP2f2','Calculate the momentum of moving objects (p = mv)',0],
+    ['SP2f3','Describe examples of momentum in collisions',0],
+    ['SP2f4','Use the idea of conservation of momentum to calculate velocities after collisions',0],
+    ['SP2f5','Calculate the force needed to produce a change in momentum in a given time',0],
+  ]},
+  {id:'SP2g',name:'Stopping distances',o:[
+    ['SP2g1','Describe how human reaction times are measured',0],
+    ['SP2g2','Recall typical human reaction times',0],
+    ['SP2g3','Describe the link between stopping distance, thinking distance and braking distance',0],
+    ['SP2g4','Recall the factors that affect stopping distances',0],
+    ['SP2g5','Describe how different factors affect stopping distances',0],
+  ]},
+  {id:'SP2h',name:'Braking distances and energy',o:[
+    ['SP2h1','Estimate the braking distance of a road vehicle given its mass, speed and braking force',0],
+    ['SP2h2',"Explain what 'work done' means",0],
+    ['SP2h3','Calculate the work done when a force moves through a distance (W = Fd)',0],
+    ['SP2h4','Describe the factors that affect the kinetic energy of a moving object',0],
+    ['SP2h5','Calculate the kinetic energy of a moving object (KE = ½mv²)',0],
+  ]},
+  {id:'SP2i',name:'Crash hazards',o:[
+    ['SP2i1','Calculate the force needed to produce a change in momentum in a given time',0],
+    ['SP2i2',"Explain the meaning of a 'large deceleration'",0],
+    ['SP2i3','Describe the dangers caused by large decelerations',0],
+    ['SP2i4','Explain why large decelerations cause dangers',0],
+    ['SP2i5','Recall some typical forces involved in road collisions',1],
+    ['SP2i6','Use knowledge of changes in momentum to estimate the forces involved in road collisions',1],
+  ]},
+]},
+{id:'SP3',name:'Conservation of Energy',paper:1,sub:[
+  {id:'SP3a',name:'Energy stores and transfers',o:[
+    ['SP3a1','Explain, using examples, that energy is conserved',0],
+    ['SP3a2','Give examples of energy being moved between different stores',0],
+    ['SP3a3','Interpret diagrams that represent energy transfers',0],
+    ['SP3a4','Represent energy transfers using diagrams',0],
+    ['SP3a5','Describe what happens to wasted energy in energy transfers',0],
+  ]},
+  {id:'SP3b',name:'Energy efficiency',o:[
+    ['SP3b1','Explain some ways in which energy is transferred wastefully by mechanical processes',0],
+    ['SP3b2','Explain some ways of reducing unwanted energy transfers in mechanical processes',0],
+    ['SP3b3','Define what efficiency means',0],
+    ['SP3b4','Explain how efficiency can be increased',1],
+    ['SP3b5','Recall and use the formula for calculating energy efficiency',0],
+  ]},
+  {id:'SP3c',name:'Keeping warm',o:[
+    ['SP3c1','Describe the ways in which energy can be transferred by heating',0],
+    ['SP3c2','Describe ways of reducing unwanted energy transfers using thermal insulation',0],
+    ['SP3c3','Explain how different ways of reducing energy transfer by heating work',0],
+    ['SP3c4','Define the meaning of thermal conductivity',0],
+    ['SP3c5','Describe the effects of the thickness and thermal conductivity of building walls on its rate of cooling',0],
+  ]},
+  {id:'SP3d',name:'Stored energies',o:[
+    ['SP3d1','Describe how different factors affect the gravitational potential energy stored in an object',0],
+    ['SP3d2','Recall and use the equation for gravitational potential energy (GPE = mgh)',0],
+    ['SP3d3','Describe how different factors affect the kinetic energy stored in an object',0],
+    ['SP3d4','Recall and use the equation for kinetic energy (KE = ½mv²)',0],
+  ]},
+  {id:'SP3e',name:'Non-renewable resources',o:[
+    ['SP3e1','List the non-renewable energy resources in use today',0],
+    ['SP3e2','Describe the advantages and disadvantages of non-renewable energy resources',0],
+    ['SP3e3','Compare the advantages and disadvantages of non-renewable energy resources',0],
+    ['SP3e4','Explain how the use of non-renewable energy resources is changing',0],
+  ]},
+  {id:'SP3f',name:'Renewable resources',o:[
+    ['SP3f1','List the renewable energy resources in use today',0],
+    ['SP3f2','Describe the source of energy for different renewable resources',0],
+    ['SP3f3','Describe the ways in which the different energy resources are used',0],
+    ['SP3f4','Explain why we cannot use only renewable energy resources',0],
+    ['SP3f5','Explain how the use of renewable energy resources is changing',0],
+  ]},
+]},
+{id:'SP4',name:'Waves',paper:1,sub:[
+  {id:'SP4a',name:'Describing waves',o:[
+    ['SP4a1','Recall that waves transfer energy and information but do not transfer matter',0],
+    ['SP4a2','Describe waves using the terms frequency, wavelength, amplitude, period and velocity',0],
+    ['SP4a3','Describe the differences between longitudinal and transverse waves',0],
+    ['SP4a4','Give examples of transverse and longitudinal waves',0],
+  ]},
+  {id:'SP4b',name:'Wave speeds',o:[
+    ['SP4b1','Recall the equation relating wave speed, frequency and wavelength (v = fλ)',0],
+    ['SP4b2','Use the equation relating wave speed, frequency and wavelength',0],
+    ['SP4b3','Recall the equation relating wave speed, distance and time',0],
+    ['SP4b4','Use the equation relating wave speed, distance and time',0],
+    ['SP4b5','Describe how to measure the velocity of sound in air',0],
+    ['SP4b6','Describe how to measure the velocity of waves on the surface of water',0],
+  ]},
+  {id:'SP4c',name:'Refraction',o:[
+    ['SP4c1','Describe what refraction is',0],
+    ['SP4c2','Describe how the direction of a wave changes when it goes from one material to another',0],
+    ['SP4c3','Explain some effects of the refraction of light',0],
+    ['SP4c4','Explain how a change in wave speed can cause a change in direction',1],
+  ]},
+  {id:'SP4d',name:'Waves crossing boundaries',o:[
+    ['SP4d1','Describe some effects of waves being reflected',0],
+    ['SP4d2','Describe some effects of waves being refracted',0],
+    ['SP4d3','Describe some effects of waves being transmitted and absorbed',0],
+    ['SP4d4','Describe how changes in velocity, frequency and wavelength are related when sound waves go from one medium to another',0],
+  ]},
+  {id:'SP4e',name:'Ears and hearing',o:[
+    ['SP4e1','List the parts of the human ear, in the order in which they transmit vibrations',1],
+    ['SP4e2','Describe the functions of the parts of the ear',1],
+    ['SP4e3','Describe how sound waves in air are converted to vibrations in solids',1],
+    ['SP4e4','Describe some factors that affect how well sound waves transfer energy to solids',1],
+    ['SP4e5','Explain why the human ear can only detect a certain range of frequencies',1],
+  ]},
+  {id:'SP4f',name:'Ultrasound',o:[
+    ['SP4f1','Calculate the depth of water from information about time and wave velocity',1],
+    ['SP4f2','Recall that sound with frequencies greater than 20 000 Hz is called ultrasound',1],
+    ['SP4f3','Explain how ultrasound is used in sonar',1],
+    ['SP4f4','Describe uses of ultrasound in body scanning',1],
+    ['SP4f5','Explain how ultrasound is used in foetal scanning',1],
+  ]},
+  {id:'SP4g',name:'Infrasound',o:[
+    ['SP4g1','Recall that sound with frequencies less than 20 Hz is called infrasound',1],
+    ['SP4g2','Describe some uses of infrasound',1],
+    ['SP4g3','Recall that some seismic waves are infrasound waves',1],
+    ['SP4g4','Describe P waves and S waves and the substances through which they can travel',1],
+    ['SP4g5',"Explain how seismic waves can help us to investigate the Earth's core",1],
+  ]},
+]},
+{id:'SP5',name:'Light and EM Spectrum',paper:1,sub:[
+  {id:'SP5a',name:'Ray diagrams',o:[
+    ['SP5a1','Recall the law of reflection',0],
+    ['SP5a2','Draw ray diagrams to show how a mirror forms images',0],
+    ['SP5a3','Draw ray diagrams to show what happens when light is refracted',0],
+    ['SP5a4','Describe what total internal reflection is and when it happens',0],
+    ['SP5a5','Explain the significance of the critical angle in total internal reflection',0],
+  ]},
+  {id:'SP5b',name:'Colour',o:[
+    ['SP5b1','Explain the difference between specular and diffuse reflection',0],
+    ['SP5b2','Recall that white light is a mixture of different colours of light',0],
+    ['SP5b3','Explain why surfaces appear to have different colours in terms of differential absorption',0],
+    ['SP5b4','Explain how filters make coloured light in terms of absorption and transmission',0],
+    ['SP5b5','Explain the effect of viewing coloured objects in different colours of light',0],
+  ]},
+  {id:'SP5c',name:'Lenses',o:[
+    ['SP5c1','Define the power of a lens in terms of bending light through a greater angle',0],
+    ['SP5c2','Describe how the focal length and shape of a lens affect its power',0],
+    ['SP5c3','Use ray diagrams to show how converging and diverging lenses refract light',0],
+    ['SP5c4','Compare and contrast the way in which converging and diverging lenses refract light',0],
+    ['SP5c5','Explain how diverging lenses produce virtual images',0],
+    ['SP5c6','Explain the different types of image that can be formed by converging lenses',0],
+  ]},
+  {id:'SP5d',name:'Electromagnetic waves',o:[
+    ['SP5d1','Recall examples of electromagnetic waves',0],
+    ['SP5d2','Describe the common features of electromagnetic waves',0],
+    ['SP5d3','Describe the transfer of energy by electromagnetic waves',0],
+    ['SP5d4','Describe the range of electromagnetic waves that our eyes can detect',0],
+    ['SP5d5','Describe an effect caused by the different velocities of electromagnetic waves in different substances',1],
+  ]},
+  {id:'SP5e',name:'The electromagnetic spectrum',o:[
+    ['SP5e1','Recall the groups of waves in the electromagnetic spectrum in order',0],
+    ['SP5e2','Recall the colours of the visible spectrum in order',0],
+    ['SP5e3','Describe how the waves in the electromagnetic spectrum are grouped',0],
+    ['SP5e4','Describe differences in the ways different parts of the EM spectrum are absorbed and transmitted',1],
+    ['SP5e5','Describe differences in the ways different parts of the EM spectrum are refracted and reflected',1],
+  ]},
+  {id:'SP5f',name:'Using the long wavelengths',o:[
+    ['SP5f1','Describe how long wavelength EM waves are affected by different substances',1],
+    ['SP5f2','Explain effects caused by long wavelength EM waves travelling at different velocities in different substances',1],
+    ['SP5f3','Describe some uses of radio waves',0],
+    ['SP5f4','Describe some uses of microwaves',0],
+    ['SP5f5','Describe some uses of infrared radiation',0],
+    ['SP5f6','Describe some uses of visible light',0],
+    ['SP5f7','Describe how radio waves are produced and detected by electrical circuits',1],
+  ]},
+  {id:'SP5g',name:'Radiation and temperature',o:[
+    ['SP5g1','Describe how the intensity and wavelength of emitted radiation depends on the temperature of the body',0],
+    ['SP5g2','Explain that power radiated and absorbed must be the same to maintain a body at a constant temperature',1],
+    ['SP5g3','Explain what happens to the temperature of a body when power radiated is not balanced by power absorbed',1],
+    ['SP5g4','Describe the factors that affect the energy absorbed and radiated by the Earth',1],
+    ['SP5g5','Explain how these factors affect the temperature of the Earth',1],
+  ]},
+  {id:'SP5h',name:'Using the short wavelengths',o:[
+    ['SP5h1','Describe how short wavelength EM waves are affected by different substances',1],
+    ['SP5h2','Explain effects caused by short wavelength EM waves travelling at different velocities in different substances',1],
+    ['SP5h3','Describe some uses of ultraviolet radiation',0],
+    ['SP5h4','Describe some uses of X-rays',0],
+    ['SP5h5','Describe some uses of gamma rays',0],
+  ]},
+  {id:'SP5i',name:'EM radiation dangers',o:[
+    ['SP5i1','Describe how the potential danger of EM radiation depends on its frequency',0],
+    ['SP5i2','Describe the harmful effects of microwave and infrared radiation',0],
+    ['SP5i3','Describe the harmful effects of ultraviolet radiation, X-rays and gamma rays',0],
+    ['SP5i4','Recall the nature of radiation produced by changes in atoms and their nuclei',0],
+    ['SP5i5','Recall that absorption of radiation can cause changes in atoms and their nuclei',0],
+  ]},
+]},
+{id:'SP6',name:'Radioactivity',paper:1,sub:[
+  {id:'SP6a',name:'Atomic models',o:[
+    ['SP6a1','Describe the structure of an atom (in terms of nucleus and electrons)',0],
+    ['SP6a2','State where most of the mass of an atom is found',0],
+    ['SP6a3','State the sizes of atoms and small molecules',0],
+    ['SP6a4','Describe an early model of the atom',0],
+    ['SP6a5','Describe how and why our model of the atom has changed over time, including the plum pudding model and Rutherford scattering',0],
+  ]},
+  {id:'SP6b',name:'Inside atoms',o:[
+    ['SP6b1','State what is meant by an isotope',0],
+    ['SP6b2','Represent isotopes using symbols',0],
+    ['SP6b3','Explain how atoms of different elements are different (in terms of numbers of electrons and protons)',0],
+    ['SP6b4','Recall the charges and relative masses of the three subatomic particles',0],
+    ['SP6b5','Explain why all atoms have no overall charge',0],
+  ]},
+  {id:'SP6c',name:'Electrons and orbits',o:[
+    ['SP6c1','Describe where electrons are found inside atoms (in terms of shells)',0],
+    ['SP6c2','Describe when electrons can change orbit',0],
+    ['SP6c3','Recall what an ion is',0],
+    ['SP6c4','Describe how ionisation occurs',0],
+    ['SP6c5','Describe some of the evidence for the Bohr model of the atom',0],
+  ]},
+  {id:'SP6d',name:'Background radiation',o:[
+    ['SP6d1','Explain what background radiation is',0],
+    ['SP6d2','Describe how radiation measurements need to be corrected for background radiation',0],
+    ['SP6d3','List some sources of background radiation',0],
+    ['SP6d4','Describe how photographic film can be used to detect radioactivity',0],
+    ['SP6d5','Describe how a Geiger-Müller tube works',0],
+    ['SP6d6','Describe how the amount of radioactivity can be measured',0],
+  ]},
+  {id:'SP6e',name:'Types of radiation',o:[
+    ['SP6e1','Recall the relative masses and relative electric charges of protons, neutrons, electrons and positrons',0],
+    ['SP6e2','List five types of radiation emitted in random processes from unstable nuclei',0],
+    ['SP6e3','State that the five types of radiation are ionising radiations',0],
+    ['SP6e4','Describe what alpha and beta particles are',0],
+    ['SP6e5','Describe the nature of gamma radiation',0],
+    ['SP6e6','Compare the penetrating abilities of alpha, beta and gamma radiation',0],
+    ['SP6e7','Compare the ionisation abilities of alpha, beta and gamma radiation',0],
+  ]},
+  {id:'SP6f',name:'Radioactive decay',o:[
+    ['SP6f1','Describe the process of beta-minus (β⁻) decay',0],
+    ['SP6f2','Describe the process of beta-plus (β⁺) decay',0],
+    ['SP6f3','Explain how the proton and mass numbers are affected by different kinds of radioactive decay',0],
+    ['SP6f4','Describe what happens during nuclear rearrangement after radioactive decay',0],
+    ['SP6f5','Balance nuclear equations for mass and charge',0],
+  ]},
+  {id:'SP6g',name:'Half-life',o:[
+    ['SP6g1','Describe how the activity of a substance changes over time',0],
+    ['SP6g2','State how half-life can be used to describe the changing activity of a substance',0],
+    ['SP6g3','Recall the unit of activity (Becquerel, Bq)',0],
+    ['SP6g4','Describe how half-life can be used to work out how much of a substance will decay in a certain time',0],
+    ['SP6g5','Carry out calculations involving half-life',0],
+  ]},
+  {id:'SP6h',name:'Using radioactivity',o:[
+    ['SP6h1','Describe how radioactivity is used in smoke alarms',0],
+    ['SP6h2','Describe how radioactivity is used in irradiating food',0],
+    ['SP6h3','Describe how radioactivity is used in sterilising equipment',0],
+    ['SP6h4','Describe how radioactivity is used in tracing and thickness gauging',0],
+    ['SP6h5','Recall that radioactivity is used in cancer diagnosis and treatment',0],
+  ]},
+  {id:'SP6i',name:'Dangers of radioactivity',o:[
+    ['SP6i1','Describe the hazards of ionising radiation in terms of tissue damage and possible mutations',0],
+    ['SP6i2','Explain how the dangers of ionising radiation depend on the half-life',0],
+    ['SP6i3','Explain precautions taken to ensure the safety of patients exposed to radiation, linking these to the half-lives of sources used',0],
+    ['SP6i4','Explain the precautions taken to reduce risks from radiation and protect people who work with radiation',0],
+    ['SP6i5','Describe the differences between contamination and irradiation effects',0],
+    ['SP6i6','Compare the hazards of contamination and irradiation',0],
+  ]},
+  {id:'SP6j',name:'Radioactivity in medicine',o:[
+    ['SP6j1','Describe the advantages and disadvantages of treating tumours with radiation applied internally',0],
+    ['SP6j2','Describe the advantages and disadvantages of treating tumours with radiation applied externally',0],
+    ['SP6j3','Explain the use of radioactive tracers in diagnosis',0],
+    ['SP6j4','Explain the use of PET scanners in diagnosis',0],
+    ['SP6j5','Explain why isotopes used in PET scanners have to be produced nearby',0],
+  ]},
+  {id:'SP6k',name:'Nuclear energy',o:[
+    ['SP6k1','Describe some advantages of using nuclear power to generate electricity',0],
+    ['SP6k2','Describe some disadvantages of using nuclear power to generate electricity',0],
+    ['SP6k3','Evaluate the use of nuclear power to generate electricity',0],
+    ['SP6k4','Describe three types of nuclear reaction',0],
+    ['SP6k5','Recall that nuclear reactions can be a source of energy',0],
+  ]},
+  {id:'SP6l',name:'Nuclear fission',o:[
+    ['SP6l1','Describe the products of the fission of U-235',0],
+    ['SP6l2','Describe what a chain reaction is',0],
+    ['SP6l3','Explain how a chain reaction is controlled in a nuclear power station',0],
+    ['SP6l4','Describe how the thermal energy from a chain reaction is converted to electrical energy',0],
+    ['SP6l5','Recall that the products of nuclear fission are radioactive',0],
+  ]},
+  {id:'SP6m',name:'Nuclear fusion',o:[
+    ['SP6m1','Describe what happens in nuclear fusion',0],
+    ['SP6m2','Recall that nuclear fusion is the energy source for stars',0],
+    ['SP6m3','Explain the difference between nuclear fusion and nuclear fission',0],
+    ['SP6m4','Explain why high temperatures and pressures are needed to make fusion happen',0],
+    ['SP6m5','Relate the conditions of fusion to the difficulty of making a practical and economic fusion power station',0],
+  ]},
+]},
+{id:'SP7',name:'Astronomy',paper:1,sub:[
+  {id:'SP7a',name:'The Solar System',o:[
+    ['SP7a1','Describe the different bodies that make up the Solar System',0],
+    ['SP7a2','Recall the names and order of the planets in the Solar System',0],
+    ['SP7a3','Describe how ideas about the structure of the Solar System have changed over time',0],
+    ['SP7a4','Describe how methods of observing the Universe have changed over time',0],
+  ]},
+  {id:'SP7b',name:'Gravity and orbits',o:[
+    ['SP7b1','Recall the factors that affect the strength of the gravitational field',0],
+    ['SP7b2','Explain why g has different values on different bodies in the Solar System',0],
+    ['SP7b3','Describe the orbits of moons, planets, comets and artificial satellites',0],
+    ['SP7b4','Explain why the velocity of a planet changes even if orbiting at a steady speed',0],
+    ['SP7b5','Describe how changing the speed of an orbiting body affects the radius of its orbit',0],
+    ['SP7b6','Explain how the radius of a stable orbit is affected by the orbital speed',0],
+  ]},
+  {id:'SP7c',name:'Life cycles of stars',o:[
+    ['SP7c1','Describe the evolution of stars of similar mass to the Sun (nebula → main sequence → red giant → white dwarf)',0],
+    ['SP7c2','Describe the forces acting on a star in terms of thermal expansion and gravity',0],
+    ['SP7c3','Explain how the balance of thermal expansion and gravity affects the life cycle of stars',0],
+    ['SP7c4','Describe the evolution of stars with a mass larger than the Sun',0],
+  ]},
+  {id:'SP7d',name:'Red-shift',o:[
+    ['SP7d1','Describe how the movement of a wave source affects the observed frequency and wavelength',0],
+    ['SP7d2','Describe the amount of red-shift observed in galaxies at different distances from Earth',0],
+    ['SP7d3','Explain why the red-shift of galaxies provides evidence that the Universe is expanding',0],
+  ]},
+  {id:'SP7e',name:'Origin of the Universe',o:[
+    ['SP7e1','Describe the Steady State and Big Bang theories',0],
+    ['SP7e2','Compare the Steady State and Big Bang theories',0],
+    ['SP7e3','Describe the evidence supporting the Big Bang theory',0],
+    ['SP7e4','Explain why the Big Bang theory is the currently accepted model',0],
+    ['SP7e5','Explain how both theories of the origin of the Universe account for red-shift',0],
+    ['SP7e6','Explain how the discovery of the CMB radiation led to the Big Bang theory becoming the currently accepted model',0],
+  ]},
+]},
+{id:'SP8',name:'Energy – Forces Doing Work',paper:2,sub:[
+  {id:'SP8a',name:'Work and power',o:[
+    ['SP8a1','Describe some ways in which the energy of a system can be changed',0],
+    ['SP8a2','Measure the work done by a force',0],
+    ['SP8a3','Recall and use the equation linking work done, force and distance (W = Fd)',0],
+    ['SP8a4','Explain what power means',0],
+    ['SP8a5','Recall and use the equation linking power, work done and time (P = W/t)',0],
+  ]},
+]},
+{id:'SP9',name:'Forces and their Effects',paper:2,sub:[
+  {id:'SP9a',name:'Objects affecting each other',o:[
+    ['SP9a1','Describe the effect of a gravitational field on objects',0],
+    ['SP9a2','Describe the effects of magnetic fields on objects',0],
+    ['SP9a3','Describe the forces that can occur when objects are in contact with each other',0],
+    ['SP9a4','Describe the effects of electrostatic fields on objects',0],
+    ['SP9a5','Describe how pairs of forces occur when objects affect each other',0],
+    ['SP9a6','Use examples to explain the difference between vector and scalar quantities',0],
+  ]},
+  {id:'SP9b',name:'Vector diagrams',o:[
+    ['SP9b1','Describe how to resolve forces',0],
+    ['SP9b2','Use scale drawings to work out the net force on an object',0],
+    ['SP9b3','Draw free body diagrams to represent the forces on an object',0],
+    ['SP9b4','Explain what happens in situations where several forces are acting on an object',0],
+  ]},
+  {id:'SP9c',name:'Rotational forces',o:[
+    ['SP9c1','Describe situations where forces can cause rotation',0],
+    ['SP9c2','Recall and use the equation: moment = force × distance normal to the direction of the force',0],
+    ['SP9c3','Use the principle of moments to calculate forces and distances in equilibrium situations',0],
+    ['SP9c4','Explain how levers transmit the rotational effects of forces',0],
+    ['SP9c5','Explain how gears transmit the rotational effects of forces',0],
+  ]},
+]},
+{id:'SP10',name:'Electricity and Circuits',paper:2,sub:[
+  {id:'SP10a',name:'Electric circuits',o:[
+    ['SP10a1','Describe the basic structure of an atom (positions, relative masses and relative charges of subatomic particles)',0],
+    ['SP10a2','Recognise the circuit symbols for a range of common electrical components',0],
+    ['SP10a3','Draw diagrams for circuits containing common electrical components',0],
+    ['SP10a4','Describe and explain the difference between the brightness of identical lamps in series and parallel circuits',0],
+    ['SP10a5','Describe and explain the effects of different numbers of identical lamps, cells and switches in series and parallel circuits',0],
+  ]},
+  {id:'SP10b',name:'Current and potential difference',o:[
+    ['SP10b1','Describe how to measure voltage',0],
+    ['SP10b2',"Define the term 'potential difference'",0],
+    ['SP10b3','Describe how to measure current',0],
+    ['SP10b4','Describe the conditions needed to produce an electric current',0],
+    ['SP10b5','Describe the behaviour of current at a junction',0],
+  ]},
+  {id:'SP10c',name:'Current, charge and energy',o:[
+    ['SP10c1','Explain the link between potential difference, charge and energy transferred',0],
+    ['SP10c2','Recall that the unit of potential difference is the volt (1 joule per coulomb)',0],
+    ['SP10c3','Recall and use the equation E = Q × V',0],
+    ['SP10c4','Explain the link between electric current and electric charge',0],
+    ['SP10c5','Explain electric current in metals in terms of electrons',0],
+    ['SP10c6','Recall and use the equation Q = I × t',0],
+  ]},
+  {id:'SP10d',name:'Resistance',o:[
+    ['SP10d1','Explain the link between resistance and current in a circuit',0],
+    ['SP10d2','Define the resistance of a component or circuit (R = V/I)',0],
+    ['SP10d3','Recall and use the equation V = I × R',0],
+    ['SP10d4','Explain the difference in resistance when two resistors are connected in series or in parallel',0],
+    ['SP10d5','Calculate the currents, potential differences and resistances in series circuits',0],
+    ['SP10d6','Explain the design and construction of series circuits for testing and measuring',0],
+  ]},
+  {id:'SP10e',name:'More about resistance',o:[
+    ['SP10e1','Explain how current changes with potential difference in fixed resistors',0],
+    ['SP10e2','Explain how current and resistance change with potential difference in filament lamps',0],
+    ['SP10e3','Explain how current and resistance change with potential difference in diodes, including LEDs',0],
+    ['SP10e4','Describe how the resistance of a light-dependent resistor (LDR) varies with light intensity',0],
+    ['SP10e5','Describe how the resistance of a thermistor varies with changing temperature (NTC only)',0],
+    ['SP10e6','Describe the uses of diodes, LDRs and thermistors',0],
+  ]},
+  {id:'SP10f',name:'Transferring energy',o:[
+    ['SP10f1','Describe the energy transfer that occurs when a current passes through a resistor',0],
+    ['SP10f2','Use the electron and ion model to explain the energy transfer in a resistor and dissipation in the surroundings',0],
+    ['SP10f3','Explain how unwanted energy transfers in wires can be avoided',1],
+    ['SP10f4','Recall the advantages of the heating effect of an electric current',0],
+    ['SP10f5','Recall the disadvantages of the heating effect of an electric current',0],
+    ['SP10f6','Use the equation E = I × V × t',0],
+  ]},
+  {id:'SP10g',name:'Power',o:[
+    ['SP10g1','Define power and the units used to measure it (energy transferred per second in watts)',0],
+    ['SP10g2','Recall and use the equation P = E/t',0],
+    ['SP10g3','Explain how power transfer depends on the potential difference and current through a device',0],
+    ['SP10g4','Recall and use the equation P = I × V',0],
+    ['SP10g5','Recall and use the equation P = I² × R',0],
+  ]},
+  {id:'SP10h',name:'Transferring energy by electricity',o:[
+    ['SP10h1','Describe energy transfers from d.c. batteries and the a.c. mains supply to motors and heaters',0],
+    ['SP10h2','Explain the difference between direct and alternating voltage',0],
+    ['SP10h3','Compare alternating and direct current (in terms of movement of charge)',0],
+    ['SP10h4','Recall the frequency and voltage of the UK domestic supply (50 Hz, 230 V)',0],
+    ['SP10h5','Describe the power ratings of some domestic electrical appliances and changes in stored energy when in use',0],
+  ]},
+  {id:'SP10i',name:'Electrical safety',o:[
+    ['SP10i1','Explain the difference between the functions of the live and the neutral wires',0],
+    ['SP10i2','Explain how circuit breakers make circuits safer',0],
+    ['SP10i3','Explain how the earth wire and the fuse make circuits safer',0],
+    ['SP10i4','Explain why switches and fuses are connected in the live wire',0],
+    ['SP10i5','Recall the potential differences between the live, neutral and earth wires',0],
+    ['SP10i6','Explain the danger of a connection between the live wire and earth',0],
+  ]},
+]},
+{id:'SP11',name:'Static Electricity',paper:2,sub:[
+  {id:'SP11a',name:'Charges and static electricity',o:[
+    ['SP11a1','Explain how rubbing an insulator transfers electrons',0],
+    ['SP11a2','Recall the charged particles found in an atom',0],
+    ['SP11a3','Explain why, when certain materials are rubbed together, they end up with opposite charges',0],
+    ['SP11a4','Recall the rules of attraction and repulsion between charges',0],
+    ['SP11a5','Explain how attraction by induction occurs',0],
+  ]},
+  {id:'SP11b',name:'Dangers and uses of static electricity',o:[
+    ['SP11b1','Describe what earthing is',0],
+    ['SP11b2','Explain how earthing works',0],
+    ['SP11b3','Explain how lightning occurs and why we sometimes get shocks from everyday objects',0],
+    ['SP11b4','Explain how electrostatic sprayers work',0],
+    ['SP11b5','Describe some hazards caused by charged objects discharging, and how earthing can reduce risks',0],
+  ]},
+  {id:'SP11c',name:'Electric fields',o:[
+    ['SP11c1','Recall what an electric field is',0],
+    ['SP11c2','Recall how the direction of an electric field is defined',0],
+    ['SP11c3','Interpret information shown by field lines',0],
+    ['SP11c4','Describe the shape and direction of the electric field around a point charge and between charged plates',0],
+    ['SP11c5','Explain how static electricity effects can be explained using the idea of an electric field',0],
+  ]},
+]},
+{id:'SP12',name:'Magnetism and the Motor Effect',paper:2,sub:[
+  {id:'SP12a',name:'Magnets and magnetic fields',o:[
+    ['SP12a1','Describe how magnets affect each other',0],
+    ['SP12a2','Explain the difference between permanent and induced magnets',0],
+    ['SP12a3','Describe the uses of permanent and temporary magnetic materials',0],
+    ['SP12a4','Describe the shapes of magnetic fields, including variations in strength',0],
+    ['SP12a5','Describe how the shape of magnetic fields can be shown using plotting compasses',0],
+    ['SP12a6',"Explain how a magnetic compass can be used as evidence for the Earth's magnetic core",0],
+  ]},
+  {id:'SP12b',name:'Electromagnetism',o:[
+    ['SP12b1','Recall that a current can create a magnetic effect',0],
+    ['SP12b2','Relate the shape and direction of the magnetic field around a straight wire to the direction of the current',0],
+    ['SP12b3','Recall the factors that affect the strength of the magnetic field around a wire',0],
+    ['SP12b4','Describe the magnetic field inside and outside a coil of wire carrying a current',0],
+    ['SP12b5','Explain the shape and strength of the magnetic field around a solenoid',0],
+  ]},
+  {id:'SP12c',name:'Magnetic forces',o:[
+    ['SP12c1','Recall that forces are produced when a current flows in a magnetic field',1],
+    ['SP12c2','Explain what causes the forces produced when a current flows in a magnetic field',1],
+    ["SP12c3","Recall Fleming's left-hand rule",1],
+    ["SP12c4","Use Fleming's left-hand rule",1],
+    ['SP12c5','Use the formula relating force, magnetic field strength, current and length (F = BIl)',1],
+  ]},
+]},
+{id:'SP13',name:'Electromagnetic Induction',paper:2,sub:[
+  {id:'SP13a',name:'Electromagnetic induction',o:[
+    ['SP13a1','Describe how to produce an electric current by induction on a small scale',1],
+    ['SP13a2','Describe how electromagnetic induction is used in alternators and dynamos',1],
+    ['SP13a3','Describe how different factors affect the size and direction of an induced current',1],
+    ['SP13a4','Describe how the magnetic field produced by an induced potential difference opposes the original change',1],
+    ['SP13a5','Explain how microphones work in terms of changing pressure variations into variations in electric current',1],
+    ['SP13a6','Explain how loudspeakers change variations in current to variations in air pressure',1],
+  ]},
+  {id:'SP13b',name:'The national grid',o:[
+    ['SP13b1','Explain how a transformer works',1],
+    ['SP13b2','Recall that transformers can change the voltage of an alternating current',1],
+    ['SP13b3','Use the turns ratio equation for transformers',1],
+    ['SP13b4','Describe how the national grid transmits electricity around the country',0],
+    ['SP13b5','Explain why step-up and step-down transformers are used in the national grid',0],
+  ]},
+  {id:'SP13c',name:'Transformers and energy',o:[
+    ['SP13c1','Recall the law of conservation of energy',0],
+    ['SP13c2','Recall that the power of an electric current is given by current multiplied by voltage',0],
+    ['SP13c3','Use the power equation for transformers',0],
+    ['SP13c4','Recall and use equations relating current, voltage, power and resistance',1],
+    ['SP13c5','Use equations to explain the advantages of power transmission in high-voltage cables',1],
+  ]},
+]},
+{id:'SP14',name:'Particle Model',paper:2,sub:[
+  {id:'SP14a',name:'Particles and density',o:[
+    ['SP14a1','Describe the arrangements of particles in solids, liquids and gases',0],
+    ['SP14a2','Use the particle model to explain the different properties of solids, liquids and gases',0],
+    ['SP14a3','Recall the formula relating density, mass and volume (ρ = m/V)',0],
+    ['SP14a4','Use the formula relating density, mass and volume',0],
+    ['SP14a5','Use the particle model to explain why solids, liquids and gases have different densities',0],
+    ['SP14a6','Describe what happens to the mass of a substance when it changes state',0],
+  ]},
+  {id:'SP14b',name:'Energy and changes of state',o:[
+    ['SP14b1','Explain how heating affects the particles in a substance or object, including changes of state',0],
+    ['SP14b2','Describe how the temperature of an object changes with time while being heated or cooled to make it change state',0],
+    ['SP14b3','Define the term specific heat capacity',0],
+    ['SP14b4','Define the term specific latent heat',0],
+    ['SP14b5','Explain the difference between specific heat capacity and specific latent heat',0],
+    ['SP14b6','Explain ways of reducing unwanted energy transfer through thermal insulation',0],
+  ]},
+  {id:'SP14c',name:'Energy calculations',o:[
+    ['SP14c1','Use the formula relating change in thermal energy, mass, temperature change and specific heat capacity (Q = mcΔT)',0],
+    ['SP14c2','Use the formula relating thermal energy, mass and specific latent heat (Q = mL)',0],
+    ['SP14c3','Recall that the value of specific latent heat is different for melting/solidifying and for evaporating/condensing',0],
+  ]},
+  {id:'SP14d',name:'Gas temperature and pressure',o:[
+    ['SP14d1','Explain how the movement of particles causes gas pressure',0],
+    ['SP14d2','Explain how changing the temperature of a gas affects the speed of its particles',0],
+    ['SP14d3','Explain how temperature affects the pressure of a fixed mass of gas at constant volume',0],
+    ['SP14d4','Explain the significance of absolute zero',0],
+    ['SP14d5','Convert temperatures between the Kelvin and Celsius temperature scales',0],
+  ]},
+  {id:'SP14e',name:'Gas pressure and volume',o:[
+    ['SP14e1','Explain how gases can be compressed or expanded by pressure changes',0],
+    ['SP14e2','Explain how the pressure of a gas produces a force at right angles to any surface',0],
+    ['SP14e3','Explain why changing the volume of a gas changes the pressure',0],
+    ['SP14e4','Use the formula relating pressure and volume changes in a gas of fixed mass at constant temperature (p₁V₁ = p₂V₂)',0],
+    ['SP14e5','Explain why doing work on a gas can increase its temperature',1],
+  ]},
+]},
+{id:'SP15',name:'Forces and Matter',paper:2,sub:[
+  {id:'SP15a',name:'Bending and stretching',o:[
+    ['SP15a1','Explain that more than one force is needed to distort an object',0],
+    ['SP15a2','Describe the difference between elastic and inelastic distortion',0],
+    ['SP15a3','Describe the relationship between force and extension for a spring',0],
+    ['SP15a4','Describe the relationship between force and extension for a rubber band',0],
+    ['SP15a5','Compare the force–extension relationship for different objects',0],
+  ]},
+  {id:'SP15b',name:'Extension and energy transfers',o:[
+    ['SP15b1','Recall the equation that links force, extension and the spring constant (F = ke)',0],
+    ['SP15b2','Use the formula relating force, extension and spring constant',0],
+    ['SP15b3','Recall that work has to be done to stretch a spring',0],
+    ['SP15b4','Use the formula relating the energy transferred to the extension of a spring (E = ½ke²)',0],
+  ]},
+  {id:'SP15c',name:'Pressure in fluids',o:[
+    ['SP15c1',"Use a model of the Earth's atmosphere to explain why pressure varies with height",0],
+    ['SP15c2','Describe the pressure in a fluid as being due to the fluid and atmospheric pressure',0],
+    ['SP15c3','Explain how pressure is related to area and a force normal to the surface',0],
+    ['SP15c4','Recall the formula relating force, pressure and area (p = F/A)',0],
+    ['SP15c5','Use the formula relating force, pressure and area',0],
+    ['SP15c6','Describe how pressure in fluids increases with depth and density',0],
+  ]},
+  {id:'SP15d',name:'Pressure and upthrust',o:[
+    ['SP15d1','Explain why the pressure in a liquid depends on density and depth',1],
+    ['SP15d2','Use the equation relating pressure in a fluid to height, density and gravitational field strength (p = hρg)',1],
+    ['SP15d3','Explain how upthrust occurs',1],
+    ['SP15d4','Relate the upthrust to the floating or sinking of objects immersed or partially immersed in fluids',1],
+    ['SP15d5','Recall that the upthrust is equal to the weight of fluid displaced',1],
+    ['SP15d6','Explain the factors that determine whether or not an object will float or sink',1],
+  ]},
+]},
+];
+
+// ── STATE ────────────────────────────────────────────────────────────────────
+let progress = {};
+let currentView = 'dashboard'; // 'dashboard' | topic id
+
+function loadProgress() {
+  try {
+    const raw = localStorage.getItem('gcse_phys_rev');
+    if (raw) progress = JSON.parse(raw);
+  } catch(e) { progress = {}; }
+}
+
+function saveProgress() {
+  try { localStorage.setItem('gcse_phys_rev', JSON.stringify(progress)); } catch(e){}
+}
+
+function getVal(oid, field) {
+  return !!(progress[oid] && progress[oid][field]);
+}
+
+function toggle(oid, field) {
+  if (!progress[oid]) progress[oid] = {};
+  progress[oid][field] = !progress[oid][field];
+  saveProgress();
+  updateView();
+}
+
+function confirmReset() {
+  if (confirm('Reset all revision progress? This cannot be undone.')) {
+    progress = {};
+    saveProgress();
+    updateView();
+  }
+}
+
+// ── STATS ────────────────────────────────────────────────────────────────────
+function topicStats(topic) {
+  let total=0, r=0, e=0, m=0;
+  for (const s of topic.sub) {
+    for (const [oid] of s.o) {
+      total++;
+      if (getVal(oid,'r')) r++;
+      if (getVal(oid,'e')) e++;
+      if (getVal(oid,'m')) m++;
+    }
+  }
+  return {total, r, e, m};
+}
+
+function allStats() {
+  let total=0, r=0, e=0, m=0;
+  for (const t of TOPICS) {
+    const s = topicStats(t);
+    total += s.total; r += s.r; e += s.e; m += s.m;
+  }
+  return {total, r, e, m};
+}
+
+function subStats(sub) {
+  let total=0, r=0, e=0, m=0;
+  for (const [oid] of sub.o) {
+    total++;
+    if (getVal(oid,'r')) r++;
+    if (getVal(oid,'e')) e++;
+    if (getVal(oid,'m')) m++;
+  }
+  return {total, r, e, m};
+}
+
+function pct(n, d) { return d ? Math.round(100*n/d) : 0; }
+
+// ── CHECK SVG ────────────────────────────────────────────────────────────────
+function checkSVG() {
+  return `<svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="1.5,6 5,9.5 10.5,2.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+}
+
+// ── RENDER ───────────────────────────────────────────────────────────────────
+function updateView() {
+  renderNav();
+  if (currentView === 'dashboard') {
+    renderDashboard();
+  } else {
+    const t = TOPICS.find(t => t.id === currentView);
+    if (t) renderTopic(t);
+  }
+}
+
+function renderNav() {
+  const nav = document.getElementById('nav');
+  let html = `<button class="nb ${currentView==='dashboard'?'active':''}" onclick="switchView('dashboard')" style="--tc:#6366f1">Dashboard</button>`;
+  for (let i=0; i<TOPICS.length; i++) {
+    const t = TOPICS[i];
+    const cl = currentView===t.id ? 'active' : '';
+    html += `<button class="nb ${cl}" onclick="switchView('${t.id}')" style="--tc:${COLORS[i]}">${t.id}</button>`;
+  }
+  nav.innerHTML = html;
+}
+
+function switchView(id) {
+  currentView = id;
+  document.getElementById('main').scrollTop = 0;
+  window.scrollTo(0,0);
+  updateView();
+}
+
+function renderDashboard() {
+  const s = allStats();
+  const main = document.getElementById('main');
+  let html = `
+  <div class="dsb-top">
+    <div class="dsb-title">Overall revision progress — ${TOPICS.length} topics, ${s.total} learning outcomes</div>
+    <div class="dsb-stats">
+      <div class="dstat">
+        <div class="dstat-lbl">Revised</div>
+        <div class="dstat-val" style="color:var(--c1)">${pct(s.r,s.total)}%</div>
+        <div class="dstat-sub">${s.r} of ${s.total} outcomes</div>
+      </div>
+      <div class="dstat">
+        <div class="dstat-lbl">Exam questions done</div>
+        <div class="dstat-val" style="color:var(--c2)">${pct(s.e,s.total)}%</div>
+        <div class="dstat-sub">${s.e} of ${s.total} outcomes</div>
+      </div>
+      <div class="dstat">
+        <div class="dstat-lbl">Mistakes reviewed</div>
+        <div class="dstat-val" style="color:var(--c3)">${pct(s.m,s.total)}%</div>
+        <div class="dstat-sub">${s.m} of ${s.total} outcomes</div>
+      </div>
+      <div class="dstat">
+        <div class="dstat-lbl">Fully complete</div>
+        <div class="dstat-val" style="color:#e2e8f0">${countComplete(s.total)}</div>
+        <div class="dstat-sub">outcomes (all 3 boxes)</div>
+      </div>
+    </div>
+    <div class="dsb-legend">
+      <div class="leg-item"><div class="leg-dot" style="background:var(--c1)"></div>Revised content</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--c2)"></div>Exam questions completed</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--c3)"></div>Mistakes reviewed</div>
+    </div>
+  </div>
+  <div class="grid">`;
+  
+  for (let i=0; i<TOPICS.length; i++) {
+    const t = TOPICS[i];
+    const ts = topicStats(t);
+    const col = COLORS[i];
+    html += `
+    <div class="tc" onclick="switchView('${t.id}')" style="--tc:${col}">
+      <div class="tc-top">
+        <span class="tc-badge">${t.id}</span>
+        <span class="tc-paper">Paper ${t.paper}</span>
+      </div>
+      <div class="tc-name">${t.name}</div>
+      <div class="tc-cnt">${ts.total} learning outcomes</div>
+      <div class="prows">
+        <div class="prow">
+          <span class="plbl">Revised</span>
+          <div class="ptrack"><div class="pfill" style="width:${pct(ts.r,ts.total)}%;background:var(--c1)"></div></div>
+          <span class="ppct">${pct(ts.r,ts.total)}%</span>
+        </div>
+        <div class="prow">
+          <span class="plbl">Exam Qs</span>
+          <div class="ptrack"><div class="pfill" style="width:${pct(ts.e,ts.total)}%;background:var(--c2)"></div></div>
+          <span class="ppct">${pct(ts.e,ts.total)}%</span>
+        </div>
+        <div class="prow">
+          <span class="plbl">Reviewed</span>
+          <div class="ptrack"><div class="pfill" style="width:${pct(ts.m,ts.total)}%;background:var(--c3)"></div></div>
+          <span class="ppct">${pct(ts.m,ts.total)}%</span>
+        </div>
+      </div>
+    </div>`;
+  }
+  html += `</div>`;
+  main.innerHTML = html;
+}
+
+function countComplete(total) {
+  let c = 0;
+  for (const t of TOPICS) {
+    for (const s of t.sub) {
+      for (const [oid] of s.o) {
+        if (getVal(oid,'r') && getVal(oid,'e') && getVal(oid,'m')) c++;
+      }
+    }
+  }
+  return c;
+}
+
+function renderTopic(topic) {
+  const ti = TOPICS.indexOf(topic);
+  const col = COLORS[ti];
+  const ts = topicStats(topic);
+  const main = document.getElementById('main');
+  
+  let html = `
+  <div class="back-row">
+    <button class="back-btn" onclick="switchView('dashboard')">&#8592; All topics</button>
+  </div>
+  <div class="tv-hdr" style="--tc:${col}">
+    <div class="tv-title">${topic.id} — ${topic.name}</div>
+    <div class="tv-stats">
+      <div class="tvs">
+        <div class="tvs-dot" style="background:var(--c1)"></div>
+        <span class="tvs-text">Revised</span>
+        <span class="tvs-val">${ts.r}/${ts.total}</span>
+        <span class="tvs-text">(${pct(ts.r,ts.total)}%)</span>
+      </div>
+      <div class="tvs">
+        <div class="tvs-dot" style="background:var(--c2)"></div>
+        <span class="tvs-text">Exam Qs</span>
+        <span class="tvs-val">${ts.e}/${ts.total}</span>
+        <span class="tvs-text">(${pct(ts.e,ts.total)}%)</span>
+      </div>
+      <div class="tvs">
+        <div class="tvs-dot" style="background:var(--c3)"></div>
+        <span class="tvs-text">Reviewed</span>
+        <span class="tvs-val">${ts.m}/${ts.total}</span>
+        <span class="tvs-text">(${pct(ts.m,ts.total)}%)</span>
+      </div>
+    </div>
+  </div>`;
+  
+  for (const sub of topic.sub) {
+    const ss = subStats(sub);
+    html += `
+    <div class="sub" id="${sub.id}_card">
+      <div class="sub-hdr" onclick="toggleSub('${sub.id}')">
+        <div class="sub-left">
+          <span class="sub-id" style="color:${col}">${sub.id}</span>
+          <span class="sub-name">${sub.name}</span>
+        </div>
+        <div class="sub-right">
+          <div class="mini-pips">
+            <div class="pip ${ss.r>0?'on':''}" style="${ss.r>0?'background:var(--c1)':'background:var(--hi)'}"></div>
+            <div class="pip ${ss.e>0?'on':''}" style="${ss.e>0?'background:var(--c2)':'background:var(--hi)'}"></div>
+            <div class="pip ${ss.m>0?'on':''}" style="${ss.m>0?'background:var(--c3)':'background:var(--hi)'}"></div>
+          </div>
+          <span style="font-size:10px;color:var(--hi)">${ss.r+ss.e+ss.m}/${ss.total*3}</span>
+          <span class="chev open" id="${sub.id}_chev">&#8964;</span>
+        </div>
+      </div>
+      <div class="sub-body" id="${sub.id}_body">
+        <div class="col-hdr">
+          <div class="ch" style="text-align:left;color:var(--mu)">Learning outcome</div>
+          <div class="ch" style="color:var(--c1)" title="Revised content">Rev</div>
+          <div class="ch" style="color:var(--c2)" title="Completed exam questions">Qs</div>
+          <div class="ch" style="color:var(--c3)" title="Reviewed mistakes">Err</div>
+        </div>`;
+    
+    for (const [oid, text, isH] of sub.o) {
+      const rv = getVal(oid,'r'), ev = getVal(oid,'e'), mv = getVal(oid,'m');
+      html += `
+        <div class="or">
+          <div class="ot">${escHtml(text)}${isH?'<span class="hb">H</span>':''}</div>
+          <div class="cbw"><div class="cb r1 ${rv?'on':''}" onclick="toggle('${oid}','r')" title="Mark as revised">${rv?checkSVG():''}</div></div>
+          <div class="cbw"><div class="cb r2 ${ev?'on':''}" onclick="toggle('${oid}','e')" title="Mark exam questions done">${ev?checkSVG():''}</div></div>
+          <div class="cbw"><div class="cb r3 ${mv?'on':''}" onclick="toggle('${oid}','m')" title="Mark mistakes reviewed">${mv?checkSVG():''}</div></div>
+        </div>`;
+    }
+    html += `</div></div>`;
+  }
+  
+  main.innerHTML = html;
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function toggleSub(id) {
+  const body = document.getElementById(id+'_body');
+  const chev = document.getElementById(id+'_chev');
+  if (body.classList.contains('hide')) {
+    body.classList.remove('hide');
+    chev.classList.add('open');
+  } else {
+    body.classList.add('hide');
+    chev.classList.remove('open');
+  }
+}
+
+// ── INIT ─────────────────────────────────────────────────────────────────────
+loadProgress();
+updateView();
+</script>
+</body>
+</html>
