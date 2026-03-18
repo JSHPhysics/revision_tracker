@@ -1,14 +1,29 @@
+
+<!-- saved from url=(0060)file:///C:/Users/Josh/Downloads/gcse_physics_tracker_28.html -->
+<html lang="en" data-theme="bio-light" style="--font: &#39;Comfortaa&#39;,cursive;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="./index_files/css2"><link rel="stylesheet" href="./index_files/css2(1)"><link rel="stylesheet" href="./index_files/css2(2)"><link rel="stylesheet" href="./index_files/css2(3)"><link rel="stylesheet" href="./index_files/css2(4)"><link rel="stylesheet" href="./index_files/css2(5)"><link rel="stylesheet" href="./index_files/css2(6)"><link rel="stylesheet" href="./index_files/css2(7)"><link rel="stylesheet" href="./index_files/css2(8)"><link rel="stylesheet" href="./index_files/css2(9)"><link rel="stylesheet" href="./index_files/css2(10)"><link rel="stylesheet" href="./index_files/css2(11)"><link rel="stylesheet" href="./index_files/css2(12)"><link rel="stylesheet" href="./index_files/css2(13)"></head><body><div class="sr-ov hide" id="sr-modal" onclick="handleSrOvClick(event)">
+  <div class="sr-card">
+    <div class="sr-hdr">
+      <div>
+        <div class="sr-title">🧑‍🏫 Staff Room — Teacher Code Reference</div>
+        <div class="sr-subtitle">Share these codes with students to unlock rewards. Do not display publicly.</div>
+      </div>
+      <button class="sj-close-x" onclick="closeStaffRoom()">×</button>
+    </div>
+    <div class="sr-body" id="sr-body"></div>
+  </div>
+</div>
+
 <!-- UNLOCK CODE MODAL -->
 <div class="uc-ov hide" id="uc-modal" onclick="handleUcOvClick(event)">
   <div class="uc-card">
     <div class="uc-hdr">
       <div class="uc-title">🔑 Enter unlock code</div>
-      <button class="sj-close-x" onclick="closeUnlockCode()">&times;</button>
+      <button class="sj-close-x" onclick="closeUnlockCode()">×</button>
     </div>
     <div class="uc-body">
       <div class="uc-desc">Enter a code from your teacher to unlock themes, fonts, or layouts — even without coins.</div>
       <div class="uc-input-row">
-        <input class="uc-input" id="uc-input" placeholder="CODE" maxlength="24" onkeydown="if(event.key==='Enter')redeemCode()"/>
+        <input class="uc-input" id="uc-input" placeholder="CODE" maxlength="24" onkeydown="if(event.key===&#39;Enter&#39;)redeemCode()">
         <button class="uc-submit" onclick="redeemCode()">Redeem</button>
       </div>
       <div class="uc-result" id="uc-result"></div>
@@ -25,25 +40,78 @@
   <div class="shop-card">
     <div class="shop-hdr">
       <div>
-        <div class="shop-title">Shop</div>
-        <div class="shop-bal"><span style="font-size:14px">🪙</span>&nbsp;<span id="shop-bal-disp">0</span>&nbsp;coins available</div>
+        <div class="shop-title">Unlocks</div>
+        <div class="shop-bal"><span style="font-size:14px">🪙</span>&nbsp;<span id="shop-bal-disp">84</span>&nbsp;coins available</div>
       </div>
-      <button class="sj-close-x" onclick="closeShop()">&times;</button>
+      <button class="sj-close-x" onclick="closeShop()">×</button>
     </div>
     <div class="shop-tabs-bar">
-      <button class="shop-tab on" data-tab="themes" onclick="renderShopTab('themes')">Themes</button>
-      <button class="shop-tab" data-tab="fonts" onclick="renderShopTab('fonts')">Fonts</button>
-      <button class="shop-tab" data-tab="layouts" onclick="renderShopTab('layouts')">Layouts</button>
+      <button class="shop-tab" data-tab="themes" onclick="renderShopTab(&#39;themes&#39;)">Themes</button>
+      <button class="shop-tab" data-tab="fonts" onclick="renderShopTab(&#39;fonts&#39;)">Fonts</button>
+      <button class="shop-tab on" data-tab="layouts" onclick="renderShopTab(&#39;layouts&#39;)">Layouts</button>
     </div>
-    <div class="shop-body" id="shop-body"></div>
+    <div class="shop-body" id="shop-body"><div class="shop-sec"><div class="shop-sec-lbl">Dashboard — card style</div>
+    <div class="layout-grid"><div class="layout-opt" onclick="applyLayout(&#39;dashCard&#39;,&#39;pie&#39;)">
+        <span class="lo-check">✓</span>
+        <div class="lo-icon">◕</div>
+        <div class="lo-name">Pie charts</div>
+        
+      </div><div class="layout-opt active" onclick="applyLayout(&#39;dashCard&#39;,&#39;rings&#39;)">
+        <span class="lo-check">✓</span>
+        <div class="lo-icon">◎</div>
+        <div class="lo-name">Rings</div>
+        <div style="font-size:10px;color:var(--c1);font-weight:600">Active</div>
+      </div><div class="layout-opt" onclick="applyLayout(&#39;dashCard&#39;,&#39;arc&#39;)">
+        <span class="lo-check">✓</span>
+        <div class="lo-icon">◡</div>
+        <div class="lo-name">Stacked arc</div>
+        
+      </div></div></div><div class="shop-sec"><div class="shop-sec-lbl">Dashboard — view</div>
+    <div class="layout-grid"><div class="layout-opt" onclick="applyLayout(&#39;dashView&#39;,&#39;cards&#39;)">
+        <span class="lo-check">✓</span>
+        <div class="lo-icon">⊞</div>
+        <div class="lo-name">Card grid</div>
+        
+      </div><div class="layout-opt active" onclick="applyLayout(&#39;dashView&#39;,&#39;list&#39;)">
+        <span class="lo-check">✓</span>
+        <div class="lo-icon">≡</div>
+        <div class="lo-name">Compact list</div>
+        <div style="font-size:10px;color:var(--c1);font-weight:600">Active</div>
+      </div></div></div><div class="shop-sec"><div class="shop-sec-lbl">Topic view</div>
+    <div class="layout-grid"><div class="layout-opt active" onclick="applyLayout(&#39;topicView&#39;,&#39;default&#39;)">
+        <span class="lo-check">✓</span>
+        <div class="lo-icon">▤</div>
+        <div class="lo-name">Subtopic cards</div>
+        <div style="font-size:10px;color:var(--c1);font-weight:600">Active</div>
+      </div><div class="layout-opt" onclick="applyLayout(&#39;topicView&#39;,&#39;table&#39;)">
+        <span class="lo-check">✓</span>
+        <div class="lo-icon">⊟</div>
+        <div class="lo-name">Table</div>
+        
+      </div><div class="layout-opt" onclick="applyLayout(&#39;topicView&#39;,&#39;dots&#39;)">
+        <span class="lo-check">✓</span>
+        <div class="lo-icon">⠿</div>
+        <div class="lo-name">Dot matrix</div>
+        
+      </div><div class="layout-opt" onclick="applyLayout(&#39;topicView&#39;,&#39;hex&#39;)">
+        <span class="lo-check">✓</span>
+        <div class="lo-icon">⬡</div>
+        <div class="lo-name">Hexgrid</div>
+        
+      </div><div class="layout-opt" onclick="applyLayout(&#39;topicView&#39;,&#39;focus&#39;)">
+        <span class="lo-check">✓</span>
+        <div class="lo-icon">◉</div>
+        <div class="lo-name">Focus mode</div>
+        
+      </div></div></div></div>
     <div style="text-align:center;padding:10px 0 14px;border-top:1px solid var(--bd);flex-shrink:0"><button class="help-btn" onclick="closeShop();openUnlockCode()" style="font-size:11px;opacity:0.7">🔑 Enter unlock code</button></div>
   </div>
 </div>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
+
+
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GCSE Physics Revision Tracker – Edexcel (9-1)</title>
 <style>
@@ -276,9 +344,9 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
 .cb.on{border-color:transparent}
 .cb svg{display:none;width:12px;height:12px}
 .cb.on svg{display:block}
-.cb.r1{--hc:var(--c1)}.cb.r1.on{background:var(--c1)}
-.cb.r2{--hc:var(--c2)}.cb.r2.on{background:var(--c2)}
-.cb.r3{--hc:var(--c3)}.cb.r3.on{background:var(--c3)}
+.cb.r1{--hc:var(--c1)}.cb.r1.on{background:var(--c1);color:var(--surface)}
+.cb.r2{--hc:var(--c2)}.cb.r2.on{background:var(--c2);color:var(--surface)}
+.cb.r3{--hc:var(--c3)}.cb.r3.on{background:var(--c3);color:var(--surface)}
 .sub-body.hide{display:none}
 .rbtn{font-size:11px;color:var(--tx3);background:none;border:1px solid var(--bd2);border-radius:5px;padding:4px 8px;cursor:pointer;font-family:var(--font);transition:all 0.15s}
 .rbtn:hover{background:#fff0f0;border-color:#fca5a5;color:#dc2626}
@@ -339,6 +407,12 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
 .mob-drawer .rbtn{width:100%;padding:10px 12px;font-size:12px;border-radius:8px;text-align:left}
 .mob-scrim{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:1499}
 .mob-scrim.open{display:block}
+
+@media(max-width:960px){
+  .hdr-actions .spec-toggle,.hdr-actions .help-btn,.hdr-actions .rbtn{display:none}
+  .mob-menu-btn{display:flex}
+  .hdr{height:auto;min-height:48px;padding:9px 16px}
+}
 @media(max-width:640px){
   .main{padding:10px}
   .grid{grid-template-columns:1fr 1fr;gap:8px}
@@ -403,8 +477,8 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
 .th-col-lbl{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--tx3);margin-bottom:8px}
 .th-swatches{display:flex;flex-direction:column;gap:6px}
 .th-swatch{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:9px;border:2px solid transparent;cursor:pointer;transition:all 0.15s;background:var(--surface2)}
-.th-swatch:hover{border-color:var(--bd2);background:var(--surface3)}
-.th-swatch.active{border-color:var(--c1);background:color-mix(in srgb,var(--c1) 8%,var(--surface))}
+.th-swatch:hover{border-color:rgba(128,128,128,0.5)!important;filter:brightness(1.08)}
+.th-swatch.active{background:color-mix(in srgb,var(--c1) 8%,var(--surface))}
 .th-preview{display:flex;gap:3px;flex-shrink:0}
 .th-dot{width:11px;height:11px;border-radius:50%}
 .th-name{font-size:12px;font-weight:600;color:var(--tx2)}
@@ -493,6 +567,12 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
 .layout-opt.active .lo-check{opacity:1}
 /* Compact list dashboard */
 .dsb-list{display:flex;flex-direction:column;gap:5px;margin-top:4px}
+
+.dl-viz{display:flex;align-items:center;flex-shrink:0}
+.dl-pie-group{display:flex;gap:5px;align-items:center}
+.dl-pie-wrap{position:relative;width:28px;height:28px;flex-shrink:0}
+.dl-pie-wrap canvas{position:absolute;inset:0}
+.dl-pie-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;color:var(--tx2)}
 .dl-row{display:flex;align-items:center;gap:10px;background:var(--surface);border-radius:8px;padding:9px 13px;border:1px solid var(--bd);cursor:pointer;transition:all 0.15s}
 .dl-row:hover{border-color:var(--bd2);background:var(--surface2);transform:translateX(2px)}
 .dl-id{font-size:10px;font-weight:700;width:30px;flex-shrink:0}
@@ -552,10 +632,29 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
 .t-sub-row td{background:var(--surface2);font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.4px;padding:5px 10px}
 .topic-table .t-done td{background:color-mix(in srgb,var(--c3) 6%,var(--surface))}
 .t-cb{width:15px;height:15px;border-radius:3px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:10px;border:1px solid var(--bd2);transition:all 0.12s;user-select:none}
-.t-cb.r-on{background:var(--c1);border-color:var(--c1);color:white}
-.t-cb.e-on{background:var(--c2);border-color:var(--c2);color:white}
-.t-cb.m-on{background:var(--c3);border-color:var(--c3);color:white}
+.t-cb.r-on{background:var(--c1);border-color:var(--c1);color:var(--surface)}
+.t-cb.e-on{background:var(--c2);border-color:var(--c2);color:var(--surface)}
+.t-cb.m-on{background:var(--c3);border-color:var(--c3);color:var(--surface)te}
 
+
+/* ── STAFF ROOM ── */
+.sr-ov{position:fixed;inset:0;background:rgba(10,14,35,0.55);z-index:4000;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px);animation:fadeIn 0.18s ease;overflow-y:auto}
+.sr-ov.hide{display:none}
+.sr-card{background:var(--surface);border-radius:16px;max-width:640px;width:100%;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,0.3);animation:slideUp 0.22s ease;overflow:hidden}
+.sr-hdr{padding:18px 20px 14px;border-bottom:1px solid var(--bd);flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
+.sr-title{font-size:17px;font-weight:800;color:var(--tx)}
+.sr-subtitle{font-size:12px;color:var(--tx3);margin-top:2px}
+.sr-body{overflow-y:auto;flex:1;padding:16px 20px 20px}
+.sr-section{margin-bottom:22px}
+.sr-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--tx3);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--bd)}
+.sr-table{width:100%;border-collapse:collapse;font-size:12px}
+.sr-table tr{border-bottom:1px solid var(--bd)}
+.sr-table tr:last-child{border-bottom:none}
+.sr-table td{padding:7px 8px;vertical-align:middle}
+.sr-code{font-family:var(--font-mono,monospace);font-size:12px;font-weight:700;background:var(--surface2);color:var(--c1);padding:3px 8px;border-radius:5px;letter-spacing:.5px;white-space:nowrap;user-select:all;cursor:copy;border:1px solid var(--bd2)}
+.sr-code:hover{background:var(--surface3)}
+.sr-desc{color:var(--tx2)}
+.sr-note{font-size:11px;color:var(--tx3);background:var(--surface2);border-radius:8px;padding:10px 13px;margin-bottom:14px;line-height:1.5;border-left:3px solid var(--c1)}
 /* ── UNLOCK CODE MODAL ── */
 .uc-ov{position:fixed;inset:0;background:rgba(10,14,35,0.55);z-index:3000;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px);animation:fadeIn 0.18s ease}
 .uc-ov.hide{display:none}
@@ -576,6 +675,88 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
 .uc-history-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--tx3);margin-bottom:7px}
 .uc-history-item{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--tx2);padding:3px 0}
 .uc-history-item span:first-child{font-weight:700;letter-spacing:.4px;font-family:monospace;color:var(--tx)}
+
+/* ── SHAPE OVERVIEW ── */
+.sh-wrap{background:var(--surface);border-radius:var(--r);border:1px solid var(--bd);padding:16px 16px 12px;margin-bottom:14px}
+.sh-svg{width:100%;height:auto;display:block;max-height:270px}
+.sh-legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;padding-top:10px;border-top:1px solid var(--bd)}
+.sh-li{display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--tx3)}
+.sh-ld{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+
+[data-theme="cs-light"]{
+  --bg:#f0f7f0;--surface:#ffffff;--surface2:#e8f5e8;--surface3:#d8eed8;
+  --bd:rgba(0,0,0,0.08);--bd2:rgba(0,0,0,0.14);
+  --tx:#0a2a0a;--tx2:#2a5a2a;--tx3:#4a7a4a;
+  --shadow:0 1px 3px rgba(0,60,0,0.1),0 4px 16px rgba(0,60,0,0.08);
+  --hdr-bg:rgba(232,245,232,0.97);--track:#c8e8c8;--hole:#e8f5e8;
+  --c1:#1a9a1a;--c1d:#0a7a0a;--c2:#5aaa00;--c2d:#3a8a00;--c3:#00909a;--c3d:#007080;}
+[data-theme="cs-dark"]{
+  --bg:#060e06;--surface:#081208;--surface2:#0c1a0c;--surface3:#102210;
+  --bd:rgba(0,255,65,0.08);--bd2:rgba(0,255,65,0.16);
+  --tx:#c0f0c0;--tx2:#4a9a4a;--tx3:#2a6a2a;
+  --shadow:0 1px 3px rgba(0,0,0,0.5),0 4px 16px rgba(0,0,0,0.7);
+  --hdr-bg:rgba(8,18,8,0.97);--track:#0c1a0c;--hole:#081208;
+  --c1:#00ff41;--c1d:#00cc33;--c2:#39ff7a;--c2d:#20dd5a;--c3:#00e5d0;--c3d:#00b5a0;}
+[data-theme="chem-light"]{
+  --bg:#fffaf4;--surface:#ffffff;--surface2:#fef6ec;--surface3:#faeed8;
+  --bd:rgba(0,0,0,0.08);--bd2:rgba(0,0,0,0.14);
+  --tx:#3a1800;--tx2:#7a4010;--tx3:#aa7040;
+  --shadow:0 1px 3px rgba(80,30,0,0.1),0 4px 16px rgba(80,30,0,0.07);
+  --hdr-bg:rgba(254,246,236,0.97);--track:#f0e0c0;--hole:#fef6ec;
+  --c1:#d86000;--c1d:#b84000;--c2:#c89000;--c2d:#a87000;--c3:#2a8a2a;--c3d:#1a6a1a;}
+[data-theme="chem-dark"]{
+  --bg:#100a00;--surface:#180e00;--surface2:#201400;--surface3:#281c00;
+  --bd:rgba(255,140,0,0.1);--bd2:rgba(255,140,0,0.2);
+  --tx:#ffe0a0;--tx2:#c87030;--tx3:#7a4010;
+  --shadow:0 1px 3px rgba(0,0,0,0.5),0 4px 16px rgba(0,0,0,0.7);
+  --hdr-bg:rgba(24,14,0,0.97);--track:#201400;--hole:#180e00;
+  --c1:#ff8c00;--c1d:#d86000;--c2:#ffc040;--c2d:#d0a020;--c3:#40d080;--c3d:#20b060;}
+[data-theme="bio-light"]{
+  --bg:#f4faf0;--surface:#ffffff;--surface2:#ecf8e4;--surface3:#dff0d4;
+  --bd:rgba(0,0,0,0.08);--bd2:rgba(0,0,0,0.14);
+  --tx:#0a2a08;--tx2:#2a5a20;--tx3:#4a7a38;
+  --shadow:0 1px 3px rgba(0,50,0,0.1),0 4px 16px rgba(0,50,0,0.07);
+  --hdr-bg:rgba(236,248,228,0.97);--track:#c8e8b8;--hole:#ecf8e4;
+  --c1:#2a9a0a;--c1d:#1a7a00;--c2:#7ab800;--c2d:#5a9800;--c3:#00a870;--c3d:#008850;}
+[data-theme="bio-dark"]{
+  --bg:#060e04;--surface:#0a1808;--surface2:#0e200c;--surface3:#122810;
+  --bd:rgba(125,222,90,0.08);--bd2:rgba(125,222,90,0.16);
+  --tx:#c0f0a0;--tx2:#5aaa38;--tx3:#3a7a20;
+  --shadow:0 1px 3px rgba(0,0,0,0.5),0 4px 16px rgba(0,0,0,0.7);
+  --hdr-bg:rgba(10,24,8,0.97);--track:#0e200c;--hole:#0a1808;
+  --c1:#7dde5a;--c1d:#5abe3a;--c2:#c8e87a;--c2d:#a8c85a;--c3:#5dcaa5;--c3d:#3daa85;}
+[data-theme="classics-light"]{
+  --bg:#fdf6ec;--surface:#fffdf8;--surface2:#f8eedc;--surface3:#f0e4cc;
+  --bd:rgba(0,0,0,0.08);--bd2:rgba(0,0,0,0.14);
+  --tx:#3a1400;--tx2:#7a4a18;--tx3:#aa8048;
+  --shadow:0 1px 3px rgba(80,30,0,0.1),0 4px 16px rgba(80,30,0,0.07);
+  --hdr-bg:rgba(248,238,220,0.97);--track:#e8d4a8;--hole:#f8eedc;
+  --c1:#c03000;--c1d:#a02000;--c2:#c89000;--c2d:#a87000;--c3:#2a3aaa;--c3d:#1a2a8a;}
+[data-theme="classics-dark"]{
+  --bg:#0e0a04;--surface:#180e04;--surface2:#221508;--surface3:#2c1c0c;
+  --bd:rgba(212,160,68,0.1);--bd2:rgba(212,160,68,0.2);
+  --tx:#f0d8a0;--tx2:#c09040;--tx3:#7a5820;
+  --shadow:0 1px 3px rgba(0,0,0,0.5),0 4px 16px rgba(0,0,0,0.7);
+  --hdr-bg:rgba(24,14,4,0.97);--track:#221508;--hole:#180e04;
+  --c1:#e8602a;--c1d:#c84010;--c2:#d4a044;--c2d:#b08020;--c3:#9070e0;--c3d:#7050c0;}
+.cb.has-icon{font-size:13px;font-weight:700;letter-spacing:0;line-height:1}
+.t-cb.has-icon{font-size:13px;font-weight:700;letter-spacing:0}
+.focus-big-cb.has-icon{font-size:20px;font-weight:700;letter-spacing:0}
+
+[data-theme="phys-osc"]{
+  --bg:#020810;--surface:#030c16;--surface2:#061020;--surface3:#091428;
+  --bd:rgba(64,200,255,0.08);--bd2:rgba(64,200,255,0.18);
+  --tx:#c0e8ff;--tx2:#2a8aaa;--tx3:#1a5a70;
+  --shadow:0 1px 3px rgba(0,0,0,0.6),0 4px 16px rgba(0,0,0,0.8);
+  --hdr-bg:rgba(3,12,22,0.97);--track:#061828;--hole:#030c16;
+  --c1:#40c8ff;--c1d:#20a8df;--c2:#40ffa0;--c2d:#20df80;--c3:#c060ff;--c3d:#a040df;}
+[data-theme="phys-signal"]{
+  --bg:#f0f5fa;--surface:#ffffff;--surface2:#e4eef8;--surface3:#d4e4f4;
+  --bd:rgba(0,80,160,0.08);--bd2:rgba(0,80,160,0.16);
+  --tx:#082040;--tx2:#2a5a8a;--tx3:#5a8aaa;
+  --shadow:0 1px 3px rgba(0,40,80,0.1),0 4px 16px rgba(0,40,80,0.07);
+  --hdr-bg:rgba(228,238,248,0.97);--track:#c8ddf0;--hole:#e4eef8;
+  --c1:#0a6ab0;--c1d:#085090;--c2:#0a8a50;--c2d:#086a38;--c3:#6a1aaa;--c3d:#521488;}
 /* ── RANKS ── */
 /* Rank badge (header + dashboard) */
 .rank-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px 3px 7px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap;border:1.5px solid;transition:all 0.3s;cursor:default;user-select:none}
@@ -626,6 +807,7 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
 .hsc-badge{font-size:10px;font-weight:600;color:var(--tx3);background:var(--surface2);border:1px solid var(--bd2);padding:2px 7px;border-radius:5px;white-space:nowrap}
 .hsc-board{font-size:11px;color:var(--tx3);margin-bottom:14px}
 .hsc-bars{display:flex;flex-direction:column;gap:5px}
+.hsc-viz{display:flex;justify-content:center;margin-bottom:4px}
 .hsc-bar-row{display:flex;align-items:center;gap:8px}
 .hsc-bar-lbl{font-size:10px;color:var(--tx3);width:52px;flex-shrink:0}
 .hsc-bar-track{flex:1;height:5px;background:var(--track);border-radius:3px;overflow:hidden}
@@ -640,44 +822,44 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
 .home-empty-btn{display:inline-flex;align-items:center;gap:6px;padding:11px 22px;background:var(--c1);color:#fff;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;border:none;font-family:var(--font);transition:all 0.15s}
 .home-empty-btn:hover{background:var(--c1d);transform:translateY(-1px)}
 </style>
-</head>
-<body>
+
+
 <div class="hdr">
   <div class="hdr-left">
     <button class="help-btn" id="subj-btn" onclick="openSubjectChooser()" style="font-size:13px;font-weight:700;color:var(--tx);background:none;border:none;gap:5px;padding:0">
-      <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
       <span id="hdr-title">Physics</span>
-    </button>
-    <span class="hdr-sub" id="hdr-sub">Edexcel (9-1) &middot; SP1–SP15</span>
+    </button><span id="hdr-overall-rank" style="margin-left: 8px; vertical-align: middle;"><span class="rank-badge rk-master" title="Overall rank"><span class="rank-icon">📚</span><span class="rank-lbl">Getting Started</span></span></span>
+    <span class="hdr-sub" id="hdr-sub">Edexcel GCSE (9–1) · Physics · Separate · Higher</span>
   </div>
   <div class="hdr-actions">
-    <div class="spec-toggle" id="tier-toggle" title="Switch between Higher and Foundation tier">
-      <button class="spec-btn" id="btn-higher" onclick="setTier('higher')">Higher</button>
-      <button class="spec-btn" id="btn-found" onclick="setTier('foundation')">Foundation</button>
+    <div class="spec-toggle" id="tier-toggle" title="Switch between Higher and Foundation tier" style="">
+      <button class="spec-btn active" id="btn-higher" onclick="setTier(&#39;higher&#39;)">Higher</button>
+      <button class="spec-btn" id="btn-found" onclick="setTier(&#39;foundation&#39;)">Foundation</button>
     </div>
-    <div class="spec-toggle" id="spec-toggle" title="Switch between Combined and Separate Science specifications">
-      <button class="spec-btn com" id="btn-com" onclick="setSpec('com')">Combined</button>
-      <button class="spec-btn sep" id="btn-sep" onclick="setSpec('sep')">Separate</button>
+    <div class="spec-toggle" id="spec-toggle" title="Switch between Combined and Separate Science specifications" style="">
+      <button class="spec-btn com" id="btn-com" onclick="setSpec(&#39;com&#39;)">Combined</button>
+      <button class="spec-btn sep active" id="btn-sep" onclick="setSpec(&#39;sep&#39;)">Separate</button>
     </div>
     <button class="coin-counter" id="coin-counter" onclick="openThemes()" title="Revision coins — spend in the theme shop">
       <span class="coin-icon">🪙</span>
-      <span class="coin-bal" id="coin-bal">0</span>
+      <span class="coin-bal" id="coin-bal">84</span>
     </button>
     <button class="help-btn" onclick="openThemes()">
-      <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.4"/><circle cx="7" cy="3" r="1" fill="currentColor"/><circle cx="10.6" cy="5.5" r="1" fill="currentColor"/><circle cx="10.6" cy="8.5" r="1" fill="currentColor"/><circle cx="7" cy="11" r="1" fill="currentColor"/><circle cx="3.4" cy="8.5" r="1" fill="currentColor"/><circle cx="3.4" cy="5.5" r="1" fill="currentColor"/></svg>
-      Shop
+      <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.4"></circle><circle cx="7" cy="3" r="1" fill="currentColor"></circle><circle cx="10.6" cy="5.5" r="1" fill="currentColor"></circle><circle cx="10.6" cy="8.5" r="1" fill="currentColor"></circle><circle cx="7" cy="11" r="1" fill="currentColor"></circle><circle cx="3.4" cy="8.5" r="1" fill="currentColor"></circle><circle cx="3.4" cy="5.5" r="1" fill="currentColor"></circle></svg>
+      Unlocks
     </button>
     <button class="help-btn" onclick="openSaveCode()">
-      <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M4 6l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 10v1.5A1.5 1.5 0 003.5 13h7a1.5 1.5 0 001.5-1.5V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M4 6l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M2 10v1.5A1.5 1.5 0 003.5 13h7a1.5 1.5 0 001.5-1.5V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
       Save code
     </button>
     <button class="help-btn" onclick="openTour(0)">
-      <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M5.5 5.5C5.5 4.7 6.1 4.1 7 4.1s1.5.6 1.5 1.4c0 .9-.8 1.2-1.3 1.6C6.8 7.4 6.7 7.7 6.7 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="6.95" cy="10" r=".7" fill="currentColor"/></svg>
+      <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.5"></circle><path d="M5.5 5.5C5.5 4.7 6.1 4.1 7 4.1s1.5.6 1.5 1.4c0 .9-.8 1.2-1.3 1.6C6.8 7.4 6.7 7.7 6.7 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path><circle cx="6.95" cy="10" r=".7" fill="currentColor"></circle></svg>
       How to use
     </button>
     <button class="rbtn" onclick="confirmReset()">Reset all</button>
     <button class="mob-menu-btn" onclick="openMobMenu()" aria-label="Menu">
-      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="14" height="1.8" rx=".9" fill="currentColor"/><rect x="2" y="8.1" width="14" height="1.8" rx=".9" fill="currentColor"/><rect x="2" y="12.2" width="14" height="1.8" rx=".9" fill="currentColor"/></svg>
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="14" height="1.8" rx=".9" fill="currentColor"></rect><rect x="2" y="8.1" width="14" height="1.8" rx=".9" fill="currentColor"></rect><rect x="2" y="12.2" width="14" height="1.8" rx=".9" fill="currentColor"></rect></svg>
     </button>
   </div>
 </div>
@@ -687,39 +869,39 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
 <div class="mob-drawer" id="mob-drawer">
   <div class="mob-drawer-hdr">
     <span class="mob-drawer-title">Menu</span>
-    <button class="mob-close-x" onclick="closeMobMenu()">&times;</button>
+    <button class="mob-close-x" onclick="closeMobMenu()">×</button>
   </div>
   <div id="mob-tier-toggle-wrap">
     <div class="spec-toggle" style="width:100%;margin-bottom:8px">
-      <button class="spec-btn" id="mob-btn-higher" onclick="setTier('higher');closeMobMenu()">Higher</button>
-      <button class="spec-btn" id="mob-btn-found" onclick="setTier('foundation');closeMobMenu()">Foundation</button>
+      <button class="spec-btn" id="mob-btn-higher" onclick="setTier(&#39;higher&#39;);closeMobMenu()">Higher</button>
+      <button class="spec-btn" id="mob-btn-found" onclick="setTier(&#39;foundation&#39;);closeMobMenu()">Foundation</button>
     </div>
   </div>
   <div id="mob-spec-toggle-wrap">
     <div class="spec-toggle" style="width:100%;margin-bottom:8px">
-      <button class="spec-btn com" id="mob-btn-com" onclick="setSpec('com');closeMobMenu()">Combined</button>
-      <button class="spec-btn sep" id="mob-btn-sep" onclick="setSpec('sep');closeMobMenu()">Separate</button>
+      <button class="spec-btn com" id="mob-btn-com" onclick="setSpec(&#39;com&#39;);closeMobMenu()">Combined</button>
+      <button class="spec-btn sep" id="mob-btn-sep" onclick="setSpec(&#39;sep&#39;);closeMobMenu()">Separate</button>
     </div>
   </div>
   <button class="coin-counter" style="width:100%;justify-content:center;margin-bottom:4px" onclick="openThemes();closeMobMenu()" title="Revision coins">
     <span class="coin-icon">🪙</span>
-    <span style="font-size:12px;font-weight:800;color:#92400e" id="mob-coin-bal">0</span>
+    <span style="font-size:12px;font-weight:800;color:#92400e" id="mob-coin-bal">84</span>
     <span style="font-size:11px;color:#b45309;margin-left:2px">coins</span>
   </button>
   <button class="help-btn" onclick="openShop();closeMobMenu()">
-    <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.4"/><circle cx="7" cy="3" r="1" fill="currentColor"/><circle cx="10.6" cy="5.5" r="1" fill="currentColor"/><circle cx="10.6" cy="8.5" r="1" fill="currentColor"/><circle cx="7" cy="11" r="1" fill="currentColor"/><circle cx="3.4" cy="8.5" r="1" fill="currentColor"/><circle cx="3.4" cy="5.5" r="1" fill="currentColor"/></svg>
-    Shop
+    <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.4"></circle><circle cx="7" cy="3" r="1" fill="currentColor"></circle><circle cx="10.6" cy="5.5" r="1" fill="currentColor"></circle><circle cx="10.6" cy="8.5" r="1" fill="currentColor"></circle><circle cx="7" cy="11" r="1" fill="currentColor"></circle><circle cx="3.4" cy="8.5" r="1" fill="currentColor"></circle><circle cx="3.4" cy="5.5" r="1" fill="currentColor"></circle></svg>
+    Unlocks
   </button>
   <button class="help-btn" onclick="closeShop();openUnlockCode();closeMobMenu()">
-    <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M5 6V4a2 2 0 114 0v2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><rect x="2.5" y="6" width="9" height="6" rx="1.5" stroke="currentColor" stroke-width="1.3"/></svg>
+    <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M5 6V4a2 2 0 114 0v2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path><rect x="2.5" y="6" width="9" height="6" rx="1.5" stroke="currentColor" stroke-width="1.3"></rect></svg>
     Unlock code
   </button>
   <button class="help-btn" onclick="openSaveCode();closeMobMenu()">
-    <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M4 6l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 10v1.5A1.5 1.5 0 003.5 13h7a1.5 1.5 0 001.5-1.5V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M4 6l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M2 10v1.5A1.5 1.5 0 003.5 13h7a1.5 1.5 0 001.5-1.5V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
     Save code
   </button>
   <button class="help-btn" onclick="openTour(0);closeMobMenu()">
-    <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M5.5 5.5C5.5 4.7 6.1 4.1 7 4.1s1.5.6 1.5 1.4c0 .9-.8 1.2-1.3 1.6C6.8 7.4 6.7 7.7 6.7 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="6.95" cy="10" r=".7" fill="currentColor"/></svg>
+    <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.5"></circle><path d="M5.5 5.5C5.5 4.7 6.1 4.1 7 4.1s1.5.6 1.5 1.4c0 .9-.8 1.2-1.3 1.6C6.8 7.4 6.7 7.7 6.7 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path><circle cx="6.95" cy="10" r=".7" fill="currentColor"></circle></svg>
     How to use
   </button>
   <div style="flex:1"></div>
@@ -727,21 +909,282 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
 </div>
 
 <!-- Confetti canvas (always present, hidden when idle) -->
-<canvas id="rk-canvas"></canvas>
+<canvas id="rk-canvas" width="1432" height="1045"></canvas>
 
 <!-- Rank popup -->
 <div class="rk-ov hide" id="rk-modal">
   <div class="rk-card" id="rk-card">
-    <span class="rk-big-icon" id="rk-icon"></span>
-    <div class="rk-popup-title" id="rk-popup-title"></div>
-    <div class="rk-popup-rank" id="rk-popup-rank"></div>
-    <div class="rk-popup-msg" id="rk-popup-msg"></div>
+    <span class="rk-big-icon" id="rk-icon">⭐</span>
+    <div class="rk-popup-title" id="rk-popup-title">Topic complete!</div>
+    <div class="rk-popup-rank" id="rk-popup-rank">Topic Mastered</div>
+    <div class="rk-popup-msg" id="rk-popup-msg">You've fully revised, tested and reviewed every outcome in Conservation of Energy. Excellent work!</div>
     <button class="rk-dismiss" onclick="closeRankPopup()">Nice!</button>
   </div>
 </div>
 
-<div class="nav" id="nav"></div>
-<div class="main" id="main"></div>
+<div class="nav" id="nav"><button class="nb" onclick="switchView(&#39;home&#39;)" style="--tc:#6366f1">← Home</button><button class="nb " onclick="switchView(&#39;dashboard&#39;)" style="--tc:#6366f1">Dashboard</button><button class="nb " onclick="switchView(&#39;SP1&#39;)" style="--tc:#6366f1">SP1</button><button class="nb " onclick="switchView(&#39;SP2&#39;)" style="--tc:#3b82f6">SP2</button><button class="nb active" onclick="switchView(&#39;SP3&#39;)" style="--tc:#f59e0b">SP3</button><button class="nb " onclick="switchView(&#39;SP4&#39;)" style="--tc:#10b981">SP4</button><button class="nb " onclick="switchView(&#39;SP5&#39;)" style="--tc:#06b6d4">SP5</button><button class="nb " onclick="switchView(&#39;SP6&#39;)" style="--tc:#e11d48">SP6</button><button class="nb " onclick="switchView(&#39;SP7&#39;)" style="--tc:#8b5cf6">SP7</button><button class="nb " onclick="switchView(&#39;SP8&#39;)" style="--tc:#f97316">SP8</button><button class="nb " onclick="switchView(&#39;SP9&#39;)" style="--tc:#84cc16">SP9</button><button class="nb " onclick="switchView(&#39;SP10&#39;)" style="--tc:#ec4899">SP10</button><button class="nb " onclick="switchView(&#39;SP11&#39;)" style="--tc:#14b8a6">SP11</button><button class="nb " onclick="switchView(&#39;SP12&#39;)" style="--tc:#f43f5e">SP12</button><button class="nb " onclick="switchView(&#39;SP13&#39;)" style="--tc:#a855f7">SP13</button><button class="nb " onclick="switchView(&#39;SP14&#39;)" style="--tc:#22c55e">SP14</button><button class="nb " onclick="switchView(&#39;SP15&#39;)" style="--tc:#0ea5e9">SP15</button></div>
+<div class="main" id="main"><div class="back-row"><button class="back-btn" onclick="switchView(&#39;dashboard&#39;)">← All topics</button></div><div class="tv-hdr" style="--tc:#f59e0b">
+  <div class="tv-title" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span>SP3 — Conservation of Energy</span><span class="rank-badge rk-recruit" title="Recruit"><span class="rank-icon">🪵</span><span class="rank-lbl">Recruit</span></span></div>
+  <div class="tv-bars">
+    <div class="tvb"><div class="tvb-top"><span class="tvb-lbl" style="color:var(--c1)">Revised content</span><span class="tvb-val">28/28 · 100%</span></div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--c1)"></div></div></div>
+    <div class="tvb"><div class="tvb-top"><span class="tvb-lbl" style="color:var(--c2)">Exam questions done</span><span class="tvb-val">28/28 · 100%</span></div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--c2)"></div></div></div>
+    <div class="tvb"><div class="tvb-top"><span class="tvb-lbl" style="color:var(--c3)">Mistakes reviewed</span><span class="tvb-val">28/28 · 100%</span></div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--c3)"></div></div></div>
+  </div>
+</div><div class="sub">
+  <div class="sub-hdr tier-gold" onclick="toggleSub(&#39;SP3a&#39;)">
+    <div class="sub-left"><span class="sub-id" style="color:#f59e0b">SP3a</span><span class="sub-name">Energy stores and transfers</span></div>
+    <div class="sub-right"><span class="sub-prog">15/15 checks</span><span class="chev open" id="SP3a_ch">⌄</span></div>
+  </div>
+  <div class="sub-body" id="SP3a_bd">
+    <div class="bulk-bar">
+      <span class="bulk-lbl">Tick all:</span>
+      <button class="bb bb1" onclick="bulkField(&#39;SP3a&#39;,&#39;r&#39;,true)">✓ Revised</button>
+      <button class="bb bb2" onclick="bulkField(&#39;SP3a&#39;,&#39;e&#39;,true)">✓ Exam Qs</button>
+      <button class="bb bb3" onclick="bulkField(&#39;SP3a&#39;,&#39;m&#39;,true)">✓ Reviewed</button>
+      <button class="bb bball" onclick="bulkAll(&#39;SP3a&#39;,true)">✓ All three</button>
+      <button class="bclr" onclick="bulkAll(&#39;SP3a&#39;,false)">✕ Clear</button>
+    </div>
+    <div class="col-hdr">
+      <div class="ch" style="text-align:left;color:var(--tx2)">Learning outcome</div>
+      <div class="ch" style="color:var(--c1)">Rev</div>
+      <div class="ch" style="color:var(--c2)">Qs</div>
+      <div class="ch" style="color:var(--c3)">Err</div>
+    </div><div class="or done">
+  <div class="ot">Explain, using examples, that energy is conserved</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3a1&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3a1&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3a1&#39;,&#39;m&#39;)">✿</div></div>
+</div><div class="or done">
+  <div class="ot">Give examples of energy being moved between different stores</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3a2&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3a2&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3a2&#39;,&#39;m&#39;)">✿</div></div>
+</div><div class="or done">
+  <div class="ot">Interpret diagrams that represent energy transfers</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3a3&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3a3&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3a3&#39;,&#39;m&#39;)">✿</div></div>
+</div><div class="or done">
+  <div class="ot">Represent energy transfers using diagrams</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3a4&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3a4&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3a4&#39;,&#39;m&#39;)">✿</div></div>
+</div><div class="or done">
+  <div class="ot">Describe what happens to wasted energy in energy transfers</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3a5&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3a5&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3a5&#39;,&#39;m&#39;)">✿</div></div>
+</div></div></div><div class="sub">
+  <div class="sub-hdr tier-gold" onclick="toggleSub(&#39;SP3b&#39;)">
+    <div class="sub-left"><span class="sub-id" style="color:#f59e0b">SP3b</span><span class="sub-name">Energy efficiency</span></div>
+    <div class="sub-right"><span class="sub-prog">15/15 checks</span><span class="chev open" id="SP3b_ch">⌄</span></div>
+  </div>
+  <div class="sub-body" id="SP3b_bd">
+    <div class="bulk-bar">
+      <span class="bulk-lbl">Tick all:</span>
+      <button class="bb bb1" onclick="bulkField(&#39;SP3b&#39;,&#39;r&#39;,true)">✓ Revised</button>
+      <button class="bb bb2" onclick="bulkField(&#39;SP3b&#39;,&#39;e&#39;,true)">✓ Exam Qs</button>
+      <button class="bb bb3" onclick="bulkField(&#39;SP3b&#39;,&#39;m&#39;,true)">✓ Reviewed</button>
+      <button class="bb bball" onclick="bulkAll(&#39;SP3b&#39;,true)">✓ All three</button>
+      <button class="bclr" onclick="bulkAll(&#39;SP3b&#39;,false)">✕ Clear</button>
+    </div>
+    <div class="col-hdr">
+      <div class="ch" style="text-align:left;color:var(--tx2)">Learning outcome</div>
+      <div class="ch" style="color:var(--c1)">Rev</div>
+      <div class="ch" style="color:var(--c2)">Qs</div>
+      <div class="ch" style="color:var(--c3)">Err</div>
+    </div><div class="or done">
+  <div class="ot">Explain some ways in which energy is transferred wastefully by mechanical processes</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3b1&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3b1&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3b1&#39;,&#39;m&#39;)">✿</div></div>
+</div><div class="or done">
+  <div class="ot">Explain some ways of reducing unwanted energy transfers in mechanical processes</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3b2&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3b2&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3b2&#39;,&#39;m&#39;)">✿</div></div>
+</div><div class="or done">
+  <div class="ot">Define what efficiency means</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3b3&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3b3&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3b3&#39;,&#39;m&#39;)">✿</div></div>
+</div><div class="or done">
+  <div class="ot">Explain how efficiency can be increased<span class="hb">H</span></div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3b4&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3b4&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3b4&#39;,&#39;m&#39;)">✿</div></div>
+</div><div class="or done">
+  <div class="ot">Recall and use the formula for calculating energy efficiency</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3b5&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3b5&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3b5&#39;,&#39;m&#39;)">✿</div></div>
+</div></div></div><div class="sub">
+  <div class="sub-hdr tier-gold" onclick="toggleSub(&#39;SP3c&#39;)">
+    <div class="sub-left"><span class="sub-id" style="color:#f59e0b">SP3c</span><span class="sub-name">Keeping warm</span></div>
+    <div class="sub-right"><span class="sub-prog">15/15 checks</span><span class="chev open" id="SP3c_ch">⌄</span></div>
+  </div>
+  <div class="sub-body" id="SP3c_bd">
+    <div class="bulk-bar">
+      <span class="bulk-lbl">Tick all:</span>
+      <button class="bb bb1" onclick="bulkField(&#39;SP3c&#39;,&#39;r&#39;,true)">✓ Revised</button>
+      <button class="bb bb2" onclick="bulkField(&#39;SP3c&#39;,&#39;e&#39;,true)">✓ Exam Qs</button>
+      <button class="bb bb3" onclick="bulkField(&#39;SP3c&#39;,&#39;m&#39;,true)">✓ Reviewed</button>
+      <button class="bb bball" onclick="bulkAll(&#39;SP3c&#39;,true)">✓ All three</button>
+      <button class="bclr" onclick="bulkAll(&#39;SP3c&#39;,false)">✕ Clear</button>
+    </div>
+    <div class="col-hdr">
+      <div class="ch" style="text-align:left;color:var(--tx2)">Learning outcome</div>
+      <div class="ch" style="color:var(--c1)">Rev</div>
+      <div class="ch" style="color:var(--c2)">Qs</div>
+      <div class="ch" style="color:var(--c3)">Err</div>
+    </div><div class="or done">
+  <div class="ot">Describe the ways in which energy can be transferred by heating</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3c1&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3c1&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3c1&#39;,&#39;m&#39;)">✿</div></div>
+</div><div class="or done">
+  <div class="ot">Describe ways of reducing unwanted energy transfers using thermal insulation</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3c2&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3c2&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3c2&#39;,&#39;m&#39;)">✿</div></div>
+</div><div class="or done">
+  <div class="ot">Explain how different ways of reducing energy transfer by heating work</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3c3&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3c3&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3c3&#39;,&#39;m&#39;)">✿</div></div>
+</div><div class="or done">
+  <div class="ot">Define the meaning of thermal conductivity</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3c4&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3c4&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3c4&#39;,&#39;m&#39;)">✿</div></div>
+</div><div class="or done">
+  <div class="ot">Describe the effects of thickness and thermal conductivity of building walls on rate of cooling</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3c5&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3c5&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3c5&#39;,&#39;m&#39;)">✿</div></div>
+</div></div></div><div class="sub">
+  <div class="sub-hdr tier-gold" onclick="toggleSub(&#39;SP3d&#39;)">
+    <div class="sub-left"><span class="sub-id" style="color:#f59e0b">SP3d</span><span class="sub-name">Stored energies</span></div>
+    <div class="sub-right"><span class="sub-prog">12/12 checks</span><span class="chev open" id="SP3d_ch">⌄</span></div>
+  </div>
+  <div class="sub-body" id="SP3d_bd">
+    <div class="bulk-bar">
+      <span class="bulk-lbl">Tick all:</span>
+      <button class="bb bb1" onclick="bulkField(&#39;SP3d&#39;,&#39;r&#39;,true)">✓ Revised</button>
+      <button class="bb bb2" onclick="bulkField(&#39;SP3d&#39;,&#39;e&#39;,true)">✓ Exam Qs</button>
+      <button class="bb bb3" onclick="bulkField(&#39;SP3d&#39;,&#39;m&#39;,true)">✓ Reviewed</button>
+      <button class="bb bball" onclick="bulkAll(&#39;SP3d&#39;,true)">✓ All three</button>
+      <button class="bclr" onclick="bulkAll(&#39;SP3d&#39;,false)">✕ Clear</button>
+    </div>
+    <div class="col-hdr">
+      <div class="ch" style="text-align:left;color:var(--tx2)">Learning outcome</div>
+      <div class="ch" style="color:var(--c1)">Rev</div>
+      <div class="ch" style="color:var(--c2)">Qs</div>
+      <div class="ch" style="color:var(--c3)">Err</div>
+    </div><div class="or done">
+  <div class="ot">Describe how different factors affect the gravitational potential energy stored in an object</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3d1&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3d1&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3d1&#39;,&#39;m&#39;)">✿</div></div>
+</div><div class="or done">
+  <div class="ot">Recall and use the equation for gravitational potential energy (GPE = mgh)</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3d2&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3d2&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3d2&#39;,&#39;m&#39;)">✿</div></div>
+</div><div class="or done">
+  <div class="ot">Describe how different factors affect the kinetic energy stored in an object</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3d3&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3d3&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3d3&#39;,&#39;m&#39;)">✿</div></div>
+</div><div class="or done">
+  <div class="ot">Recall and use the equation for kinetic energy (KE = ½mv²)</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3d4&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3d4&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3d4&#39;,&#39;m&#39;)">✿</div></div>
+</div></div></div><div class="sub">
+  <div class="sub-hdr tier-gold" onclick="toggleSub(&#39;SP3e&#39;)">
+    <div class="sub-left"><span class="sub-id" style="color:#f59e0b">SP3e</span><span class="sub-name">Non-renewable resources</span></div>
+    <div class="sub-right"><span class="sub-prog">12/12 checks</span><span class="chev open" id="SP3e_ch">⌄</span></div>
+  </div>
+  <div class="sub-body" id="SP3e_bd">
+    <div class="bulk-bar">
+      <span class="bulk-lbl">Tick all:</span>
+      <button class="bb bb1" onclick="bulkField(&#39;SP3e&#39;,&#39;r&#39;,true)">✓ Revised</button>
+      <button class="bb bb2" onclick="bulkField(&#39;SP3e&#39;,&#39;e&#39;,true)">✓ Exam Qs</button>
+      <button class="bb bb3" onclick="bulkField(&#39;SP3e&#39;,&#39;m&#39;,true)">✓ Reviewed</button>
+      <button class="bb bball" onclick="bulkAll(&#39;SP3e&#39;,true)">✓ All three</button>
+      <button class="bclr" onclick="bulkAll(&#39;SP3e&#39;,false)">✕ Clear</button>
+    </div>
+    <div class="col-hdr">
+      <div class="ch" style="text-align:left;color:var(--tx2)">Learning outcome</div>
+      <div class="ch" style="color:var(--c1)">Rev</div>
+      <div class="ch" style="color:var(--c2)">Qs</div>
+      <div class="ch" style="color:var(--c3)">Err</div>
+    </div><div class="or done">
+  <div class="ot">List the non-renewable energy resources in use today</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3e1&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3e1&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3e1&#39;,&#39;m&#39;)">✿</div></div>
+</div><div class="or done">
+  <div class="ot">Describe the advantages and disadvantages of non-renewable energy resources</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3e2&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3e2&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3e2&#39;,&#39;m&#39;)">✿</div></div>
+</div><div class="or done">
+  <div class="ot">Compare the advantages and disadvantages of non-renewable energy resources</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3e3&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3e3&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3e3&#39;,&#39;m&#39;)">✿</div></div>
+</div><div class="or done">
+  <div class="ot">Explain how the use of non-renewable energy resources is changing</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3e4&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3e4&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3e4&#39;,&#39;m&#39;)">✿</div></div>
+</div></div></div><div class="sub">
+  <div class="sub-hdr tier-gold" onclick="toggleSub(&#39;SP3f&#39;)">
+    <div class="sub-left"><span class="sub-id" style="color:#f59e0b">SP3f</span><span class="sub-name">Renewable resources</span></div>
+    <div class="sub-right"><span class="sub-prog">15/15 checks</span><span class="chev open" id="SP3f_ch">⌄</span></div>
+  </div>
+  <div class="sub-body" id="SP3f_bd">
+    <div class="bulk-bar">
+      <span class="bulk-lbl">Tick all:</span>
+      <button class="bb bb1" onclick="bulkField(&#39;SP3f&#39;,&#39;r&#39;,true)">✓ Revised</button>
+      <button class="bb bb2" onclick="bulkField(&#39;SP3f&#39;,&#39;e&#39;,true)">✓ Exam Qs</button>
+      <button class="bb bb3" onclick="bulkField(&#39;SP3f&#39;,&#39;m&#39;,true)">✓ Reviewed</button>
+      <button class="bb bball" onclick="bulkAll(&#39;SP3f&#39;,true)">✓ All three</button>
+      <button class="bclr" onclick="bulkAll(&#39;SP3f&#39;,false)">✕ Clear</button>
+    </div>
+    <div class="col-hdr">
+      <div class="ch" style="text-align:left;color:var(--tx2)">Learning outcome</div>
+      <div class="ch" style="color:var(--c1)">Rev</div>
+      <div class="ch" style="color:var(--c2)">Qs</div>
+      <div class="ch" style="color:var(--c3)">Err</div>
+    </div><div class="or done">
+  <div class="ot">List the renewable energy resources in use today</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3f1&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3f1&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3f1&#39;,&#39;m&#39;)">✿</div></div>
+</div><div class="or done">
+  <div class="ot">Describe the source of energy for different renewable resources</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3f2&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3f2&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3f2&#39;,&#39;m&#39;)">✿</div></div>
+</div><div class="or done">
+  <div class="ot">Describe the ways in which the different energy resources are used</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3f3&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3f3&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3f3&#39;,&#39;m&#39;)">✿</div></div>
+</div><div class="or done">
+  <div class="ot">Explain why we cannot use only renewable energy resources</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3f4&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3f4&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3f4&#39;,&#39;m&#39;)">✿</div></div>
+</div><div class="or done">
+  <div class="ot">Explain how the use of renewable energy resources is changing</div>
+  <div class="cbw"><div class="cb r1 on has-icon" onclick="toggle(&#39;SP3f5&#39;,&#39;r&#39;)">○</div></div>
+  <div class="cbw"><div class="cb r2 on has-icon" onclick="toggle(&#39;SP3f5&#39;,&#39;e&#39;)">⊕</div></div>
+  <div class="cbw"><div class="cb r3 on has-icon" onclick="toggle(&#39;SP3f5&#39;,&#39;m&#39;)">✿</div></div>
+</div></div></div></div>
 
 <!-- SUBJECT CHOOSER -->
 <div class="sj-ov hide" id="sj-modal" onclick="handleSjClick(event)">
@@ -751,7 +1194,7 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
         <div class="sj-title">Choose a subject</div>
         <div class="sj-sub">Your progress is saved separately for each subject</div>
       </div>
-      <button class="sj-close-x" onclick="closeSubjectChooser()">&times;</button>
+      <button class="sj-close-x" onclick="closeSubjectChooser()">×</button>
     </div>
     <div class="sj-body" id="sj-body"></div>
   </div>
@@ -763,11 +1206,11 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
     <div class="sc-h">Save &amp; restore your progress</div>
     <div class="sc-p">Your save code captures everything — all ticks and your Combined/Separate choice. Copy it somewhere safe (a note, an email to yourself). Paste it back here anytime to restore your progress, even on a different device or browser.</div>
     <div class="sc-tabs">
-      <button class="sc-tab on" id="sc-tab-save" onclick="scShowTab('save')">Copy save code</button>
-      <button class="sc-tab" id="sc-tab-load" onclick="scShowTab('load')">Restore from code</button>
+      <button class="sc-tab on" id="sc-tab-save" onclick="scShowTab(&#39;save&#39;)">Copy save code</button>
+      <button class="sc-tab" id="sc-tab-load" onclick="scShowTab(&#39;load&#39;)">Restore from code</button>
     </div>
     <div id="sc-save-panel">
-      <textarea class="sc-code" id="sc-code-out" readonly onclick="this.select()"></textarea>
+      <textarea class="sc-code" id="sc-code-out" readonly="" onclick="this.select()"></textarea>
       <div class="sc-actions">
         <button class="sc-btn sc-btn-pri" onclick="scCopy()">Copy to clipboard</button>
         <button class="sc-btn sc-btn-sec" onclick="closeSaveCode()">Close</button>
@@ -839,6 +1282,16 @@ const THEMES=[
   {id:'neon',    label:'Neon',           dark:true,  free:false, cost:75,  dots:['#04040c','#080818','#a060ff'],  stage:['#a060ff','#ff40a0','#40ff90']},
   {id:'rosegold',label:'Rose Gold',      dark:false, free:false, cost:100, dots:['#fdf5f0','#ffffff','#d4906a'],  stage:['#c87040','#b83060','#508840']},
   {id:'amethyst',label:'Amethyst',       dark:true,  free:false, cost:100, dots:['#0d0914','#160d20','#c080ff'],  stage:['#c070ff','#ff70c0','#70ffc0']},
+  {id:'cs-light',       label:'CS Terminal Light',    dark:false,free:false,cost:0, dots:['#f0f7f0','#e8f5e8','#1a9a1a'],  stage:['#1a9a1a','#5aaa00','#00909a']},
+  {id:'cs-dark',        label:'CS Terminal Dark',     dark:true, free:false,cost:0, dots:['#060e06','#081208','#00ff41'],  stage:['#00ff41','#39ff7a','#00e5d0']},
+  {id:'chem-light',     label:'Chem Lab Light',       dark:false,free:false,cost:0, dots:['#fffaf4','#fef6ec','#d86000'],  stage:['#d86000','#c89000','#2a8a2a']},
+  {id:'chem-dark',      label:'Chem Crucible Dark',   dark:true, free:false,cost:0, dots:['#100a00','#180e00','#ff8c00'],  stage:['#ff8c00','#ffc040','#40d080']},
+  {id:'bio-light',      label:'Bio Specimen Light',   dark:false,free:false,cost:0, dots:['#f4faf0','#ecf8e4','#2a9a0a'],  stage:['#2a9a0a','#7ab800','#00a870']},
+  {id:'bio-dark',       label:'Bio Cell Dark',        dark:true, free:false,cost:0, dots:['#060e04','#0a1808','#7dde5a'],  stage:['#7dde5a','#c8e87a','#5dcaa5']},
+  {id:'classics-light', label:'Classics Papyrus',     dark:false,free:false,cost:0, dots:['#fdf6ec','#f8eedc','#c03000'],  stage:['#c03000','#c89000','#2a3aaa']},
+  {id:'classics-dark',  label:'Classics Pompeii',     dark:true, free:false,cost:0, dots:['#0e0a04','#180e04','#e8602a'],  stage:['#e8602a','#d4a044','#9070e0']},
+  {id:'phys-osc',    label:'Physics Oscilloscope',    dark:true, free:false,cost:0, dots:['#020810','#030c16','#40c8ff'],  stage:['#40c8ff','#40ffa0','#c060ff']},
+  {id:'phys-signal', label:'Physics Signal Light',    dark:false,free:false,cost:0, dots:['#f0f5fa','#e4eef8','#0a6ab0'],  stage:['#0a6ab0','#0a8a50','#6a1aaa']},
 ];
 let currentTheme='slate';
 let coinBalance=0;
@@ -916,23 +1369,35 @@ function applyTheme(id){
   try{localStorage.setItem('gcse_theme',id);}catch(e){}
   // Re-render swatches if picker is open
   if(!document.getElementById('shop-modal').classList.contains('hide')&&shopCurrentTab==='themes')renderShopTab('themes');
+  // Auto-apply linked subject font, or revert to subject/system preference
+  const linkedFont=THEME_FONT[id];
+  if(linkedFont&&unlockedFonts.has(linkedFont)){
+    applyFontNow(linkedFont);
+  }else{
+    const pref=subjectFonts[SUBJECT.id]||'system';
+    applyFontNow(pref);
+  }
   // Re-render current view so sc() calls regenerate canvas data-c with new theme colours
   if(typeof updateView==='function')updateView();
   setTimeout(repaint,0);
 }
 // ── SHOP SYSTEM ───────────────────────────────────────────────────────────────
 const FONTS=[
-  {id:'system',      label:'System default',       family:'-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif', gfont:null,                       free:true, cost:0},
-  {id:'schoolbell',  label:'Schoolbell',            family:'"Schoolbell",cursive',                                               gfont:'Schoolbell',               free:false,cost:25},
-  {id:'chewy',       label:'Chewy',                 family:'"Chewy",cursive',                                                    gfont:'Chewy',                    free:false,cost:25},
-  {id:'indieflower', label:'Indie Flower',           family:'"Indie Flower",cursive',                                             gfont:'Indie+Flower',             free:false,cost:25},
-  {id:'marienda',    label:'Marienda',               family:'"Marienda",serif',                                                   gfont:'Marienda:wght@400;700',    free:false,cost:40},
-  {id:'amarante',    label:'Amarante',               family:'"Amarante",serif',                                                   gfont:'Amarante',                 free:false,cost:40},
-  {id:'pacifico',    label:'Pacifico',               family:'"Pacifico",cursive',                                                 gfont:'Pacifico',                 free:false,cost:40},
-  {id:'twinklestar', label:'Twinkle Star',            family:'"Twinkle Star",cursive',                                             gfont:'Twinkle+Star',             free:false,cost:60},
-  {id:'macondo',     label:'Macondo Swash Caps',      family:'"Macondo Swash Caps",serif',                                         gfont:'Macondo+Swash+Caps',       free:false,cost:60},
-  {id:'explora',     label:'Explora',                family:'"Explora",cursive',                                                  gfont:'Explora',                  free:false,cost:60},
-  {id:'grapenuts',   label:'Grape Nuts',             family:'"Grape Nuts",cursive',                                               gfont:'Grape+Nuts',               free:false,cost:60},
+  {id:'system',      label:'System default',       family:"-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif", gfont:null,                       free:true, cost:0},
+  {id:'schoolbell',  label:'Schoolbell',            family:"'Schoolbell',cursive",                                               gfont:'Schoolbell',               free:false,cost:25},
+  {id:'chewy',       label:'Chewy',                 family:"'Chewy',cursive",                                                    gfont:'Chewy',                    free:false,cost:25},
+  {id:'indieflower', label:'Indie Flower',           family:"'Indie Flower',cursive",                                             gfont:'Indie+Flower',             free:false,cost:25},
+  {id:'marienda',    label:'Marienda',               family:"'Marienda',serif",                                                   gfont:'Marienda:wght@400;700',    free:false,cost:40},
+  {id:'amarante',    label:'Amarante',               family:"'Amarante',serif",                                                   gfont:'Amarante',                 free:false,cost:40},
+  {id:'pacifico',    label:'Pacifico',               family:"'Pacifico',cursive",                                                 gfont:'Pacifico',                 free:false,cost:40},
+  {id:'twinklestar', label:'Twinkle Star',            family:"'Twinkle Star',cursive",                                             gfont:'Twinkle+Star',             free:false,cost:60},
+  {id:'macondo',     label:'Macondo Swash Caps',      family:"'Macondo Swash Caps',serif",                                         gfont:'Macondo+Swash+Caps',       free:false,cost:60},
+  {id:'concertone',  label:'Concert One',            family:"'Concert One',cursive",                                              gfont:'Concert+One',              free:false,cost:60},
+  {id:'sharetechmono',label:'Share Tech Mono', family:"'Share Tech Mono',monospace",  gfont:'Share+Tech+Mono',         free:false,cost:0},
+  {id:'rajdhani',    label:'Rajdhani',         family:"'Rajdhani',sans-serif",        gfont:'Rajdhani:wght@400;600',   free:false,cost:0},
+  {id:'comfortaa',   label:'Comfortaa',        family:"'Comfortaa',cursive",          gfont:'Comfortaa:wght@300;700',  free:false,cost:0},
+  {id:'cinzel',      label:'Cinzel',           family:"'Cinzel',serif",               gfont:'Cinzel:wght@400;700',     free:false,cost:0},
+  {id:'overlocksc',  label:'Overlock SC',            family:"'Overlock SC',serif",                                                gfont:'Overlock+SC',              free:false,cost:60},
 ];
 const SHOP_LAYOUTS=[
   {id:'pie',     type:'dashCard',  label:'Pie charts',     free:true, cost:0,  icon:'◕'},
@@ -1067,14 +1532,22 @@ function lockIcon(){return `<svg width="10" height="10" viewBox="0 0 12 12" fill
 function renderShopThemes(){
   function swHtml(themes){return themes.map(t=>{
     const locked=!unlockedThemes.has(t.id);
+    if(locked&&t.cost===0)return'';
     const stageDots=(t.stage||[]).map(s=>`<div style="width:8px;height:8px;border-radius:50%;background:${s};flex-shrink:0"></div>`).join('');
-    return `<div class="th-swatch${currentTheme===t.id?' active':''}${locked?' locked':''}" onclick="${locked?`buyTheme('${t.id}')`:`applyTheme('${t.id}')`}">
+    const linkedFontId=THEME_FONT[t.id];
+    const linkedFont=linkedFontId?FONTS.find(f=>f.id===linkedFontId):null;
+    if(linkedFont)ensureGFont(linkedFont.gfont);
+    const labelStyle=linkedFont?linkedFont.family:`inherit`;
+    const swBg=t.dots[0]||'var(--surface2)';
+    const swTx=t.dark?'rgba(255,255,255,0.85)':' rgba(0,0,0,0.75)';
+    const swBd=currentTheme===t.id?t.dots[2]||'var(--c1)':' transparent';
+    return `<div class="th-swatch${currentTheme===t.id?' active':''}${locked?' locked':''}" onclick="${locked?`buyTheme('${t.id}')`:`applyTheme('${t.id}')`}" style="background:${swBg};border-color:${swBd}">
       <div class="th-preview">${t.dots.map(d=>`<div class="th-dot" style="background:${d}"></div>`).join('')}</div>
       <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0">
-        <span class="th-name" style="flex:1">${t.label}</span>
+        <span class="th-name" style="flex:1;font-family:${labelStyle};color:${swTx}">${t.label}</span>
         <div style="display:flex;gap:3px;align-items:center;flex-shrink:0">${stageDots}</div>
       </div>
-      ${locked?`<span class="th-lock">${lockIcon()}${t.cost}🪙</span>`:`<span class="th-check">&#10003;</span>`}
+      ${locked?`<span class="th-lock" style="color:${swTx};opacity:0.7">${lockIcon()}${t.cost}🪙</span>`:`<span class="th-check" style="color:${swTx}">&#10003;</span>`}
     </div>`;
   }).join('');}
   const lt=THEMES.filter(t=>!t.dark),dk=THEMES.filter(t=>t.dark);
@@ -1089,6 +1562,7 @@ function renderShopFonts(){
   return `<div class="shop-sec"><div class="shop-sec-lbl">Font for ${SUBJECT.name}</div>
   <div class="font-list">${FONTS.map(f=>{
     const locked=!unlockedFonts.has(f.id),active=cur===f.id;
+    if(locked&&f.cost===0)return'';
     return `<div class="font-sw${active?' active':''}${locked?' locked':''}" onclick="${locked?`buyFont('${f.id}')`:`applyFont('${f.id}')`}" >
       <div class="font-preview-txt" style="font-family:${f.family}">${f.label} — Aa Bb Cc</div>
       ${locked?`<span class="th-lock">${lockIcon()}${f.cost}🪙</span>`:`<span class="font-check">✓</span>`}
@@ -3255,23 +3729,7 @@ function renderHome(){
           <div class="hsc-badge">${subj.qualification}</div>
         </div>
         <div class="hsc-board">${subj.exam_board}</div>
-        <div class="hsc-bars">
-          <div class="hsc-bar-row">
-            <span class="hsc-bar-lbl">Revised</span>
-            <div class="hsc-bar-track"><div class="hsc-bar-fill" style="width:${pct(s.r,s.n)}%;background:${sc(1)}"></div></div>
-            <span class="hsc-bar-pct">${pct(s.r,s.n)}%</span>
-          </div>
-          <div class="hsc-bar-row">
-            <span class="hsc-bar-lbl">Exam Qs</span>
-            <div class="hsc-bar-track"><div class="hsc-bar-fill" style="width:${pct(s.e,s.n)}%;background:${sc(2)}"></div></div>
-            <span class="hsc-bar-pct">${pct(s.e,s.n)}%</span>
-          </div>
-          <div class="hsc-bar-row">
-            <span class="hsc-bar-lbl">Reviewed</span>
-            <div class="hsc-bar-track"><div class="hsc-bar-fill" style="width:${pct(s.m,s.n)}%;background:${sc(3)}"></div></div>
-            <span class="hsc-bar-pct">${pct(s.m,s.n)}%</span>
-          </div>
-        </div>
+        <div class="hsc-viz">${hscVizHtml(s)}</div>
         <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px">
           <div class="hsc-continue">${isCurrent?'Continue →':'Open →'}</div>
           ${rankBadgeHtml(rankForPct(pcts[i]))}
@@ -3311,26 +3769,7 @@ function renderDashboard(){
     ${rankBadgeHtml(subjRank)}
   </div>
   <div class="dsb-row">
-    <div class="dsb-donuts">
-      <div class="donut-wrap">
-        <div class="donut-canvas-wrap" style="width:78px;height:78px">
-          <canvas data-d data-f="${s.r}" data-t="${s.n}" data-c="${sc(1)}" style="width:78px;height:78px"></canvas>
-          <div class="donut-inner"><span class="donut-pct" style="color:${sc(1)}">${pct(s.r,s.n)}%</span><span class="donut-sub">revised</span></div>
-        </div>
-      </div>
-      <div class="donut-wrap">
-        <div class="donut-canvas-wrap" style="width:78px;height:78px">
-          <canvas data-d data-f="${s.e}" data-t="${s.n}" data-c="${sc(2)}" style="width:78px;height:78px"></canvas>
-          <div class="donut-inner"><span class="donut-pct" style="color:${sc(2)}">${pct(s.e,s.n)}%</span><span class="donut-sub">exam Qs</span></div>
-        </div>
-      </div>
-      <div class="donut-wrap">
-        <div class="donut-canvas-wrap" style="width:78px;height:78px">
-          <canvas data-d data-f="${s.m}" data-t="${s.n}" data-c="${sc(3)}" style="width:78px;height:78px"></canvas>
-          <div class="donut-inner"><span class="donut-pct" style="color:${sc(3)}">${pct(s.m,s.n)}%</span><span class="donut-sub">reviewed</span></div>
-        </div>
-      </div>
-    </div>
+    <div class="dsb-donuts">${dsbOverviewVizHtml(s)}</div>
     <div class="dsb-stats">
       <div class="dstat"><div class="dstat-lbl">Revised</div><div class="dstat-val" style="color:${sc(1)}">${s.r}</div><div class="dstat-sub">of ${s.n}</div></div>
       <div class="dstat"><div class="dstat-lbl">Exam questions</div><div class="dstat-val" style="color:${sc(2)}">${s.e}</div><div class="dstat-sub">of ${s.n}</div></div>
@@ -3438,16 +3877,43 @@ function renderTopic(t){
       const rv=gv(o.id,'r'),ev=gv(o.id,'e'),mv=gv(o.id,'m');
       h+=`<div class="or${rv&&ev&&mv?' done':''}">
   <div class="ot">${esc(o.text)}${o.higher?'<span class="hb">H</span>':''}</div>
-  <div class="cbw"><div class="cb r1${rv?' on':''}" onclick="toggle('${o.id}','r')">${rv?chk():''}</div></div>
-  <div class="cbw"><div class="cb r2${ev?' on':''}" onclick="toggle('${o.id}','e')">${ev?chk():''}</div></div>
-  <div class="cbw"><div class="cb r3${mv?' on':''}" onclick="toggle('${o.id}','m')">${mv?chk():''}</div></div>
+  <div class="cbw"><div class="cb r1${rv?' on':''}${cbHasIcon()?' has-icon':''}" onclick="toggle('${o.id}','r')">${cbIcon('r',rv)}</div></div>
+  <div class="cbw"><div class="cb r2${ev?' on':''}${cbHasIcon()?' has-icon':''}" onclick="toggle('${o.id}','e')">${cbIcon('e',ev)}</div></div>
+  <div class="cbw"><div class="cb r3${mv?' on':''}${cbHasIcon()?' has-icon':''}" onclick="toggle('${o.id}','m')">${cbIcon('m',mv)}</div></div>
 </div>`;}
     h+=`</div></div>`;
   }
   document.getElementById('main').innerHTML=h;
 }
 
-function chk(){return`<svg viewBox="0 0 12 12" fill="none"><polyline points="1.5,6 5,9.5 10.5,2.5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;}
+
+
+const THEME_FONT={
+  'cs-light':'sharetechmono','cs-dark':'sharetechmono',
+  'chem-light':'rajdhani','chem-dark':'rajdhani',
+  'bio-light':'comfortaa','bio-dark':'comfortaa',
+  'classics-light':'cinzel','classics-dark':'cinzel',
+  'phys-osc':'sharetechmono','phys-signal':'sharetechmono',
+};
+const THEME_ICONS={
+  'cs-light':       {off:'-',        r:'0',       e:'1',       m:'\u2713'},
+  'cs-dark':        {off:'-',        r:'0',       e:'1',       m:'\u2713'},
+  'chem-light':     {off:'\u00b7',  r:'\u25b3', e:'\u2b21', m:'\u2b22'},
+  'chem-dark':      {off:'\u00b7',  r:'\u25b3', e:'\u2b21', m:'\u2b22'},
+  'bio-light':      {off:'\u00b7',  r:'\u25cb', e:'\u2295', m:'\u273f'},
+  'bio-dark':       {off:'\u00b7',  r:'\u25cb', e:'\u2295', m:'\u273f'},
+  'classics-light': {off:'\u00b7',  r:'I',       e:'II',      m:'III'},
+  'classics-dark':  {off:'\u00b7',  r:'I',       e:'II',      m:'III'},
+  'phys-osc':       {off:'\u2014',  r:'\u25cf', e:'\u2299', m:'\u2591'},
+  'phys-signal':    {off:'\u2014',  r:'\u25cf', e:'\u2299', m:'\u2591'},
+};
+function cbIcon(field,isOn){
+  const ti=THEME_ICONS[currentTheme];
+  if(!ti)return isOn?chk():'';
+  return isOn?ti[field]:ti.off;
+}
+function cbHasIcon(){return!!THEME_ICONS[currentTheme];}
+function chk(){return`<svg viewBox="0 0 12 12" fill="none"><polyline points="1.5,6 5,9.5 10.5,2.5" stroke="var(--surface)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;}
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function toggleSub(id){
   const b=document.getElementById(id+'_bd'),c=document.getElementById(id+'_ch');
@@ -3753,9 +4219,9 @@ function renderTopicTable(t){
       const rv=gv(o.id,'r'),ev=gv(o.id,'e'),mv=gv(o.id,'m');
       rows+=`<tr${rv&&ev&&mv?' class="t-done"':''}>
         <td>${esc(o.text)}${o.higher?'<span class="hb">H</span>':''}</td>
-        <td><div class="t-cb r-${rv?'on':'off'}" onclick="toggle('${o.id}','r')">${rv?'✓':''}</div></td>
-        <td><div class="t-cb e-${ev?'on':'off'}" onclick="toggle('${o.id}','e')">${ev?'✓':''}</div></td>
-        <td><div class="t-cb m-${mv?'on':'off'}" onclick="toggle('${o.id}','m')">${mv?'✓':''}</div></td>
+        <td><div class="t-cb r-${rv?'on':'off'}${cbHasIcon()?' has-icon':''}" onclick="toggle('${o.id}','r')">${cbIcon('r',rv)}</div></td>
+        <td><div class="t-cb e-${ev?'on':'off'}${cbHasIcon()?' has-icon':''}" onclick="toggle('${o.id}','e')">${cbIcon('e',ev)}</div></td>
+        <td><div class="t-cb m-${mv?'on':'off'}${cbHasIcon()?' has-icon':''}" onclick="toggle('${o.id}','m')">${cbIcon('m',mv)}</div></td>
       </tr>`;
     }
   }
@@ -3764,37 +4230,8 @@ function renderTopicTable(t){
       <thead><tr><th>Learning outcome</th><th>Rev</th><th>Qs</th><th>Err</th></tr></thead>
       <tbody>${rows}</tbody></table></div>`;
 }
-function buildDotOverview(t){
-  let groups='';
-  for(const sub of t.subtopics){
-    if(!subVisible(sub))continue;
-    const vis=sub.outcomes.filter(o=>outcomeVisible(o));
-    if(!vis.length)continue;
-    const tier=subTier(sub),tierClass=tier?` tier-${tier}`:'';
-    groups+=`<div class="matrix-sub-lbl${tierClass}" style="border-radius:4px;padding:2px 6px;display:inline-block">${sub.name}</div><div class="matrix-dots">`;
-    for(const o of vis){
-      const dc=outcomeStageColor(o);
-      groups+=`<div class="m-dot" id="mdot_${o.id}" style="background:${dc||'var(--track)'};${!dc?'border:1px solid var(--bd2)':''}" title="${esc(o.text)}"></div>`;
-    }
-    groups+=`</div>`;
-  }
-  return`<div class="outcome-matrix" style="margin-bottom:12px">${groups}${matrixLegend()}</div>`;
-}
-function buildHexOverview(t){
-  let groups='';
-  for(const sub of t.subtopics){
-    if(!subVisible(sub))continue;
-    const vis=sub.outcomes.filter(o=>outcomeVisible(o));
-    if(!vis.length)continue;
-    groups+=`<div class="matrix-sub-lbl">${sub.name}</div><div class="matrix-hexes">`;
-    for(const o of vis){
-      const dc=outcomeStageColor(o);
-      groups+=`<div class="m-hex-wrap" title="${esc(o.text)}"><div class="m-hex" id="mhex_${o.id}" style="background:${dc||'var(--track)'}"></div></div>`;
-    }
-    groups+=`</div>`;
-  }
-  return`<div class="outcome-matrix" style="margin-bottom:12px">${groups}${matrixLegend()}</div>`;
-}
+function buildDotOverview(t){return buildShapeOverview(t,'dot');}
+function buildHexOverview(t){return buildShapeOverview(t,'hex');}
 function renderTopicSubCards(t,col){
   const hiddenSubs=t.subtopics.filter(s=>!subVisible(s));
   let h='';
@@ -3841,9 +4278,9 @@ function renderTopicFocus(t){
     rows+=`<div class="focus-outcome-row">
       <div class="focus-outcome-txt">${esc(o.text)}${o.higher?'<span class="hb">H</span>':''}</div>
       <div class="focus-outcome-cbs">
-        <div class="focus-big-cb r-${rv?'on':'off'}" onclick="toggle('${o.id}','r')">${rv?'✓':''}</div>
-        <div class="focus-big-cb e-${ev?'on':'off'}" onclick="toggle('${o.id}','e')">${ev?'✓':''}</div>
-        <div class="focus-big-cb m-${mv?'on':'off'}" onclick="toggle('${o.id}','m')">${mv?'✓':''}</div>
+        <div class="focus-big-cb r-${rv?'on':'off'}${cbHasIcon()?' has-icon':''}" onclick="toggle('${o.id}','r')">${cbIcon('r',rv)}</div>
+        <div class="focus-big-cb e-${ev?'on':'off'}${cbHasIcon()?' has-icon':''}" onclick="toggle('${o.id}','e')">${cbIcon('e',ev)}</div>
+        <div class="focus-big-cb m-${mv?'on':'off'}${cbHasIcon()?' has-icon':''}" onclick="toggle('${o.id}','m')">${cbIcon('m',mv)}</div>
       </div>
     </div>`;
   }
@@ -3873,6 +4310,116 @@ function setFocusSub(idx){
 }
 
 // ── DASHBOARD LAYOUT RENDERERS ────────────────────────────────────────────────
+
+
+
+function dsbOverviewVizHtml(s){
+  if(dashCardStyle==='pie'){
+    const dw=(f,t,dc,lbl)=>`<div class="donut-wrap"><div class="donut-canvas-wrap" style="width:78px;height:78px"><canvas data-d data-f="${f}" data-t="${t}" data-c="${dc}" style="width:78px;height:78px"></canvas><div class="donut-inner"><span class="donut-pct" style="color:${dc}">${pct(f,t)}%</span><span class="donut-sub">${lbl}</span></div></div></div>`;
+    return dw(s.r,s.n,sc(1),'revised')+dw(s.e,s.n,sc(2),'exam Qs')+dw(s.m,s.n,sc(3),'reviewed');
+  }
+  if(dashCardStyle==='rings'){
+    const ci=r=>(2*Math.PI*r).toFixed(1);
+    const of=(r,pv)=>((2*Math.PI*r)*(1-pv/100)).toFixed(1);
+    const sr=pct(s.r,s.n),se=pct(s.e,s.n),sm=pct(s.m,s.n);
+    return`<svg width="130" height="130" viewBox="0 0 130 130" style="flex-shrink:0">
+      <circle cx="65" cy="65" r="56" fill="none" stroke="var(--track)" stroke-width="9"/>
+      <circle cx="65" cy="65" r="56" fill="none" stroke="${sc(1)}" stroke-width="9" stroke-linecap="round"
+        stroke-dasharray="${ci(56)}" stroke-dashoffset="${of(56,sr)}" transform="rotate(-90 65 65)"/>
+      <circle cx="65" cy="65" r="38" fill="none" stroke="var(--track)" stroke-width="8"/>
+      <circle cx="65" cy="65" r="38" fill="none" stroke="${sc(2)}" stroke-width="8" stroke-linecap="round"
+        stroke-dasharray="${ci(38)}" stroke-dashoffset="${of(38,se)}" transform="rotate(-90 65 65)"/>
+      <circle cx="65" cy="65" r="22" fill="none" stroke="var(--track)" stroke-width="7"/>
+      <circle cx="65" cy="65" r="22" fill="none" stroke="${sc(3)}" stroke-width="7" stroke-linecap="round"
+        stroke-dasharray="${ci(22)}" stroke-dashoffset="${of(22,sm)}" transform="rotate(-90 65 65)"/>
+    </svg><div style="display:flex;justify-content:center;gap:12px;margin-top:6px"><span style="font-size:13px;font-weight:700;color:${sc(1)}">${sr}%</span><span style="font-size:13px;color:var(--tx3)">·</span><span style="font-size:13px;font-weight:700;color:${sc(2)}">${se}%</span><span style="font-size:13px;color:var(--tx3)">·</span><span style="font-size:13px;font-weight:700;color:${sc(3)}">${sm}%</span></div>`;
+  }
+  if(dashCardStyle==='arc'){
+    const sr=pct(s.r,s.n),se=pct(s.e,s.n),sm=pct(s.m,s.n);
+    const track=(cx,r,sw)=>`<path d="M${cx-r},90 A${r},${r} 0 0,1 ${cx+r},90" fill="none" stroke="var(--track)" stroke-width="${sw}" stroke-linecap="round"/>`;
+    const arc=(cx,r,pv,col,sw)=>{const total=(Math.PI*r).toFixed(1);const off=(Math.PI*r*(1-pv/100)).toFixed(1);return`<path d="M${cx-r},90 A${r},${r} 0 0,1 ${cx+r},90" fill="none" stroke="${col}" stroke-width="${sw}" stroke-linecap="round" stroke-dasharray="${total}" stroke-dashoffset="${off}"/>`;};
+    return`<svg width="200" height="100" viewBox="0 0 200 100" style="flex-shrink:0">
+      ${track(100,80,12)}${arc(100,80,sr,sc(1),12)}
+      ${track(100,55,10)}${arc(100,55,se,sc(2),10)}
+      ${track(100,31,9)}${arc(100,31,sm,sc(3),9)}
+    </svg>
+    <div style="display:flex;justify-content:center;gap:12px;margin-top:4px"><span style="font-size:13px;font-weight:700;color:${sc(1)}">${sr}%</span><span style="font-size:13px;color:var(--tx3)">·</span><span style="font-size:13px;font-weight:700;color:${sc(2)}">${se}%</span><span style="font-size:13px;color:var(--tx3)">·</span><span style="font-size:13px;font-weight:700;color:${sc(3)}">${sm}%</span></div>`;
+  }
+  // fallback — original three donuts
+  const dw=(f,t,dc,lbl)=>`<div class="donut-wrap"><div class="donut-canvas-wrap" style="width:78px;height:78px"><canvas data-d data-f="${f}" data-t="${t}" data-c="${dc}" style="width:78px;height:78px"></canvas><div class="donut-inner"><span class="donut-pct" style="color:${dc}">${pct(f,t)}%</span><span class="donut-sub">${lbl}</span></div></div></div>`;
+  return dw(s.r,s.n,sc(1),'revised')+dw(s.e,s.n,sc(2),'exam Qs')+dw(s.m,s.n,sc(3),'reviewed');
+}
+function hscVizHtml(s){
+  if(dashCardStyle==='pie'){
+    const p=(f,t,dc)=>`<div style="position:relative;width:52px;height:52px;flex-shrink:0"><canvas data-p data-f="${f}" data-t="${t}" data-c="${dc}" style="width:52px;height:52px;position:absolute;inset:0"></canvas><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px"><span style="font-size:9px;font-weight:700;color:var(--tx2)">${pct(f,t)}%</span></div></div>`;
+    return`<div style="display:flex;gap:8px;align-items:center;justify-content:center;padding:4px 0">${p(s.r,s.n,sc(1))}${p(s.e,s.n,sc(2))}${p(s.m,s.n,sc(3))}</div>`;
+  }
+  if(dashCardStyle==='rings'){
+    const ci=r=>(2*Math.PI*r).toFixed(1);
+    const of=(r,pv)=>((2*Math.PI*r)*(1-pv/100)).toFixed(1);
+    const sr=pct(s.r,s.n),se=pct(s.e,s.n),sm=pct(s.m,s.n);
+    return`<div style="display:flex;justify-content:center;padding:4px 0"><svg width="72" height="72" viewBox="0 0 72 72">
+      <circle cx="36" cy="36" r="30" fill="none" stroke="var(--track)" stroke-width="6"/>
+      <circle cx="36" cy="36" r="30" fill="none" stroke="${sc(1)}" stroke-width="6" stroke-linecap="round"
+        stroke-dasharray="${ci(30)}" stroke-dashoffset="${of(30,sr)}" transform="rotate(-90 36 36)"/>
+      <circle cx="36" cy="36" r="20" fill="none" stroke="var(--track)" stroke-width="5.5"/>
+      <circle cx="36" cy="36" r="20" fill="none" stroke="${sc(2)}" stroke-width="5.5" stroke-linecap="round"
+        stroke-dasharray="${ci(20)}" stroke-dashoffset="${of(20,se)}" transform="rotate(-90 36 36)"/>
+      <circle cx="36" cy="36" r="11" fill="none" stroke="var(--track)" stroke-width="5"/>
+      <circle cx="36" cy="36" r="11" fill="none" stroke="${sc(3)}" stroke-width="5" stroke-linecap="round"
+        stroke-dasharray="${ci(11)}" stroke-dashoffset="${of(11,sm)}" transform="rotate(-90 36 36)"/>
+    </svg><div style="display:flex;justify-content:center;gap:8px;margin-top:3px"><span style="font-size:10px;font-weight:700;color:${sc(1)}">${sr}%</span><span style="font-size:10px;color:var(--tx3)">·</span><span style="font-size:10px;font-weight:700;color:${sc(2)}">${se}%</span><span style="font-size:10px;color:var(--tx3)">·</span><span style="font-size:10px;font-weight:700;color:${sc(3)}">${sm}%</span></div></div>`;
+  }
+  if(dashCardStyle==='arc'){
+    const sr=pct(s.r,s.n),se=pct(s.e,s.n),sm=pct(s.m,s.n);
+    const track=(cx,r,sw)=>`<path d="M${cx-r},52 A${r},${r} 0 0,1 ${cx+r},52" fill="none" stroke="var(--track)" stroke-width="${sw}" stroke-linecap="round"/>`;
+    const arc=(cx,r,pv,col,sw)=>{const total=(Math.PI*r).toFixed(1);const off=(Math.PI*r*(1-pv/100)).toFixed(1);return`<path d="M${cx-r},52 A${r},${r} 0 0,1 ${cx+r},52" fill="none" stroke="${col}" stroke-width="${sw}" stroke-linecap="round" stroke-dasharray="${total}" stroke-dashoffset="${off}"/>`;};
+    return`<div style="display:flex;justify-content:center;padding:4px 0"><svg width="120" height="58" viewBox="0 0 120 58">
+      ${track(60,44,8)}${arc(60,44,sr,sc(1),8)}
+      ${track(60,30,7)}${arc(60,30,se,sc(2),7)}
+      ${track(60,17,6)}${arc(60,17,sm,sc(3),6)}
+    </svg>
+    <div style="display:flex;justify-content:center;gap:8px;margin-top:3px"><span style="font-size:10px;font-weight:700;color:${sc(1)}">${sr}%</span><span style="font-size:10px;color:var(--tx3)">·</span><span style="font-size:10px;font-weight:700;color:${sc(2)}">${se}%</span><span style="font-size:10px;color:var(--tx3)">·</span><span style="font-size:10px;font-weight:700;color:${sc(3)}">${sm}%</span></div></div>`;
+  }
+  // fallback bars
+  const bar=(lbl,f,t,col)=>`<div class="hsc-bar-row"><span class="hsc-bar-lbl">${lbl}</span><div class="hsc-bar-track"><div class="hsc-bar-fill" style="width:${pct(f,t)}%;background:${col}"></div></div><span class="hsc-bar-pct">${pct(f,t)}%</span></div>`;
+  return`<div class="hsc-bars">${bar('Revised',s.r,s.n,sc(1))}${bar('Exam Qs',s.e,s.n,sc(2))}${bar('Reviewed',s.m,s.n,sc(3))}</div>`;
+}
+function dlVizHtml(s){
+  if(dashCardStyle==='pie'){
+    const p=(f,t,dc)=>`<div class="dl-pie-wrap"><canvas data-p data-f="${f}" data-t="${t}" data-c="${dc}" style="width:28px;height:28px"></canvas><div class="dl-pie-inner">${pct(f,t)}%</div></div>`;
+    return`<div class="dl-pie-group">${p(s.r,s.n,sc(1))}${p(s.e,s.n,sc(2))}${p(s.m,s.n,sc(3))}</div>`;
+  }
+  if(dashCardStyle==='rings'){
+    const ci=r=>(2*Math.PI*r).toFixed(1);
+    const of=(r,pv)=>((2*Math.PI*r)*(1-pv/100)).toFixed(1);
+    const sr=pct(s.r,s.n),se=pct(s.e,s.n),sm=pct(s.m,s.n);
+    return`<svg width="38" height="38" viewBox="0 0 38 38" style="flex-shrink:0">
+      <circle cx="19" cy="19" r="15" fill="none" stroke="var(--track)" stroke-width="3.5"/>
+      <circle cx="19" cy="19" r="15" fill="none" stroke="${sc(1)}" stroke-width="3.5" stroke-linecap="round"
+        stroke-dasharray="${ci(15)}" stroke-dashoffset="${of(15,sr)}" transform="rotate(-90 19 19)"/>
+      <circle cx="19" cy="19" r="10" fill="none" stroke="var(--track)" stroke-width="3"/>
+      <circle cx="19" cy="19" r="10" fill="none" stroke="${sc(2)}" stroke-width="3" stroke-linecap="round"
+        stroke-dasharray="${ci(10)}" stroke-dashoffset="${of(10,se)}" transform="rotate(-90 19 19)"/>
+      <circle cx="19" cy="19" r="5.5" fill="none" stroke="var(--track)" stroke-width="3"/>
+      <circle cx="19" cy="19" r="5.5" fill="none" stroke="${sc(3)}" stroke-width="3" stroke-linecap="round"
+        stroke-dasharray="${ci(5.5)}" stroke-dashoffset="${of(5.5,sm)}" transform="rotate(-90 19 19)"/>
+    </svg><div style="font-size:8px;font-weight:700;color:${sc(1)};text-align:center;margin-top:1px">${pct(s.r,s.n)}%</div>`;
+  }
+  if(dashCardStyle==='arc'){
+    const sr=pct(s.r,s.n),se=pct(s.e,s.n),sm=pct(s.m,s.n);
+    const track=(cx,r,sw)=>`<path d="M${cx-r},28 A${r},${r} 0 0,1 ${cx+r},28" fill="none" stroke="var(--track)" stroke-width="${sw}" stroke-linecap="round"/>`;
+    const arc=(cx,r,pv,col,sw)=>{const total=(Math.PI*r).toFixed(1);const off=(Math.PI*r*(1-pv/100)).toFixed(1);return`<path d="M${cx-r},28 A${r},${r} 0 0,1 ${cx+r},28" fill="none" stroke="${col}" stroke-width="${sw}" stroke-linecap="round" stroke-dasharray="${total}" stroke-dashoffset="${off}"/>`;};
+    return`<svg width="56" height="32" viewBox="0 0 56 32" style="flex-shrink:0">
+      ${track(28,22,5)}${arc(28,22,sr,sc(1),5)}
+      ${track(28,15,4)}${arc(28,15,se,sc(2),4)}
+      ${track(28,8.5,3.5)}${arc(28,8.5,sm,sc(3),3.5)}
+    </svg><div style="font-size:8px;font-weight:700;color:${sc(1)};text-align:center;margin-top:1px">${pct(s.r,s.n)}%</div>`;
+  }
+  // fallback — bars
+  const bar=(f,t,col)=>`<div style="width:40px"><div style="height:4px;background:var(--track);border-radius:2px;overflow:hidden"><div style="height:100%;width:${pct(f,t)}%;background:${col};border-radius:2px"></div></div></div>`;
+  return`<div style="display:flex;flex-direction:column;gap:3px">${bar(s.r,s.n,sc(1))}${bar(s.e,s.n,sc(2))}${bar(s.m,s.n,sc(3))}</div>`;
+}
 function renderDashCompactList(papers){
   let h='<div class="dsb-list">';
   papers.forEach(p=>{
@@ -3884,11 +4431,7 @@ function renderDashCompactList(papers){
       h+=`<div class="dl-row" onclick="switchView('${t.id}')">
         <span class="dl-id" style="color:${col}">${t.id}</span>
         <span class="dl-name">${t.name}</span>
-        <div class="dl-bars">
-          <div class="dl-bar-wrap"><div class="dl-bar-track"><div class="dl-bar-fill" style="width:${pct(s.r,s.n)}%;background:var(--c1)"></div></div><span class="dl-pct">${pct(s.r,s.n)}%</span></div>
-          <div class="dl-bar-wrap"><div class="dl-bar-track"><div class="dl-bar-fill" style="width:${pct(s.e,s.n)}%;background:var(--c2)"></div></div><span class="dl-pct">${pct(s.e,s.n)}%</span></div>
-          <div class="dl-bar-wrap"><div class="dl-bar-track"><div class="dl-bar-fill" style="width:${pct(s.m,s.n)}%;background:var(--c3)"></div></div><span class="dl-pct">${pct(s.m,s.n)}%</span></div>
-        </div>
+        <div class="dl-viz">${dlVizHtml(s)}</div>
       </div>`;
     });
   });
@@ -3919,6 +4462,7 @@ function tcardHtmlRings(t){
       <circle cx="29" cy="29" r="8" fill="none" stroke="${sc(3)}" stroke-width="4" stroke-linecap="round"
         stroke-dasharray="${ci(8)}" stroke-dashoffset="${of(8,sm)}" transform="rotate(-90 29 29)"/>
     </svg>
+    <div style="display:flex;justify-content:center;gap:6px;margin-top:3px"><span style="font-size:9px;font-weight:700;color:${sc(1)}">${sr}%</span><span style="font-size:9px;color:var(--tx3)">·</span><span style="font-size:9px;font-weight:700;color:${sc(2)}">${se}%</span><span style="font-size:9px;color:var(--tx3)">·</span><span style="font-size:9px;font-weight:700;color:${sc(3)}">${sm}%</span></div>
   </div>
 </div>`;
 }
@@ -3933,12 +4477,18 @@ function tcardHtmlArc(t){
   <div class="tc-name">${t.name}</div>
   <div class="tc-cnt">${s.n} outcomes</div>
   <div style="display:flex;justify-content:center;margin:4px 0 2px">
-    <svg width="80" height="44" viewBox="0 0 80 44">
+    <svg width="80" height="42" viewBox="0 0 80 42">
       ${track(40,30,7)}${arc(40,30,sr,sc(1),7)}
       ${track(40,21,6)}${arc(40,21,se,sc(2),6)}
       ${track(40,12,5.5)}${arc(40,12,sm,sc(3),5.5)}
-      <text x="40" y="39" text-anchor="middle" font-size="9" fill="var(--tx3)">${sr}%</text>
     </svg>
+    <div style="display:flex;justify-content:center;gap:8px;margin-top:2px">
+      <span style="font-size:9px;font-weight:700;color:${sc(1)}">${sr}%</span>
+      <span style="font-size:9px;color:var(--tx3)">·</span>
+      <span style="font-size:9px;font-weight:700;color:${sc(2)}">${se}%</span>
+      <span style="font-size:9px;color:var(--tx3)">·</span>
+      <span style="font-size:9px;font-weight:700;color:${sc(3)}">${sm}%</span>
+    </div>
   </div>
 </div>`;
 }
@@ -3948,40 +4498,136 @@ function tcardHtmlArc(t){
 // Teachers can share any of these; UNLOCKALL / DEBUGMODE are Joshua-only
 const UNLOCK_CODES = {
   // Themes
-  'OCEANWAVE':   {desc:'Ocean theme', action:()=>forceUnlock('theme','ocean')},
-  'GOLDENSUN':   {desc:'Sunset theme', action:()=>forceUnlock('theme','sunset')},
-  'SAKURA':      {desc:'Cherry Blossom theme', action:()=>forceUnlock('theme','cherry')},
-  'MAGMA':       {desc:'Volcanic theme', action:()=>forceUnlock('theme','volcanic')},
-  'POLARNIGHT':  {desc:'Arctic theme', action:()=>forceUnlock('theme','arctic')},
-  'NEONLIGHTS':  {desc:'Neon theme', action:()=>forceUnlock('theme','neon')},
-  'ROSEGOLD':    {desc:'Rose Gold theme', action:()=>forceUnlock('theme','rosegold')},
-  'AMETHYST':    {desc:'Amethyst theme', action:()=>forceUnlock('theme','amethyst')},
+  'TH7X2Q':    {desc:'Ocean theme',           action:()=>forceUnlock('theme','ocean')},
+  'TH4K9W':    {desc:'Sunset theme',          action:()=>forceUnlock('theme','sunset')},
+  'TH3M1P':    {desc:'Cherry Blossom theme',  action:()=>forceUnlock('theme','cherry')},
+  'TH8J5N':    {desc:'Volcanic theme',        action:()=>forceUnlock('theme','volcanic')},
+  'TH2R6Y':    {desc:'Arctic theme',          action:()=>forceUnlock('theme','arctic')},
+  'TH5V0D':    {desc:'Neon theme',            action:()=>forceUnlock('theme','neon')},
+  'TH9L3F':    {desc:'Rose Gold theme',       action:()=>forceUnlock('theme','rosegold')},
+  'TH6B8E':    {desc:'Amethyst theme',        action:()=>forceUnlock('theme','amethyst')},
   // Fonts
-  'INTERSTELLAR':{desc:'Inter font', action:()=>forceUnlock('font','inter')},
-  'POPSTAR':     {desc:'Poppins font', action:()=>forceUnlock('font','poppins')},
-  'NUNITO':      {desc:'Nunito font', action:()=>forceUnlock('font','nunito')},
-  'RUNWAY':      {desc:'Raleway font', action:()=>forceUnlock('font','raleway')},
-  'DMMODE':      {desc:'DM Sans font', action:()=>forceUnlock('font','dmsans')},
-  'SERIF':       {desc:'Playfair Display font', action:()=>forceUnlock('font','playfair')},
-  'SPACETYPE':   {desc:'Space Mono font', action:()=>forceUnlock('font','spacemono')},
-  'READWELL':    {desc:'Merriweather font', action:()=>forceUnlock('font','merriweather')},
+  'FN2K7T':    {desc:'Inter font',            action:()=>forceUnlock('font','inter')},
+  'FN5X1R':    {desc:'Poppins font',          action:()=>forceUnlock('font','poppins')},
+  'FN8Q4M':    {desc:'Nunito font',           action:()=>forceUnlock('font','nunito')},
+  'FN3W9J':    {desc:'Raleway font',          action:()=>forceUnlock('font','raleway')},
+  'FN6P2C':    {desc:'DM Sans font',          action:()=>forceUnlock('font','dmsans')},
+  'FN1N7Z':    {desc:'Playfair Display font', action:()=>forceUnlock('font','playfair')},
+  'FN4D0K':    {desc:'Space Mono font',       action:()=>forceUnlock('font','spacemono')},
+  'FN7H5B':    {desc:'Merriweather font',     action:()=>forceUnlock('font','merriweather')},
+  'FN0Y3S':    {desc:'Concert One font',      action:()=>forceUnlock('font','concertone')},
+  'FN9G6V':    {desc:'Overlock SC font',      action:()=>forceUnlock('font','overlocksc')},
+  'FN2L8W':    {desc:'Schoolbell font',       action:()=>forceUnlock('font','schoolbell')},
+  'FN5C1X':    {desc:'Chewy font',            action:()=>forceUnlock('font','chewy')},
+  'FN8F4Q':    {desc:'Indie Flower font',     action:()=>forceUnlock('font','indieflower')},
+  'FN3T7N':    {desc:'Marienda font',         action:()=>forceUnlock('font','marienda')},
+  'FN6R0P':    {desc:'Amarante font',         action:()=>forceUnlock('font','amarante')},
+  'FN1K9D':    {desc:'Pacifico font',         action:()=>forceUnlock('font','pacifico')},
+  'FN4M2H':    {desc:'Twinkle Star font',     action:()=>forceUnlock('font','twinklestar')},
+  'FN7B5J':    {desc:'Macondo Swash Caps font',action:()=>forceUnlock('font','macondo')},
   // Layouts
-  'RINGMASTER':  {desc:'Rings dashboard cards', action:()=>forceUnlock('layout','rings')},
-  'ARCLIGHT':    {desc:'Stacked Arc dashboard cards', action:()=>forceUnlock('layout','arc')},
-  'LISTMODE':    {desc:'Compact List dashboard view', action:()=>forceUnlock('layout','list')},
-  'TABLEMODE':   {desc:'Table topic view', action:()=>forceUnlock('layout','table')},
-  'DOTMATRIX':   {desc:'Dot Matrix topic view', action:()=>forceUnlock('layout','dots')},
-  'HEXGRID':     {desc:'Hexgrid topic view', action:()=>forceUnlock('layout','hex')},
-  'FOCUSMODE':   {desc:'Focus Mode topic view', action:()=>forceUnlock('layout','focus')},
+  'LY4Q8T':    {desc:'Rings dashboard cards',       action:()=>forceUnlock('layout','rings')},
+  'LY7N3W':    {desc:'Stacked Arc dashboard cards', action:()=>forceUnlock('layout','arc')},
+  'LY1X6R':    {desc:'Compact List dashboard view', action:()=>forceUnlock('layout','list')},
+  'LY5K0M':    {desc:'Table topic view',             action:()=>forceUnlock('layout','table')},
+  'LY2P9J':    {desc:'Dot Matrix topic view',        action:()=>forceUnlock('layout','dots')},
+  'LY8D4C':    {desc:'Hexgrid topic view',           action:()=>forceUnlock('layout','hex')},
+  'LY3F7Y':    {desc:'Focus Mode topic view',        action:()=>forceUnlock('layout','focus')},
   // Master codes
-  'UNLOCKALL':   {desc:'All themes, fonts & layouts', action:()=>forceUnlockAll()},
-  'DEBUGMODE':   {desc:'All themes, fonts & layouts', action:()=>forceUnlockAll()},
-  'LEHS2025':    {desc:'All themes, fonts & layouts', action:()=>forceUnlockAll()},
+  'MX9Z2QV':   {desc:'All themes, fonts & layouts',  action:()=>forceUnlockAll()},
+  'LEHS2025':  {desc:'All themes, fonts & layouts',  action:()=>forceUnlockAll()},
+  // Staff room — teacher cheat sheet
+  'THESTAFFROOM': {desc:'Teacher code reference', action:()=>openStaffRoom()},
+  // Subject themes — individual
+  'PIXEL8F':    {desc:'CS Terminal Light theme',      action:()=>forceUnlock('theme','cs-light')},
+  'VOID404':    {desc:'CS Terminal Dark theme',       action:()=>forceUnlock('theme','cs-dark')},
+  'MOLE602':    {desc:'Chemistry Lab Light theme',    action:()=>forceUnlock('theme','chem-light')},
+  'BUNSEN9':    {desc:'Chemistry Crucible Dark theme',action:()=>forceUnlock('theme','chem-dark')},
+  'STAIN44':    {desc:'Biology Specimen Light theme', action:()=>forceUnlock('theme','bio-light')},
+  'FLUOR88':    {desc:'Biology Cell Dark theme',      action:()=>forceUnlock('theme','bio-dark')},
+  'SCROLL7':    {desc:'Classics Papyrus Light theme', action:()=>forceUnlock('theme','classics-light')},
+  'POMPEII':    {desc:'Classics Pompeii Dark theme',  action:()=>forceUnlock('theme','classics-dark')},
+  // Subject themes — team codes (both themes + font)
+  'TEAMCS':       {desc:'CS themes + Share Tech Mono',  action:()=>{forceUnlock('theme','cs-light');forceUnlock('theme','cs-dark');forceUnlock('font','sharetechmono');}},
+  'TEAMCHEM':     {desc:'Chemistry themes + Rajdhani',  action:()=>{forceUnlock('theme','chem-light');forceUnlock('theme','chem-dark');forceUnlock('font','rajdhani');}},
+  'TEAMBIO':      {desc:'Biology themes + Comfortaa',   action:()=>{forceUnlock('theme','bio-light');forceUnlock('theme','bio-dark');forceUnlock('font','comfortaa');}},
+  'TEAMCLASSICS': {desc:'Classics themes + Cinzel',     action:()=>{forceUnlock('theme','classics-light');forceUnlock('theme','classics-dark');forceUnlock('font','cinzel');}},
+  'TEAMPHYSICS':  {desc:'Physics themes + Share Tech Mono', action:()=>{forceUnlock('theme','phys-osc');forceUnlock('theme','phys-signal');forceUnlock('font','sharetechmono');}},
+  'WAVE440':      {desc:'Physics Oscilloscope Dark theme',   action:()=>forceUnlock('theme','phys-osc')},
+  'SIGNAL2V':     {desc:'Physics Signal Light theme',        action:()=>forceUnlock('theme','phys-signal')},
   // Reset code
   'RESETALL':    {desc:'Reset all progress, coins and unlocks', action:()=>resetEverything()},
 };
 
 let redeemedCodes=new Set();
+
+
+// ── STAFF ROOM ────────────────────────────────────────────────────────────────
+function openStaffRoom(){
+  document.getElementById('sr-modal').classList.remove('hide');
+  renderStaffRoom();
+}
+function closeStaffRoom(){document.getElementById('sr-modal').classList.add('hide');}
+function handleSrOvClick(e){if(e.target.id==='sr-modal')closeStaffRoom();}
+
+function renderStaffRoom(){
+  const body=document.getElementById('sr-body');
+
+  const sections=[
+    {title:'🎨 Themes — individual',rows:[
+      ['TH7X2Q','Ocean theme'],['TH4K9W','Sunset theme'],['TH3M1P','Cherry Blossom theme'],
+      ['TH8J5N','Volcanic theme'],['TH2R6Y','Arctic theme'],['TH5V0D','Neon theme'],
+      ['TH9L3F','Rose Gold theme'],['TH6B8E','Amethyst theme'],
+    ]},
+    {title:'✏️ Fonts — individual',rows:[
+      ['FN2K7T','Inter'],['FN5X1R','Poppins'],['FN8Q4M','Nunito'],
+      ['FN3W9J','Raleway'],['FN6P2C','DM Sans'],['FN1N7Z','Playfair Display'],
+      ['FN4D0K','Space Mono'],['FN7H5B','Merriweather'],['FN0Y3S','Concert One'],
+      ['FN9G6V','Overlock SC'],['FN2L8W','Schoolbell'],['FN5C1X','Chewy'],
+      ['FN8F4Q','Indie Flower'],['FN3T7N','Marienda'],['FN6R0P','Amarante'],
+      ['FN1K9D','Pacifico'],['FN4M2H','Twinkle Star'],['FN7B5J','Macondo Swash Caps'],
+    ]},
+    {title:'📐 Layouts — individual',rows:[
+      ['LY4Q8T','Rings dashboard cards'],['LY7N3W','Stacked Arc dashboard cards'],
+      ['LY1X6R','Compact List view'],['LY5K0M','Table topic view'],
+      ['LY2P9J','Dot Matrix topic view'],['LY8D4C','Hexgrid topic view'],
+      ['LY3F7Y','Focus Mode topic view'],
+    ]},
+    {title:'🧬 Subject packs — both themes + font in one code',rows:[
+      ['TEAMCS',      'Computer Science — Terminal Light & Dark + Share Tech Mono'],
+      ['TEAMCHEM',    'Chemistry — Lab Light & Crucible Dark + Rajdhani'],
+      ['TEAMBIO',     'Biology — Specimen Light & Cell Dark + Comfortaa'],
+      ['TEAMCLASSICS','Classical Civ — Papyrus & Pompeii + Cinzel'],
+      ['TEAMPHYSICS','Physics — Oscilloscope Dark & Signal Light + Share Tech Mono'],
+    ]},
+    {title:'🔬 Subject themes — individual',rows:[
+      ['PIXEL8F','CS Terminal Light'],['VOID404','CS Terminal Dark'],
+      ['MOLE602','Chemistry Lab Light'],['BUNSEN9','Chemistry Crucible Dark'],
+      ['STAIN44','Biology Specimen Light'],['FLUOR88','Biology Cell Dark'],
+      ['SCROLL7','Classics Papyrus Light'],['POMPEII','Classics Pompeii Dark'],
+      ['WAVE440','Physics Oscilloscope Dark'],['SIGNAL2V','Physics Signal Light'],
+    ]},
+    {title:'⚡ Master codes',rows:[
+      ['MX9Z2QV','Unlock everything — all themes, fonts & layouts'],
+      ['LEHS2025','Unlock everything (school code)'],
+      ['THESTAFFROOM','Open this teacher reference page'],
+      ['RESETALL','⚠️ Reset all student progress, coins and unlocks'],
+    ]},
+  ];
+
+  body.innerHTML=`<div class="sr-note">Click any code to copy it. Codes are not case-sensitive. Students enter codes via the 🔑 button in the Shop or the mobile menu.</div>`+
+    sections.map(s=>`
+      <div class="sr-section">
+        <div class="sr-section-title">${s.title}</div>
+        <table class="sr-table">
+          ${s.rows.map(([code,desc])=>`
+            <tr>
+              <td style="width:130px"><span class="sr-code" onclick="navigator.clipboard.writeText('${code}').catch(()=>{})" title="Click to copy">${code}</span></td>
+              <td class="sr-desc">${desc}</td>
+            </tr>`).join('')}
+        </table>
+      </div>`).join('');
+}
 
 function resetEverything(){
   if(!confirm('This will permanently delete ALL progress, coins, unlocks and codes. Are you sure?'))return;
@@ -4050,6 +4696,216 @@ function renderUcHistory(){
     const def=UNLOCK_CODES[code]||{desc:'Unknown'};
     return`<div class="uc-history-item"><span>${code}</span><span>— ${def.desc}</span></div>`;
   }).join('');
+}
+
+
+// ── SHAPE OVERVIEW ENGINE ─────────────────────────────────────────────────────
+
+function topicSeed(t){
+  let h=0;for(const ch of(t.id||'X'))h=(Math.imul(h,31)+ch.charCodeAt(0))>>>0;return h;
+}
+function shShuffle(arr,seed){
+  const a=[...arr];let s=seed>>>0;
+  for(let i=a.length-1;i>0;i--){s=(Math.imul(s,1664525)+1013904223)>>>0;const j=s%(i+1);[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+
+// Point generators — all return [{x,y,sk}] where sk drives the colour sort
+function shHexRings(cx,cy,rings,dr){
+  const pts=[{x:cx,y:cy,sk:0}];
+  for(let r=1;r<=rings;r++){
+    let x=cx+r*dr,y=cy;
+    for(let side=0;side<6;side++){
+      for(let step=0;step<r;step++){
+        const ang=Math.atan2(y-cy,x-cx);
+        pts.push({x,y,sk:r*100000+((ang+Math.PI)*10000|0)});
+        const a=(side*60+120)*Math.PI/180;x+=dr*Math.cos(a);y+=dr*Math.sin(a);
+      }
+    }
+  }
+  return pts;
+}
+function shAtom(cx,cy){
+  // total = 1+8+14+20+26+21 = 90
+  const cfg=[{r:0,n:1},{r:26,n:8},{r:46,n:14},{r:62,n:20},{r:76,n:26},{r:88,n:21}];
+  const pts=[];
+  cfg.forEach(({r,n},ring)=>{
+    for(let i=0;i<n;i++){
+      const a=(i/n)*Math.PI*2-Math.PI/2;
+      pts.push({x:cx+r*Math.cos(a),y:cy+r*Math.sin(a),sk:ring*10000+i*3});
+    }
+  });
+  return pts;
+}
+function shTriangle(cx,cy,rows,sp){
+  const pts=[];
+  const totalH=(rows-1)*sp*Math.sqrt(3)/2;
+  for(let r=0;r<rows;r++){
+    const n=r+1,startX=cx-(n-1)*sp/2,y=cy-totalH/2+r*sp*Math.sqrt(3)/2;
+    for(let i=0;i<n;i++) pts.push({x:startX+i*sp,y,sk:r*1000+i});
+  }
+  return pts;
+}
+function shDiamond(cx,cy,span,sp){
+  const pts=[];
+  for(let row=-span;row<=span;row++){
+    const mc=span-Math.abs(row);
+    for(let col=-mc;col<=mc;col++)
+      pts.push({x:cx+col*sp,y:cy+row*sp,sk:(col-row+span*2)*1000+col+span});
+  }
+  return pts;
+}
+function shSpiral(cx,cy,total,armSpc,hexDiam){
+  // Archimedean spiral: r = k*theta, stepping by arc-length ≈ hexDiam
+  // armSpc = radial gap between consecutive turns
+  const k=armSpc/(2*Math.PI);
+  const pts=[];
+  let theta=Math.max(hexDiam/k,1.0); // start theta so r=k*theta >= hexDiam
+  for(let i=0;i<total;i++){
+    const r=k*theta;
+    pts.push({x:cx+r*Math.cos(theta),y:cy+r*Math.sin(theta),sk:i});
+    theta+=hexDiam/Math.max(r,hexDiam);
+  }
+  return pts;
+}
+function shBullseye(cx,cy,rings,dr){
+  const pts=[];
+  for(let r=0;r<=rings;r++){
+    const n=r===0?1:r*6;
+    for(let i=0;i<n;i++){
+      const a=(i/n)*Math.PI*2;
+      const wedge=r===0?0:Math.floor(i/r);
+      pts.push({x:cx+r*dr*Math.cos(a-Math.PI/6),y:cy+r*dr*Math.sin(a-Math.PI/6),sk:(wedge%3)*100000+r*100+i});
+    }
+  }
+  return pts;
+}
+
+// Catalogue — dot shapes and hex shapes, sorted ascending by total
+// pickShape() selects the smallest that fits outcomes*3
+const SH_DOT=[
+    {total:37, r:8.5, gen:(cx,cy)=>shHexRings(cx,cy,3,33)},
+  {total:45, r:8.0, gen:(cx,cy)=>shTriangle(cx,cy,9,22)},
+  {total:61, r:7.5, gen:(cx,cy)=>shHexRings(cx,cy,4,26)},
+  {total:66, r:7.0, gen:(cx,cy)=>shTriangle(cx,cy,11,17)},
+  {total:78, r:6.5, gen:(cx,cy)=>shTriangle(cx,cy,12,15)},
+  {total:85, r:5.5, gen:(cx,cy)=>shDiamond(cx,cy,6,18)},
+  {total:91, r:5.5, gen:(cx,cy)=>shHexRings(cx,cy,5,21)},
+  {total:105,r:5.5, gen:(cx,cy)=>shTriangle(cx,cy,14,13)},
+  {total:113,r:5.0, gen:(cx,cy)=>shDiamond(cx,cy,7,15)},
+  {total:120,r:5.0, gen:(cx,cy)=>shTriangle(cx,cy,15,12)},
+  {total:145,r:4.5, gen:(cx,cy)=>shDiamond(cx,cy,8,13)},
+  {total:153,r:4.5, gen:(cx,cy)=>shTriangle(cx,cy,17,11)},
+  {total:169,r:4.5, gen:(cx,cy)=>shHexRings(cx,cy,7,16)},
+  {total:181,r:4.0, gen:(cx,cy)=>shDiamond(cx,cy,9,12)},
+  {total:217,r:4.0, gen:(cx,cy)=>shHexRings(cx,cy,8,13)},
+  {total:221,r:3.5, gen:(cx,cy)=>shDiamond(cx,cy,10,11)},
+  {total:271,r:3.5, gen:(cx,cy)=>shHexRings(cx,cy,9,11)},
+];
+const SH_HEX=[
+    {total:37, r:9.0, gen:(cx,cy)=>shBullseye(cx,cy,3,26)},
+  {total:61, r:8.0, gen:(cx,cy)=>shBullseye(cx,cy,4,22)},
+  {total:69, r:7.0, gen:(cx,cy)=>shSpiral(cx,cy,69,14,7)},
+  {total:90, r:8.0, gen:(cx,cy)=>shAtom(cx,cy)},
+  {total:91, r:7.5, gen:(cx,cy)=>shBullseye(cx,cy,5,19)},
+  {total:99, r:6.5, gen:(cx,cy)=>shSpiral(cx,cy,99,14,6.5)},
+  {total:126,r:5.5, gen:(cx,cy)=>shSpiral(cx,cy,126,13,5.5)},
+  {total:127,r:5.5, gen:(cx,cy)=>shHexRings(cx,cy,6,19)},
+  {total:147,r:5.5, gen:(cx,cy)=>shSpiral(cx,cy,147,13,5)},
+  {total:169,r:5.0, gen:(cx,cy)=>shHexRings(cx,cy,7,16)},
+  {total:171,r:5.0, gen:(cx,cy)=>shSpiral(cx,cy,171,12,5)},
+  {total:217,r:4.5, gen:(cx,cy)=>shBullseye(cx,cy,8,14)},
+  {total:271,r:4.0, gen:(cx,cy)=>shHexRings(cx,cy,9,12)},
+];
+function pickShape(n,mode){
+  const need=n*3;
+  const list=mode==='hex'?SH_HEX:SH_DOT;
+  return list.find(s=>s.total>=need)||list[list.length-1];
+}
+
+function buildShapeOverview(t,mode){
+  // Collect visible outcomes
+  const outcomes=[];
+  for(const sub of t.subtopics){
+    if(!subVisible(sub))continue;
+    for(const o of sub.outcomes){if(outcomeVisible(o))outcomes.push(o);}
+  }
+  if(!outcomes.length)return'';
+
+  const N=outcomes.length;
+  const cfg=pickShape(N,mode);
+  const cx=240,cy=135;
+  const pts=cfg.gen(cx,cy);
+  const seed=topicSeed(t);
+
+  // Sort by sk → rank → colour group
+  const ranked=pts.map((p,i)=>({i,sk:p.sk}));
+  ranked.sort((a,b)=>a.sk-b.sk);
+  const groups=[[],[],[]]; // 0=C1(revised) 1=C2(exam) 2=C3(reviewed)
+  ranked.forEach(({i},rank)=>groups[rank%3].push(i));
+
+  // Shuffle within each colour group (seeded per topic, different per group)
+  const g=[shShuffle(groups[0],seed),shShuffle(groups[1],seed+1),shShuffle(groups[2],seed+2)];
+
+  // Build position map: shape position → {stage, outIdx, ci} or {pad, ci}
+  const posMap=new Array(pts.length);
+  const stages=['r','e','m'];
+  g.forEach((grp,ci)=>{
+    for(let i=0;i<grp.length;i++){
+      const pos=grp[i];
+      posMap[pos]=i<N?{stage:stages[ci],outIdx:i,ci}:{pad:true,ci};
+    }
+  });
+
+  // Check completion for auto-fill of padding
+  let filled=0;
+  outcomes.forEach(o=>{if(gv(o.id,'r'))filled++;if(gv(o.id,'e'))filled++;if(gv(o.id,'m'))filled++;});
+  const complete=filled===N*3;
+
+  const C=[sc(1),sc(2),sc(3)];
+  const isHex=mode==='hex';
+  const r=cfg.r;
+
+  let svgInner='';
+  pts.forEach((p,i)=>{
+    const info=posMap[i];
+    let fill=null,extraAttr='';
+    if(info.pad){
+      if(complete){fill=C[info.ci];}
+      else{extraAttr=' class="sh-pad"';}
+    }else{
+      const o=outcomes[info.outIdx];
+      const ticked=gv(o.id,info.stage);
+      if(ticked){fill=C[info.ci];}
+      else{extraAttr=' class="sh-empty"';}
+    }
+    const fa=fill?` fill="${fill}"`:'';
+    if(isHex){
+      const hpts=[];
+      for(let k=0;k<6;k++){const a=(k*60-30)*Math.PI/180;hpts.push(`${(p.x+r*Math.cos(a)).toFixed(1)},${(p.y+r*Math.sin(a)).toFixed(1)}`);}
+      svgInner+=`<polygon${extraAttr}${fa} points="${hpts.join(' ')}"/>`;
+    }else{
+      svgInner+=`<circle${extraAttr}${fa} cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r}"/>`;
+    }
+  });
+
+  const hasPad=cfg.total>N*3;
+  const excess=cfg.total-N*3;
+  const padLi=hasPad&&!complete?`<div class="sh-li"><div class="sh-ld" style="background:var(--surface3);border:1px solid var(--bd2)"></div>${excess} cell${excess>1?'s':''} reveal on completion</div>`:'';
+  const completeLi=hasPad&&complete?`<div class="sh-li" style="color:var(--c3);font-weight:600">✓ Pattern complete!</div>`:'';
+  return`<div class="sh-wrap">
+<svg class="sh-svg" viewBox="0 0 480 270">
+<style>.sh-empty,.sh-pad{fill:transparent;stroke:none}</style>
+${svgInner}
+</svg>
+<div class="sh-legend">
+
+${padLi}${completeLi}
+<div class="sh-li"><div class="sh-ld" style="background:${C[0]}"></div>${N} revised</div>
+<div class="sh-li"><div class="sh-ld" style="background:${C[1]}"></div>${N} exam qs</div>
+<div class="sh-li"><div class="sh-ld" style="background:${C[2]}"></div>${N} reviewed</div>
+</div>
+</div>`;
 }
 
 // ── SAVE CODE ────────────────────────────────────────────────────────────────
@@ -4281,5 +5137,6 @@ applySubjectToggles();
 updateView();
 if(!localStorage.getItem('gcse_seen_tour')){localStorage.setItem('gcse_seen_tour','1');setTimeout(()=>openTour(0),600);}
 </script>
-</body>
-</html>
+
+
+</body></html>
