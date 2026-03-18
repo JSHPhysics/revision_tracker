@@ -1,3 +1,45 @@
+<!-- UNLOCK CODE MODAL -->
+<div class="uc-ov hide" id="uc-modal" onclick="handleUcOvClick(event)">
+  <div class="uc-card">
+    <div class="uc-hdr">
+      <div class="uc-title">🔑 Enter unlock code</div>
+      <button class="sj-close-x" onclick="closeUnlockCode()">&times;</button>
+    </div>
+    <div class="uc-body">
+      <div class="uc-desc">Enter a code from your teacher to unlock themes, fonts, or layouts — even without coins.</div>
+      <div class="uc-input-row">
+        <input class="uc-input" id="uc-input" placeholder="CODE" maxlength="24" onkeydown="if(event.key==='Enter')redeemCode()"/>
+        <button class="uc-submit" onclick="redeemCode()">Redeem</button>
+      </div>
+      <div class="uc-result" id="uc-result"></div>
+      <div class="uc-history" id="uc-history" style="display:none">
+        <div class="uc-history-lbl">Redeemed codes</div>
+        <div id="uc-history-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SHOP MODAL -->
+<div class="shop-ov hide" id="shop-modal" onclick="handleShopOvClick(event)">
+  <div class="shop-card">
+    <div class="shop-hdr">
+      <div>
+        <div class="shop-title">Shop</div>
+        <div class="shop-bal"><span style="font-size:14px">🪙</span>&nbsp;<span id="shop-bal-disp">0</span>&nbsp;coins available</div>
+      </div>
+      <button class="sj-close-x" onclick="closeShop()">&times;</button>
+    </div>
+    <div class="shop-tabs-bar">
+      <button class="shop-tab on" data-tab="themes" onclick="renderShopTab('themes')">Themes</button>
+      <button class="shop-tab" data-tab="fonts" onclick="renderShopTab('fonts')">Fonts</button>
+      <button class="shop-tab" data-tab="layouts" onclick="renderShopTab('layouts')">Layouts</button>
+    </div>
+    <div class="shop-body" id="shop-body"></div>
+    <div style="text-align:center;padding:10px 0 14px;border-top:1px solid var(--bd);flex-shrink:0"><button class="help-btn" onclick="closeShop();openUnlockCode()" style="font-size:11px;opacity:0.7">🔑 Enter unlock code</button></div>
+  </div>
+</div>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,63 +75,72 @@
   --tx:#2c1d0e;--tx2:#6b4f35;--tx3:#a08060;
   --shadow:0 1px 3px rgba(100,70,30,0.08),0 4px 12px rgba(100,70,30,0.1);
   --hdr-bg:rgba(255,252,247,0.95);--track:#e6dccf;--hole:#fffcf7;
-}
+
+  --c1:#c07020;--c1d:#a05810;--c2:#c03c50;--c2d:#a02840;--c3:#5a9030;--c3d:#447020;}
 [data-theme="lavender"]{
   --bg:#eeebf8;--surface:#ffffff;--surface2:#f6f4fc;--surface3:#e8e4f6;
   --bd:rgba(0,0,0,0.08);--bd2:rgba(0,0,0,0.14);
   --tx:#1e1535;--tx2:#4a4070;--tx3:#8878aa;
   --shadow:0 1px 3px rgba(60,40,120,0.06),0 4px 12px rgba(60,40,120,0.08);
   --hdr-bg:rgba(255,255,255,0.94);--track:#ddd8f2;--hole:#ffffff;
-}
+
+  --c1:#7c3aed;--c1d:#6020d0;--c2:#d43898;--c2d:#b82880;--c3:#059669;--c3d:#047850;}
 [data-theme="midnight"]{
   --bg:#0d1117;--surface:#161b22;--surface2:#1c2128;--surface3:#22272e;
   --bd:rgba(255,255,255,0.08);--bd2:rgba(255,255,255,0.15);
   --tx:#e6edf3;--tx2:#8b949e;--tx3:#484f58;
   --shadow:0 1px 3px rgba(0,0,0,0.4),0 4px 16px rgba(0,0,0,0.55);
   --hdr-bg:rgba(22,27,34,0.97);--track:#2d333b;--hole:#161b22;
-}
+
+  --c1:#5878f8;--c1d:#3858d8;--c2:#ffa060;--c2d:#e08040;--c3:#2ed8c8;--c3d:#18b8a8;}
 [data-theme="graphite"]{
   --bg:#111111;--surface:#1e1e1e;--surface2:#252525;--surface3:#2e2e2e;
   --bd:rgba(255,255,255,0.08);--bd2:rgba(255,255,255,0.15);
   --tx:#e8e8e8;--tx2:#9e9e9e;--tx3:#606060;
   --shadow:0 1px 3px rgba(0,0,0,0.5),0 4px 16px rgba(0,0,0,0.65);
   --hdr-bg:rgba(30,30,30,0.97);--track:#333333;--hole:#1e1e1e;
-}
+
+  --c1:#8888f0;--c1d:#6868d0;--c2:#e8a060;--c2d:#c88040;--c3:#50d0a8;--c3d:#38b090;}
 [data-theme="ocean"]{
   --bg:#060d1a;--surface:#0a1628;--surface2:#0e1e35;--surface3:#122442;
   --bd:rgba(0,200,255,0.1);--bd2:rgba(0,200,255,0.2);
   --tx:#c8eeff;--tx2:#6ab8d4;--tx3:#3a7a94;
   --shadow:0 1px 3px rgba(0,0,0,0.5),0 4px 16px rgba(0,0,0,0.65);
   --hdr-bg:rgba(10,22,40,0.97);--track:#0e2a45;--hole:#0a1628;
-}
+
+  --c1:#00c8ff;--c1d:#00a0d8;--c2:#ff9040;--c2d:#e07020;--c3:#00e8a0;--c3d:#00c080;}
 [data-theme="sunset"]{
   --bg:#fef3ec;--surface:#fffaf7;--surface2:#fdf0e8;--surface3:#fae3d4;
   --bd:rgba(0,0,0,0.08);--bd2:rgba(0,0,0,0.14);
   --tx:#2d1a0e;--tx2:#8b4513;--tx3:#c4885a;
   --shadow:0 1px 3px rgba(180,80,20,0.08),0 4px 12px rgba(180,80,20,0.1);
   --hdr-bg:rgba(255,250,247,0.95);--track:#f5d5b8;--hole:#fffaf7;
-}
+
+  --c1:#c85820;--c1d:#a84010;--c2:#a82848;--c2d:#882030;--c3:#487830;--c3d:#305820;}
 [data-theme="cherry"]{
   --bg:#fff5f7;--surface:#ffffff;--surface2:#fff0f3;--surface3:#ffe4ea;
   --bd:rgba(0,0,0,0.07);--bd2:rgba(0,0,0,0.12);
   --tx:#3d0a14;--tx2:#8b3a4a;--tx3:#c4889a;
   --shadow:0 1px 3px rgba(180,50,80,0.06),0 4px 12px rgba(180,50,80,0.08);
   --hdr-bg:rgba(255,255,255,0.95);--track:#ffd4dc;--hole:#ffffff;
-}
+
+  --c1:#d83060;--c1d:#b81848;--c2:#8030b0;--c2d:#601890;--c3:#1898a0;--c3d:#007880;}
 [data-theme="volcanic"]{
   --bg:#0e0804;--surface:#1a1008;--surface2:#22160a;--surface3:#2a1c0e;
   --bd:rgba(255,100,0,0.1);--bd2:rgba(255,100,0,0.2);
   --tx:#ffd8b0;--tx2:#c87840;--tx3:#7a4a20;
   --shadow:0 1px 3px rgba(0,0,0,0.5),0 4px 16px rgba(0,0,0,0.65);
   --hdr-bg:rgba(26,16,8,0.97);--track:#2e1c08;--hole:#1a1008;
-}
+
+  --c1:#ff6000;--c1d:#d84000;--c2:#ffb800;--c2d:#d89800;--c3:#ff3858;--c3d:#d81838;}
 [data-theme="arctic"]{
   --bg:#f0f8ff;--surface:#ffffff;--surface2:#edf6ff;--surface3:#daeeff;
   --bd:rgba(0,80,180,0.08);--bd2:rgba(0,80,180,0.15);
   --tx:#0a1e3d;--tx2:#2a5490;--tx3:#6090c0;
   --shadow:0 1px 3px rgba(0,80,180,0.06),0 4px 12px rgba(0,80,180,0.08);
   --hdr-bg:rgba(255,255,255,0.95);--track:#c8e4f8;--hole:#ffffff;
-}
+
+  --c1:#1868c8;--c1d:#0050a8;--c2:#0898b8;--c2d:#007898;--c3:#108858;--c3d:#006838;}
 [data-theme="neon"]{
   --bg:#04040c;--surface:#080818;--surface2:#0c0c20;--surface3:#101028;
   --bd:rgba(140,0,255,0.15);--bd2:rgba(140,0,255,0.28);
@@ -97,14 +148,16 @@
   --shadow:0 1px 3px rgba(0,0,0,0.6),0 4px 16px rgba(0,0,0,0.75);
   --hdr-bg:rgba(8,8,24,0.98);--track:#14082e;--hole:#080818;
   --c1:#a060ff;--c1d:#7030d0;
-}
+
+  --c1:#a060ff;--c1d:#8040e0;--c2:#ff40a0;--c2d:#e02080;--c3:#40ff90;--c3d:#20d870;}
 [data-theme="rosegold"]{
   --bg:#fdf5f0;--surface:#ffffff;--surface2:#fdf0ea;--surface3:#fae6de;
   --bd:rgba(0,0,0,0.07);--bd2:rgba(0,0,0,0.12);
   --tx:#2d1a14;--tx2:#9b6b5a;--tx3:#c4a090;
   --shadow:0 1px 3px rgba(180,100,80,0.06),0 4px 12px rgba(180,100,80,0.08);
   --hdr-bg:rgba(255,255,255,0.95);--track:#f5d8cc;--hole:#ffffff;
-}
+
+  --c1:#c87040;--c1d:#a85020;--c2:#b83060;--c2d:#981840;--c3:#508840;--c3d:#386820;}
 [data-theme="amethyst"]{
   --bg:#0d0914;--surface:#160d20;--surface2:#1c1128;--surface3:#221532;
   --bd:rgba(180,100,255,0.12);--bd2:rgba(180,100,255,0.22);
@@ -112,14 +165,16 @@
   --shadow:0 1px 3px rgba(0,0,0,0.5),0 4px 16px rgba(0,0,0,0.65);
   --hdr-bg:rgba(22,13,32,0.98);--track:#221038;--hole:#160d20;
   --c1:#c080ff;--c1d:#9050cc;
-}
+
+  --c1:#c070ff;--c1d:#a050e0;--c2:#ff70c0;--c2d:#e050a0;--c3:#70ffc0;--c3d:#40e0a0;}
 [data-theme="forest"]{
   --bg:#0c1812;--surface:#122018;--surface2:#182e1e;--surface3:#1e3826;
   --bd:rgba(255,255,255,0.08);--bd2:rgba(255,255,255,0.16);
   --tx:#cce8d4;--tx2:#7aaa85;--tx3:#4a7055;
   --shadow:0 1px 3px rgba(0,0,0,0.4),0 4px 16px rgba(0,0,0,0.55);
   --hdr-bg:rgba(18,32,24,0.97);--track:#1e3826;--hole:#122018;
-}
+
+  --c1:#58d888;--c1d:#38b868;--c2:#d8b030;--c2d:#b89010;--c3:#30c8d8;--c3d:#18a8b8;}
 body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px;line-height:1.5;min-height:100vh}
 .hdr{padding:0 20px;height:52px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--hdr-bg);backdrop-filter:blur(12px);z-index:200;box-shadow:0 1px 0 var(--bd)}
 .hdr-title{font-size:15px;font-weight:700;color:var(--tx)}
@@ -212,7 +267,7 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
 .or{display:grid;grid-template-columns:1fr 38px 38px 38px;padding:7px 14px;border-bottom:1px solid rgba(0,0,0,0.04);align-items:center;transition:background 0.1s}
 .or:last-child{border-bottom:none}
 .or:hover{background:var(--surface2)}
-.or.done{background:color-mix(in srgb,var(--c3) 5%,white)}
+.or.done{background:color-mix(in srgb,var(--c3) 7%,var(--surface))}
 .ot{font-size:12.5px;color:var(--tx);padding-right:10px;line-height:1.45}
 .hb{display:inline-flex;align-items:center;font-size:9px;font-weight:800;color:#c2410c;background:#fff7ed;border:1px solid #fed7aa;padding:1px 4px;border-radius:3px;margin-left:5px;vertical-align:middle;line-height:1.2}
 .cbw{display:flex;justify-content:center;align-items:center}
@@ -339,7 +394,9 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
 /* ── THEME PICKER ── */
 .th-ov{position:fixed;inset:0;background:rgba(10,14,35,0.45);z-index:2000;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px);animation:fadeIn 0.18s ease}
 .th-ov.hide{display:none}
-.th-card{background:var(--surface);border-radius:14px;padding:22px 22px 20px;max-width:380px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.28);animation:slideUp 0.22s ease}
+.th-card{background:var(--surface);border-radius:14px;padding:22px 22px 20px;max-width:560px;width:100%;max-height:85vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.28);animation:slideUp 0.22s ease}
+.th-card-body{overflow-y:auto;flex:1;scrollbar-width:thin;scrollbar-color:var(--bd2) transparent}
+.th-card-body::-webkit-scrollbar{width:4px}.th-card-body::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:4px}
 .th-h{font-size:15px;font-weight:800;color:var(--tx);margin-bottom:4px}
 .th-sub{font-size:11.5px;color:var(--tx3);margin-bottom:18px}
 .th-cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -399,6 +456,126 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
 .th-swatch.locked:hover{border-color:color-mix(in srgb,#f59e0b 55%,transparent);background:color-mix(in srgb,#f59e0b 7%,var(--surface))}
 .th-lock{display:flex;align-items:center;gap:4px;margin-left:auto;font-size:10px;font-weight:700;color:#92400e;background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #f59e0b;padding:2px 7px;border-radius:10px;white-space:nowrap}
 .th-lock svg{flex-shrink:0}
+
+/* ── SHOP MODAL ── */
+.shop-ov{position:fixed;inset:0;background:rgba(10,14,35,0.5);z-index:2000;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px);animation:fadeIn 0.18s ease}
+.shop-ov.hide{display:none}
+.shop-card{background:var(--surface);border-radius:16px;max-width:580px;width:100%;max-height:88vh;display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,0.28);animation:slideUp 0.22s ease;overflow:hidden}
+.shop-hdr{display:flex;align-items:flex-start;justify-content:space-between;padding:18px 20px 14px;border-bottom:1px solid var(--bd);flex-shrink:0}
+.shop-title{font-size:17px;font-weight:800;color:var(--tx)}
+.shop-bal{font-size:12px;color:var(--tx3);margin-top:3px;display:flex;align-items:center;gap:4px}
+.shop-tabs-bar{display:flex;border-bottom:1px solid var(--bd);flex-shrink:0}
+.shop-tab{flex:1;padding:10px 0;font-size:12.5px;font-weight:600;cursor:pointer;font-family:var(--font);border:none;background:transparent;color:var(--tx3);transition:all 0.15s;border-bottom:2.5px solid transparent;margin-bottom:-1px}
+.shop-tab.on{color:var(--c1);border-bottom-color:var(--c1)}
+.shop-tab:hover:not(.on){color:var(--tx2);background:var(--surface2)}
+.shop-body{overflow-y:auto;flex:1;padding:16px;scrollbar-width:thin;scrollbar-color:var(--bd2) transparent}
+.shop-body::-webkit-scrollbar{width:4px}.shop-body::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:4px}
+.shop-sec{margin-bottom:20px}
+.shop-sec-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--tx3);margin-bottom:10px}
+/* Font swatches */
+.font-list{display:flex;flex-direction:column;gap:6px}
+.font-sw{display:flex;align-items:center;gap:12px;padding:10px 13px;border-radius:9px;border:2px solid transparent;cursor:pointer;transition:all 0.15s;background:var(--surface2)}
+.font-sw:hover{border-color:var(--bd2);background:var(--surface3)}
+.font-sw.active{border-color:var(--c1);background:color-mix(in srgb,var(--c1) 8%,var(--surface))}
+.font-sw.locked{opacity:0.65}
+.font-preview-txt{font-size:17px;font-weight:600;color:var(--tx);flex:1;line-height:1.2}
+.font-check{color:var(--c1);font-size:14px;opacity:0;margin-left:auto}
+.font-sw.active .font-check{opacity:1}
+/* Layout options */
+.layout-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.layout-opt{display:flex;flex-direction:column;align-items:center;gap:6px;padding:13px 8px 10px;border-radius:10px;border:2px solid var(--bd);cursor:pointer;transition:all 0.15s;background:var(--surface2);text-align:center;position:relative}
+.layout-opt:hover{border-color:var(--bd2);background:var(--surface3)}
+.layout-opt.active{border-color:var(--c1);background:color-mix(in srgb,var(--c1) 8%,var(--surface))}
+.layout-opt.locked:hover{border-color:color-mix(in srgb,#f59e0b 50%,transparent)}
+.lo-icon{font-size:22px;line-height:1}
+.lo-name{font-size:11px;font-weight:600;color:var(--tx2);line-height:1.3}
+.lo-check{position:absolute;top:6px;right:8px;font-size:12px;color:var(--c1);opacity:0}
+.layout-opt.active .lo-check{opacity:1}
+/* Compact list dashboard */
+.dsb-list{display:flex;flex-direction:column;gap:5px;margin-top:4px}
+.dl-row{display:flex;align-items:center;gap:10px;background:var(--surface);border-radius:8px;padding:9px 13px;border:1px solid var(--bd);cursor:pointer;transition:all 0.15s}
+.dl-row:hover{border-color:var(--bd2);background:var(--surface2);transform:translateX(2px)}
+.dl-id{font-size:10px;font-weight:700;width:30px;flex-shrink:0}
+.dl-name{font-size:12px;font-weight:600;color:var(--tx);flex:1}
+.dl-bars{display:flex;gap:5px;align-items:center}
+.dl-bar-wrap{display:flex;flex-direction:column;align-items:center;gap:2px}
+.dl-bar-track{width:46px;height:5px;background:var(--track);border-radius:3px;overflow:hidden}
+.dl-bar-fill{height:100%;border-radius:3px}
+.dl-pct{font-size:8px;color:var(--tx3);font-weight:600}
+/* Dot/hex matrix */
+.outcome-matrix{padding:16px;background:var(--surface);border-radius:var(--r);border:1px solid var(--bd);margin-bottom:12px}
+.matrix-sub-lbl{font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;margin-top:12px}
+.matrix-sub-lbl:first-child{margin-top:0}
+.matrix-dots{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:2px}
+.m-dot{width:16px;height:16px;border-radius:50%;cursor:pointer;transition:transform 0.12s;flex-shrink:0}
+.m-dot:hover{transform:scale(1.35)}
+.matrix-hexes{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:2px}
+.m-hex-wrap{cursor:pointer;transition:transform 0.12s}
+.m-hex-wrap:hover{transform:scale(1.2)}
+.m-hex{width:20px;height:18px;clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%)}
+.matrix-legend{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;border-top:1px solid var(--bd);padding-top:10px}
+.ml-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--tx3)}
+.ml-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+/* Focus mode */
+.focus-wrap{max-width:600px;margin:0 auto}
+.focus-nav-bar{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.focus-nav-btn{background:var(--surface2);border:1px solid var(--bd2);border-radius:7px;padding:7px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--font);color:var(--tx2);transition:all 0.15s;white-space:nowrap}
+.focus-nav-btn:hover:not(:disabled){background:var(--surface3)}
+.focus-nav-btn:disabled{opacity:0.35;cursor:default}
+.focus-nav-lbl{flex:1;text-align:center;font-size:11px;color:var(--tx3);line-height:1.4}
+.focus-card{background:var(--surface);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden}
+.focus-card-hdr{padding:9px 14px;background:var(--surface2);border-bottom:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center}
+.focus-card-hdr-lbl{font-size:11px;font-weight:700;color:var(--tx2)}
+.focus-card-hdr-sub{font-size:10px;color:var(--tx3)}
+.focus-outcome-row{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid var(--bd)}
+.focus-outcome-row:last-child{border-bottom:none}
+.focus-outcome-txt{flex:1;font-size:12.5px;color:var(--tx);line-height:1.4}
+.focus-outcome-cbs{display:flex;gap:7px;flex-shrink:0}
+.focus-big-cb{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.15s;border:1.5px solid;font-size:13px;user-select:none}
+.focus-big-cb.r-off{border-color:var(--bd2);background:var(--surface2);color:var(--tx3)}
+.focus-big-cb.r-on{border-color:color-mix(in srgb,var(--c1) 40%,transparent);background:color-mix(in srgb,var(--c1) 12%,var(--surface));color:var(--c1)}
+.focus-big-cb.e-off{border-color:var(--bd2);background:var(--surface2);color:var(--tx3)}
+.focus-big-cb.e-on{border-color:color-mix(in srgb,var(--c2) 40%,transparent);background:color-mix(in srgb,var(--c2) 12%,var(--surface));color:var(--c2)}
+.focus-big-cb.m-off{border-color:var(--bd2);background:var(--surface2);color:var(--tx3)}
+.focus-big-cb.m-on{border-color:color-mix(in srgb,var(--c3) 40%,transparent);background:color-mix(in srgb,var(--c3) 12%,var(--surface));color:var(--c3)}
+.focus-prog-dots{display:flex;gap:4px;margin-top:10px;justify-content:center;flex-wrap:wrap}
+.focus-prog-dot{width:6px;height:6px;border-radius:50%;background:var(--track);transition:all 0.25s;flex-shrink:0;cursor:pointer}
+.focus-prog-dot.on{background:var(--c1);width:16px;border-radius:3px}
+/* Topic table view */
+.topic-table-wrap{overflow-x:auto;margin-top:12px}
+.topic-table{width:100%;border-collapse:collapse;font-size:12px}
+.topic-table th{background:var(--surface2);padding:7px 10px;text-align:left;font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.5px;border-bottom:1.5px solid var(--bd2)}
+.topic-table th:not(:first-child){text-align:center;width:44px}
+.topic-table td{padding:7px 10px;border-bottom:1px solid var(--bd);color:var(--tx);vertical-align:middle}
+.topic-table td:not(:first-child){text-align:center}
+.topic-table tr:last-child td{border-bottom:none}
+.t-sub-row td{background:var(--surface2);font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.4px;padding:5px 10px}
+.topic-table .t-done td{background:color-mix(in srgb,var(--c3) 6%,var(--surface))}
+.t-cb{width:15px;height:15px;border-radius:3px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:10px;border:1px solid var(--bd2);transition:all 0.12s;user-select:none}
+.t-cb.r-on{background:var(--c1);border-color:var(--c1);color:white}
+.t-cb.e-on{background:var(--c2);border-color:var(--c2);color:white}
+.t-cb.m-on{background:var(--c3);border-color:var(--c3);color:white}
+
+/* ── UNLOCK CODE MODAL ── */
+.uc-ov{position:fixed;inset:0;background:rgba(10,14,35,0.55);z-index:3000;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px);animation:fadeIn 0.18s ease}
+.uc-ov.hide{display:none}
+.uc-card{background:var(--surface);border-radius:14px;max-width:380px;width:100%;box-shadow:0 24px 64px rgba(0,0,0,0.28);animation:slideUp 0.22s ease;overflow:hidden}
+.uc-hdr{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 12px;border-bottom:1px solid var(--bd)}
+.uc-title{font-size:15px;font-weight:800;color:var(--tx)}
+.uc-body{padding:18px}
+.uc-desc{font-size:12.5px;color:var(--tx2);margin-bottom:14px;line-height:1.5}
+.uc-input-row{display:flex;gap:8px}
+.uc-input{flex:1;padding:9px 12px;border-radius:8px;border:1.5px solid var(--bd2);background:var(--surface2);color:var(--tx);font-size:13px;font-weight:600;font-family:var(--font);text-transform:uppercase;letter-spacing:.5px;outline:none;transition:border-color 0.15s}
+.uc-input:focus{border-color:var(--c1)}
+.uc-submit{padding:9px 16px;border-radius:8px;background:var(--c1);color:white;font-size:12.5px;font-weight:700;border:none;cursor:pointer;font-family:var(--font);transition:opacity 0.15s}
+.uc-submit:hover{opacity:0.88}
+.uc-result{margin-top:12px;padding:9px 13px;border-radius:8px;font-size:12.5px;font-weight:600;display:none}
+.uc-result.ok{background:color-mix(in srgb,var(--c3) 15%,var(--surface));color:var(--c3);border:1px solid color-mix(in srgb,var(--c3) 30%,transparent);display:block}
+.uc-result.err{background:color-mix(in srgb,#ef4444 12%,var(--surface));color:#ef4444;border:1px solid color-mix(in srgb,#ef4444 25%,transparent);display:block}
+.uc-history{margin-top:14px;border-top:1px solid var(--bd);padding-top:12px}
+.uc-history-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--tx3);margin-bottom:7px}
+.uc-history-item{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--tx2);padding:3px 0}
+.uc-history-item span:first-child{font-weight:700;letter-spacing:.4px;font-family:monospace;color:var(--tx)}
 /* ── RANKS ── */
 /* Rank badge (header + dashboard) */
 .rank-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px 3px 7px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap;border:1.5px solid;transition:all 0.3s;cursor:default;user-select:none}
@@ -428,9 +605,9 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
 .rk-dismiss:hover{background:var(--c1d);transform:translateY(-1px)}
 /* Subtopic completion tiers — shimmer in then stay */
 @keyframes shimmerIn{0%{background-position:200% 0}100%{background-position:-200% 0}}
-.sub-hdr.tier-bronze{background:linear-gradient(90deg,#fdf8f0,rgba(205,127,50,0.12),#fdf8f0) !important;border-left:3px solid #cd7f32}
-.sub-hdr.tier-silver{background:linear-gradient(90deg,#f8f9fa,rgba(168,168,168,0.15),#f8f9fa) !important;border-left:3px solid #a8a8a8}
-.sub-hdr.tier-gold{background:linear-gradient(90deg,#fffbeb,rgba(251,191,36,0.18),#fffbeb) !important;border-left:3px solid #f59e0b}
+.sub-hdr.tier-bronze{background:linear-gradient(90deg,var(--surface),rgba(205,127,50,0.18),var(--surface)) !important;border-left:3px solid #cd7f32}
+.sub-hdr.tier-silver{background:linear-gradient(90deg,var(--surface),rgba(168,168,168,0.22),var(--surface)) !important;border-left:3px solid #a8a8a8}
+.sub-hdr.tier-gold{background:linear-gradient(90deg,var(--surface),rgba(251,191,36,0.24),var(--surface)) !important;border-left:3px solid #f59e0b}
 .sub-hdr.shimmer-bronze{animation:shimmerIn 0.7s ease forwards;background:linear-gradient(90deg,transparent,rgba(205,127,50,0.28),transparent) !important;background-size:200% 100% !important}
 .sub-hdr.shimmer-silver{animation:shimmerIn 0.7s ease forwards;background:linear-gradient(90deg,transparent,rgba(168,168,168,0.35),transparent) !important;background-size:200% 100% !important}
 .sub-hdr.shimmer-gold{animation:shimmerIn 0.7s ease forwards;background:linear-gradient(90deg,transparent,rgba(251,191,36,0.38),transparent) !important;background-size:200% 100% !important}
@@ -488,7 +665,7 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
     </button>
     <button class="help-btn" onclick="openThemes()">
       <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.4"/><circle cx="7" cy="3" r="1" fill="currentColor"/><circle cx="10.6" cy="5.5" r="1" fill="currentColor"/><circle cx="10.6" cy="8.5" r="1" fill="currentColor"/><circle cx="7" cy="11" r="1" fill="currentColor"/><circle cx="3.4" cy="8.5" r="1" fill="currentColor"/><circle cx="3.4" cy="5.5" r="1" fill="currentColor"/></svg>
-      Themes
+      Shop
     </button>
     <button class="help-btn" onclick="openSaveCode()">
       <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M4 6l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 10v1.5A1.5 1.5 0 003.5 13h7a1.5 1.5 0 001.5-1.5V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -529,9 +706,13 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
     <span style="font-size:12px;font-weight:800;color:#92400e" id="mob-coin-bal">0</span>
     <span style="font-size:11px;color:#b45309;margin-left:2px">coins</span>
   </button>
-  <button class="help-btn" onclick="openThemes();closeMobMenu()">
+  <button class="help-btn" onclick="openShop();closeMobMenu()">
     <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.4"/><circle cx="7" cy="3" r="1" fill="currentColor"/><circle cx="10.6" cy="5.5" r="1" fill="currentColor"/><circle cx="10.6" cy="8.5" r="1" fill="currentColor"/><circle cx="7" cy="11" r="1" fill="currentColor"/><circle cx="3.4" cy="8.5" r="1" fill="currentColor"/><circle cx="3.4" cy="5.5" r="1" fill="currentColor"/></svg>
-    Themes
+    Shop
+  </button>
+  <button class="help-btn" onclick="closeShop();openUnlockCode();closeMobMenu()">
+    <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M5 6V4a2 2 0 114 0v2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><rect x="2.5" y="6" width="9" height="6" rx="1.5" stroke="currentColor" stroke-width="1.3"/></svg>
+    Unlock code
   </button>
   <button class="help-btn" onclick="openSaveCode();closeMobMenu()">
     <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M4 6l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 10v1.5A1.5 1.5 0 003.5 13h7a1.5 1.5 0 001.5-1.5V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -608,14 +789,16 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
   <div class="th-card">
     <div class="th-h">Choose a theme</div>
     <div class="th-sub">Applies instantly and is remembered next time</div>
-    <div class="th-cols">
-      <div>
-        <div class="th-col-lbl">Light</div>
-        <div class="th-swatches" id="th-light"></div>
-      </div>
-      <div>
-        <div class="th-col-lbl">Dark</div>
-        <div class="th-swatches" id="th-dark"></div>
+    <div class="th-card-body">
+      <div class="th-cols">
+        <div>
+          <div class="th-col-lbl">Light</div>
+          <div class="th-swatches" id="th-light"></div>
+        </div>
+        <div>
+          <div class="th-col-lbl">Dark</div>
+          <div class="th-swatches" id="th-dark"></div>
+        </div>
       </div>
     </div>
     <button class="th-close" onclick="closeThemes()">Done</button>
@@ -642,20 +825,20 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
 // ── THEMES ───────────────────────────────────────────────────────────────────
 // free:true = unlocked by default; cost = coins needed to unlock
 const THEMES=[
-  {id:'slate',   label:'Slate',          dark:false, free:true,  cost:0,   dots:['#f0f2f8','#ffffff','#4361ee']},
-  {id:'warm',    label:'Warm',           dark:false, free:true,  cost:0,   dots:['#f5efe6','#fffcf7','#f4a261']},
-  {id:'lavender',label:'Lavender',       dark:false, free:true,  cost:0,   dots:['#eeebf8','#ffffff','#8b5cf6']},
-  {id:'midnight',label:'Midnight',       dark:true,  free:true,  cost:0,   dots:['#0d1117','#161b22','#4361ee']},
-  {id:'graphite',label:'Graphite',       dark:true,  free:true,  cost:0,   dots:['#111111','#1e1e1e','#9e9e9e']},
-  {id:'forest',  label:'Forest',         dark:true,  free:true,  cost:0,   dots:['#0c1812','#122018','#2ec4b6']},
-  {id:'ocean',   label:'Ocean',          dark:true,  free:false, cost:50,  dots:['#060d1a','#0a1628','#00c8ff']},
-  {id:'sunset',  label:'Sunset',         dark:false, free:false, cost:50,  dots:['#fef3ec','#fffaf7','#e8732a']},
-  {id:'cherry',  label:'Cherry Blossom', dark:false, free:false, cost:100, dots:['#fff5f7','#ffffff','#e8607a']},
-  {id:'volcanic',label:'Volcanic',       dark:true,  free:false, cost:100, dots:['#0e0804','#1a1008','#ff6400']},
-  {id:'arctic',  label:'Arctic',         dark:false, free:false, cost:150, dots:['#f0f8ff','#ffffff','#2a7acc']},
-  {id:'neon',    label:'Neon',           dark:true,  free:false, cost:150, dots:['#04040c','#080818','#a060ff']},
-  {id:'rosegold',label:'Rose Gold',      dark:false, free:false, cost:200, dots:['#fdf5f0','#ffffff','#d4906a']},
-  {id:'amethyst',label:'Amethyst',       dark:true,  free:false, cost:200, dots:['#0d0914','#160d20','#c080ff']},
+  {id:'slate',   label:'Slate',          dark:false, free:true,  cost:0,   dots:['#f0f2f8','#ffffff','#4361ee'],  stage:['#4361ee','#f4a261','#2ec4b6']},
+  {id:'warm',    label:'Warm',           dark:false, free:true,  cost:0,   dots:['#f5efe6','#fffcf7','#f4a261'],  stage:['#c07020','#c03c50','#5a9030']},
+  {id:'lavender',label:'Lavender',       dark:false, free:true,  cost:0,   dots:['#eeebf8','#ffffff','#8b5cf6'],  stage:['#7c3aed','#d43898','#059669']},
+  {id:'midnight',label:'Midnight',       dark:true,  free:true,  cost:0,   dots:['#0d1117','#161b22','#4361ee'],  stage:['#5878f8','#ffa060','#2ed8c8']},
+  {id:'graphite',label:'Graphite',       dark:true,  free:true,  cost:0,   dots:['#111111','#1e1e1e','#9e9e9e'],  stage:['#8888f0','#e8a060','#50d0a8']},
+  {id:'forest',  label:'Forest',         dark:true,  free:true,  cost:0,   dots:['#0c1812','#122018','#2ec4b6'],  stage:['#58d888','#d8b030','#30c8d8']},
+  {id:'ocean',   label:'Ocean',          dark:true,  free:false, cost:25,  dots:['#060d1a','#0a1628','#00c8ff'],  stage:['#00c8ff','#ff9040','#00e8a0']},
+  {id:'sunset',  label:'Sunset',         dark:false, free:false, cost:25,  dots:['#fef3ec','#fffaf7','#e8732a'],  stage:['#c85820','#a82848','#487830']},
+  {id:'cherry',  label:'Cherry Blossom', dark:false, free:false, cost:50,  dots:['#fff5f7','#ffffff','#e8607a'],  stage:['#d83060','#8030b0','#1898a0']},
+  {id:'volcanic',label:'Volcanic',       dark:true,  free:false, cost:50,  dots:['#0e0804','#1a1008','#ff6400'],  stage:['#ff6000','#ffb800','#ff3858']},
+  {id:'arctic',  label:'Arctic',         dark:false, free:false, cost:75,  dots:['#f0f8ff','#ffffff','#2a7acc'],  stage:['#1868c8','#0898b8','#108858']},
+  {id:'neon',    label:'Neon',           dark:true,  free:false, cost:75,  dots:['#04040c','#080818','#a060ff'],  stage:['#a060ff','#ff40a0','#40ff90']},
+  {id:'rosegold',label:'Rose Gold',      dark:false, free:false, cost:100, dots:['#fdf5f0','#ffffff','#d4906a'],  stage:['#c87040','#b83060','#508840']},
+  {id:'amethyst',label:'Amethyst',       dark:true,  free:false, cost:100, dots:['#0d0914','#160d20','#c080ff'],  stage:['#c070ff','#ff70c0','#70ffc0']},
 ];
 let currentTheme='slate';
 let coinBalance=0;
@@ -732,38 +915,209 @@ function applyTheme(id){
   document.documentElement.dataset.theme= id==='slate'?'':id;
   try{localStorage.setItem('gcse_theme',id);}catch(e){}
   // Re-render swatches if picker is open
-  const modal=document.getElementById('th-modal');
-  if(!modal.classList.contains('hide'))renderThemeSwatches();
+  if(!document.getElementById('shop-modal').classList.contains('hide')&&shopCurrentTab==='themes')renderShopTab('themes');
+  // Re-render current view so sc() calls regenerate canvas data-c with new theme colours
+  if(typeof updateView==='function')updateView();
   setTimeout(repaint,0);
 }
-function openThemes(){
-  renderThemeSwatches();
-  document.getElementById('th-modal').classList.remove('hide');
+// ── SHOP SYSTEM ───────────────────────────────────────────────────────────────
+const FONTS=[
+  {id:'system',      label:'System default',       family:'-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif', gfont:null,                       free:true, cost:0},
+  {id:'schoolbell',  label:'Schoolbell',            family:'"Schoolbell",cursive',                                               gfont:'Schoolbell',               free:false,cost:25},
+  {id:'chewy',       label:'Chewy',                 family:'"Chewy",cursive',                                                    gfont:'Chewy',                    free:false,cost:25},
+  {id:'indieflower', label:'Indie Flower',           family:'"Indie Flower",cursive',                                             gfont:'Indie+Flower',             free:false,cost:25},
+  {id:'marienda',    label:'Marienda',               family:'"Marienda",serif',                                                   gfont:'Marienda:wght@400;700',    free:false,cost:40},
+  {id:'amarante',    label:'Amarante',               family:'"Amarante",serif',                                                   gfont:'Amarante',                 free:false,cost:40},
+  {id:'pacifico',    label:'Pacifico',               family:'"Pacifico",cursive',                                                 gfont:'Pacifico',                 free:false,cost:40},
+  {id:'twinklestar', label:'Twinkle Star',            family:'"Twinkle Star",cursive',                                             gfont:'Twinkle+Star',             free:false,cost:60},
+  {id:'macondo',     label:'Macondo Swash Caps',      family:'"Macondo Swash Caps",serif',                                         gfont:'Macondo+Swash+Caps',       free:false,cost:60},
+  {id:'explora',     label:'Explora',                family:'"Explora",cursive',                                                  gfont:'Explora',                  free:false,cost:60},
+  {id:'grapenuts',   label:'Grape Nuts',             family:'"Grape Nuts",cursive',                                               gfont:'Grape+Nuts',               free:false,cost:60},
+];
+const SHOP_LAYOUTS=[
+  {id:'pie',     type:'dashCard',  label:'Pie charts',     free:true, cost:0,  icon:'◕'},
+  {id:'rings',   type:'dashCard',  label:'Rings',          free:false,cost:40, icon:'◎'},
+  {id:'arc',     type:'dashCard',  label:'Stacked arc',    free:false,cost:50, icon:'◡'},
+  {id:'cards',   type:'dashView',  label:'Card grid',      free:true, cost:0,  icon:'⊞'},
+  {id:'list',    type:'dashView',  label:'Compact list',   free:false,cost:40, icon:'≡'},
+  {id:'default', type:'topicView', label:'Subtopic cards', free:true, cost:0,  icon:'▤'},
+  {id:'table',   type:'topicView', label:'Table',          free:false,cost:40, icon:'⊟'},
+  {id:'dots',    type:'topicView', label:'Dot matrix',     free:false,cost:50, icon:'⠿'},
+  {id:'hex',     type:'topicView', label:'Hexgrid',        free:false,cost:50, icon:'⬡'},
+  {id:'focus',   type:'topicView', label:'Focus mode',     free:false,cost:60, icon:'◉'},
+];
+
+let shopCurrentTab='themes';
+let unlockedLayouts=new Set(['pie','cards','default']);
+let unlockedFonts=new Set(['system']);
+let subjectFonts={};
+let dashCardStyle='pie';
+let dashViewStyle='cards';
+let topicViewStyle='default';
+let focusSubIdx=0;
+const loadedGFonts=new Set();
+
+function loadShopPrefs(){
+  try{const u=localStorage.getItem('gcse_unlocked_layouts');if(u)unlockedLayouts=new Set(JSON.parse(u));}catch(e){}
+  SHOP_LAYOUTS.filter(l=>l.free).forEach(l=>unlockedLayouts.add(l.id));
+  try{const u=localStorage.getItem('gcse_unlocked_fonts');if(u)unlockedFonts=new Set(JSON.parse(u));}catch(e){}
+  unlockedFonts.add('system');
+  // Preload all Google Fonts for preview rendering in shop
+  FONTS.forEach(f=>{if(f.gfont)ensureGFont(f.gfont);});
+  loadLayoutPrefs();
 }
-function closeThemes(){document.getElementById('th-modal').classList.add('hide');}
-function handleThClick(e){if(e.target.id==='th-modal')closeThemes();}
-function renderThemeSwatches(){
-  ['th-light','th-dark'].forEach(colId=>{
-    const el=document.getElementById(colId);
-    const isDark=colId==='th-dark';
-    const free=THEMES.filter(t=>t.dark===isDark&&t.free);
-    const paid=THEMES.filter(t=>t.dark===isDark&&!t.free);
-    const swatchHtml=(themes)=>themes.map(t=>{
-      const locked=!unlockedThemes.has(t.id);
-      return `<div class="th-swatch${currentTheme===t.id?' active':''}${locked?' locked':''}" onclick="${locked?`buyTheme('${t.id}')`:`applyTheme('${t.id}')`}">
-        <div class="th-preview">${t.dots.map(d=>`<div class="th-dot" style="background:${d}"></div>`).join('')}</div>
-        <span class="th-name">${t.label}</span>
-        ${locked?`<span class="th-lock"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><rect x="2" y="5" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M4 5V3.5a2 2 0 014 0V5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>${t.cost}🪙</span>`
-        :`<span class="th-check">&#10003;</span>`}
+function loadLayoutPrefs(){
+  try{
+    const d=localStorage.getItem('gcse_layout_'+SUBJECT.id);
+    if(d){
+      const p=JSON.parse(d);
+      const isOk=(id,type)=>SHOP_LAYOUTS.find(l=>l.id===id&&l.type===type)&&(SHOP_LAYOUTS.find(l=>l.id===id).free||unlockedLayouts.has(id));
+      dashCardStyle=(p.dc&&isOk(p.dc,'dashCard'))?p.dc:'pie';
+      dashViewStyle=(p.dv&&isOk(p.dv,'dashView'))?p.dv:'cards';
+      topicViewStyle=(p.tv&&isOk(p.tv,'topicView'))?p.tv:'default';
+    }else{dashCardStyle='pie';dashViewStyle='cards';topicViewStyle='default';}
+    const fid=localStorage.getItem('gcse_font_'+SUBJECT.id);
+    if(fid&&unlockedFonts.has(fid)){subjectFonts[SUBJECT.id]=fid;applyFontNow(fid);}
+    else applyFontNow('system');
+  }catch(e){dashCardStyle='pie';dashViewStyle='cards';topicViewStyle='default';}
+}
+function saveLayoutPrefs(){
+  try{
+    localStorage.setItem('gcse_layout_'+SUBJECT.id,JSON.stringify({dc:dashCardStyle,dv:dashViewStyle,tv:topicViewStyle}));
+    localStorage.setItem('gcse_font_'+SUBJECT.id,subjectFonts[SUBJECT.id]||'system');
+    localStorage.setItem('gcse_unlocked_layouts',JSON.stringify([...unlockedLayouts]));
+    localStorage.setItem('gcse_unlocked_fonts',JSON.stringify([...unlockedFonts]));
+  }catch(e){}
+}
+function ensureGFont(gfont){
+  if(!gfont||loadedGFonts.has(gfont))return;
+  loadedGFonts.add(gfont);
+  const l=document.createElement('link');
+  l.rel='stylesheet';
+  l.href='https://fonts.googleapis.com/css2?family='+gfont+'&display=swap';
+  document.head.appendChild(l);
+}
+function applyFontNow(fontId){
+  const font=FONTS.find(f=>f.id===fontId)||FONTS[0];
+  ensureGFont(font.gfont);
+  document.documentElement.style.setProperty('--font',font.family);
+}
+function applyFont(fontId){
+  if(!unlockedFonts.has(fontId))return;
+  subjectFonts[SUBJECT.id]=fontId;
+  applyFontNow(fontId);
+  saveLayoutPrefs();
+  renderShopTab('fonts');
+}
+function buyFont(fontId){
+  const font=FONTS.find(f=>f.id===fontId);
+  if(!font||unlockedFonts.has(fontId))return;
+  if(coinBalance<font.cost){alert('You need '+font.cost+' coins to unlock '+font.label+'. You have '+coinBalance+'.');return;}
+  if(!confirm('Unlock '+font.label+' for '+font.cost+' coins?'))return;
+  coinBalance-=font.cost;
+  unlockedFonts.add(fontId);
+  saveCoins();saveLayoutPrefs();
+  updateCoinDisplay();
+  applyFont(fontId);
+}
+function applyLayout(type,id){
+  const item=SHOP_LAYOUTS.find(l=>l.id===id&&l.type===type);
+  if(!item||(!item.free&&!unlockedLayouts.has(id)))return;
+  if(type==='dashCard')dashCardStyle=id;
+  else if(type==='dashView')dashViewStyle=id;
+  else{topicViewStyle=id;focusSubIdx=0;}
+  saveLayoutPrefs();
+  renderShopTab('layouts');
+  updateView();
+}
+function buyLayout(id){
+  const item=SHOP_LAYOUTS.find(l=>l.id===id);
+  if(!item||item.free||unlockedLayouts.has(id))return;
+  if(coinBalance<item.cost){alert('You need '+item.cost+' coins. You have '+coinBalance+'.');return;}
+  if(!confirm('Unlock '+item.label+' for '+item.cost+' coins?'))return;
+  coinBalance-=item.cost;
+  unlockedLayouts.add(id);
+  saveCoins();saveLayoutPrefs();
+  updateCoinDisplay();
+  renderShopTab('layouts');
+}
+function openShop(tab){
+  tab=tab||'themes';
+  document.getElementById('shop-bal-disp').textContent=coinBalance;
+  document.getElementById('shop-modal').classList.remove('hide');
+  renderShopTab(tab);
+}
+function closeShop(){document.getElementById('shop-modal').classList.add('hide');}
+function handleShopOvClick(e){if(e.target.id==='shop-modal')closeShop();}
+function openThemes(){openShop('themes');}
+function closeThemes(){closeShop();}
+
+function renderShopTab(tab){
+  shopCurrentTab=tab;
+  document.querySelectorAll('.shop-tab').forEach(t=>t.classList.toggle('on',t.dataset.tab===tab));
+  const body=document.getElementById('shop-body');
+  if(!body)return;
+  if(tab==='themes')body.innerHTML=renderShopThemes();
+  else if(tab==='fonts')body.innerHTML=renderShopFonts();
+  else body.innerHTML=renderShopLayouts();
+  const bd=document.getElementById('shop-bal-disp');
+  if(bd)bd.textContent=coinBalance;
+}
+function lockIcon(){return `<svg width="10" height="10" viewBox="0 0 12 12" fill="none"><rect x="2" y="5" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M4 5V3.5a2 2 0 014 0V5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>`;}
+function renderShopThemes(){
+  function swHtml(themes){return themes.map(t=>{
+    const locked=!unlockedThemes.has(t.id);
+    const stageDots=(t.stage||[]).map(s=>`<div style="width:8px;height:8px;border-radius:50%;background:${s};flex-shrink:0"></div>`).join('');
+    return `<div class="th-swatch${currentTheme===t.id?' active':''}${locked?' locked':''}" onclick="${locked?`buyTheme('${t.id}')`:`applyTheme('${t.id}')`}">
+      <div class="th-preview">${t.dots.map(d=>`<div class="th-dot" style="background:${d}"></div>`).join('')}</div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0">
+        <span class="th-name" style="flex:1">${t.label}</span>
+        <div style="display:flex;gap:3px;align-items:center;flex-shrink:0">${stageDots}</div>
+      </div>
+      ${locked?`<span class="th-lock">${lockIcon()}${t.cost}🪙</span>`:`<span class="th-check">&#10003;</span>`}
+    </div>`;
+  }).join('');}
+  const lt=THEMES.filter(t=>!t.dark),dk=THEMES.filter(t=>t.dark);
+  function col(themes){
+    const fr=themes.filter(t=>t.free),pd=themes.filter(t=>!t.free);
+    return `<div class="th-swatches">${swHtml(fr)}</div>${pd.length?`<div class="th-shop-lbl">🛒 Shop</div><div class="th-swatches">${swHtml(pd)}</div>`:''}`;
+  }
+  return `<div class="th-cols"><div><div class="th-col-lbl">Light</div>${col(lt)}</div><div><div class="th-col-lbl">Dark</div>${col(dk)}</div></div>`;
+}
+function renderShopFonts(){
+  const cur=subjectFonts[SUBJECT.id]||'system';
+  return `<div class="shop-sec"><div class="shop-sec-lbl">Font for ${SUBJECT.name}</div>
+  <div class="font-list">${FONTS.map(f=>{
+    const locked=!unlockedFonts.has(f.id),active=cur===f.id;
+    return `<div class="font-sw${active?' active':''}${locked?' locked':''}" onclick="${locked?`buyFont('${f.id}')`:`applyFont('${f.id}')`}" >
+      <div class="font-preview-txt" style="font-family:${f.family}">${f.label} — Aa Bb Cc</div>
+      ${locked?`<span class="th-lock">${lockIcon()}${f.cost}🪙</span>`:`<span class="font-check">✓</span>`}
+    </div>`;
+  }).join('')}</div></div>`;
+}
+function renderShopLayouts(){
+  function section(title,type){
+    const items=SHOP_LAYOUTS.filter(l=>l.type===type);
+    const active=type==='dashCard'?dashCardStyle:type==='dashView'?dashViewStyle:topicViewStyle;
+    return `<div class="shop-sec"><div class="shop-sec-lbl">${title}</div>
+    <div class="layout-grid">${items.map(item=>{
+      const locked=!item.free&&!unlockedLayouts.has(item.id);
+      const isActive=active===item.id;
+      return `<div class="layout-opt${isActive?' active':''}${locked?' locked':''}" onclick="${locked?`buyLayout('${item.id}')`:`applyLayout('${item.type}','${item.id}')`}">
+        <span class="lo-check">✓</span>
+        <div class="lo-icon">${item.icon}</div>
+        <div class="lo-name">${item.label}</div>
+        ${locked?`<span class="th-lock" style="position:static;margin-top:2px">${lockIcon()}${item.cost}🪙</span>`:
+          (isActive?`<div style="font-size:10px;color:var(--c1);font-weight:600">Active</div>`:'')}
       </div>`;
-    }).join('');
-    el.innerHTML=swatchHtml(free);
-    if(paid.length){
-      el.innerHTML+=`<div class="th-shop-lbl">🛒 Shop — spend your coins</div>`;
-      el.innerHTML+=swatchHtml(paid);
-    }
-  });
+    }).join('')}</div></div>`;
+  }
+  return section('Dashboard — card style','dashCard')+
+         section('Dashboard — view','dashView')+
+         section('Topic view','topicView');
 }
+
+
 function loadTheme(){
   try{const t=localStorage.getItem('gcse_theme');if(t)applyTheme(t);}catch(e){}
 }
@@ -2712,6 +3066,11 @@ function toggle(id,f){
 function bulkField(sid,f,v){
   const prevRank=currentSubjectRank();const prevTopicDone=completedTopics();
   const s=findSub(sid);if(!s)return;
+  // Award coins for first-time ticks before saving (so wasOff check works)
+  if(v){
+    const bulkBtn=document.querySelector(`button[onclick*="bulkField('${sid}','${f}'"]`);
+    s.outcomes.forEach(o=>{if(outcomeVisible(o)&&!gv(o.id,f))awardCoin(o.id,f,bulkBtn);});
+  }
   s.outcomes.forEach(o=>{if(outcomeVisible(o))sv(o.id,f,v);});
   const tier=subTier(s);
   if(tier)_pendingShimmer={id:sid,tier};
@@ -2720,6 +3079,16 @@ function bulkField(sid,f,v){
 function bulkAll(sid,v){
   const prevRank=currentSubjectRank();const prevTopicDone=completedTopics();
   const s=findSub(sid);if(!s)return;
+  const allBtn=document.querySelector(`button[onclick*="bulkAll('${sid}'"]`);
+  if(v){
+    s.outcomes.forEach(o=>{
+      if(outcomeVisible(o)){
+        if(!gv(o.id,'r'))awardCoin(o.id,'r',allBtn);
+        if(!gv(o.id,'e'))awardCoin(o.id,'e',allBtn);
+        if(!gv(o.id,'m'))awardCoin(o.id,'m',allBtn);
+      }
+    });
+  }
   s.outcomes.forEach(o=>{if(outcomeVisible(o)){sv(o.id,'r',v);sv(o.id,'e',v);sv(o.id,'m',v);}});
   const tier=v?subTier(s):null;
   if(tier)_pendingShimmer={id:sid,tier};
@@ -2779,8 +3148,8 @@ function paintDonut(c,filled,total,color){
   ctx.beginPath();ctx.arc(cx,cy,r*0.64,0,Math.PI*2);ctx.fillStyle=getHoleColor();ctx.fill();
 }
 function repaint(){
-  document.querySelectorAll('canvas[data-p]').forEach(c=>paintPie(c,+c.dataset.f||0,+c.dataset.t||0,c.dataset.c||'#4361ee'));
-  document.querySelectorAll('canvas[data-d]').forEach(c=>paintDonut(c,+c.dataset.f||0,+c.dataset.t||0,c.dataset.c||'#4361ee'));
+  document.querySelectorAll('canvas[data-p]').forEach(c=>paintPie(c,+c.dataset.f||0,+c.dataset.t||0,c.dataset.c||sc(1)));
+  document.querySelectorAll('canvas[data-d]').forEach(c=>paintDonut(c,+c.dataset.f||0,+c.dataset.t||0,c.dataset.c||sc(1)));
 }
 
 // ── RENDER ───────────────────────────────────────────────────────────────────
@@ -2841,6 +3210,7 @@ function openSubjectDashboard(sid){
     progress=loadProgressForSubject(subj);
     try{const s=localStorage.getItem(specKey(subj));specMode=(s==='com'||s==='sep')?s:'sep';}catch(e){}
     try{const t=localStorage.getItem(tierKey(subj));tierMode=(t==='higher'||t==='foundation')?t:'higher';}catch(e){}
+    loadLayoutPrefs();
   }
   currentView='dashboard';
   window.scrollTo(0,0);
@@ -2888,17 +3258,17 @@ function renderHome(){
         <div class="hsc-bars">
           <div class="hsc-bar-row">
             <span class="hsc-bar-lbl">Revised</span>
-            <div class="hsc-bar-track"><div class="hsc-bar-fill" style="width:${pct(s.r,s.n)}%;background:#4361ee"></div></div>
+            <div class="hsc-bar-track"><div class="hsc-bar-fill" style="width:${pct(s.r,s.n)}%;background:${sc(1)}"></div></div>
             <span class="hsc-bar-pct">${pct(s.r,s.n)}%</span>
           </div>
           <div class="hsc-bar-row">
             <span class="hsc-bar-lbl">Exam Qs</span>
-            <div class="hsc-bar-track"><div class="hsc-bar-fill" style="width:${pct(s.e,s.n)}%;background:#f4a261"></div></div>
+            <div class="hsc-bar-track"><div class="hsc-bar-fill" style="width:${pct(s.e,s.n)}%;background:${sc(2)}"></div></div>
             <span class="hsc-bar-pct">${pct(s.e,s.n)}%</span>
           </div>
           <div class="hsc-bar-row">
             <span class="hsc-bar-lbl">Reviewed</span>
-            <div class="hsc-bar-track"><div class="hsc-bar-fill" style="width:${pct(s.m,s.n)}%;background:#2ec4b6"></div></div>
+            <div class="hsc-bar-track"><div class="hsc-bar-fill" style="width:${pct(s.m,s.n)}%;background:${sc(3)}"></div></div>
             <span class="hsc-bar-pct">${pct(s.m,s.n)}%</span>
           </div>
         </div>
@@ -2944,50 +3314,56 @@ function renderDashboard(){
     <div class="dsb-donuts">
       <div class="donut-wrap">
         <div class="donut-canvas-wrap" style="width:78px;height:78px">
-          <canvas data-d data-f="${s.r}" data-t="${s.n}" data-c="#4361ee" style="width:78px;height:78px"></canvas>
-          <div class="donut-inner"><span class="donut-pct" style="color:#4361ee">${pct(s.r,s.n)}%</span><span class="donut-sub">revised</span></div>
+          <canvas data-d data-f="${s.r}" data-t="${s.n}" data-c="${sc(1)}" style="width:78px;height:78px"></canvas>
+          <div class="donut-inner"><span class="donut-pct" style="color:${sc(1)}">${pct(s.r,s.n)}%</span><span class="donut-sub">revised</span></div>
         </div>
       </div>
       <div class="donut-wrap">
         <div class="donut-canvas-wrap" style="width:78px;height:78px">
-          <canvas data-d data-f="${s.e}" data-t="${s.n}" data-c="#f4a261" style="width:78px;height:78px"></canvas>
-          <div class="donut-inner"><span class="donut-pct" style="color:#c87330">${pct(s.e,s.n)}%</span><span class="donut-sub">exam Qs</span></div>
+          <canvas data-d data-f="${s.e}" data-t="${s.n}" data-c="${sc(2)}" style="width:78px;height:78px"></canvas>
+          <div class="donut-inner"><span class="donut-pct" style="color:${sc(2)}">${pct(s.e,s.n)}%</span><span class="donut-sub">exam Qs</span></div>
         </div>
       </div>
       <div class="donut-wrap">
         <div class="donut-canvas-wrap" style="width:78px;height:78px">
-          <canvas data-d data-f="${s.m}" data-t="${s.n}" data-c="#2ec4b6" style="width:78px;height:78px"></canvas>
-          <div class="donut-inner"><span class="donut-pct" style="color:#1a9e96">${pct(s.m,s.n)}%</span><span class="donut-sub">reviewed</span></div>
+          <canvas data-d data-f="${s.m}" data-t="${s.n}" data-c="${sc(3)}" style="width:78px;height:78px"></canvas>
+          <div class="donut-inner"><span class="donut-pct" style="color:${sc(3)}">${pct(s.m,s.n)}%</span><span class="donut-sub">reviewed</span></div>
         </div>
       </div>
     </div>
     <div class="dsb-stats">
-      <div class="dstat"><div class="dstat-lbl">Revised</div><div class="dstat-val" style="color:#4361ee">${s.r}</div><div class="dstat-sub">of ${s.n}</div></div>
-      <div class="dstat"><div class="dstat-lbl">Exam questions</div><div class="dstat-val" style="color:#c87330">${s.e}</div><div class="dstat-sub">of ${s.n}</div></div>
-      <div class="dstat"><div class="dstat-lbl">Mistakes reviewed</div><div class="dstat-val" style="color:#1a9e96">${s.m}</div><div class="dstat-sub">of ${s.n}</div></div>
+      <div class="dstat"><div class="dstat-lbl">Revised</div><div class="dstat-val" style="color:${sc(1)}">${s.r}</div><div class="dstat-sub">of ${s.n}</div></div>
+      <div class="dstat"><div class="dstat-lbl">Exam questions</div><div class="dstat-val" style="color:${sc(2)}">${s.e}</div><div class="dstat-sub">of ${s.n}</div></div>
+      <div class="dstat"><div class="dstat-lbl">Mistakes reviewed</div><div class="dstat-val" style="color:${sc(3)}">${s.m}</div><div class="dstat-sub">of ${s.n}</div></div>
       <div class="dstat"><div class="dstat-lbl">Fully complete</div><div class="dstat-val" style="color:#1a1f36">${full}</div><div class="dstat-sub">of ${s.n}</div></div>
     </div>
   </div>
   <div class="dsb-legend">
-    <div class="leg-item"><div class="leg-dot" style="background:#4361ee"></div>Revised content</div>
-    <div class="leg-item"><div class="leg-dot" style="background:#f4a261"></div>Exam questions completed</div>
-    <div class="leg-item"><div class="leg-dot" style="background:#2ec4b6"></div>Mistakes reviewed</div>
+    <div class="leg-item"><div class="leg-dot" style="background:${sc(1)}"></div>Revised content</div>
+    <div class="leg-item"><div class="leg-dot" style="background:${sc(2)}"></div>Exam questions completed</div>
+    <div class="leg-item"><div class="leg-dot" style="background:${sc(3)}"></div>Mistakes reviewed</div>
   </div>
 </div>`;
 
   // Data-driven paper groups
-  papers.forEach(p=>{
-    const topicsForPaper=SUBJECT.topics.filter(t=>t.papers.includes(p)&&topicVisible(t));
-    if(!topicsForPaper.length)return;
-    h+=`<div class="grid-lbl">Paper ${p}</div><div class="grid">`;
-    topicsForPaper.forEach(t=>h+=tcardHtml(t));
-    h+=`</div>`;
-  });
+  if(dashViewStyle==='list'){
+    h+=renderDashCompactList(papers);
+  }else{
+    papers.forEach(p=>{
+      const topicsForPaper=SUBJECT.topics.filter(t=>t.papers.includes(p)&&topicVisible(t));
+      if(!topicsForPaper.length)return;
+      h+=`<div class="grid-lbl">Paper ${p}</div><div class="grid">`;
+      topicsForPaper.forEach(t=>h+=tcardHtml(t));
+      h+=`</div>`;
+    });
+  }
 
   document.getElementById('main').innerHTML=h;
 }
 
 function tcardHtml(t){
+  if(dashCardStyle==='rings')return tcardHtmlRings(t);
+  if(dashCardStyle==='arc')return tcardHtmlArc(t);
   const i=SUBJECT.topics.indexOf(t),col=COLORS[i],s=tStats(t);
   const paperBadge=t.papers.length?`Paper ${t.papers.join('/')}`:'';
   return`<div class="tc" onclick="switchView('${t.id}')" style="--tc:${col}">
@@ -2997,21 +3373,21 @@ function tcardHtml(t){
   <div class="tc-pies">
     <div class="pie-group">
       <div class="pie-canvas-wrap" style="width:38px;height:38px">
-        <canvas data-p data-f="${s.r}" data-t="${s.n}" data-c="${col}" style="width:38px;height:38px"></canvas>
+        <canvas data-p data-f="${s.r}" data-t="${s.n}" data-c="${sc(1)}" style="width:38px;height:38px"></canvas>
         <div class="pie-inner">${pct(s.r,s.n)}%</div>
       </div>
       <div class="pie-lbl">Revised</div>
     </div>
     <div class="pie-group">
       <div class="pie-canvas-wrap" style="width:38px;height:38px">
-        <canvas data-p data-f="${s.e}" data-t="${s.n}" data-c="#f4a261" style="width:38px;height:38px"></canvas>
+        <canvas data-p data-f="${s.e}" data-t="${s.n}" data-c="${sc(2)}" style="width:38px;height:38px"></canvas>
         <div class="pie-inner">${pct(s.e,s.n)}%</div>
       </div>
       <div class="pie-lbl">Exam Qs</div>
     </div>
     <div class="pie-group">
       <div class="pie-canvas-wrap" style="width:38px;height:38px">
-        <canvas data-p data-f="${s.m}" data-t="${s.n}" data-c="#2ec4b6" style="width:38px;height:38px"></canvas>
+        <canvas data-p data-f="${s.m}" data-t="${s.n}" data-c="${sc(3)}" style="width:38px;height:38px"></canvas>
         <div class="pie-inner">${pct(s.m,s.n)}%</div>
       </div>
       <div class="pie-lbl">Reviewed</div>
@@ -3020,18 +3396,13 @@ function tcardHtml(t){
 </div>`;}
 
 function renderTopic(t){
+  if(topicViewStyle==='table')return renderTopicTable(t);
+  if(topicViewStyle==='dots')return renderTopicDots(t);
+  if(topicViewStyle==='hex')return renderTopicHex(t);
+  if(topicViewStyle==='focus')return renderTopicFocus(t);
   const i=SUBJECT.topics.indexOf(t),col=COLORS[i],s=tStats(t);
   const hiddenSubs=t.subtopics.filter(s=>!subVisible(s));
-  const tRank=currentSubjectRank();
-  let h=`<div class="back-row"><button class="back-btn" onclick="switchView('dashboard')">&#8592; All topics</button></div>
-<div class="tv-hdr" style="--tc:${col}">
-  <div class="tv-title" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span>${t.id} — ${t.name}</span>${rankBadgeHtml(tRank)}</div>
-  <div class="tv-bars">
-    <div class="tvb"><div class="tvb-top"><span class="tvb-lbl" style="color:#4361ee">Revised content</span><span class="tvb-val">${s.r}/${s.n} &middot; ${pct(s.r,s.n)}%</span></div><div class="bar-track"><div class="bar-fill" style="width:${pct(s.r,s.n)}%;background:#4361ee"></div></div></div>
-    <div class="tvb"><div class="tvb-top"><span class="tvb-lbl" style="color:#c87330">Exam questions done</span><span class="tvb-val">${s.e}/${s.n} &middot; ${pct(s.e,s.n)}%</span></div><div class="bar-track"><div class="bar-fill" style="width:${pct(s.e,s.n)}%;background:#f4a261"></div></div></div>
-    <div class="tvb"><div class="tvb-top"><span class="tvb-lbl" style="color:#1a9e96">Mistakes reviewed</span><span class="tvb-val">${s.m}/${s.n} &middot; ${pct(s.m,s.n)}%</span></div><div class="bar-track"><div class="bar-fill" style="width:${pct(s.m,s.n)}%;background:#2ec4b6"></div></div></div>
-  </div>
-</div>`;
+  let h=topicBackBtn()+topicHeaderHtml(t,col);
   if(hiddenSubs.length>0){
     const label=SUBJECT.has_combined_separate?'Separate Science only':'not on your spec';
     h+=`<div class="sep-notice"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#7c3aed" stroke-width="1.4"/><path d="M7 4.5v3M7 9.5v.5" stroke="#7c3aed" stroke-width="1.4" stroke-linecap="round"/></svg>${hiddenSubs.length} subtopic${hiddenSubs.length>1?'s':''} hidden (${hiddenSubs.map(s=>s.name).join(', ')} — ${label}).</div>`;
@@ -3058,9 +3429,9 @@ function renderTopic(t){
     </div>
     <div class="col-hdr">
       <div class="ch" style="text-align:left;color:var(--tx2)">Learning outcome</div>
-      <div class="ch" style="color:#4361ee">Rev</div>
-      <div class="ch" style="color:#c87330">Qs</div>
-      <div class="ch" style="color:#1a9e96">Err</div>
+      <div class="ch" style="color:var(--c1)">Rev</div>
+      <div class="ch" style="color:var(--c2)">Qs</div>
+      <div class="ch" style="color:var(--c3)">Err</div>
     </div>`;
     for(const o of sub.outcomes){
       if(!outcomeVisible(o))continue;
@@ -3274,7 +3645,7 @@ function fireCheckboxBurst(id){
   const ctx=canvas.getContext('2d');
   const rect=target?target.getBoundingClientRect():{left:window.innerWidth/2,top:window.innerHeight/2,width:0,height:0};
   const cx=rect.left+rect.width/2,cy=rect.top+rect.height/2;
-  const cols=['#4361ee','#2ec4b6','#f4a261','#f59e0b','#8b5cf6'];
+  const cols=[sc(1),sc(3),sc(2),'#f59e0b','#8b5cf6'];
   const pts=Array.from({length:8},()=>({x:cx,y:cy,vx:(Math.random()-0.5)*6,vy:(Math.random()-0.5)*6-2,r:Math.random()*3+2,col:cols[Math.floor(Math.random()*cols.length)],life:1}));
   let fr=0;
   (function draw(){
@@ -3289,7 +3660,7 @@ function fireConfetti(count,goldOnly){
   const canvas=document.getElementById('rk-canvas');
   canvas.width=window.innerWidth;canvas.height=window.innerHeight;
   const ctx=canvas.getContext('2d');
-  const cols=goldOnly?['#f59e0b','#fbbf24','#fcd34d','#fef08a','#fff7ed']:['#4361ee','#2ec4b6','#f4a261','#ef4444','#8b5cf6','#10b981','#f59e0b','#ec4899'];
+  const cols=goldOnly?['#f59e0b','#fbbf24','#fcd34d','#fef08a','#fff7ed']:[sc(1),sc(3),sc(2),'#ef4444','#8b5cf6','#10b981','#f59e0b','#ec4899'];
   const pieces=Array.from({length:count},(_,i)=>({
     x:Math.random()*canvas.width,
     y:-10-Math.random()*(i/count)*canvas.height*0.4,
@@ -3317,6 +3688,368 @@ function fireConfetti(count,goldOnly){
     if(alive&&el<dur)requestAnimationFrame(draw);
     else ctx.clearRect(0,0,canvas.width,canvas.height);
   })(t0);
+}
+
+
+// ── LAYOUT HELPERS ────────────────────────────────────────────────────────────
+function topicHeaderHtml(t,col){
+  const s=tStats(t),tRank=currentSubjectRank();
+  const hiddenSubs=t.subtopics.filter(s=>!subVisible(s));
+  let h=`<div class="tv-hdr" style="--tc:${col}">
+  <div class="tv-title" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span>${t.id} — ${t.name}</span>${rankBadgeHtml(tRank)}</div>
+  <div class="tv-bars">
+    <div class="tvb"><div class="tvb-top"><span class="tvb-lbl" style="color:var(--c1)">Revised content</span><span class="tvb-val">${s.r}/${s.n} &middot; ${pct(s.r,s.n)}%</span></div><div class="bar-track"><div class="bar-fill" style="width:${pct(s.r,s.n)}%;background:var(--c1)"></div></div></div>
+    <div class="tvb"><div class="tvb-top"><span class="tvb-lbl" style="color:var(--c2)">Exam questions done</span><span class="tvb-val">${s.e}/${s.n} &middot; ${pct(s.e,s.n)}%</span></div><div class="bar-track"><div class="bar-fill" style="width:${pct(s.e,s.n)}%;background:var(--c2)"></div></div></div>
+    <div class="tvb"><div class="tvb-top"><span class="tvb-lbl" style="color:var(--c3)">Mistakes reviewed</span><span class="tvb-val">${s.m}/${s.n} &middot; ${pct(s.m,s.n)}%</span></div><div class="bar-track"><div class="bar-fill" style="width:${pct(s.m,s.n)}%;background:var(--c3)"></div></div></div>
+  </div>
+</div>`;
+  if(hiddenSubs.length>0){
+    const label=SUBJECT.has_combined_separate?'Separate Science only':'not on your spec';
+    h+=`<div class="sep-notice"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#7c3aed" stroke-width="1.4"/><path d="M7 4.5v3M7 9.5v.5" stroke="#7c3aed" stroke-width="1.4" stroke-linecap="round"/></svg>${hiddenSubs.length} subtopic${hiddenSubs.length>1?'s':''} hidden (${hiddenSubs.map(s=>s.name).join(', ')} — ${label}).</div>`;
+  }
+  return h;
+}
+function topicBackBtn(){
+  return `<div class="back-row"><button class="back-btn" onclick="switchView('dashboard')">&#8592; All topics</button></div>`;
+}
+function sc(n){return getComputedStyle(document.documentElement).getPropertyValue('--c'+n).trim()||['','#4361ee','#f4a261','#2ec4b6'][n];}
+function outcomeStageColor(o){
+  const r=gv(o.id,'r'),e=gv(o.id,'e'),m=gv(o.id,'m');
+  if(r&&e&&m)return sc(3);
+  if(r&&e)return sc(2);
+  if(r)return sc(1);
+  return null;
+}
+function cycleOutcome(id){
+  const prevRank=currentSubjectRank(),prevTopicDone=completedTopics();
+  const r=gv(id,'r'),e=gv(id,'e'),m=gv(id,'m');
+  if(!r&&!e&&!m){if(!coinsEarned.has(id+':r'))awardCoin(id,'r',null);sv(id,'r',true);}
+  else if(r&&!e&&!m){if(!coinsEarned.has(id+':e'))awardCoin(id,'e',null);sv(id,'e',true);}
+  else if(r&&e&&!m){if(!coinsEarned.has(id+':m'))awardCoin(id,'m',null);sv(id,'m',true);}
+  else{sv(id,'r',false);sv(id,'e',false);sv(id,'m',false);}
+  const subtopicDone=checkSubtopicComplete(id);
+  checkRankUp(prevRank,prevTopicDone,subtopicDone);
+  updateView();
+}
+function matrixLegend(){
+  return `<div class="matrix-legend">
+    <div class="ml-item"><div class="ml-dot" style="background:var(--track);border:1px solid var(--bd2)"></div>Untouched</div>
+    <div class="ml-item"><div class="ml-dot" style="background:${sc(1)}"></div>Revised</div>
+    <div class="ml-item"><div class="ml-dot" style="background:${sc(2)}"></div>+Exam Qs</div>
+    <div class="ml-item"><div class="ml-dot" style="background:${sc(3)}"></div>All done</div>
+    <div class="ml-item" style="margin-left:auto;font-size:10px;color:var(--tx3)">Click a cell to cycle stages</div>
+  </div>`;
+}
+
+// ── TOPIC LAYOUT RENDERERS ────────────────────────────────────────────────────
+function renderTopicTable(t){
+  const i=SUBJECT.topics.indexOf(t),col=COLORS[i];
+  let rows='';
+  for(const sub of t.subtopics){
+    if(!subVisible(sub))continue;
+    rows+=`<tr class="t-sub-row"><td colspan="4">${sub.id} — ${sub.name}</td></tr>`;
+    for(const o of sub.outcomes){
+      if(!outcomeVisible(o))continue;
+      const rv=gv(o.id,'r'),ev=gv(o.id,'e'),mv=gv(o.id,'m');
+      rows+=`<tr${rv&&ev&&mv?' class="t-done"':''}>
+        <td>${esc(o.text)}${o.higher?'<span class="hb">H</span>':''}</td>
+        <td><div class="t-cb r-${rv?'on':'off'}" onclick="toggle('${o.id}','r')">${rv?'✓':''}</div></td>
+        <td><div class="t-cb e-${ev?'on':'off'}" onclick="toggle('${o.id}','e')">${ev?'✓':''}</div></td>
+        <td><div class="t-cb m-${mv?'on':'off'}" onclick="toggle('${o.id}','m')">${mv?'✓':''}</div></td>
+      </tr>`;
+    }
+  }
+  document.getElementById('main').innerHTML=topicBackBtn()+topicHeaderHtml(t,col)+
+    `<div class="topic-table-wrap"><table class="topic-table">
+      <thead><tr><th>Learning outcome</th><th>Rev</th><th>Qs</th><th>Err</th></tr></thead>
+      <tbody>${rows}</tbody></table></div>`;
+}
+function buildDotOverview(t){
+  let groups='';
+  for(const sub of t.subtopics){
+    if(!subVisible(sub))continue;
+    const vis=sub.outcomes.filter(o=>outcomeVisible(o));
+    if(!vis.length)continue;
+    const tier=subTier(sub),tierClass=tier?` tier-${tier}`:'';
+    groups+=`<div class="matrix-sub-lbl${tierClass}" style="border-radius:4px;padding:2px 6px;display:inline-block">${sub.name}</div><div class="matrix-dots">`;
+    for(const o of vis){
+      const dc=outcomeStageColor(o);
+      groups+=`<div class="m-dot" id="mdot_${o.id}" style="background:${dc||'var(--track)'};${!dc?'border:1px solid var(--bd2)':''}" title="${esc(o.text)}"></div>`;
+    }
+    groups+=`</div>`;
+  }
+  return`<div class="outcome-matrix" style="margin-bottom:12px">${groups}${matrixLegend()}</div>`;
+}
+function buildHexOverview(t){
+  let groups='';
+  for(const sub of t.subtopics){
+    if(!subVisible(sub))continue;
+    const vis=sub.outcomes.filter(o=>outcomeVisible(o));
+    if(!vis.length)continue;
+    groups+=`<div class="matrix-sub-lbl">${sub.name}</div><div class="matrix-hexes">`;
+    for(const o of vis){
+      const dc=outcomeStageColor(o);
+      groups+=`<div class="m-hex-wrap" title="${esc(o.text)}"><div class="m-hex" id="mhex_${o.id}" style="background:${dc||'var(--track)'}"></div></div>`;
+    }
+    groups+=`</div>`;
+  }
+  return`<div class="outcome-matrix" style="margin-bottom:12px">${groups}${matrixLegend()}</div>`;
+}
+function renderTopicSubCards(t,col){
+  const hiddenSubs=t.subtopics.filter(s=>!subVisible(s));
+  let h='';
+  if(hiddenSubs.length>0){
+    const label=SUBJECT.has_combined_separate?'Separate Science only':'not on your spec';
+    h+=`<div class="sep-notice">${hiddenSubs.length} subtopic${hiddenSubs.length>1?'s':''} hidden (${hiddenSubs.map(s=>s.name).join(', ')} — ${label}).</div>`;
+  }
+  for(const sub of t.subtopics){
+    if(!subVisible(sub))continue;
+    const ss=sStats(sub),sepTag=sub.sep_only?'<span class="sep-tag">Sep only</span>':'',tier=subTier(sub),tierClass=tier?` tier-${tier}`:'';
+    h+=`<div class="sub"><div class="sub-hdr${tierClass}" onclick="toggleSub('${sub.id}')"><div class="sub-left"><span class="sub-id" style="color:${col}">${sub.id}</span><span class="sub-name">${sub.name}</span>${sepTag}</div><div class="sub-right"><span class="sub-prog">${ss.r+ss.e+ss.m}/${ss.n*3} checks</span><span class="chev open" id="${sub.id}_ch">&#8964;</span></div></div><div class="sub-body" id="${sub.id}_bd"><div class="bulk-bar"><span class="bulk-lbl">Tick all:</span><button class="bb bb1" onclick="bulkField('${sub.id}','r',true)">&#10003; Revised</button><button class="bb bb2" onclick="bulkField('${sub.id}','e',true)">&#10003; Exam Qs</button><button class="bb bb3" onclick="bulkField('${sub.id}','m',true)">&#10003; Reviewed</button><button class="bb bball" onclick="bulkAll('${sub.id}',true)">&#10003; All three</button><button class="bclr" onclick="bulkAll('${sub.id}',false)">&#10005; Clear</button></div><div class="col-hdr"><div class="ch" style="text-align:left;color:var(--tx2)">Learning outcome</div><div class="ch" style="color:var(--c1)">Rev</div><div class="ch" style="color:var(--c2)">Qs</div><div class="ch" style="color:var(--c3)">Err</div></div>`;
+    for(const o of sub.outcomes){
+      if(!outcomeVisible(o))continue;
+      const rv=gv(o.id,'r'),ev=gv(o.id,'e'),mv=gv(o.id,'m');
+      h+=`<div class="or${rv&&ev&&mv?' done':''}" id="or_${o.id}"><div class="ot">${esc(o.text)}${o.higher?'<span class="hb">H</span>':''}</div><div class="cbw"><div class="cb r1${rv?' on':''}" onclick="toggle('${o.id}','r')">${rv?chk():''}</div></div><div class="cbw"><div class="cb r2${ev?' on':''}" onclick="toggle('${o.id}','e')">${ev?chk():''}</div></div><div class="cbw"><div class="cb r3${mv?' on':''}" onclick="toggle('${o.id}','m')">${mv?chk():''}</div></div></div>`;
+    }
+    h+=`</div></div></div>`;
+  }
+  return h;
+}
+function renderTopicDots(t){
+  const i=SUBJECT.topics.indexOf(t),col=COLORS[i];
+  document.getElementById('main').innerHTML=topicBackBtn()+
+    `<div class="tv-hdr" style="--tc:${col}"><div class="tv-title" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span>${t.id} — ${t.name}</span>${rankBadgeHtml(currentSubjectRank())}</div></div>`+
+    buildDotOverview(t)+renderTopicSubCards(t,col);
+}
+function renderTopicHex(t){
+  const i=SUBJECT.topics.indexOf(t),col=COLORS[i];
+  document.getElementById('main').innerHTML=topicBackBtn()+
+    `<div class="tv-hdr" style="--tc:${col}"><div class="tv-title" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span>${t.id} — ${t.name}</span>${rankBadgeHtml(currentSubjectRank())}</div></div>`+
+    buildHexOverview(t)+renderTopicSubCards(t,col);
+}
+
+function renderTopicFocus(t){
+  const i=SUBJECT.topics.indexOf(t),col=COLORS[i];
+  const visSubs=t.subtopics.filter(s=>subVisible(s));
+  if(!visSubs.length){document.getElementById('main').innerHTML=topicBackBtn()+topicHeaderHtml(t,col);return;}
+  focusSubIdx=Math.max(0,Math.min(focusSubIdx,visSubs.length-1));
+  const sub=visSubs[focusSubIdx];
+  const vis=sub.outcomes.filter(o=>outcomeVisible(o));
+  let rows='';
+  for(const o of vis){
+    const rv=gv(o.id,'r'),ev=gv(o.id,'e'),mv=gv(o.id,'m');
+    rows+=`<div class="focus-outcome-row">
+      <div class="focus-outcome-txt">${esc(o.text)}${o.higher?'<span class="hb">H</span>':''}</div>
+      <div class="focus-outcome-cbs">
+        <div class="focus-big-cb r-${rv?'on':'off'}" onclick="toggle('${o.id}','r')">${rv?'✓':''}</div>
+        <div class="focus-big-cb e-${ev?'on':'off'}" onclick="toggle('${o.id}','e')">${ev?'✓':''}</div>
+        <div class="focus-big-cb m-${mv?'on':'off'}" onclick="toggle('${o.id}','m')">${mv?'✓':''}</div>
+      </div>
+    </div>`;
+  }
+  const dots=visSubs.map((_,j)=>`<div class="focus-prog-dot${j===focusSubIdx?' on':''}" onclick="setFocusSub(${j})"></div>`).join('');
+  document.getElementById('main').innerHTML=topicBackBtn()+topicHeaderHtml(t,col)+
+    `<div class="focus-wrap">
+      <div class="focus-nav-bar">
+        <button class="focus-nav-btn" onclick="setFocusSub(${focusSubIdx-1})" ${focusSubIdx===0?'disabled':''}>&#8592; Prev</button>
+        <div class="focus-nav-lbl"><strong>${sub.id}</strong> — ${sub.name}<br><span style="font-size:10px">${focusSubIdx+1} of ${visSubs.length} subtopics</span></div>
+        <button class="focus-nav-btn" onclick="setFocusSub(${focusSubIdx+1})" ${focusSubIdx===visSubs.length-1?'disabled':''}>Next &#8594;</button>
+      </div>
+      <div class="focus-card">
+        <div class="focus-card-hdr">
+          <span class="focus-card-hdr-lbl">${vis.length} outcomes</span>
+          <span class="focus-card-hdr-sub">Rev &middot; Qs &middot; Err</span>
+        </div>
+        ${rows}
+      </div>
+      <div class="focus-prog-dots">${dots}</div>
+    </div>`;
+}
+function setFocusSub(idx){
+  const t=SUBJECT.topics.find(x=>x.id===currentView);
+  if(!t)return;
+  focusSubIdx=Math.max(0,Math.min(idx,t.subtopics.filter(s=>subVisible(s)).length-1));
+  renderTopic(t);setTimeout(repaint,0);
+}
+
+// ── DASHBOARD LAYOUT RENDERERS ────────────────────────────────────────────────
+function renderDashCompactList(papers){
+  let h='<div class="dsb-list">';
+  papers.forEach(p=>{
+    const topicsForPaper=SUBJECT.topics.filter(t=>t.papers.includes(p)&&topicVisible(t));
+    if(!topicsForPaper.length)return;
+    h+=`<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--tx3);margin:12px 0 5px;padding-bottom:4px;border-bottom:1px solid var(--bd)">Paper ${p}</div>`;
+    topicsForPaper.forEach((t,idx)=>{
+      const col=COLORS[SUBJECT.topics.indexOf(t)],s=tStats(t);
+      h+=`<div class="dl-row" onclick="switchView('${t.id}')">
+        <span class="dl-id" style="color:${col}">${t.id}</span>
+        <span class="dl-name">${t.name}</span>
+        <div class="dl-bars">
+          <div class="dl-bar-wrap"><div class="dl-bar-track"><div class="dl-bar-fill" style="width:${pct(s.r,s.n)}%;background:var(--c1)"></div></div><span class="dl-pct">${pct(s.r,s.n)}%</span></div>
+          <div class="dl-bar-wrap"><div class="dl-bar-track"><div class="dl-bar-fill" style="width:${pct(s.e,s.n)}%;background:var(--c2)"></div></div><span class="dl-pct">${pct(s.e,s.n)}%</span></div>
+          <div class="dl-bar-wrap"><div class="dl-bar-track"><div class="dl-bar-fill" style="width:${pct(s.m,s.n)}%;background:var(--c3)"></div></div><span class="dl-pct">${pct(s.m,s.n)}%</span></div>
+        </div>
+      </div>`;
+    });
+  });
+  h+='</div>';
+  return h;
+}
+
+// ── CARD STYLE RENDERERS ──────────────────────────────────────────────────────
+function tcardHtmlRings(t){
+  const i=SUBJECT.topics.indexOf(t),col=COLORS[i],s=tStats(t);
+  const paperBadge=t.papers.length?`Paper ${t.papers.join('/')}`:'';
+  const ci=r=>(2*Math.PI*r).toFixed(1);
+  const of=(r,p)=>((2*Math.PI*r)*(1-p/100)).toFixed(1);
+  const sr=pct(s.r,s.n),se=pct(s.e,s.n),sm=pct(s.m,s.n);
+  return`<div class="tc" onclick="switchView('${t.id}')" style="--tc:${col}">
+  <div class="tc-top"><span class="tc-badge">${t.id}</span><span class="tc-paper">${paperBadge}</span></div>
+  <div class="tc-name">${t.name}</div>
+  <div class="tc-cnt">${s.n} outcomes</div>
+  <div style="display:flex;justify-content:center;margin:7px 0 4px">
+    <svg width="56" height="56" viewBox="0 0 58 58">
+      <circle cx="29" cy="29" r="22" fill="none" stroke="var(--track)" stroke-width="5"/>
+      <circle cx="29" cy="29" r="22" fill="none" stroke="${sc(1)}" stroke-width="5" stroke-linecap="round"
+        stroke-dasharray="${ci(22)}" stroke-dashoffset="${of(22,sr)}" transform="rotate(-90 29 29)"/>
+      <circle cx="29" cy="29" r="14.5" fill="none" stroke="var(--track)" stroke-width="4.5"/>
+      <circle cx="29" cy="29" r="14.5" fill="none" stroke="${sc(2)}" stroke-width="4.5" stroke-linecap="round"
+        stroke-dasharray="${ci(14.5)}" stroke-dashoffset="${of(14.5,se)}" transform="rotate(-90 29 29)"/>
+      <circle cx="29" cy="29" r="8" fill="none" stroke="var(--track)" stroke-width="4"/>
+      <circle cx="29" cy="29" r="8" fill="none" stroke="${sc(3)}" stroke-width="4" stroke-linecap="round"
+        stroke-dasharray="${ci(8)}" stroke-dashoffset="${of(8,sm)}" transform="rotate(-90 29 29)"/>
+    </svg>
+  </div>
+</div>`;
+}
+function tcardHtmlArc(t){
+  const i=SUBJECT.topics.indexOf(t),col=COLORS[i],s=tStats(t);
+  const paperBadge=t.papers.length?`Paper ${t.papers.join('/')}`:'';
+  const sr=pct(s.r,s.n),se=pct(s.e,s.n),sm=pct(s.m,s.n);
+  const track=(cx,r,sw)=>`<path d="M${cx-r},40 A${r},${r} 0 0,1 ${cx+r},40" fill="none" stroke="var(--track)" stroke-width="${sw}" stroke-linecap="round"/>`;
+  const arc=(cx,r,p,color,sw)=>{const total=(Math.PI*r).toFixed(1);const off=(Math.PI*r*(1-p/100)).toFixed(1);return`<path d="M${cx-r},40 A${r},${r} 0 0,1 ${cx+r},40" fill="none" stroke="${color}" stroke-width="${sw}" stroke-linecap="round" stroke-dasharray="${total}" stroke-dashoffset="${off}"/>`;};
+  return`<div class="tc" onclick="switchView('${t.id}')" style="--tc:${col}">
+  <div class="tc-top"><span class="tc-badge">${t.id}</span><span class="tc-paper">${paperBadge}</span></div>
+  <div class="tc-name">${t.name}</div>
+  <div class="tc-cnt">${s.n} outcomes</div>
+  <div style="display:flex;justify-content:center;margin:4px 0 2px">
+    <svg width="80" height="44" viewBox="0 0 80 44">
+      ${track(40,30,7)}${arc(40,30,sr,sc(1),7)}
+      ${track(40,21,6)}${arc(40,21,se,sc(2),6)}
+      ${track(40,12,5.5)}${arc(40,12,sm,sc(3),5.5)}
+      <text x="40" y="39" text-anchor="middle" font-size="9" fill="var(--tx3)">${sr}%</text>
+    </svg>
+  </div>
+</div>`;
+}
+
+// ── UNLOCK CODES ──────────────────────────────────────────────────────────────
+// Format: CODE → {desc, action: fn}
+// Teachers can share any of these; UNLOCKALL / DEBUGMODE are Joshua-only
+const UNLOCK_CODES = {
+  // Themes
+  'OCEANWAVE':   {desc:'Ocean theme', action:()=>forceUnlock('theme','ocean')},
+  'GOLDENSUN':   {desc:'Sunset theme', action:()=>forceUnlock('theme','sunset')},
+  'SAKURA':      {desc:'Cherry Blossom theme', action:()=>forceUnlock('theme','cherry')},
+  'MAGMA':       {desc:'Volcanic theme', action:()=>forceUnlock('theme','volcanic')},
+  'POLARNIGHT':  {desc:'Arctic theme', action:()=>forceUnlock('theme','arctic')},
+  'NEONLIGHTS':  {desc:'Neon theme', action:()=>forceUnlock('theme','neon')},
+  'ROSEGOLD':    {desc:'Rose Gold theme', action:()=>forceUnlock('theme','rosegold')},
+  'AMETHYST':    {desc:'Amethyst theme', action:()=>forceUnlock('theme','amethyst')},
+  // Fonts
+  'INTERSTELLAR':{desc:'Inter font', action:()=>forceUnlock('font','inter')},
+  'POPSTAR':     {desc:'Poppins font', action:()=>forceUnlock('font','poppins')},
+  'NUNITO':      {desc:'Nunito font', action:()=>forceUnlock('font','nunito')},
+  'RUNWAY':      {desc:'Raleway font', action:()=>forceUnlock('font','raleway')},
+  'DMMODE':      {desc:'DM Sans font', action:()=>forceUnlock('font','dmsans')},
+  'SERIF':       {desc:'Playfair Display font', action:()=>forceUnlock('font','playfair')},
+  'SPACETYPE':   {desc:'Space Mono font', action:()=>forceUnlock('font','spacemono')},
+  'READWELL':    {desc:'Merriweather font', action:()=>forceUnlock('font','merriweather')},
+  // Layouts
+  'RINGMASTER':  {desc:'Rings dashboard cards', action:()=>forceUnlock('layout','rings')},
+  'ARCLIGHT':    {desc:'Stacked Arc dashboard cards', action:()=>forceUnlock('layout','arc')},
+  'LISTMODE':    {desc:'Compact List dashboard view', action:()=>forceUnlock('layout','list')},
+  'TABLEMODE':   {desc:'Table topic view', action:()=>forceUnlock('layout','table')},
+  'DOTMATRIX':   {desc:'Dot Matrix topic view', action:()=>forceUnlock('layout','dots')},
+  'HEXGRID':     {desc:'Hexgrid topic view', action:()=>forceUnlock('layout','hex')},
+  'FOCUSMODE':   {desc:'Focus Mode topic view', action:()=>forceUnlock('layout','focus')},
+  // Master codes
+  'UNLOCKALL':   {desc:'All themes, fonts & layouts', action:()=>forceUnlockAll()},
+  'DEBUGMODE':   {desc:'All themes, fonts & layouts', action:()=>forceUnlockAll()},
+  'LEHS2025':    {desc:'All themes, fonts & layouts', action:()=>forceUnlockAll()},
+  // Reset code
+  'RESETALL':    {desc:'Reset all progress, coins and unlocks', action:()=>resetEverything()},
+};
+
+let redeemedCodes=new Set();
+
+function resetEverything(){
+  if(!confirm('This will permanently delete ALL progress, coins, unlocks and codes. Are you sure?'))return;
+  try{
+    // Clear all gcse_ keys from localStorage
+    const keys=Object.keys(localStorage).filter(k=>k.startsWith('gcse_'));
+    keys.forEach(k=>localStorage.removeItem(k));
+  }catch(e){}
+  location.reload();
+}
+function loadRedeemedCodes(){
+  try{const r=localStorage.getItem('gcse_codes');if(r)redeemedCodes=new Set(JSON.parse(r));}catch(e){}
+  // Re-apply all previously redeemed codes silently
+  redeemedCodes.forEach(code=>{const def=UNLOCK_CODES[code.toUpperCase()];if(def)def.action();});
+}
+function saveRedeemedCodes(){
+  try{localStorage.setItem('gcse_codes',JSON.stringify([...redeemedCodes]));}catch(e){}
+}
+function forceUnlock(type, id){
+  if(type==='theme'){unlockedThemes.add(id);try{localStorage.setItem('gcse_themes_unlocked',JSON.stringify([...unlockedThemes]));}catch(e){}}
+  else if(type==='font'){unlockedFonts.add(id);}
+  else if(type==='layout'){unlockedLayouts.add(id);}
+  saveLayoutPrefs();
+}
+function forceUnlockAll(){
+  THEMES.forEach(t=>unlockedThemes.add(t.id));
+  FONTS.forEach(f=>unlockedFonts.add(f.id));
+  SHOP_LAYOUTS.forEach(l=>unlockedLayouts.add(l.id));
+  try{localStorage.setItem('gcse_themes_unlocked',JSON.stringify([...unlockedThemes]));}catch(e){}
+  saveLayoutPrefs();
+}
+function openUnlockCode(){
+  document.getElementById('uc-modal').classList.remove('hide');
+  document.getElementById('uc-input').value='';
+  document.getElementById('uc-result').className='uc-result';
+  document.getElementById('uc-result').textContent='';
+  renderUcHistory();
+  setTimeout(()=>document.getElementById('uc-input').focus(),100);
+}
+function closeUnlockCode(){document.getElementById('uc-modal').classList.add('hide');}
+function handleUcOvClick(e){if(e.target.id==='uc-modal')closeUnlockCode();}
+function redeemCode(){
+  const raw=document.getElementById('uc-input').value.trim().toUpperCase().replace(/\s+/g,'');
+  const res=document.getElementById('uc-result');
+  if(!raw){res.className='uc-result err';res.textContent='Please enter a code.';return;}
+  if(redeemedCodes.has(raw)){res.className='uc-result err';res.textContent='You\'ve already redeemed that code.';return;}
+  const def=UNLOCK_CODES[raw];
+  if(!def){res.className='uc-result err';res.textContent='Invalid code. Check with your teacher and try again.';return;}
+  def.action();
+  redeemedCodes.add(raw);
+  saveRedeemedCodes();
+  res.className='uc-result ok';res.textContent='✓ Unlocked: '+def.desc;
+  document.getElementById('uc-input').value='';
+  renderUcHistory();
+  // Refresh shop if open
+  if(!document.getElementById('shop-modal').classList.contains('hide'))renderShopTab(shopCurrentTab);
+  updateCoinDisplay();
+}
+function renderUcHistory(){
+  const hist=document.getElementById('uc-history');
+  const list=document.getElementById('uc-history-list');
+  if(!hist||!list)return;
+  if(redeemedCodes.size===0){hist.style.display='none';return;}
+  hist.style.display='block';
+  list.innerHTML=[...redeemedCodes].map(code=>{
+    const def=UNLOCK_CODES[code]||{desc:'Unknown'};
+    return`<div class="uc-history-item"><span>${code}</span><span>— ${def.desc}</span></div>`;
+  }).join('');
 }
 
 // ── SAVE CODE ────────────────────────────────────────────────────────────────
@@ -3503,6 +4236,7 @@ function switchSubject(sid){
   progress=loadProgressForSubject(subj);
   try{const s=localStorage.getItem(specKey(subj));if(s==='com'||s==='sep')specMode=s;}catch(e){}
   try{const t=localStorage.getItem(tierKey(subj));if(t==='higher'||t==='foundation')tierMode=t;}catch(e){}
+  loadLayoutPrefs();
   closeSubjectChooser();
   applySubjectToggles();
   updateView();
@@ -3541,6 +4275,8 @@ function closeMobMenu(){
 loadTheme();
 loadCoins();
 load();
+loadShopPrefs();
+loadRedeemedCodes();
 applySubjectToggles();
 updateView();
 if(!localStorage.getItem('gcse_seen_tour')){localStorage.setItem('gcse_seen_tour','1');setTimeout(()=>openTour(0),600);}
