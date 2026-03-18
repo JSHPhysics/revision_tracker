@@ -270,6 +270,38 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
 .sj-item.soon .sj-dot{background:var(--tx3)}
 .sj-soon-lbl{font-size:9px;font-weight:600;color:var(--tx3);margin-left:2px}
 @media(max-width:560px){.sj-card{padding:18px 16px 16px}.sj-subjects{flex-direction:column}.sj-item{width:100%}}
+/* ── RANKS ── */
+/* Rank badge (header + dashboard) */
+.rank-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px 3px 7px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap;border:1.5px solid;transition:all 0.3s;cursor:default;user-select:none}
+.rank-badge .rank-icon{font-size:13px;line-height:1}
+.rank-badge .rank-lbl{letter-spacing:.3px}
+/* Rank colours — each rank has a CSS class */
+.rk-unranked{color:var(--tx3);border-color:var(--bd2);background:var(--surface2)}
+.rk-recruit{color:#6b7280;border-color:#d1d5db;background:#f9fafb}
+.rk-apprentice{color:#7c6f52;border-color:#d4b896;background:#fdf8f0}
+.rk-scholar{color:#166534;border-color:#86efac;background:#f0fdf4}
+.rk-practitioner{color:#1d4ed8;border-color:#93c5fd;background:#eff6ff}
+.rk-expert{color:#6d28d9;border-color:#c4b5fd;background:#f5f3ff}
+.rk-master{color:#b45309;border-color:#fcd34d;background:#fffbeb}
+.rk-grandmaster{color:#c2410c;border-color:#fdba74;background:#fff7ed}
+.rk-elite{color:#be185d;border-color:#f9a8d4;background:#fdf2f8}
+.rk-legend{color:#fff;border-color:#fbbf24;background:linear-gradient(135deg,#f59e0b,#d97706);box-shadow:0 0 12px rgba(245,158,11,0.35)}
+/* Rank popup */
+.rk-ov{position:fixed;inset:0;background:rgba(10,14,35,0.5);z-index:3000;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px);animation:fadeIn 0.2s ease}
+.rk-ov.hide{display:none}
+.rk-card{background:var(--surface);border-radius:20px;padding:32px 28px 26px;max-width:360px;width:100%;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,0.3);animation:rankPop 0.4s cubic-bezier(0.175,0.885,0.32,1.275)}
+@keyframes rankPop{from{transform:scale(0.6);opacity:0}to{transform:scale(1);opacity:1}}
+.rk-big-icon{font-size:56px;line-height:1;margin-bottom:12px;display:block}
+.rk-popup-title{font-size:13px;font-weight:600;color:var(--tx3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+.rk-popup-rank{font-size:28px;font-weight:900;color:var(--tx);margin-bottom:8px;letter-spacing:-0.5px}
+.rk-popup-msg{font-size:13px;color:var(--tx2);line-height:1.65;margin-bottom:22px}
+.rk-dismiss{padding:10px 28px;background:var(--c1);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font);transition:all 0.15s}
+.rk-dismiss:hover{background:var(--c1d);transform:translateY(-1px)}
+/* Subtopic complete shimmer */
+@keyframes subShimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.sub-shimmer{animation:subShimmer 0.9s ease forwards;background:linear-gradient(90deg,transparent 0%,rgba(251,191,36,0.18) 50%,transparent 100%);background-size:200% 100%}
+/* Canvas overlay for confetti (pointer-events:none so clicks pass through) */
+#rk-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:2999}
 /* ── HOME / YOUR SUBJECTS ── */
 .home-wrap{max-width:740px;margin:0 auto;padding:4px 0}
 .home-heading{font-size:20px;font-weight:800;color:var(--tx);margin-bottom:4px}
@@ -331,6 +363,21 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
     <button class="rbtn" onclick="confirmReset()">Reset all</button>
   </div>
 </div>
+
+<!-- Confetti canvas (always present, hidden when idle) -->
+<canvas id="rk-canvas"></canvas>
+
+<!-- Rank popup -->
+<div class="rk-ov hide" id="rk-modal">
+  <div class="rk-card" id="rk-card">
+    <span class="rk-big-icon" id="rk-icon"></span>
+    <div class="rk-popup-title" id="rk-popup-title"></div>
+    <div class="rk-popup-rank" id="rk-popup-rank"></div>
+    <div class="rk-popup-msg" id="rk-popup-msg"></div>
+    <button class="rk-dismiss" onclick="closeRankPopup()">Nice!</button>
+  </div>
+</div>
+
 <div class="nav" id="nav"></div>
 <div class="main" id="main"></div>
 
@@ -2384,9 +2431,30 @@ function load(){
 function save(){try{localStorage.setItem(progressKey(),JSON.stringify(progress));}catch(e){}}
 function gv(id,f){return!!(progress[id]&&progress[id][f]);}
 function sv(id,f,v){if(!progress[id])progress[id]={};progress[id][f]=v;save();}
-function toggle(id,f){sv(id,f,!gv(id,f));updateView();}
-function bulkField(sid,f,v){const s=findSub(sid);if(!s)return;s.outcomes.forEach(o=>{if(outcomeVisible(o))sv(o.id,f,v);});updateView();}
-function bulkAll(sid,v){const s=findSub(sid);if(!s)return;s.outcomes.forEach(o=>{if(outcomeVisible(o)){sv(o.id,'r',v);sv(o.id,'e',v);sv(o.id,'m',v);}});updateView();}
+function toggle(id,f){
+  const prevRank=currentSubjectRank();
+  const prevTopicDone=completedTopics();
+  const isFirstEver=!Object.values(progress).some(v=>v.r||v.e||v.m);
+  sv(id,f,!gv(id,f));
+  if(isFirstEver&&gv(id,f))setTimeout(()=>fireCheckboxBurst(id),60);
+  const subtopicDone=checkSubtopicComplete(id); // returns bool, fires shimmer only
+  checkRankUp(prevRank,prevTopicDone,subtopicDone);
+  updateView();
+}
+function bulkField(sid,f,v){
+  const prevRank=currentSubjectRank();const prevTopicDone=completedTopics();
+  const s=findSub(sid);if(!s)return;
+  s.outcomes.forEach(o=>{if(outcomeVisible(o))sv(o.id,f,v);});
+  const subtopicDone=checkSubtopicComplete(s.outcomes[0]?.id);
+  checkRankUp(prevRank,prevTopicDone,subtopicDone);updateView();
+}
+function bulkAll(sid,v){
+  const prevRank=currentSubjectRank();const prevTopicDone=completedTopics();
+  const s=findSub(sid);if(!s)return;
+  s.outcomes.forEach(o=>{if(outcomeVisible(o)){sv(o.id,'r',v);sv(o.id,'e',v);sv(o.id,'m',v);}});
+  const subtopicDone=v&&checkSubtopicComplete(s.outcomes[0]?.id);
+  checkRankUp(prevRank,prevTopicDone,subtopicDone);updateView();
+}
 function confirmReset(){if(confirm('Reset all revision progress? This cannot be undone.')){progress={};save();updateView();}}
 
 // ── STATS ────────────────────────────────────────────────────────────────────
@@ -2449,6 +2517,7 @@ function repaint(){
 function updateView(){
   applySubjectToggles();
   renderNav();
+  injectHeaderBadge();
   if(currentView==='home'){renderHome();}
   else if(currentView==='dashboard'){renderDashboard();}
   else{
@@ -2457,6 +2526,7 @@ function updateView(){
     else{renderTopic(t);}
   }
   setTimeout(repaint,0);
+  setTimeout(applyPendingShimmer,80);
 }
 function switchView(id){currentView=id;window.scrollTo(0,0);updateView();}
 
@@ -2509,6 +2579,7 @@ function openSubjectDashboard(sid){
 
 function renderHome(){
   const active=SUBJECTS.filter(subjHasProgress);
+  const pcts=active.map(s=>subjectPct(s,loadProgressForSubject(s)));
   let h=`<div class="home-wrap">`;
 
   if(active.length===0){
@@ -2552,7 +2623,10 @@ function renderHome(){
             <span class="hsc-bar-pct">${pct(s.m,s.n)}%</span>
           </div>
         </div>
-        <div class="hsc-continue">${isCurrent?'Continue →':'Open →'}</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px">
+          <div class="hsc-continue">${isCurrent?'Continue →':'Open →'}</div>
+          ${rankBadgeHtml(rankForPct(pcts[i]))}
+        </div>
       </div>`;
     });
     h+=`</div>
@@ -2580,9 +2654,13 @@ function renderDashboard(){
   const papers=[...paperSet].sort();
 
   const specLabel=SUBJECT.has_combined_separate?(specMode==='com'?'Combined Science':'Separate Science'):SUBJECT.name;
+  const subjRank=currentSubjectRank();
 
   let h=`<div class="dsb-summary">
-  <div class="dsb-title">Overall revision progress — ${specLabel} &middot; ${s.n} learning outcomes</div>
+  <div class="dsb-title" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+    <span>Overall revision progress — ${specLabel} &middot; ${s.n} learning outcomes</span>
+    ${rankBadgeHtml(subjRank)}
+  </div>
   <div class="dsb-row">
     <div class="dsb-donuts">
       <div class="donut-wrap">
@@ -2665,9 +2743,10 @@ function tcardHtml(t){
 function renderTopic(t){
   const i=SUBJECT.topics.indexOf(t),col=COLORS[i],s=tStats(t);
   const hiddenSubs=t.subtopics.filter(s=>!subVisible(s));
+  const tRank=currentSubjectRank();
   let h=`<div class="back-row"><button class="back-btn" onclick="switchView('dashboard')">&#8592; All topics</button></div>
 <div class="tv-hdr" style="--tc:${col}">
-  <div class="tv-title">${t.id} — ${t.name}</div>
+  <div class="tv-title" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span>${t.id} — ${t.name}</span>${rankBadgeHtml(tRank)}</div>
   <div class="tv-bars">
     <div class="tvb"><div class="tvb-top"><span class="tvb-lbl" style="color:#4361ee">Revised content</span><span class="tvb-val">${s.r}/${s.n} &middot; ${pct(s.r,s.n)}%</span></div><div class="bar-track"><div class="bar-fill" style="width:${pct(s.r,s.n)}%;background:#4361ee"></div></div></div>
     <div class="tvb"><div class="tvb-top"><span class="tvb-lbl" style="color:#c87330">Exam questions done</span><span class="tvb-val">${s.e}/${s.n} &middot; ${pct(s.e,s.n)}%</span></div><div class="bar-track"><div class="bar-fill" style="width:${pct(s.e,s.n)}%;background:#f4a261"></div></div></div>
@@ -2722,6 +2801,228 @@ function toggleSub(id){
   const b=document.getElementById(id+'_bd'),c=document.getElementById(id+'_ch');
   if(!b)return;b.classList.toggle('hide');c.classList.toggle('open',!b.classList.contains('hide'));
 }
+
+// ── RANK ENGINE ───────────────────────────────────────────────────────────────
+const RANKS=[
+  {id:'unranked',    label:'Unranked',     icon:'○',  min:0},
+  {id:'recruit',     label:'Recruit',      icon:'🪵', min:5},
+  {id:'apprentice',  label:'Apprentice',   icon:'📖', min:15},
+  {id:'scholar',     label:'Scholar',      icon:'🎓', min:25},
+  {id:'practitioner',label:'Practitioner', icon:'⚗️',min:40},
+  {id:'expert',      label:'Expert',       icon:'🔬', min:55},
+  {id:'master',      label:'Master',       icon:'⭐', min:70},
+  {id:'grandmaster', label:'Grandmaster',  icon:'🌟', min:82},
+  {id:'elite',       label:'Elite',        icon:'💎', min:92},
+  {id:'legend',      label:'Legend',       icon:'🏆', min:100},
+];
+const RANK_MSGS={
+  recruit:    'Your revision journey begins. Keep going!',
+  apprentice: "You're building momentum — great start!",
+  scholar:    "A quarter of the way there. You're doing this!",
+  practitioner:'Real progress now. Half the battle is showing up.',
+  expert:     "More than half done. You're well on your way.",
+  master:     "Outstanding dedication — you're in the top tier.",
+  grandmaster:'Nearly there. Push through to the finish!',
+  elite:      'So close to perfect. One final push!',
+  legend:     "You've achieved a perfect score. Truly legendary! 🎉",
+};
+function rankForPct(p){
+  for(let i=RANKS.length-1;i>=0;i--){if(p>=RANKS[i].min)return RANKS[i];}
+  return RANKS[0];
+}
+function subjectPct(subj,prog){
+  const p=prog||progress;
+  let total=0,done=0;
+  for(const t of(subj||SUBJECT).topics)
+    for(const s of t.subtopics)
+      for(const o of s.outcomes){
+        total+=3;
+        if(p[o.id]?.r)done++;
+        if(p[o.id]?.e)done++;
+        if(p[o.id]?.m)done++;
+      }
+  return total?Math.round(100*done/total):0;
+}
+function currentSubjectRank(){return rankForPct(subjectPct());}
+function completedTopics(){
+  let count=0;
+  for(const t of SUBJECT.topics){
+    const s=tStats(t);
+    if(s.n>0&&s.r===s.n&&s.e===s.n&&s.m===s.n)count++;
+  }
+  return count;
+}
+const OVERALL_RANKS=[
+  {min:0,  label:'Getting Started',icon:'📚'},
+  {min:55, label:'Scholar',        icon:'🎓'},
+  {min:70, label:'Master',         icon:'⭐'},
+  {min:92, label:'Elite',          icon:'💎'},
+  {min:100,label:'Legend',         icon:'🏆'},
+];
+function overallRank(){
+  const loaded=SUBJECTS.filter(s=>subjHasProgress(s));
+  if(!loaded.length)return null;
+  const pcts=loaded.map(s=>subjectPct(s,loadProgressForSubject(s)));
+  const best=Math.max(...pcts);
+  const legendCount=pcts.filter(p=>p===100).length;
+  if(legendCount>=2)return{label:legendCount>=3?'Triple Legend':'Double Legend',icon:'🏆'};
+  for(let i=OVERALL_RANKS.length-1;i>=0;i--){if(best>=OVERALL_RANKS[i].min)return OVERALL_RANKS[i];}
+  return OVERALL_RANKS[0];
+}
+function rankBadgeHtml(rank){
+  if(!rank||rank.id==='unranked')return '';
+  return `<span class="rank-badge rk-${rank.id}" title="${rank.label}"><span class="rank-icon">${rank.icon}</span><span class="rank-lbl">${rank.label}</span></span>`;
+}
+function overallBadgeHtml(){
+  const r=overallRank();if(!r)return '';
+  return `<span class="rank-badge rk-master" title="Overall rank"><span class="rank-icon">${r.icon}</span><span class="rank-lbl">${r.label}</span></span>`;
+}
+function injectHeaderBadge(){
+  let el=document.getElementById('hdr-overall-rank');
+  if(!el){el=document.createElement('span');el.id='hdr-overall-rank';el.style.cssText='margin-left:8px;vertical-align:middle';const b=document.getElementById('subj-btn');if(b)b.parentNode.insertBefore(el,b.nextSibling);}
+  el.innerHTML=overallBadgeHtml();
+}
+
+// ── RANK-UP CHECK ─────────────────────────────────────────────────────────────
+function checkRankUp(prevRank,prevTopicDone,subtopicDone){
+  const newRank=currentSubjectRank();
+  const newTopicDone=completedTopics();
+  const topicCompleted=newTopicDone>prevTopicDone;
+  const prevIdx=RANKS.findIndex(r=>r.id===prevRank.id);
+  const newIdx=RANKS.findIndex(r=>r.id===newRank.id);
+  const rankUp=newIdx>prevIdx;
+  const isLegend=newRank.id==='legend';
+
+  // Determine animation level (higher = more dramatic, always plays the highest)
+  // 0=nothing, 1=subtopic shimmer only, 2=small confetti(40), 3=mid confetti(80), 4=gold legend(140)
+  let animLevel=0;
+  if(subtopicDone) animLevel=Math.max(animLevel,1);       // subtopic done — small burst
+  if(rankUp&&newIdx<=6) animLevel=Math.max(animLevel,2);  // rank up Scholar→Master: 40 pieces
+  if(topicCompleted) animLevel=Math.max(animLevel,3);     // topic mastered: 80 pieces
+  if(rankUp&&newIdx>=7) animLevel=Math.max(animLevel,3);  // Grandmaster+: 80 pieces
+  if(isLegend) animLevel=4;                               // Legend always wins
+
+  // Fire animation at chosen level
+  if(animLevel===1){
+    fireConfetti(40,false);
+  } else if(animLevel===2){
+    fireConfetti(40,false);
+  } else if(animLevel===3){
+    fireConfetti(80,false);
+  } else if(animLevel===4){
+    fireConfetti(140,true);
+  }
+
+  // Show rank popup if rank changed, or on legend topic complete
+  if(rankUp){
+    const title=isLegend&&topicCompleted?'Subject Complete!':'New rank unlocked!';
+    const msg=isLegend&&topicCompleted
+      ?`Every outcome in ${SUBJECT.name} — revised, tested, and reviewed. Truly legendary!`
+      :RANK_MSGS[newRank.id]||'Keep going!';
+    showRankPopup(newRank,title,msg);
+  } else if(topicCompleted&&!rankUp){
+    // Topic mastered but no rank change — show a topic complete popup
+    const topicName=SUBJECT.topics.find(t=>{
+      const s=tStats(t);return s.n>0&&s.r===s.n&&s.e===s.n&&s.m===s.n;
+    })?.name||'topic';
+    showRankPopup({id:'master',label:'Topic Mastered',icon:'⭐'},
+      'Topic complete!',
+      `You've fully revised, tested and reviewed every outcome in ${topicName}. Excellent work!`);
+  }
+}
+
+// ── POPUP ─────────────────────────────────────────────────────────────────────
+function showRankPopup(rank,title,msg){
+  document.getElementById('rk-icon').textContent=rank.icon||'🏆';
+  document.getElementById('rk-popup-title').textContent=title;
+  document.getElementById('rk-popup-rank').textContent=rank.label||rank;
+  document.getElementById('rk-popup-msg').textContent=msg;
+  document.getElementById('rk-modal').classList.remove('hide');
+}
+function closeRankPopup(){document.getElementById('rk-modal').classList.add('hide');}
+
+// ── SUBTOPIC SHIMMER ──────────────────────────────────────────────────────────
+let _pendingShimmer=null; // set before updateView, applied after re-render
+function checkSubtopicComplete(outcomeId){
+  for(const t of SUBJECT.topics){
+    for(const sub of t.subtopics){
+      if(!sub.outcomes.find(o=>o.id===outcomeId))continue;
+      const vis=sub.outcomes.filter(o=>outcomeVisible(o));
+      const allDone=vis.length>0&&vis.every(o=>gv(o.id,'r')&&gv(o.id,'e')&&gv(o.id,'m'));
+      if(allDone)_pendingShimmer=sub.id;
+      return allDone;
+    }
+  }
+  return false;
+}
+function applyPendingShimmer(){
+  if(!_pendingShimmer)return;
+  const id=_pendingShimmer;_pendingShimmer=null;
+  // Apply shimmer to the subtopic header (survives re-render as it's always present)
+  const hdr=document.querySelector(`[onclick="toggleSub('${id}')"]`);
+  if(hdr){
+    hdr.style.transition='background 0.1s';
+    hdr.style.background='linear-gradient(90deg,transparent,rgba(251,191,36,0.22),rgba(251,191,36,0.32),rgba(251,191,36,0.22),transparent)';
+    hdr.style.backgroundSize='200% 100%';
+    setTimeout(()=>{hdr.style.background='';hdr.style.backgroundSize='';},900);
+  }
+}
+
+// ── CHECKBOX BURST ────────────────────────────────────────────────────────────
+function fireCheckboxBurst(id){
+  const els=document.querySelectorAll('.cb');
+  let target=null;
+  els.forEach(el=>{if(el.getAttribute('onclick')&&el.getAttribute('onclick').includes(id))target=target||el;});
+  const canvas=document.getElementById('rk-canvas');
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  const ctx=canvas.getContext('2d');
+  const rect=target?target.getBoundingClientRect():{left:window.innerWidth/2,top:window.innerHeight/2,width:0,height:0};
+  const cx=rect.left+rect.width/2,cy=rect.top+rect.height/2;
+  const cols=['#4361ee','#2ec4b6','#f4a261','#f59e0b','#8b5cf6'];
+  const pts=Array.from({length:8},()=>({x:cx,y:cy,vx:(Math.random()-0.5)*6,vy:(Math.random()-0.5)*6-2,r:Math.random()*3+2,col:cols[Math.floor(Math.random()*cols.length)],life:1}));
+  let fr=0;
+  (function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=0.2;p.life-=0.05;if(p.life<=0)return;ctx.globalAlpha=Math.max(0,p.life);ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=p.col;ctx.fill();});
+    ctx.globalAlpha=1;if(++fr<35)requestAnimationFrame(draw);else ctx.clearRect(0,0,canvas.width,canvas.height);
+  })();
+}
+
+// ── CONFETTI ──────────────────────────────────────────────────────────────────
+function fireConfetti(count,goldOnly){
+  const canvas=document.getElementById('rk-canvas');
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  const ctx=canvas.getContext('2d');
+  const cols=goldOnly?['#f59e0b','#fbbf24','#fcd34d','#fef08a','#fff7ed']:['#4361ee','#2ec4b6','#f4a261','#ef4444','#8b5cf6','#10b981','#f59e0b','#ec4899'];
+  const pieces=Array.from({length:count},(_,i)=>({
+    x:Math.random()*canvas.width,
+    y:-10-Math.random()*(i/count)*canvas.height*0.4,
+    w:Math.random()*10+5,h:Math.random()*5+3,
+    rot:Math.random()*Math.PI*2,rotV:(Math.random()-0.5)*0.14,
+    vx:(Math.random()-0.5)*(goldOnly?1.5:2.8),
+    vy:Math.random()*1.5+1.2+(goldOnly?0.4:0),
+    col:cols[Math.floor(Math.random()*cols.length)],
+  }));
+  const dur=goldOnly?5000:count>=80?3500:2500;
+  const t0=performance.now();
+  (function draw(now){
+    const el=now-t0;
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    let alive=false;
+    pieces.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;p.rot+=p.rotV;p.vy+=0.035;
+      const life=Math.max(0,1-el/dur);
+      if(p.y>canvas.height+20||life<=0)return;
+      alive=true;
+      ctx.save();ctx.globalAlpha=life;ctx.translate(p.x,p.y);ctx.rotate(p.rot);
+      ctx.fillStyle=p.col;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore();
+    });
+    ctx.globalAlpha=1;
+    if(alive&&el<dur)requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  })(t0);
+}
+
 // ── SAVE CODE ────────────────────────────────────────────────────────────────
 function scEncode(){
   const payload=JSON.stringify({v:2,spec:specMode,tier:tierMode,p:progress});
