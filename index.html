@@ -1,66 +1,9 @@
-
-<!-- saved from url=(0060)file:///C:/Users/Josh/Downloads/gcse_physics_tracker_33.html -->
-<html lang="en" style="--font: -apple-system,BlinkMacSystemFont,&#39;Segoe UI&#39;,system-ui,sans-serif;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="./index_files/css2"><link rel="stylesheet" href="./index_files/css2(1)"><link rel="stylesheet" href="./index_files/css2(2)"><link rel="stylesheet" href="./index_files/css2(3)"><link rel="stylesheet" href="./index_files/css2(4)"><link rel="stylesheet" href="./index_files/css2(5)"><link rel="stylesheet" href="./index_files/css2(6)"><link rel="stylesheet" href="./index_files/css2(7)"><link rel="stylesheet" href="./index_files/css2(8)"><link rel="stylesheet" href="./index_files/css2(9)"><link rel="stylesheet" href="./index_files/css2(10)"><link rel="stylesheet" href="./index_files/css2(11)"><link rel="stylesheet" href="./index_files/css2(12)"><link rel="stylesheet" href="./index_files/css2(13)"></head><body><div class="sr-ov hide" id="sr-modal" onclick="handleSrOvClick(event)">
-  <div class="sr-card">
-    <div class="sr-hdr">
-      <div>
-        <div class="sr-title">🧑‍🏫 Staff Room — Teacher Code Reference</div>
-        <div class="sr-subtitle">Share these codes with students to unlock rewards. Do not display publicly.</div>
-      </div>
-      <button class="sj-close-x" onclick="closeStaffRoom()">×</button>
-    </div>
-    <div class="sr-body" id="sr-body"></div>
-  </div>
-</div>
-
-<!-- UNLOCK CODE MODAL -->
-<div class="uc-ov hide" id="uc-modal" onclick="handleUcOvClick(event)">
-  <div class="uc-card">
-    <div class="uc-hdr">
-      <div class="uc-title">🔑 Enter unlock code</div>
-      <button class="sj-close-x" onclick="closeUnlockCode()">×</button>
-    </div>
-    <div class="uc-body">
-      <div class="uc-desc">Enter a code from your teacher to unlock themes, fonts, or layouts — even without coins.</div>
-      <div class="uc-input-row">
-        <input class="uc-input" id="uc-input" placeholder="CODE" maxlength="24" onkeydown="if(event.key===&#39;Enter&#39;)redeemCode()">
-        <button class="uc-submit" onclick="redeemCode()">Redeem</button>
-      </div>
-      <div class="uc-result" id="uc-result"></div>
-      <div class="uc-history" id="uc-history" style="display:none">
-        <div class="uc-history-lbl">Redeemed codes</div>
-        <div id="uc-history-list"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SHOP MODAL -->
-<div class="shop-ov hide" id="shop-modal" onclick="handleShopOvClick(event)">
-  <div class="shop-card">
-    <div class="shop-hdr">
-      <div>
-        <div class="shop-title">Unlocks</div>
-        <div class="shop-bal"><span style="font-size:14px">🪙</span>&nbsp;<span id="shop-bal-disp">0</span>&nbsp;coins available</div>
-      </div>
-      <button class="sj-close-x" onclick="closeShop()">×</button>
-    </div>
-    <div class="shop-tabs-bar">
-      <button class="shop-tab on" data-tab="themes" onclick="renderShopTab(&#39;themes&#39;)">Themes</button>
-      <button class="shop-tab" data-tab="fonts" onclick="renderShopTab(&#39;fonts&#39;)">Fonts</button>
-      <button class="shop-tab" data-tab="layouts" onclick="renderShopTab(&#39;layouts&#39;)">Layouts</button>
-    </div>
-    <div class="shop-body" id="shop-body"></div>
-    <div style="text-align:center;padding:10px 0 14px;border-top:1px solid var(--bd);flex-shrink:0"><button class="help-btn" onclick="closeShop();openUnlockCode()" style="font-size:11px;opacity:0.7">🔑 Enter unlock code</button></div>
-  </div>
-</div>
-
-
-
-
-
+<!DOCTYPE html>
+<html lang="en" style="--font: -apple-system,BlinkMacSystemFont,&#39;Segoe UI&#39;,system-ui,sans-serif;" data-theme="phys-signal">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GCSE Physics Revision Tracker – Edexcel (9-1)</title>
+<title>Revision Tracker</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -257,7 +200,7 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
 .back-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
 /* Subtopic */
 .sub{background:var(--surface);border:1px solid var(--bd);border-radius:var(--r);margin-bottom:8px;overflow:hidden;box-shadow:var(--shadow)}
-.sub-hdr{padding:10px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;transition:background 0.1s}
+.sub-hdr{padding:10px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;transition:background 0.1s;position:relative;overflow:hidden}
 .sub-hdr:hover{background:var(--surface2)}
 .sub-left{display:flex;align-items:center;gap:8px}
 .sub-id{font-size:11px;font-weight:800;min-width:36px}
@@ -279,11 +222,17 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
 /* Outcome rows */
 .col-hdr{display:grid;grid-template-columns:1fr 38px 38px 38px;padding:6px 14px;background:var(--surface2);border-bottom:1px solid var(--bd);border-top:1px solid var(--bd)}
 .ch{font-size:10px;font-weight:700;color:var(--tx3);text-align:center;text-transform:uppercase;letter-spacing:.3px}
-.or{display:grid;grid-template-columns:1fr 38px 38px 38px;padding:7px 14px;border-bottom:1px solid rgba(0,0,0,0.04);align-items:center;transition:background 0.1s}
+.or{display:grid;grid-template-columns:1fr 38px 38px 38px 80px;padding:7px 14px;border-bottom:1px solid rgba(0,0,0,0.04);align-items:center;transition:background 0.1s}
 .or:last-child{border-bottom:none}
 .or:hover{background:var(--surface2)}
 .or.done{background:color-mix(in srgb,var(--c3) 7%,var(--surface))}
-.ot{font-size:12.5px;color:var(--tx);padding-right:10px;line-height:1.45}
+.ot{font-size:12.5px;color:var(--tx);padding-right:10px;line-height:1.45;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.or-ts-wrap{display:flex;align-items:center;justify-content:flex-start;padding-left:6px}
+.or-ts{font-size:10px;color:var(--tx3);white-space:nowrap;cursor:pointer;border-bottom:1px dashed var(--bd2);line-height:1.3;transition:color 0.15s}
+.or-ts:hover{color:var(--c1);border-bottom-color:var(--c1)}
+/* Touch count popover */
+.tc-pop{position:absolute;background:var(--surface);border:1px solid var(--bd2);border-radius:8px;padding:8px 12px;font-size:11px;color:var(--tx2);box-shadow:0 4px 16px rgba(0,0,0,0.14);z-index:500;white-space:nowrap;animation:slideUp 0.15s ease;pointer-events:none}
+.tc-pop strong{color:var(--tx);font-weight:700}
 .hb{display:inline-flex;align-items:center;font-size:9px;font-weight:800;color:#c2410c;background:#fff7ed;border:1px solid #fed7aa;padding:1px 4px;border-radius:3px;margin-left:5px;vertical-align:middle;line-height:1.2}
 .cbw{display:flex;justify-content:center;align-items:center}
 .cb{width:22px;height:22px;border-radius:6px;border:2px solid var(--bd2);cursor:pointer;transition:all 0.15s;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;background:var(--surface)}
@@ -387,7 +336,7 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
   .tv-bars{gap:8px}
   /* Subtopic col headers */
   .col-hdr{grid-template-columns:1fr 48px 48px 48px}
-  .or{grid-template-columns:1fr 48px 48px 48px}
+  .or{grid-template-columns:1fr 48px 48px 48px 80px}
   /* Bulk bar wraps */
   .bulk-bar{flex-wrap:wrap;gap:5px}
   /* Home cards */
@@ -786,13 +735,988 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
 .rk-dismiss{padding:10px 28px;background:var(--c1);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font);transition:all 0.15s}
 .rk-dismiss:hover{background:var(--c1d);transform:translateY(-1px)}
 /* Subtopic completion tiers — shimmer in then stay */
-@keyframes shimmerIn{0%{background-position:200% 0}100%{background-position:-200% 0}}
-.sub-hdr.tier-bronze{background:linear-gradient(90deg,var(--surface),rgba(205,127,50,0.18),var(--surface)) !important;border-left:3px solid #cd7f32}
-.sub-hdr.tier-silver{background:linear-gradient(90deg,var(--surface),rgba(168,168,168,0.22),var(--surface)) !important;border-left:3px solid #a8a8a8}
-.sub-hdr.tier-gold{background:linear-gradient(90deg,var(--surface),rgba(251,191,36,0.24),var(--surface)) !important;border-left:3px solid #f59e0b}
-.sub-hdr.shimmer-bronze{animation:shimmerIn 0.7s ease forwards;background:linear-gradient(90deg,transparent,rgba(205,127,50,0.28),transparent) !important;background-size:200% 100% !important}
-.sub-hdr.shimmer-silver{animation:shimmerIn 0.7s ease forwards;background:linear-gradient(90deg,transparent,rgba(168,168,168,0.35),transparent) !important;background-size:200% 100% !important}
-.sub-hdr.shimmer-gold{animation:shimmerIn 0.7s ease forwards;background:linear-gradient(90deg,transparent,rgba(251,191,36,0.38),transparent) !important;background-size:200% 100% !important}
+/* Subtopic fill sweep — pseudo-element grows left→right then stays */
+@keyframes tierFill{from{width:0}to{width:100%}}
+/* Settled state: persistent coloured background */
+.sub-hdr.tier-bronze{background:rgba(205,127,50,0.38) !important;border-left:3px solid #cd7f32}
+.sub-hdr.tier-silver{background:rgba(168,168,168,0.45) !important;border-left:3px solid #a8a8a8}
+.sub-hdr.tier-gold{background:rgba(251,191,36,0.52) !important;border-left:3px solid #f59e0b}
+/* Sweeping state: uses ::before to fill left→right, then swaps to tier class */
+.sub-hdr.shimmer-bronze{border-left:3px solid #cd7f32}
+.sub-hdr.shimmer-silver{border-left:3px solid #a8a8a8}
+.sub-hdr.shimmer-gold{border-left:3px solid #f59e0b}
+.sub-hdr.shimmer-bronze::before,.sub-hdr.shimmer-silver::before,.sub-hdr.shimmer-gold::before{
+  content:'';position:absolute;top:0;left:0;bottom:0;width:0;
+  animation:tierFill 2s cubic-bezier(0.5,0,0.1,1) forwards;pointer-events:none;z-index:0;
+}
+.sub-hdr.shimmer-bronze::before{background:rgba(205,127,50,0.38)}
+.sub-hdr.shimmer-silver::before{background:rgba(168,168,168,0.45)}
+.sub-hdr.shimmer-gold::before{background:rgba(251,191,36,0.52)}
+/* Ensure header content sits above the fill layer */
+.sub-hdr>*{position:relative;z-index:1}
+/* Canvas overlay for confetti (pointer-events:none so clicks pass through) */
+#rk-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:2999}
+/* ── HOME / YOUR SUBJECTS ── */
+.home-wrap{max-width:740px;margin:0 auto;padding:4px 0}
+.home-heading{font-size:20px;font-weight:800;color:var(--tx);margin-bottom:4px}
+.home-sub{font-size:13px;color:var(--tx3);margin-bottom:24px}
+.home-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:28px}
+.hsc{background:var(--surface);border:1px solid var(--bd);border-radius:var(--r);padding:18px 18px 14px;cursor:pointer;transition:all 0.18s;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.hsc::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--tc,var(--c1));border-radius:var(--r) var(--r) 0 0}
+.hsc:hover{border-color:var(--bd2);box-shadow:0 6px 20px rgba(0,0,0,0.1);transform:translateY(-1px)}
+.hsc-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px}
+.hsc-name{font-size:16px;font-weight:800;color:var(--tx)}
+.hsc-badge{font-size:10px;font-weight:600;color:var(--tx3);background:var(--surface2);border:1px solid var(--bd2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.hsc-board{font-size:11px;color:var(--tx3);margin-bottom:14px}
+.hsc-bars{display:flex;flex-direction:column;gap:5px}
+.hsc-viz{display:flex;justify-content:center;margin-bottom:4px}
+.hsc-bar-row{display:flex;align-items:center;gap:8px}
+.hsc-bar-lbl{font-size:10px;color:var(--tx3);width:52px;flex-shrink:0}
+.hsc-bar-track{flex:1;height:5px;background:var(--track);border-radius:3px;overflow:hidden}
+.hsc-bar-fill{height:100%;border-radius:3px;transition:width 0.4s ease}
+.hsc-bar-pct{font-size:10px;font-weight:600;color:var(--tx2);width:30px;text-align:right;flex-shrink:0}
+.hsc-continue{display:inline-flex;align-items:center;gap:5px;margin-top:14px;font-size:11.5px;font-weight:600;color:var(--c1)}
+/* Empty state */
+.home-empty{background:var(--surface);border:1.5px dashed var(--bd2);border-radius:14px;padding:44px 32px;text-align:center;max-width:480px;margin:0 auto}
+.home-empty-icon{font-size:36px;margin-bottom:14px;line-height:1}
+.home-empty-h{font-size:17px;font-weight:800;color:var(--tx);margin-bottom:8px}
+.home-empty-p{font-size:13px;color:var(--tx2);line-height:1.65;margin-bottom:22px}
+.home-empty-btn{display:inline-flex;align-items:center;gap:6px;padding:11px 22px;background:var(--c1);color:#fff;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;border:none;font-family:var(--font);transition:all 0.15s}
+.home-empty-btn:hover{background:var(--c1d);transform:translateY(-1px)}
+/* ── SPOTLIGHT TOUR OVERLAY ── */
+/* Four dark panels that surround the highlighted element */
+.spl-panel{position:fixed;background:rgba(10,14,35,0.72);z-index:3500;pointer-events:none;transition:all 0.25s ease}
+/* Pulsing ring around the target */
+.spl-ring{position:fixed;z-index:3501;pointer-events:none;border-radius:8px;
+  box-shadow:0 0 0 3px var(--c1),0 0 0 5px rgba(99,102,241,0.35);
+  animation:splPulse 1.6s ease-in-out infinite}
+@keyframes splPulse{
+  0%,100%{box-shadow:0 0 0 3px var(--c1),0 0 0 6px rgba(99,102,241,0.35)}
+  50%{box-shadow:0 0 0 4px var(--c1),0 0 0 12px rgba(99,102,241,0.12)}
+}
+/* Tooltip card */
+.spl-tip{position:fixed;z-index:3502;background:var(--surface);border-radius:12px;
+  padding:16px 18px 14px;max-width:300px;min-width:220px;
+  box-shadow:0 12px 40px rgba(0,0,0,0.28);animation:slideUp 0.22s ease;
+  border:1px solid var(--bd2)}
+.spl-tip-lbl{font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;
+  letter-spacing:.7px;margin-bottom:6px}
+.spl-tip-h{font-size:14px;font-weight:800;color:var(--tx);margin-bottom:6px;line-height:1.3}
+.spl-tip-p{font-size:12px;color:var(--tx2);line-height:1.6;margin-bottom:14px}
+.spl-tip-foot{display:flex;align-items:center;gap:8px}
+.spl-tip-skip{font-size:11px;color:var(--tx3);background:none;border:none;
+  cursor:pointer;font-family:var(--font);padding:2px 0;transition:color 0.15s}
+.spl-tip-skip:hover{color:var(--tx2)}
+.spl-tip-btns{display:flex;gap:6px;margin-left:auto}
+.spl-tip-prev{padding:6px 14px;border-radius:6px;font-size:11.5px;font-weight:600;
+  cursor:pointer;font-family:var(--font);border:1.5px solid var(--bd2);
+  background:var(--surface2);color:var(--tx2);transition:all 0.15s}
+.spl-tip-prev:hover{background:var(--surface3)}
+.spl-tip-next{padding:6px 14px;border-radius:6px;font-size:11.5px;font-weight:600;
+  cursor:pointer;font-family:var(--font);border:none;
+  background:var(--c1);color:#fff;transition:all 0.15s}
+.spl-tip-next:hover{background:var(--c1d)}
+</style>
+</head>
+<body>
+<div class="sr-ov hide" id="sr-modal" onclick="handleSrOvClick(event)">
+  <div class="sr-card">
+    <div class="sr-hdr">
+      <div>
+        <div class="sr-title">🧑‍🏫 Staff Room — Teacher Code Reference</div>
+        <div class="sr-subtitle">Share these codes with students to unlock rewards. Do not display publicly.</div>
+      </div>
+      <button class="sj-close-x" onclick="closeStaffRoom()">×</button>
+    </div>
+    <div class="sr-body" id="sr-body"></div>
+  </div>
+</div>
+
+<!-- UNLOCK CODE MODAL -->
+<div class="uc-ov hide" id="uc-modal" onclick="handleUcOvClick(event)">
+  <div class="uc-card">
+    <div class="uc-hdr">
+      <div class="uc-title">🔑 Enter unlock code</div>
+      <button class="sj-close-x" onclick="closeUnlockCode()">×</button>
+    </div>
+    <div class="uc-body">
+      <div class="uc-desc">Enter a code from your teacher to unlock themes, fonts, or layouts — even without coins.</div>
+      <div class="uc-input-row">
+        <input class="uc-input" id="uc-input" placeholder="CODE" maxlength="24" onkeydown="if(event.key===&#39;Enter&#39;)redeemCode()">
+        <button class="uc-submit" onclick="redeemCode()">Redeem</button>
+      </div>
+      <div class="uc-result ok" id="uc-result">✓ Unlocked: Unlock pet companion system</div>
+      <div class="uc-history" id="uc-history" style="display: block;">
+        <div class="uc-history-lbl">Redeemed codes</div>
+        <div id="uc-history-list"><div class="uc-history-item"><span>TEAMPHYSICS</span><span>— Physics themes + Share Tech Mono</span></div><div class="uc-history-item"><span>PETMODE</span><span>— Unlock pet companion system</span></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SHOP MODAL -->
+<div class="shop-ov hide" id="shop-modal" onclick="handleShopOvClick(event)">
+  <div class="shop-card">
+    <div class="shop-hdr">
+      <div>
+        <div class="shop-title">Unlocks</div>
+        <div class="shop-bal"><span style="font-size:14px">🪙</span>&nbsp;<span id="shop-bal-disp">0</span>&nbsp;coins available</div>
+      </div>
+      <button class="sj-close-x" onclick="closeShop()">×</button>
+    </div>
+    <div class="shop-tabs-bar">
+      <button class="shop-tab on" data-tab="themes" onclick="renderShopTab(&#39;themes&#39;)">Themes</button>
+      <button class="shop-tab" data-tab="fonts" onclick="renderShopTab(&#39;fonts&#39;)">Fonts</button>
+      <button class="shop-tab" data-tab="layouts" onclick="renderShopTab(&#39;layouts&#39;)">Layouts</button>
+    </div>
+    <div class="shop-body" id="shop-body"><div class="th-cols"><div><div class="th-col-lbl">Light</div><div class="th-swatches"><div class="th-swatch" onclick="applyTheme(&#39;slate&#39;)" style="background:#f0f2f8;border-color: transparent">
+      <div class="th-preview"><div class="th-dot" style="background:#f0f2f8"></div><div class="th-dot" style="background:#ffffff"></div><div class="th-dot" style="background:#4361ee"></div></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0">
+        <span class="th-name" style="flex:1;font-family:inherit;color: rgba(0,0,0,0.75)">Slate</span>
+        <div style="display:flex;gap:3px;align-items:center;flex-shrink:0"><div style="width:8px;height:8px;border-radius:50%;background:#4361ee;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#f4a261;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#2ec4b6;flex-shrink:0"></div></div>
+      </div>
+      <span class="th-check" style="color: rgba(0,0,0,0.75)">✓</span>
+    </div><div class="th-swatch" onclick="applyTheme(&#39;warm&#39;)" style="background:#f5efe6;border-color: transparent">
+      <div class="th-preview"><div class="th-dot" style="background:#f5efe6"></div><div class="th-dot" style="background:#fffcf7"></div><div class="th-dot" style="background:#f4a261"></div></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0">
+        <span class="th-name" style="flex:1;font-family:inherit;color: rgba(0,0,0,0.75)">Warm</span>
+        <div style="display:flex;gap:3px;align-items:center;flex-shrink:0"><div style="width:8px;height:8px;border-radius:50%;background:#c07020;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#c03c50;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#5a9030;flex-shrink:0"></div></div>
+      </div>
+      <span class="th-check" style="color: rgba(0,0,0,0.75)">✓</span>
+    </div><div class="th-swatch" onclick="applyTheme(&#39;lavender&#39;)" style="background:#eeebf8;border-color: transparent">
+      <div class="th-preview"><div class="th-dot" style="background:#eeebf8"></div><div class="th-dot" style="background:#ffffff"></div><div class="th-dot" style="background:#8b5cf6"></div></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0">
+        <span class="th-name" style="flex:1;font-family:inherit;color: rgba(0,0,0,0.75)">Lavender</span>
+        <div style="display:flex;gap:3px;align-items:center;flex-shrink:0"><div style="width:8px;height:8px;border-radius:50%;background:#7c3aed;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#d43898;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#059669;flex-shrink:0"></div></div>
+      </div>
+      <span class="th-check" style="color: rgba(0,0,0,0.75)">✓</span>
+    </div></div><div class="th-shop-lbl">🛒 Shop</div><div class="th-swatches"><div class="th-swatch locked" onclick="buyTheme(&#39;sunset&#39;)" style="background:#fef3ec;border-color: transparent">
+      <div class="th-preview"><div class="th-dot" style="background:#fef3ec"></div><div class="th-dot" style="background:#fffaf7"></div><div class="th-dot" style="background:#e8732a"></div></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0">
+        <span class="th-name" style="flex:1;font-family:inherit;color: rgba(0,0,0,0.75)">Sunset</span>
+        <div style="display:flex;gap:3px;align-items:center;flex-shrink:0"><div style="width:8px;height:8px;border-radius:50%;background:#c85820;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#a82848;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#487830;flex-shrink:0"></div></div>
+      </div>
+      <span class="th-lock" style="color: rgba(0,0,0,0.75);opacity:0.7"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><rect x="2" y="5" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.3"></rect><path d="M4 5V3.5a2 2 0 014 0V5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path></svg>25🪙</span>
+    </div><div class="th-swatch locked" onclick="buyTheme(&#39;cherry&#39;)" style="background:#fff5f7;border-color: transparent">
+      <div class="th-preview"><div class="th-dot" style="background:#fff5f7"></div><div class="th-dot" style="background:#ffffff"></div><div class="th-dot" style="background:#e8607a"></div></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0">
+        <span class="th-name" style="flex:1;font-family:inherit;color: rgba(0,0,0,0.75)">Cherry Blossom</span>
+        <div style="display:flex;gap:3px;align-items:center;flex-shrink:0"><div style="width:8px;height:8px;border-radius:50%;background:#d83060;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#8030b0;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#1898a0;flex-shrink:0"></div></div>
+      </div>
+      <span class="th-lock" style="color: rgba(0,0,0,0.75);opacity:0.7"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><rect x="2" y="5" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.3"></rect><path d="M4 5V3.5a2 2 0 014 0V5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path></svg>50🪙</span>
+    </div><div class="th-swatch locked" onclick="buyTheme(&#39;arctic&#39;)" style="background:#f0f8ff;border-color: transparent">
+      <div class="th-preview"><div class="th-dot" style="background:#f0f8ff"></div><div class="th-dot" style="background:#ffffff"></div><div class="th-dot" style="background:#2a7acc"></div></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0">
+        <span class="th-name" style="flex:1;font-family:inherit;color: rgba(0,0,0,0.75)">Arctic</span>
+        <div style="display:flex;gap:3px;align-items:center;flex-shrink:0"><div style="width:8px;height:8px;border-radius:50%;background:#1868c8;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#0898b8;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#108858;flex-shrink:0"></div></div>
+      </div>
+      <span class="th-lock" style="color: rgba(0,0,0,0.75);opacity:0.7"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><rect x="2" y="5" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.3"></rect><path d="M4 5V3.5a2 2 0 014 0V5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path></svg>75🪙</span>
+    </div><div class="th-swatch locked" onclick="buyTheme(&#39;rosegold&#39;)" style="background:#fdf5f0;border-color: transparent">
+      <div class="th-preview"><div class="th-dot" style="background:#fdf5f0"></div><div class="th-dot" style="background:#ffffff"></div><div class="th-dot" style="background:#d4906a"></div></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0">
+        <span class="th-name" style="flex:1;font-family:inherit;color: rgba(0,0,0,0.75)">Rose Gold</span>
+        <div style="display:flex;gap:3px;align-items:center;flex-shrink:0"><div style="width:8px;height:8px;border-radius:50%;background:#c87040;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#b83060;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#508840;flex-shrink:0"></div></div>
+      </div>
+      <span class="th-lock" style="color: rgba(0,0,0,0.75);opacity:0.7"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><rect x="2" y="5" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.3"></rect><path d="M4 5V3.5a2 2 0 014 0V5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path></svg>100🪙</span>
+    </div><div class="th-swatch active" onclick="applyTheme(&#39;phys-signal&#39;)" style="background:#f0f5fa;border-color:#0a6ab0">
+      <div class="th-preview"><div class="th-dot" style="background:#f0f5fa"></div><div class="th-dot" style="background:#e4eef8"></div><div class="th-dot" style="background:#0a6ab0"></div></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0">
+        <span class="th-name" style="flex:1;font-family:&#39;Share Tech Mono&#39;,monospace;color: rgba(0,0,0,0.75)">Physics Signal Light</span>
+        <div style="display:flex;gap:3px;align-items:center;flex-shrink:0"><div style="width:8px;height:8px;border-radius:50%;background:#0a6ab0;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#0a8a50;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#6a1aaa;flex-shrink:0"></div></div>
+      </div>
+      <span class="th-check" style="color: rgba(0,0,0,0.75)">✓</span>
+    </div></div></div><div><div class="th-col-lbl">Dark</div><div class="th-swatches"><div class="th-swatch" onclick="applyTheme(&#39;midnight&#39;)" style="background:#0d1117;border-color: transparent">
+      <div class="th-preview"><div class="th-dot" style="background:#0d1117"></div><div class="th-dot" style="background:#161b22"></div><div class="th-dot" style="background:#4361ee"></div></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0">
+        <span class="th-name" style="flex:1;font-family:inherit;color:rgba(255,255,255,0.85)">Midnight</span>
+        <div style="display:flex;gap:3px;align-items:center;flex-shrink:0"><div style="width:8px;height:8px;border-radius:50%;background:#5878f8;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#ffa060;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#2ed8c8;flex-shrink:0"></div></div>
+      </div>
+      <span class="th-check" style="color:rgba(255,255,255,0.85)">✓</span>
+    </div><div class="th-swatch" onclick="applyTheme(&#39;graphite&#39;)" style="background:#111111;border-color: transparent">
+      <div class="th-preview"><div class="th-dot" style="background:#111111"></div><div class="th-dot" style="background:#1e1e1e"></div><div class="th-dot" style="background:#9e9e9e"></div></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0">
+        <span class="th-name" style="flex:1;font-family:inherit;color:rgba(255,255,255,0.85)">Graphite</span>
+        <div style="display:flex;gap:3px;align-items:center;flex-shrink:0"><div style="width:8px;height:8px;border-radius:50%;background:#8888f0;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#e8a060;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#50d0a8;flex-shrink:0"></div></div>
+      </div>
+      <span class="th-check" style="color:rgba(255,255,255,0.85)">✓</span>
+    </div><div class="th-swatch" onclick="applyTheme(&#39;forest&#39;)" style="background:#0c1812;border-color: transparent">
+      <div class="th-preview"><div class="th-dot" style="background:#0c1812"></div><div class="th-dot" style="background:#122018"></div><div class="th-dot" style="background:#2ec4b6"></div></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0">
+        <span class="th-name" style="flex:1;font-family:inherit;color:rgba(255,255,255,0.85)">Forest</span>
+        <div style="display:flex;gap:3px;align-items:center;flex-shrink:0"><div style="width:8px;height:8px;border-radius:50%;background:#58d888;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#d8b030;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#30c8d8;flex-shrink:0"></div></div>
+      </div>
+      <span class="th-check" style="color:rgba(255,255,255,0.85)">✓</span>
+    </div></div><div class="th-shop-lbl">🛒 Shop</div><div class="th-swatches"><div class="th-swatch locked" onclick="buyTheme(&#39;ocean&#39;)" style="background:#060d1a;border-color: transparent">
+      <div class="th-preview"><div class="th-dot" style="background:#060d1a"></div><div class="th-dot" style="background:#0a1628"></div><div class="th-dot" style="background:#00c8ff"></div></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0">
+        <span class="th-name" style="flex:1;font-family:inherit;color:rgba(255,255,255,0.85)">Ocean</span>
+        <div style="display:flex;gap:3px;align-items:center;flex-shrink:0"><div style="width:8px;height:8px;border-radius:50%;background:#00c8ff;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#ff9040;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#00e8a0;flex-shrink:0"></div></div>
+      </div>
+      <span class="th-lock" style="color:rgba(255,255,255,0.85);opacity:0.7"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><rect x="2" y="5" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.3"></rect><path d="M4 5V3.5a2 2 0 014 0V5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path></svg>25🪙</span>
+    </div><div class="th-swatch locked" onclick="buyTheme(&#39;volcanic&#39;)" style="background:#0e0804;border-color: transparent">
+      <div class="th-preview"><div class="th-dot" style="background:#0e0804"></div><div class="th-dot" style="background:#1a1008"></div><div class="th-dot" style="background:#ff6400"></div></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0">
+        <span class="th-name" style="flex:1;font-family:inherit;color:rgba(255,255,255,0.85)">Volcanic</span>
+        <div style="display:flex;gap:3px;align-items:center;flex-shrink:0"><div style="width:8px;height:8px;border-radius:50%;background:#ff6000;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#ffb800;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#ff3858;flex-shrink:0"></div></div>
+      </div>
+      <span class="th-lock" style="color:rgba(255,255,255,0.85);opacity:0.7"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><rect x="2" y="5" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.3"></rect><path d="M4 5V3.5a2 2 0 014 0V5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path></svg>50🪙</span>
+    </div><div class="th-swatch locked" onclick="buyTheme(&#39;neon&#39;)" style="background:#04040c;border-color: transparent">
+      <div class="th-preview"><div class="th-dot" style="background:#04040c"></div><div class="th-dot" style="background:#080818"></div><div class="th-dot" style="background:#a060ff"></div></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0">
+        <span class="th-name" style="flex:1;font-family:inherit;color:rgba(255,255,255,0.85)">Neon</span>
+        <div style="display:flex;gap:3px;align-items:center;flex-shrink:0"><div style="width:8px;height:8px;border-radius:50%;background:#a060ff;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#ff40a0;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#40ff90;flex-shrink:0"></div></div>
+      </div>
+      <span class="th-lock" style="color:rgba(255,255,255,0.85);opacity:0.7"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><rect x="2" y="5" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.3"></rect><path d="M4 5V3.5a2 2 0 014 0V5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path></svg>75🪙</span>
+    </div><div class="th-swatch locked" onclick="buyTheme(&#39;amethyst&#39;)" style="background:#0d0914;border-color: transparent">
+      <div class="th-preview"><div class="th-dot" style="background:#0d0914"></div><div class="th-dot" style="background:#160d20"></div><div class="th-dot" style="background:#c080ff"></div></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0">
+        <span class="th-name" style="flex:1;font-family:inherit;color:rgba(255,255,255,0.85)">Amethyst</span>
+        <div style="display:flex;gap:3px;align-items:center;flex-shrink:0"><div style="width:8px;height:8px;border-radius:50%;background:#c070ff;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#ff70c0;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#70ffc0;flex-shrink:0"></div></div>
+      </div>
+      <span class="th-lock" style="color:rgba(255,255,255,0.85);opacity:0.7"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><rect x="2" y="5" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.3"></rect><path d="M4 5V3.5a2 2 0 014 0V5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path></svg>100🪙</span>
+    </div><div class="th-swatch" onclick="applyTheme(&#39;phys-osc&#39;)" style="background:#020810;border-color: transparent">
+      <div class="th-preview"><div class="th-dot" style="background:#020810"></div><div class="th-dot" style="background:#030c16"></div><div class="th-dot" style="background:#40c8ff"></div></div>
+      <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0">
+        <span class="th-name" style="flex:1;font-family:&#39;Share Tech Mono&#39;,monospace;color:rgba(255,255,255,0.85)">Physics Oscilloscope</span>
+        <div style="display:flex;gap:3px;align-items:center;flex-shrink:0"><div style="width:8px;height:8px;border-radius:50%;background:#40c8ff;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#40ffa0;flex-shrink:0"></div><div style="width:8px;height:8px;border-radius:50%;background:#c060ff;flex-shrink:0"></div></div>
+      </div>
+      <span class="th-check" style="color:rgba(255,255,255,0.85)">✓</span>
+    </div></div></div></div></div>
+    <div style="text-align:center;padding:10px 0 14px;border-top:1px solid var(--bd);flex-shrink:0"><button class="help-btn" onclick="closeShop();openUnlockCode()" style="font-size:11px;opacity:0.7">🔑 Enter unlock code</button></div>
+  </div>
+</div>
+
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GCSE Physics Revision Tracker – Edexcel (9-1)</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f0f2f8;
+  --surface:#ffffff;
+  --surface2:#f7f8fc;
+  --surface3:#eef0f7;
+  --bd:rgba(0,0,0,0.08);
+  --bd2:rgba(0,0,0,0.14);
+  --tx:#1a1f36;
+  --tx2:#4a5568;
+  --tx3:#8a94a6;
+  --r:10px;
+  --font:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  --c1:#4361ee;--c1d:#2842cc;
+  --c2:#f4a261;--c2d:#d4771a;
+  --c3:#2ec4b6;--c3d:#1a9e96;
+  --shadow:0 1px 3px rgba(0,0,0,0.05),0 4px 12px rgba(0,0,0,0.06);
+  --hdr-bg:rgba(255,255,255,0.94);
+  --track:#eaecf5;
+  --hole:#ffffff;
+}
+/* ── THEMES ── */
+[data-theme="warm"]{
+  --bg:#f5efe6;--surface:#fffcf7;--surface2:#fdf6ec;--surface3:#f0e6d4;
+  --bd:rgba(0,0,0,0.09);--bd2:rgba(0,0,0,0.16);
+  --tx:#2c1d0e;--tx2:#6b4f35;--tx3:#a08060;
+  --shadow:0 1px 3px rgba(100,70,30,0.08),0 4px 12px rgba(100,70,30,0.1);
+  --hdr-bg:rgba(255,252,247,0.95);--track:#e6dccf;--hole:#fffcf7;
+
+  --c1:#c07020;--c1d:#a05810;--c2:#c03c50;--c2d:#a02840;--c3:#5a9030;--c3d:#447020;}
+[data-theme="lavender"]{
+  --bg:#eeebf8;--surface:#ffffff;--surface2:#f6f4fc;--surface3:#e8e4f6;
+  --bd:rgba(0,0,0,0.08);--bd2:rgba(0,0,0,0.14);
+  --tx:#1e1535;--tx2:#4a4070;--tx3:#8878aa;
+  --shadow:0 1px 3px rgba(60,40,120,0.06),0 4px 12px rgba(60,40,120,0.08);
+  --hdr-bg:rgba(255,255,255,0.94);--track:#ddd8f2;--hole:#ffffff;
+
+  --c1:#7c3aed;--c1d:#6020d0;--c2:#d43898;--c2d:#b82880;--c3:#059669;--c3d:#047850;}
+[data-theme="midnight"]{
+  --bg:#0d1117;--surface:#161b22;--surface2:#1c2128;--surface3:#22272e;
+  --bd:rgba(255,255,255,0.08);--bd2:rgba(255,255,255,0.15);
+  --tx:#e6edf3;--tx2:#8b949e;--tx3:#484f58;
+  --shadow:0 1px 3px rgba(0,0,0,0.4),0 4px 16px rgba(0,0,0,0.55);
+  --hdr-bg:rgba(22,27,34,0.97);--track:#2d333b;--hole:#161b22;
+
+  --c1:#5878f8;--c1d:#3858d8;--c2:#ffa060;--c2d:#e08040;--c3:#2ed8c8;--c3d:#18b8a8;}
+[data-theme="graphite"]{
+  --bg:#111111;--surface:#1e1e1e;--surface2:#252525;--surface3:#2e2e2e;
+  --bd:rgba(255,255,255,0.08);--bd2:rgba(255,255,255,0.15);
+  --tx:#e8e8e8;--tx2:#9e9e9e;--tx3:#606060;
+  --shadow:0 1px 3px rgba(0,0,0,0.5),0 4px 16px rgba(0,0,0,0.65);
+  --hdr-bg:rgba(30,30,30,0.97);--track:#333333;--hole:#1e1e1e;
+
+  --c1:#8888f0;--c1d:#6868d0;--c2:#e8a060;--c2d:#c88040;--c3:#50d0a8;--c3d:#38b090;}
+[data-theme="ocean"]{
+  --bg:#060d1a;--surface:#0a1628;--surface2:#0e1e35;--surface3:#122442;
+  --bd:rgba(0,200,255,0.1);--bd2:rgba(0,200,255,0.2);
+  --tx:#c8eeff;--tx2:#6ab8d4;--tx3:#3a7a94;
+  --shadow:0 1px 3px rgba(0,0,0,0.5),0 4px 16px rgba(0,0,0,0.65);
+  --hdr-bg:rgba(10,22,40,0.97);--track:#0e2a45;--hole:#0a1628;
+
+  --c1:#00c8ff;--c1d:#00a0d8;--c2:#ff9040;--c2d:#e07020;--c3:#00e8a0;--c3d:#00c080;}
+[data-theme="sunset"]{
+  --bg:#fef3ec;--surface:#fffaf7;--surface2:#fdf0e8;--surface3:#fae3d4;
+  --bd:rgba(0,0,0,0.08);--bd2:rgba(0,0,0,0.14);
+  --tx:#2d1a0e;--tx2:#8b4513;--tx3:#c4885a;
+  --shadow:0 1px 3px rgba(180,80,20,0.08),0 4px 12px rgba(180,80,20,0.1);
+  --hdr-bg:rgba(255,250,247,0.95);--track:#f5d5b8;--hole:#fffaf7;
+
+  --c1:#c85820;--c1d:#a84010;--c2:#a82848;--c2d:#882030;--c3:#487830;--c3d:#305820;}
+[data-theme="cherry"]{
+  --bg:#fff5f7;--surface:#ffffff;--surface2:#fff0f3;--surface3:#ffe4ea;
+  --bd:rgba(0,0,0,0.07);--bd2:rgba(0,0,0,0.12);
+  --tx:#3d0a14;--tx2:#8b3a4a;--tx3:#c4889a;
+  --shadow:0 1px 3px rgba(180,50,80,0.06),0 4px 12px rgba(180,50,80,0.08);
+  --hdr-bg:rgba(255,255,255,0.95);--track:#ffd4dc;--hole:#ffffff;
+
+  --c1:#d83060;--c1d:#b81848;--c2:#8030b0;--c2d:#601890;--c3:#1898a0;--c3d:#007880;}
+[data-theme="volcanic"]{
+  --bg:#0e0804;--surface:#1a1008;--surface2:#22160a;--surface3:#2a1c0e;
+  --bd:rgba(255,100,0,0.1);--bd2:rgba(255,100,0,0.2);
+  --tx:#ffd8b0;--tx2:#c87840;--tx3:#7a4a20;
+  --shadow:0 1px 3px rgba(0,0,0,0.5),0 4px 16px rgba(0,0,0,0.65);
+  --hdr-bg:rgba(26,16,8,0.97);--track:#2e1c08;--hole:#1a1008;
+
+  --c1:#ff6000;--c1d:#d84000;--c2:#ffb800;--c2d:#d89800;--c3:#ff3858;--c3d:#d81838;}
+[data-theme="arctic"]{
+  --bg:#f0f8ff;--surface:#ffffff;--surface2:#edf6ff;--surface3:#daeeff;
+  --bd:rgba(0,80,180,0.08);--bd2:rgba(0,80,180,0.15);
+  --tx:#0a1e3d;--tx2:#2a5490;--tx3:#6090c0;
+  --shadow:0 1px 3px rgba(0,80,180,0.06),0 4px 12px rgba(0,80,180,0.08);
+  --hdr-bg:rgba(255,255,255,0.95);--track:#c8e4f8;--hole:#ffffff;
+
+  --c1:#1868c8;--c1d:#0050a8;--c2:#0898b8;--c2d:#007898;--c3:#108858;--c3d:#006838;}
+[data-theme="neon"]{
+  --bg:#04040c;--surface:#080818;--surface2:#0c0c20;--surface3:#101028;
+  --bd:rgba(140,0,255,0.15);--bd2:rgba(140,0,255,0.28);
+  --tx:#e8d8ff;--tx2:#a060ff;--tx3:#604090;
+  --shadow:0 1px 3px rgba(0,0,0,0.6),0 4px 16px rgba(0,0,0,0.75);
+  --hdr-bg:rgba(8,8,24,0.98);--track:#14082e;--hole:#080818;
+  --c1:#a060ff;--c1d:#7030d0;
+
+  --c1:#a060ff;--c1d:#8040e0;--c2:#ff40a0;--c2d:#e02080;--c3:#40ff90;--c3d:#20d870;}
+[data-theme="rosegold"]{
+  --bg:#fdf5f0;--surface:#ffffff;--surface2:#fdf0ea;--surface3:#fae6de;
+  --bd:rgba(0,0,0,0.07);--bd2:rgba(0,0,0,0.12);
+  --tx:#2d1a14;--tx2:#9b6b5a;--tx3:#c4a090;
+  --shadow:0 1px 3px rgba(180,100,80,0.06),0 4px 12px rgba(180,100,80,0.08);
+  --hdr-bg:rgba(255,255,255,0.95);--track:#f5d8cc;--hole:#ffffff;
+
+  --c1:#c87040;--c1d:#a85020;--c2:#b83060;--c2d:#981840;--c3:#508840;--c3d:#386820;}
+[data-theme="amethyst"]{
+  --bg:#0d0914;--surface:#160d20;--surface2:#1c1128;--surface3:#221532;
+  --bd:rgba(180,100,255,0.12);--bd2:rgba(180,100,255,0.22);
+  --tx:#e8d0ff;--tx2:#b070e0;--tx3:#7040a0;
+  --shadow:0 1px 3px rgba(0,0,0,0.5),0 4px 16px rgba(0,0,0,0.65);
+  --hdr-bg:rgba(22,13,32,0.98);--track:#221038;--hole:#160d20;
+  --c1:#c080ff;--c1d:#9050cc;
+
+  --c1:#c070ff;--c1d:#a050e0;--c2:#ff70c0;--c2d:#e050a0;--c3:#70ffc0;--c3d:#40e0a0;}
+[data-theme="forest"]{
+  --bg:#0c1812;--surface:#122018;--surface2:#182e1e;--surface3:#1e3826;
+  --bd:rgba(255,255,255,0.08);--bd2:rgba(255,255,255,0.16);
+  --tx:#cce8d4;--tx2:#7aaa85;--tx3:#4a7055;
+  --shadow:0 1px 3px rgba(0,0,0,0.4),0 4px 16px rgba(0,0,0,0.55);
+  --hdr-bg:rgba(18,32,24,0.97);--track:#1e3826;--hole:#122018;
+
+  --c1:#58d888;--c1d:#38b868;--c2:#d8b030;--c2d:#b89010;--c3:#30c8d8;--c3d:#18a8b8;}
+body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px;line-height:1.5;min-height:100vh}
+.hdr{padding:0 20px;height:52px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--hdr-bg);backdrop-filter:blur(12px);z-index:200;box-shadow:0 1px 0 var(--bd)}
+.hdr-title{font-size:15px;font-weight:700;color:var(--tx)}
+.hdr-sub{font-size:11px;color:var(--tx3);margin-left:10px}
+.hdr-left{display:flex;align-items:baseline}
+.nav{padding:8px 16px;display:flex;gap:5px;overflow-x:auto;border-bottom:1px solid var(--bd);background:var(--surface);scrollbar-width:thin;scrollbar-color:var(--bd2) transparent}
+.nav::-webkit-scrollbar{height:3px}.nav::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:3px}
+.nb{padding:5px 11px;border:1.5px solid var(--bd2);border-radius:6px;background:transparent;color:var(--tx2);font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all 0.15s;font-family:var(--font)}
+.nb:hover{background:var(--surface3);color:var(--tx)}
+.nb.active{color:var(--tc,var(--c1));border-color:color-mix(in srgb,var(--tc,var(--c1)) 60%,transparent);background:color-mix(in srgb,var(--tc,var(--c1)) 14%,var(--surface))}
+.main{padding:20px;max-width:1100px;margin:0 auto}
+/* Dashboard summary */
+.dsb-summary{background:var(--surface);border:1px solid var(--bd);border-radius:var(--r);padding:20px 24px;margin-bottom:18px;box-shadow:var(--shadow)}
+.dsb-title{font-size:13px;font-weight:700;color:var(--tx);margin-bottom:14px}
+.dsb-row{display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap}
+.dsb-donuts{display:flex;gap:16px;flex-shrink:0;flex-wrap:wrap}
+.donut-wrap{display:flex;flex-direction:column;align-items:center;gap:5px}
+.donut-canvas-wrap{position:relative;width:80px;height:80px;flex-shrink:0}
+.donut-canvas-wrap canvas{position:absolute;inset:0;width:100%;height:100%}
+.donut-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
+.donut-pct{font-size:16px;font-weight:800;line-height:1}
+.donut-sub{font-size:8px;color:var(--tx3);text-transform:uppercase;letter-spacing:.4px;margin-top:1px}
+.donut-name{font-size:10px;font-weight:600;color:var(--tx2);text-align:center}
+.dsb-stats{display:flex;flex-wrap:wrap;gap:10px;flex:1;align-content:flex-start}
+.dstat{flex:1;min-width:90px;background:var(--surface2);border:1px solid var(--bd);border-radius:8px;padding:10px 12px}
+.dstat-lbl{font-size:9px;color:var(--tx3);margin-bottom:3px;text-transform:uppercase;letter-spacing:.4px;font-weight:600}
+.dstat-val{font-size:22px;font-weight:800;line-height:1}
+.dstat-sub{font-size:10px;color:var(--tx3);margin-top:2px}
+.dsb-legend{display:flex;gap:14px;margin-top:14px;flex-wrap:wrap}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--tx2)}
+.leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.grid-lbl{font-size:11px;font-weight:700;color:var(--tx3);margin-bottom:8px;text-transform:uppercase;letter-spacing:.6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:10px;margin-bottom:20px}
+/* Topic card */
+.tc{background:var(--surface);border:1px solid var(--bd);border-radius:var(--r);padding:14px;cursor:pointer;transition:all 0.18s;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.tc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--tc,var(--c1))}
+.tc:hover{border-color:color-mix(in srgb,var(--tc,var(--c1)) 40%,transparent);transform:translateY(-1px);box-shadow:0 4px 20px rgba(0,0,0,0.1)}
+.tc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+.tc-badge{font-size:10px;font-weight:800;color:var(--tc,var(--c1));background:color-mix(in srgb,var(--tc,var(--c1)) 10%,white);padding:2px 6px;border-radius:4px;border:1px solid color-mix(in srgb,var(--tc,var(--c1)) 20%,transparent)}
+.tc-paper{font-size:9px;color:var(--tx3);background:var(--surface3);padding:2px 5px;border-radius:4px;font-weight:600}
+.tc-name{font-size:12.5px;font-weight:700;color:var(--tx);margin-bottom:1px;line-height:1.3}
+.tc-cnt{font-size:10px;color:var(--tx3);margin-bottom:10px}
+.tc-pies{display:flex;gap:6px;align-items:flex-end}
+.pie-group{display:flex;flex-direction:column;align-items:center;gap:2px}
+.pie-lbl{font-size:8px;color:var(--tx3);text-align:center;white-space:nowrap}
+.pie-canvas-wrap{position:relative}
+.pie-canvas-wrap canvas{display:block}
+.pie-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--tx2);pointer-events:none}
+.tc-pct-big{flex:1;text-align:right;align-self:center;padding-bottom:2px}
+.tc-pct-num{font-size:20px;font-weight:800;line-height:1}
+.tc-pct-lbl{font-size:8px;color:var(--tx3)}
+/* Topic view */
+.back-btn{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--tx2);background:var(--surface);border:1px solid var(--bd);border-radius:6px;padding:5px 10px;cursor:pointer;font-family:var(--font);transition:all 0.15s;box-shadow:var(--shadow)}
+.back-btn:hover{background:var(--surface3);color:var(--tx)}
+.tv-hdr{background:var(--surface);border:1px solid var(--bd);border-radius:var(--r);padding:18px 22px;margin-bottom:12px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.tv-hdr::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--tc,var(--c1))}
+.tv-title{font-size:18px;font-weight:800;color:var(--tx);margin-bottom:12px}
+.tv-bars{display:flex;flex-wrap:wrap;gap:10px}
+.tvb{flex:1;min-width:130px}
+.tvb-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.tvb-lbl{font-size:10px;font-weight:600}
+.tvb-val{font-size:11px;font-weight:700;color:var(--tx2)}
+.bar-track{height:6px;background:var(--surface3);border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px;transition:width 0.4s ease}
+.back-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+/* Subtopic */
+.sub{background:var(--surface);border:1px solid var(--bd);border-radius:var(--r);margin-bottom:8px;overflow:hidden;box-shadow:var(--shadow)}
+.sub-hdr{padding:10px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;transition:background 0.1s;position:relative;overflow:hidden}
+.sub-hdr:hover{background:var(--surface2)}
+.sub-left{display:flex;align-items:center;gap:8px}
+.sub-id{font-size:11px;font-weight:800;min-width:36px}
+.sub-name{font-size:12.5px;font-weight:700;color:var(--tx)}
+.sub-right{display:flex;align-items:center;gap:7px}
+.sub-prog{font-size:10px;color:var(--tx3);background:var(--surface3);padding:2px 7px;border-radius:10px;white-space:nowrap}
+.chev{font-size:11px;color:var(--tx3);transition:transform 0.2s;line-height:1}
+.chev.open{transform:rotate(180deg)}
+/* Bulk bar */
+.bulk-bar{display:flex;align-items:center;gap:5px;padding:7px 14px;background:var(--surface2);border-bottom:1px solid var(--bd);flex-wrap:wrap}
+.bulk-lbl{font-size:10px;color:var(--tx3);font-weight:600;margin-right:2px;white-space:nowrap}
+.bb{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:600;border:1.5px solid;border-radius:5px;padding:3px 8px;cursor:pointer;font-family:var(--font);transition:all 0.15s;white-space:nowrap;background:var(--surface)}
+.bb1{color:var(--c1d);border-color:color-mix(in srgb,var(--c1) 35%,transparent)}.bb1:hover{background:color-mix(in srgb,var(--c1) 10%,white)}
+.bb2{color:var(--c2d);border-color:color-mix(in srgb,var(--c2) 40%,transparent)}.bb2:hover{background:color-mix(in srgb,var(--c2) 12%,white)}
+.bb3{color:var(--c3d);border-color:color-mix(in srgb,var(--c3) 40%,transparent)}.bb3:hover{background:color-mix(in srgb,var(--c3) 12%,white)}
+.bball{color:var(--tx2);border-color:var(--bd2)}.bball:hover{background:var(--surface3)}
+.bclr{margin-left:auto;font-size:10px;color:var(--tx3);background:none;border:1.5px solid var(--bd2);border-radius:5px;padding:3px 7px;cursor:pointer;font-family:var(--font);transition:all 0.15s;white-space:nowrap}
+.bclr:hover{background:#fff0f0;border-color:#fca5a5;color:#dc2626}
+/* Outcome rows */
+.col-hdr{display:grid;grid-template-columns:1fr 38px 38px 38px;padding:6px 14px;background:var(--surface2);border-bottom:1px solid var(--bd);border-top:1px solid var(--bd)}
+.ch{font-size:10px;font-weight:700;color:var(--tx3);text-align:center;text-transform:uppercase;letter-spacing:.3px}
+.or{display:grid;grid-template-columns:1fr 38px 38px 38px;padding:7px 14px;border-bottom:1px solid rgba(0,0,0,0.04);align-items:center;transition:background 0.1s}
+.or:last-child{border-bottom:none}
+.or:hover{background:var(--surface2)}
+.or.done{background:color-mix(in srgb,var(--c3) 7%,var(--surface))}
+.ot{font-size:12.5px;color:var(--tx);padding-right:10px;line-height:1.45}
+.hb{display:inline-flex;align-items:center;font-size:9px;font-weight:800;color:#c2410c;background:#fff7ed;border:1px solid #fed7aa;padding:1px 4px;border-radius:3px;margin-left:5px;vertical-align:middle;line-height:1.2}
+.cbw{display:flex;justify-content:center;align-items:center}
+.cb{width:22px;height:22px;border-radius:6px;border:2px solid var(--bd2);cursor:pointer;transition:all 0.15s;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;background:var(--surface)}
+.cb:hover{border-color:var(--hc,#aaa);background:color-mix(in srgb,var(--hc,#aaa) 8%,white);transform:scale(1.08)}
+.cb.on{border-color:transparent}
+.cb svg{display:none;width:12px;height:12px}
+.cb.on svg{display:block}
+.cb.r1{--hc:var(--c1)}.cb.r1.on{background:var(--c1);color:var(--surface)}
+.cb.r2{--hc:var(--c2)}.cb.r2.on{background:var(--c2);color:var(--surface)}
+.cb.r3{--hc:var(--c3)}.cb.r3.on{background:var(--c3);color:var(--surface)}
+.sub-body.hide{display:none}
+.rbtn{font-size:11px;color:var(--tx3);background:none;border:1px solid var(--bd2);border-radius:5px;padding:4px 8px;cursor:pointer;font-family:var(--font);transition:all 0.15s}
+.rbtn:hover{background:#fff0f0;border-color:#fca5a5;color:#dc2626}
+.hdr-actions{display:flex;align-items:center;gap:8px}
+/* Spec toggle */
+.spec-toggle{display:flex;align-items:center;background:var(--surface2);border:1px solid var(--bd2);border-radius:7px;padding:3px;gap:2px}
+.spec-btn{padding:4px 11px;border-radius:5px;border:none;font-size:11px;font-weight:600;cursor:pointer;font-family:var(--font);color:var(--tx3);background:transparent;transition:all 0.18s;white-space:nowrap}
+.spec-btn:hover{color:var(--tx2)}
+.spec-btn.active{background:var(--surface);color:var(--tx);box-shadow:0 1px 3px rgba(0,0,0,0.12)}
+.spec-btn.active.com{color:#0d9488}
+.spec-btn.active.sep{color:#6366f1}
+/* Sep-only hidden notice inside a topic */
+.sep-notice{margin:0 0 8px;padding:11px 14px;background:#f5f3ff;border:1px solid #ddd6fe;border-radius:var(--r);font-size:12px;color:#6d28d9;display:flex;align-items:center;gap:7px}
+.sep-notice svg{flex-shrink:0}
+/* Sep-only badge on subtopic headers */
+.sep-tag{font-size:9px;font-weight:700;color:#7c3aed;background:#ede9fe;border:1px solid #c4b5fd;padding:1px 6px;border-radius:4px;margin-left:7px;flex-shrink:0}
+.help-btn{display:flex;align-items:center;gap:4px;font-size:11px;font-weight:600;color:var(--tx2);background:var(--surface2);border:1px solid var(--bd2);border-radius:5px;padding:4px 10px;cursor:pointer;font-family:var(--font);transition:all 0.15s}
+.help-btn:hover{background:color-mix(in srgb,var(--c1) 10%,var(--surface));border-color:color-mix(in srgb,var(--c1) 40%,transparent);color:var(--c1)}
+/* ── TOUR ── */
+.tour-ov{position:fixed;inset:0;background:rgba(10,14,35,0.6);z-index:2000;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px);animation:fadeIn 0.2s ease}
+.tour-ov.hide{display:none}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.tour-card{background:var(--surface);border-radius:16px;padding:28px 26px 22px;max-width:440px;width:100%;box-shadow:0 24px 64px rgba(0,0,0,0.28);position:relative;animation:slideUp 0.25s ease}
+@keyframes slideUp{from{transform:translateY(12px);opacity:0}to{transform:translateY(0);opacity:1}}
+.tour-lbl{font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.7px;margin-bottom:14px}
+.tour-illo{width:100%;height:128px;border-radius:10px;background:var(--surface2);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;margin-bottom:20px;overflow:hidden}
+.tour-h{font-size:17px;font-weight:800;color:var(--tx);margin-bottom:8px;line-height:1.3}
+.tour-p{font-size:13px;color:var(--tx2);line-height:1.65;margin-bottom:22px}
+.tour-foot{display:flex;align-items:center;gap:8px}
+.tour-dots{display:flex;gap:5px;flex:1}
+.tdot{width:6px;height:6px;border-radius:50%;background:var(--bd2);transition:all 0.25s;flex-shrink:0}
+.tdot.on{background:var(--c1);width:18px;border-radius:3px}
+.tour-skip{font-size:11px;color:var(--tx3);background:none;border:none;cursor:pointer;font-family:var(--font);padding:4px 2px;transition:color 0.15s}
+.tour-skip:hover{color:var(--tx2)}
+.tbtn{padding:8px 18px;border-radius:7px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:var(--font);border:1.5px solid transparent;transition:all 0.15s}
+.tbtn-prev{background:var(--surface2);border-color:var(--bd2);color:var(--tx2)}.tbtn-prev:hover{background:var(--surface3)}
+.tbtn-next{background:var(--c1);color:#fff}.tbtn-next:hover{background:var(--c1d)}
+/* ── HOME RANK ROW ── */
+.home-rank-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+.home-rank-row .home-heading{margin-bottom:2px}
+.home-rank-row .home-sub{margin-bottom:0}
+.home-overall-rank{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0}
+.home-or-lbl{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--tx3)}
+.home-or-badge{font-size:13px;padding:5px 13px 5px 10px}
+.home-or-badge .rank-icon{font-size:18px}
+/* ── MOBILE MENU ── */
+.mob-menu-btn{display:none;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;border:1px solid var(--bd2);background:var(--surface2);cursor:pointer;flex-shrink:0;transition:all 0.15s}
+.mob-menu-btn:hover{background:var(--surface3)}
+.mob-menu-btn svg{display:block}
+.mob-drawer{display:none;position:fixed;top:0;right:0;bottom:0;width:260px;background:var(--surface);box-shadow:-8px 0 32px rgba(0,0,0,0.18);z-index:1500;flex-direction:column;padding:16px;gap:6px;overflow-y:auto}
+.mob-drawer.open{display:flex}
+.mob-drawer-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--bd)}
+.mob-drawer-title{font-size:14px;font-weight:700;color:var(--tx)}
+.mob-close-x{background:none;border:none;cursor:pointer;color:var(--tx3);font-size:20px;line-height:1;font-family:var(--font)}
+.mob-drawer .spec-toggle{width:100%;margin-bottom:4px}
+.mob-drawer .spec-btn{flex:1;padding:8px 0}
+.mob-drawer .help-btn{width:100%;justify-content:flex-start;padding:10px 12px;font-size:13px;border-radius:8px}
+.mob-drawer .rbtn{width:100%;padding:10px 12px;font-size:12px;border-radius:8px;text-align:left}
+.mob-scrim{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:1499}
+.mob-scrim.open{display:block}
+
+@media(max-width:960px){
+  .hdr-actions .spec-toggle,.hdr-actions .help-btn:not(.pet-btn),.hdr-actions .rbtn{display:none}
+  .mob-menu-btn{display:flex}
+  .hdr{height:auto;min-height:48px;padding:9px 16px}
+}
+@media(max-width:640px){
+  .main{padding:10px}
+  .grid{grid-template-columns:1fr 1fr;gap:8px}
+  .dsb-donuts{gap:10px}
+  .dsb-row{gap:12px;flex-direction:column}
+  .tour-card{padding:22px 18px 18px}
+  .tour-illo{height:108px}
+  /* Header */
+  .hdr{height:auto;padding:10px 14px;flex-wrap:wrap;gap:6px}
+  .hdr-left{flex:1;min-width:0}
+  .hdr-sub{display:none}
+  .hdr-actions .spec-toggle,.hdr-actions .help-btn:not(.pet-btn),.hdr-actions .rbtn{display:none}
+  .mob-menu-btn{display:flex}
+  /* Home rank row */
+  .home-rank-row{flex-direction:column;align-items:flex-start;gap:10px}
+  .home-overall-rank{align-items:flex-start}
+  /* Home grid */
+  .home-grid{grid-template-columns:1fr}
+  /* Nav wraps */
+  .nav{gap:4px;padding:7px 10px}
+  .nb{font-size:10px;padding:4px 8px}
+  /* Dashboard donuts smaller */
+  .dsb-summary{padding:14px}
+  /* Topic view bars */
+  .tv-bars{gap:8px}
+  /* Subtopic col headers */
+  .col-hdr{grid-template-columns:1fr 48px 48px 48px}
+  .or{grid-template-columns:1fr 48px 48px 48px 80px}
+  /* Bulk bar wraps */
+  .bulk-bar{flex-wrap:wrap;gap:5px}
+  /* Home cards */
+  .hsc{padding:14px 14px 12px}
+}
+/* ── SAVE CODE MODAL ── */
+.sc-ov{position:fixed;inset:0;background:rgba(10,14,35,0.55);z-index:2000;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px);animation:fadeIn 0.18s ease}
+.sc-ov.hide{display:none}
+.sc-card{background:var(--surface);border-radius:14px;padding:26px 24px 22px;max-width:420px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.28);animation:slideUp 0.22s ease}
+.sc-h{font-size:16px;font-weight:800;color:var(--tx);margin-bottom:6px}
+.sc-p{font-size:12.5px;color:var(--tx2);line-height:1.6;margin-bottom:16px}
+.sc-tabs{display:flex;gap:0;border:1px solid var(--bd2);border-radius:7px;overflow:hidden;margin-bottom:16px}
+.sc-tab{flex:1;padding:7px 0;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--font);border:none;background:transparent;color:var(--tx3);transition:all 0.15s}
+.sc-tab.on{background:var(--c1);color:#fff}
+.sc-code{width:100%;font-family:monospace;font-size:11px;padding:10px 12px;border:1px solid var(--bd2);border-radius:8px;background:var(--surface2);color:var(--tx);resize:none;height:90px;line-height:1.5}
+.sc-code:focus{outline:2px solid var(--c1);outline-offset:1px}
+.sc-actions{display:flex;gap:8px;margin-top:12px}
+.sc-btn{flex:1;padding:9px 14px;border-radius:7px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:var(--font);border:1.5px solid transparent;transition:all 0.15s}
+.sc-btn-pri{background:var(--c1);color:#fff}.sc-btn-pri:hover{background:var(--c1d)}
+.sc-btn-sec{background:var(--surface2);border-color:var(--bd2);color:var(--tx2)}.sc-btn-sec:hover{background:var(--surface3)}
+.sc-notice{font-size:11px;margin-top:10px;padding:8px 10px;border-radius:6px;text-align:center}
+.sc-notice.ok{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0}
+.sc-notice.err{background:#fef2f2;color:#dc2626;border:1px solid #fca5a5}
+.sc-notice.hide{display:none}
+/* ── THEME PICKER ── */
+.th-ov{position:fixed;inset:0;background:rgba(10,14,35,0.45);z-index:2000;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px);animation:fadeIn 0.18s ease}
+.th-ov.hide{display:none}
+.th-card{background:var(--surface);border-radius:14px;padding:22px 22px 20px;max-width:560px;width:100%;max-height:85vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.28);animation:slideUp 0.22s ease}
+.th-card-body{overflow-y:auto;flex:1;scrollbar-width:thin;scrollbar-color:var(--bd2) transparent}
+.th-card-body::-webkit-scrollbar{width:4px}.th-card-body::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:4px}
+.th-h{font-size:15px;font-weight:800;color:var(--tx);margin-bottom:4px}
+.th-sub{font-size:11.5px;color:var(--tx3);margin-bottom:18px}
+.th-cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.th-col-lbl{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--tx3);margin-bottom:8px}
+.th-swatches{display:flex;flex-direction:column;gap:6px}
+.th-swatch{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:9px;border:2px solid transparent;cursor:pointer;transition:all 0.15s;background:var(--surface2)}
+.th-swatch:hover{border-color:rgba(128,128,128,0.5)!important;filter:brightness(1.08)}
+.th-swatch.active{background:color-mix(in srgb,var(--c1) 8%,var(--surface))}
+.th-preview{display:flex;gap:3px;flex-shrink:0}
+.th-dot{width:11px;height:11px;border-radius:50%}
+.th-name{font-size:12px;font-weight:600;color:var(--tx2)}
+.th-check{margin-left:auto;font-size:12px;color:var(--c1);opacity:0;transition:opacity 0.15s}
+.th-swatch.active .th-check{opacity:1}
+.th-close{display:block;width:100%;margin-top:14px;padding:9px;border-radius:7px;border:1px solid var(--bd2);background:var(--surface2);color:var(--tx2);font-size:12.5px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all 0.15s}
+.th-close:hover{background:var(--surface3)}
+/* ── SUBJECT CHOOSER ── */
+.sj-ov{position:fixed;inset:0;background:rgba(10,14,35,0.5);z-index:2000;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(5px);animation:fadeIn 0.18s ease}
+.sj-ov.hide{display:none}
+.sj-card{background:var(--surface);border-radius:16px;padding:24px 24px 20px;max-width:640px;width:100%;max-height:82vh;display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,0.28);animation:slideUp 0.22s ease}
+.sj-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px;flex-shrink:0}
+.sj-title{font-size:16px;font-weight:800;color:var(--tx)}
+.sj-sub{font-size:11.5px;color:var(--tx3);margin-top:2px}
+.sj-close-x{background:none;border:none;cursor:pointer;color:var(--tx3);font-size:18px;line-height:1;padding:0 2px;transition:color 0.15s;font-family:var(--font)}
+.sj-close-x:hover{color:var(--tx)}
+.sj-body{overflow-y:auto;flex:1;scrollbar-width:thin;scrollbar-color:var(--bd2) transparent}
+.sj-body::-webkit-scrollbar{width:4px}.sj-body::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:4px}
+/* Qualification level heading */
+.sj-qlbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--tx3);padding:12px 0 8px;border-top:1px solid var(--bd);margin-top:4px}
+.sj-qlbl:first-child{border-top:none;margin-top:0;padding-top:0}
+/* Exam board section */
+.sj-board{margin-bottom:14px}
+.sj-board-lbl{font-size:11px;font-weight:700;color:var(--tx2);margin-bottom:7px;display:flex;align-items:center;gap:6px}
+.sj-board-pill{font-size:9px;font-weight:600;color:var(--tx3);background:var(--surface2);border:1px solid var(--bd2);padding:1px 6px;border-radius:4px}
+/* Subject items */
+.sj-subjects{display:flex;flex-wrap:wrap;gap:6px}
+.sj-item{display:flex;align-items:center;gap:7px;padding:7px 11px;border-radius:8px;border:1.5px solid var(--bd);background:var(--surface2);cursor:pointer;transition:all 0.15s;font-size:12px;font-weight:600;color:var(--tx2)}
+.sj-item:hover{border-color:color-mix(in srgb,var(--c1) 55%,transparent);background:color-mix(in srgb,var(--c1) 7%,var(--surface));color:var(--c1)}
+.sj-item.current{border-color:var(--c1);background:color-mix(in srgb,var(--c1) 10%,var(--surface));color:var(--c1)}
+.sj-item.soon{opacity:0.45;cursor:default;pointer-events:none}
+.sj-dot{width:7px;height:7px;border-radius:50%;background:var(--c1);flex-shrink:0}
+.sj-item.soon .sj-dot{background:var(--tx3)}
+.sj-soon-lbl{font-size:9px;font-weight:600;color:var(--tx3);margin-left:2px}
+@media(max-width:560px){.sj-card{padding:18px 16px 16px}.sj-subjects{flex-direction:column}.sj-item{width:100%}}
+/* ── COINS ── */
+.coin-counter{display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;background:linear-gradient(135deg,#fef3c7,#fde68a);border:1.5px solid #f59e0b;cursor:pointer;transition:all 0.2s;user-select:none}
+.coin-counter:hover{transform:scale(1.05)}
+.coin-counter .coin-icon{font-size:15px;line-height:1}
+.coin-counter .coin-bal{font-size:12px;font-weight:800;color:#92400e}
+.coin-counter.bounce{animation:coinBounce 0.35s cubic-bezier(.36,.07,.19,.97)}
+@keyframes coinBounce{0%,100%{transform:scale(1)}40%{transform:scale(1.25)}70%{transform:scale(0.92)}}
+/* Flying coin animation */
+.fly-coin{position:fixed;width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fef08a,#f59e0b 60%,#b45309);border:2px solid #f59e0b;box-shadow:0 2px 8px rgba(245,158,11,0.5);font-size:12px;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:4000;font-weight:900;color:#92400e}
+@keyframes flyUp{0%{transform:translateY(0) rotate(0deg) scale(1);opacity:1}60%{transform:translateY(-80px) rotate(360deg) scale(1.1);opacity:1}100%{transform:translateY(-120px) rotate(540deg) scale(0.5);opacity:0}}
+/* Theme shop */
+.th-shop-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--tx3);margin:10px 0 6px;padding-top:10px;border-top:1px solid var(--bd)}
+.th-swatch.locked{opacity:0.7;position:relative}
+.th-swatch.locked:hover{border-color:color-mix(in srgb,#f59e0b 55%,transparent);background:color-mix(in srgb,#f59e0b 7%,var(--surface))}
+.th-lock{display:flex;align-items:center;gap:4px;margin-left:auto;font-size:10px;font-weight:700;color:#92400e;background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #f59e0b;padding:2px 7px;border-radius:10px;white-space:nowrap}
+.th-lock svg{flex-shrink:0}
+
+/* ── SHOP MODAL ── */
+.shop-ov{position:fixed;inset:0;background:rgba(10,14,35,0.5);z-index:2000;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px);animation:fadeIn 0.18s ease}
+.shop-ov.hide{display:none}
+.shop-card{background:var(--surface);border-radius:16px;max-width:580px;width:100%;max-height:88vh;display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,0.28);animation:slideUp 0.22s ease;overflow:hidden}
+.shop-hdr{display:flex;align-items:flex-start;justify-content:space-between;padding:18px 20px 14px;border-bottom:1px solid var(--bd);flex-shrink:0}
+.shop-title{font-size:17px;font-weight:800;color:var(--tx)}
+.shop-bal{font-size:12px;color:var(--tx3);margin-top:3px;display:flex;align-items:center;gap:4px}
+.shop-tabs-bar{display:flex;border-bottom:1px solid var(--bd);flex-shrink:0}
+.shop-tab{flex:1;padding:10px 0;font-size:12.5px;font-weight:600;cursor:pointer;font-family:var(--font);border:none;background:transparent;color:var(--tx3);transition:all 0.15s;border-bottom:2.5px solid transparent;margin-bottom:-1px}
+.shop-tab.on{color:var(--c1);border-bottom-color:var(--c1)}
+.shop-tab:hover:not(.on){color:var(--tx2);background:var(--surface2)}
+.shop-body{overflow-y:auto;flex:1;padding:16px;scrollbar-width:thin;scrollbar-color:var(--bd2) transparent}
+.shop-body::-webkit-scrollbar{width:4px}.shop-body::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:4px}
+.shop-sec{margin-bottom:20px}
+.shop-sec-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--tx3);margin-bottom:10px}
+/* Font swatches */
+.font-list{display:flex;flex-direction:column;gap:6px}
+.font-sw{display:flex;align-items:center;gap:12px;padding:10px 13px;border-radius:9px;border:2px solid transparent;cursor:pointer;transition:all 0.15s;background:var(--surface2)}
+.font-sw:hover{border-color:var(--bd2);background:var(--surface3)}
+.font-sw.active{border-color:var(--c1);background:color-mix(in srgb,var(--c1) 8%,var(--surface))}
+.font-sw.locked{opacity:0.65}
+.font-preview-txt{font-size:17px;font-weight:600;color:var(--tx);flex:1;line-height:1.2}
+.font-check{color:var(--c1);font-size:14px;opacity:0;margin-left:auto}
+.font-sw.active .font-check{opacity:1}
+/* Layout options */
+.layout-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.layout-opt{display:flex;flex-direction:column;align-items:center;gap:6px;padding:13px 8px 10px;border-radius:10px;border:2px solid var(--bd);cursor:pointer;transition:all 0.15s;background:var(--surface2);text-align:center;position:relative}
+.layout-opt:hover{border-color:var(--bd2);background:var(--surface3)}
+.layout-opt.active{border-color:var(--c1);background:color-mix(in srgb,var(--c1) 8%,var(--surface))}
+.layout-opt.locked:hover{border-color:color-mix(in srgb,#f59e0b 50%,transparent)}
+.lo-icon{font-size:22px;line-height:1}
+.lo-name{font-size:11px;font-weight:600;color:var(--tx2);line-height:1.3}
+.lo-check{position:absolute;top:6px;right:8px;font-size:12px;color:var(--c1);opacity:0}
+.layout-opt.active .lo-check{opacity:1}
+/* Compact list dashboard */
+.dsb-list{display:flex;flex-direction:column;gap:5px;margin-top:4px}
+
+.dl-viz{display:flex;align-items:center;flex-shrink:0}
+.dl-pie-group{display:flex;gap:5px;align-items:center}
+.dl-pie-wrap{position:relative;width:28px;height:28px;flex-shrink:0}
+.dl-pie-wrap canvas{position:absolute;inset:0}
+.dl-pie-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;color:var(--tx2)}
+.dl-row{display:flex;align-items:center;gap:10px;background:var(--surface);border-radius:8px;padding:9px 13px;border:1px solid var(--bd);cursor:pointer;transition:all 0.15s}
+.dl-row:hover{border-color:var(--bd2);background:var(--surface2);transform:translateX(2px)}
+.dl-id{font-size:10px;font-weight:700;width:30px;flex-shrink:0}
+.dl-name{font-size:12px;font-weight:600;color:var(--tx);flex:1}
+.dl-bars{display:flex;gap:5px;align-items:center}
+.dl-bar-wrap{display:flex;flex-direction:column;align-items:center;gap:2px}
+.dl-bar-track{width:46px;height:5px;background:var(--track);border-radius:3px;overflow:hidden}
+.dl-bar-fill{height:100%;border-radius:3px}
+.dl-pct{font-size:8px;color:var(--tx3);font-weight:600}
+/* Dot/hex matrix */
+.outcome-matrix{padding:16px;background:var(--surface);border-radius:var(--r);border:1px solid var(--bd);margin-bottom:12px}
+.matrix-sub-lbl{font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;margin-top:12px}
+.matrix-sub-lbl:first-child{margin-top:0}
+.matrix-dots{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:2px}
+.m-dot{width:16px;height:16px;border-radius:50%;cursor:pointer;transition:transform 0.12s;flex-shrink:0}
+.m-dot:hover{transform:scale(1.35)}
+.matrix-hexes{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:2px}
+.m-hex-wrap{cursor:pointer;transition:transform 0.12s}
+.m-hex-wrap:hover{transform:scale(1.2)}
+.m-hex{width:20px;height:18px;clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%)}
+.matrix-legend{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;border-top:1px solid var(--bd);padding-top:10px}
+.ml-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--tx3)}
+.ml-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+/* Focus mode */
+.focus-wrap{max-width:600px;margin:0 auto}
+.focus-nav-bar{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.focus-nav-btn{background:var(--surface2);border:1px solid var(--bd2);border-radius:7px;padding:7px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--font);color:var(--tx2);transition:all 0.15s;white-space:nowrap}
+.focus-nav-btn:hover:not(:disabled){background:var(--surface3)}
+.focus-nav-btn:disabled{opacity:0.35;cursor:default}
+.focus-nav-lbl{flex:1;text-align:center;font-size:11px;color:var(--tx3);line-height:1.4}
+.focus-card{background:var(--surface);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden}
+.focus-card-hdr{padding:9px 14px;background:var(--surface2);border-bottom:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center}
+.focus-card-hdr-lbl{font-size:11px;font-weight:700;color:var(--tx2)}
+.focus-card-hdr-sub{font-size:10px;color:var(--tx3)}
+.focus-outcome-row{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid var(--bd)}
+.focus-outcome-row:last-child{border-bottom:none}
+.focus-outcome-txt{flex:1;font-size:12.5px;color:var(--tx);line-height:1.4}
+.focus-outcome-cbs{display:flex;gap:7px;flex-shrink:0}
+.focus-big-cb{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.15s;border:1.5px solid;font-size:13px;overflow:hidden;user-select:none}
+.focus-big-cb.r-off{border-color:var(--bd2);background:var(--surface2);color:var(--tx3)}
+.focus-big-cb.r-on{border-color:color-mix(in srgb,var(--c1) 40%,transparent);background:color-mix(in srgb,var(--c1) 12%,var(--surface));color:var(--c1)}
+.focus-big-cb.e-off{border-color:var(--bd2);background:var(--surface2);color:var(--tx3)}
+.focus-big-cb.e-on{border-color:color-mix(in srgb,var(--c2) 40%,transparent);background:color-mix(in srgb,var(--c2) 12%,var(--surface));color:var(--c2)}
+.focus-big-cb.m-off{border-color:var(--bd2);background:var(--surface2);color:var(--tx3)}
+.focus-big-cb.m-on{border-color:color-mix(in srgb,var(--c3) 40%,transparent);background:color-mix(in srgb,var(--c3) 12%,var(--surface));color:var(--c3)}
+.focus-prog-dots{display:flex;gap:4px;margin-top:10px;justify-content:center;flex-wrap:wrap}
+.focus-prog-dot{width:6px;height:6px;border-radius:50%;background:var(--track);transition:all 0.25s;flex-shrink:0;cursor:pointer}
+.focus-prog-dot.on{background:var(--c1);width:16px;border-radius:3px}
+/* Topic table view */
+.topic-table-wrap{overflow-x:auto;margin-top:12px}
+.topic-table{width:100%;border-collapse:collapse;font-size:12px}
+.topic-table th{background:var(--surface2);padding:7px 10px;text-align:left;font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.5px;border-bottom:1.5px solid var(--bd2)}
+.topic-table th:not(:first-child){text-align:center;width:44px}
+.topic-table td{padding:7px 10px;border-bottom:1px solid var(--bd);color:var(--tx);vertical-align:middle}
+.topic-table td:not(:first-child){text-align:center}
+.topic-table tr:last-child td{border-bottom:none}
+.t-sub-row td{background:var(--surface2);font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.4px;padding:5px 10px}
+.topic-table .t-done td{background:color-mix(in srgb,var(--c3) 6%,var(--surface))}
+.t-cb{width:15px;height:15px;border-radius:3px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:10px;border:1px solid var(--bd2);transition:all 0.12s;overflow:hidden;user-select:none}
+.t-cb.r-on{background:var(--c1);border-color:var(--c1);color:var(--surface)}
+.t-cb.e-on{background:var(--c2);border-color:var(--c2);color:var(--surface)}
+.t-cb.m-on{background:var(--c3);border-color:var(--c3);color:var(--surface)te}
+
+
+/* ── STAFF ROOM ── */
+.sr-ov{position:fixed;inset:0;background:rgba(10,14,35,0.55);z-index:4000;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px);animation:fadeIn 0.18s ease;overflow-y:auto}
+.sr-ov.hide{display:none}
+.sr-card{background:var(--surface);border-radius:16px;max-width:640px;width:100%;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,0.3);animation:slideUp 0.22s ease;overflow:hidden}
+.sr-hdr{padding:18px 20px 14px;border-bottom:1px solid var(--bd);flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
+.sr-title{font-size:17px;font-weight:800;color:var(--tx)}
+.sr-subtitle{font-size:12px;color:var(--tx3);margin-top:2px}
+.sr-body{overflow-y:auto;flex:1;padding:16px 20px 20px}
+.sr-section{margin-bottom:22px}
+.sr-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--tx3);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--bd)}
+.sr-table{width:100%;border-collapse:collapse;font-size:12px}
+.sr-table tr{border-bottom:1px solid var(--bd)}
+.sr-table tr:last-child{border-bottom:none}
+.sr-table td{padding:7px 8px;vertical-align:middle}
+.sr-code{font-family:var(--font-mono,monospace);font-size:12px;font-weight:700;background:var(--surface2);color:var(--c1);padding:3px 8px;border-radius:5px;letter-spacing:.5px;white-space:nowrap;user-select:all;cursor:copy;border:1px solid var(--bd2)}
+.sr-code:hover{background:var(--surface3)}
+.sr-desc{color:var(--tx2)}
+.sr-note{font-size:11px;color:var(--tx3);background:var(--surface2);border-radius:8px;padding:10px 13px;margin-bottom:14px;line-height:1.5;border-left:3px solid var(--c1)}
+/* ── UNLOCK CODE MODAL ── */
+.uc-ov{position:fixed;inset:0;background:rgba(10,14,35,0.55);z-index:3000;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px);animation:fadeIn 0.18s ease}
+.uc-ov.hide{display:none}
+.uc-card{background:var(--surface);border-radius:14px;max-width:380px;width:100%;box-shadow:0 24px 64px rgba(0,0,0,0.28);animation:slideUp 0.22s ease;overflow:hidden}
+.uc-hdr{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 12px;border-bottom:1px solid var(--bd)}
+.uc-title{font-size:15px;font-weight:800;color:var(--tx)}
+.uc-body{padding:18px}
+.uc-desc{font-size:12.5px;color:var(--tx2);margin-bottom:14px;line-height:1.5}
+.uc-input-row{display:flex;gap:8px}
+.uc-input{flex:1;padding:9px 12px;border-radius:8px;border:1.5px solid var(--bd2);background:var(--surface2);color:var(--tx);font-size:13px;font-weight:600;font-family:var(--font);text-transform:uppercase;letter-spacing:.5px;outline:none;transition:border-color 0.15s}
+.uc-input:focus{border-color:var(--c1)}
+.uc-submit{padding:9px 16px;border-radius:8px;background:var(--c1);color:white;font-size:12.5px;font-weight:700;border:none;cursor:pointer;font-family:var(--font);transition:opacity 0.15s}
+.uc-submit:hover{opacity:0.88}
+.uc-result{margin-top:12px;padding:9px 13px;border-radius:8px;font-size:12.5px;font-weight:600;display:none}
+.uc-result.ok{background:color-mix(in srgb,var(--c3) 15%,var(--surface));color:var(--c3);border:1px solid color-mix(in srgb,var(--c3) 30%,transparent);display:block}
+.uc-result.err{background:color-mix(in srgb,#ef4444 12%,var(--surface));color:#ef4444;border:1px solid color-mix(in srgb,#ef4444 25%,transparent);display:block}
+.uc-history{margin-top:14px;border-top:1px solid var(--bd);padding-top:12px}
+.uc-history-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--tx3);margin-bottom:7px}
+.uc-history-item{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--tx2);padding:3px 0}
+.uc-history-item span:first-child{font-weight:700;letter-spacing:.4px;font-family:monospace;color:var(--tx)}
+
+/* ── SHAPE OVERVIEW ── */
+.sh-wrap{background:var(--surface);border-radius:var(--r);border:1px solid var(--bd);padding:16px 16px 12px;margin-bottom:14px}
+.sh-svg{width:100%;height:auto;display:block;max-height:270px}
+.sh-legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;padding-top:10px;border-top:1px solid var(--bd)}
+.sh-li{display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--tx3)}
+.sh-ld{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+
+[data-theme="cs-light"]{
+  --bg:#f0f7f0;--surface:#ffffff;--surface2:#e8f5e8;--surface3:#d8eed8;
+  --bd:rgba(0,0,0,0.08);--bd2:rgba(0,0,0,0.14);
+  --tx:#0a2a0a;--tx2:#2a5a2a;--tx3:#4a7a4a;
+  --shadow:0 1px 3px rgba(0,60,0,0.1),0 4px 16px rgba(0,60,0,0.08);
+  --hdr-bg:rgba(232,245,232,0.97);--track:#c8e8c8;--hole:#e8f5e8;
+  --c1:#1a9a1a;--c1d:#0a7a0a;--c2:#5aaa00;--c2d:#3a8a00;--c3:#00909a;--c3d:#007080;}
+[data-theme="cs-dark"]{
+  --bg:#060e06;--surface:#081208;--surface2:#0c1a0c;--surface3:#102210;
+  --bd:rgba(0,255,65,0.08);--bd2:rgba(0,255,65,0.16);
+  --tx:#c0f0c0;--tx2:#4a9a4a;--tx3:#2a6a2a;
+  --shadow:0 1px 3px rgba(0,0,0,0.5),0 4px 16px rgba(0,0,0,0.7);
+  --hdr-bg:rgba(8,18,8,0.97);--track:#0c1a0c;--hole:#081208;
+  --c1:#00ff41;--c1d:#00cc33;--c2:#39ff7a;--c2d:#20dd5a;--c3:#00e5d0;--c3d:#00b5a0;}
+[data-theme="chem-light"]{
+  --bg:#fffaf4;--surface:#ffffff;--surface2:#fef6ec;--surface3:#faeed8;
+  --bd:rgba(0,0,0,0.08);--bd2:rgba(0,0,0,0.14);
+  --tx:#3a1800;--tx2:#7a4010;--tx3:#aa7040;
+  --shadow:0 1px 3px rgba(80,30,0,0.1),0 4px 16px rgba(80,30,0,0.07);
+  --hdr-bg:rgba(254,246,236,0.97);--track:#f0e0c0;--hole:#fef6ec;
+  --c1:#d86000;--c1d:#b84000;--c2:#c89000;--c2d:#a87000;--c3:#2a8a2a;--c3d:#1a6a1a;}
+[data-theme="chem-dark"]{
+  --bg:#100a00;--surface:#180e00;--surface2:#201400;--surface3:#281c00;
+  --bd:rgba(255,140,0,0.1);--bd2:rgba(255,140,0,0.2);
+  --tx:#ffe0a0;--tx2:#c87030;--tx3:#7a4010;
+  --shadow:0 1px 3px rgba(0,0,0,0.5),0 4px 16px rgba(0,0,0,0.7);
+  --hdr-bg:rgba(24,14,0,0.97);--track:#201400;--hole:#180e00;
+  --c1:#ff8c00;--c1d:#d86000;--c2:#ffc040;--c2d:#d0a020;--c3:#40d080;--c3d:#20b060;}
+[data-theme="bio-light"]{
+  --bg:#f4faf0;--surface:#ffffff;--surface2:#ecf8e4;--surface3:#dff0d4;
+  --bd:rgba(0,0,0,0.08);--bd2:rgba(0,0,0,0.14);
+  --tx:#0a2a08;--tx2:#2a5a20;--tx3:#4a7a38;
+  --shadow:0 1px 3px rgba(0,50,0,0.1),0 4px 16px rgba(0,50,0,0.07);
+  --hdr-bg:rgba(236,248,228,0.97);--track:#c8e8b8;--hole:#ecf8e4;
+  --c1:#2a9a0a;--c1d:#1a7a00;--c2:#7ab800;--c2d:#5a9800;--c3:#00a870;--c3d:#008850;}
+[data-theme="bio-dark"]{
+  --bg:#060e04;--surface:#0a1808;--surface2:#0e200c;--surface3:#122810;
+  --bd:rgba(125,222,90,0.08);--bd2:rgba(125,222,90,0.16);
+  --tx:#c0f0a0;--tx2:#5aaa38;--tx3:#3a7a20;
+  --shadow:0 1px 3px rgba(0,0,0,0.5),0 4px 16px rgba(0,0,0,0.7);
+  --hdr-bg:rgba(10,24,8,0.97);--track:#0e200c;--hole:#0a1808;
+  --c1:#7dde5a;--c1d:#5abe3a;--c2:#c8e87a;--c2d:#a8c85a;--c3:#5dcaa5;--c3d:#3daa85;}
+[data-theme="classics-light"]{
+  --bg:#fdf6ec;--surface:#fffdf8;--surface2:#f8eedc;--surface3:#f0e4cc;
+  --bd:rgba(0,0,0,0.08);--bd2:rgba(0,0,0,0.14);
+  --tx:#3a1400;--tx2:#7a4a18;--tx3:#aa8048;
+  --shadow:0 1px 3px rgba(80,30,0,0.1),0 4px 16px rgba(80,30,0,0.07);
+  --hdr-bg:rgba(248,238,220,0.97);--track:#e8d4a8;--hole:#f8eedc;
+  --c1:#c03000;--c1d:#a02000;--c2:#c89000;--c2d:#a87000;--c3:#2a3aaa;--c3d:#1a2a8a;}
+[data-theme="classics-dark"]{
+  --bg:#0e0a04;--surface:#180e04;--surface2:#221508;--surface3:#2c1c0c;
+  --bd:rgba(212,160,68,0.1);--bd2:rgba(212,160,68,0.2);
+  --tx:#f0d8a0;--tx2:#c09040;--tx3:#7a5820;
+  --shadow:0 1px 3px rgba(0,0,0,0.5),0 4px 16px rgba(0,0,0,0.7);
+  --hdr-bg:rgba(24,14,4,0.97);--track:#221508;--hole:#180e04;
+  --c1:#e8602a;--c1d:#c84010;--c2:#d4a044;--c2d:#b08020;--c3:#9070e0;--c3d:#7050c0;}
+.cb.has-icon-narrow{font-size:9px;letter-spacing:-1px}
+.t-cb.has-icon-narrow{font-size:7px;letter-spacing:-1px}
+.focus-big-cb.has-icon-narrow{font-size:12px;letter-spacing:-1px}
+.cb.has-icon{font-size:11px;font-weight:700;letter-spacing:0;line-height:1}
+.t-cb.has-icon{font-size:8px;font-weight:700;letter-spacing:0}
+.focus-big-cb.has-icon{font-size:15px;font-weight:700;letter-spacing:0;line-height:1;white-space:nowrap}
+
+[data-theme="phys-osc"]{
+  --bg:#020810;--surface:#030c16;--surface2:#061020;--surface3:#091428;
+  --bd:rgba(64,200,255,0.08);--bd2:rgba(64,200,255,0.18);
+  --tx:#c0e8ff;--tx2:#2a8aaa;--tx3:#1a5a70;
+  --shadow:0 1px 3px rgba(0,0,0,0.6),0 4px 16px rgba(0,0,0,0.8);
+  --hdr-bg:rgba(3,12,22,0.97);--track:#061828;--hole:#030c16;
+  --c1:#40c8ff;--c1d:#20a8df;--c2:#40ffa0;--c2d:#20df80;--c3:#c060ff;--c3d:#a040df;}
+[data-theme="phys-signal"]{
+  --bg:#f0f5fa;--surface:#ffffff;--surface2:#e4eef8;--surface3:#d4e4f4;
+  --bd:rgba(0,80,160,0.08);--bd2:rgba(0,80,160,0.16);
+  --tx:#082040;--tx2:#2a5a8a;--tx3:#5a8aaa;
+  --shadow:0 1px 3px rgba(0,40,80,0.1),0 4px 16px rgba(0,40,80,0.07);
+  --hdr-bg:rgba(228,238,248,0.97);--track:#c8ddf0;--hole:#e4eef8;
+  --c1:#0a6ab0;--c1d:#085090;--c2:#0a8a50;--c2d:#086a38;--c3:#6a1aaa;--c3d:#521488;}
+
+/* ── PET SYSTEM ── */
+.pet-widget{position:fixed;bottom:0;left:50%;transform:translateX(-50%);z-index:150;pointer-events:none;display:flex;justify-content:center;align-items:flex-end;gap:4px;width:auto;max-width:420px;padding:0 8px}
+.pet-float{pointer-events:all;cursor:pointer;user-select:none;width:80px;display:flex;flex-direction:column;align-items:center}
+.pet-float-item{pointer-events:all;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;flex-shrink:0}
+.pet-float svg{filter:drop-shadow(0 2px 4px rgba(0,0,0,0.15))}
+.pet-modal-ov{position:fixed;inset:0;background:rgba(10,14,35,0.5);z-index:2500;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px);animation:fadeIn 0.18s ease}
+.pet-modal-ov.hide{display:none}
+.pet-modal-card{background:var(--surface);border-radius:16px;max-width:500px;width:100%;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,0.28);animation:slideUp 0.22s ease;overflow:hidden}
+.pet-modal-hdr{padding:16px 20px 12px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.pet-modal-title{font-size:15px;font-weight:800;color:var(--tx)}
+.pet-modal-body{overflow-y:auto;flex:1;padding:14px 18px 18px}
+.pet-scene{background:var(--surface2);border-radius:12px;height:190px;position:relative;overflow:hidden;margin-bottom:14px;border:1px solid var(--bd)}
+.pet-scene-bg{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:0}
+.pet-scene-pet{position:absolute;bottom:0;left:50%;transform:translateX(-50%);z-index:2}
+.pet-scene-item{position:absolute;bottom:0;right:24px;z-index:1}
+.pet-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.pet-stat{background:var(--surface2);border-radius:8px;padding:8px 10px;border:1px solid var(--bd)}
+.pet-stat-lbl{font-size:10px;color:var(--tx3);margin-bottom:4px;display:flex;justify-content:space-between}
+.pet-stat-bar{height:5px;background:var(--track);border-radius:3px;overflow:hidden}
+.pet-stat-fill{height:100%;border-radius:3px;transition:width 0.4s}
+.pet-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.pet-action-btn{padding:9px 12px;border-radius:9px;border:1px solid var(--bd2);background:var(--surface2);cursor:pointer;font-family:var(--font);font-size:12px;font-weight:600;color:var(--tx2);display:flex;align-items:center;gap:6px;transition:all 0.15s}
+.pet-action-btn:hover{background:var(--surface3);border-color:var(--c1);color:var(--tx)}
+.pet-action-btn:disabled{opacity:.4;cursor:default}
+.pet-shop-tabs{display:flex;gap:6px;margin-bottom:10px}
+.pet-shop-tab{flex:1;padding:7px 0;font-size:11px;font-weight:600;border:1px solid var(--bd2);border-radius:7px;background:var(--surface2);cursor:pointer;font-family:var(--font);color:var(--tx3);transition:all 0.15s}
+.pet-shop-tab.on{background:var(--c1);color:var(--surface);border-color:var(--c1)}
+.pet-shop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+.pet-shop-item{border-radius:9px;border:1.5px solid var(--bd);padding:7px 4px 6px;text-align:center;cursor:pointer;transition:all 0.15s;background:var(--surface2)}
+.pet-shop-item:hover{border-color:var(--c1)}
+.pet-shop-item.equipped{border-color:var(--c1);background:color-mix(in srgb,var(--c1) 8%,var(--surface))}
+.pet-shop-item.owned:not(.equipped){border-color:var(--c3)}
+.pet-item-name{font-size:9px;color:var(--tx2);margin-top:3px;line-height:1.3}
+.pet-item-cost{font-size:9px;font-weight:600;color:var(--c2);margin-top:1px}
+.pet-item-owned{font-size:9px;font-weight:600;color:var(--c3)}
+.pet-chooser{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.pet-choose-card{border-radius:10px;border:2px solid var(--bd);padding:10px 6px;text-align:center;cursor:pointer;transition:all 0.15s;background:var(--surface2)}
+.pet-choose-card:hover{border-color:var(--bd2)}
+.pet-choose-card.chosen{border-color:var(--c1);background:color-mix(in srgb,var(--c1) 8%,var(--surface))}
+.pet-choose-name{font-size:12px;font-weight:600;color:var(--tx);margin-top:6px}
+.pet-choose-desc{font-size:10px;color:var(--tx3);margin-top:2px;line-height:1.4}
+@keyframes petBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes petBounce{0%,100%{transform:translateY(0) scaleY(1)}30%{transform:translateY(-14px) scaleY(1.1)}60%{transform:translateY(-16px) scaleY(1.08)}80%{transform:translateY(3px) scaleY(0.94)}}
+@keyframes petPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+@keyframes petRock{0%,100%{transform:rotate(0deg)}33%{transform:rotate(-7deg)}66%{transform:rotate(7deg)}}
+@keyframes petBlink{0%,90%,100%{transform:scaleY(1)}95%{transform:scaleY(0.08)}}
+@keyframes petSleep{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(2px) rotate(-3deg)}}
+@keyframes petCelebrate{0%,100%{transform:translateY(0) scale(1)}20%{transform:translateY(-18px) scale(1.15)}50%{transform:translateY(-20px) scale(1.18)}75%{transform:translateY(4px) scale(0.92)}}
+@keyframes starPop{0%{transform:translateY(0) scale(0);opacity:1}60%{transform:translateY(-30px) scale(1.2);opacity:1}100%{transform:translateY(-50px) scale(0.8);opacity:0}}
+.pet-star-pop{position:fixed;pointer-events:none;z-index:400;font-size:18px;animation:starPop 0.8s ease-out forwards}
+/* ── RANKS ── */
+/* Rank badge (header + dashboard) */
+.rank-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px 3px 7px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap;border:1.5px solid;transition:all 0.3s;cursor:default;user-select:none}
+.rank-badge .rank-icon{font-size:13px;line-height:1}
+.rank-badge .rank-lbl{letter-spacing:.3px}
+/* Rank colours — each rank has a CSS class */
+.rk-unranked{color:var(--tx3);border-color:var(--bd2);background:var(--surface2)}
+.rk-recruit{color:#6b7280;border-color:#d1d5db;background:#f9fafb}
+.rk-apprentice{color:#7c6f52;border-color:#d4b896;background:#fdf8f0}
+.rk-scholar{color:#166534;border-color:#86efac;background:#f0fdf4}
+.rk-practitioner{color:#1d4ed8;border-color:#93c5fd;background:#eff6ff}
+.rk-expert{color:#6d28d9;border-color:#c4b5fd;background:#f5f3ff}
+.rk-master{color:#b45309;border-color:#fcd34d;background:#fffbeb}
+.rk-grandmaster{color:#c2410c;border-color:#fdba74;background:#fff7ed}
+.rk-elite{color:#be185d;border-color:#f9a8d4;background:#fdf2f8}
+.rk-legend{color:#fff;border-color:#fbbf24;background:linear-gradient(135deg,#f59e0b,#d97706);box-shadow:0 0 12px rgba(245,158,11,0.35)}
+/* Rank popup */
+.rk-ov{position:fixed;inset:0;background:rgba(10,14,35,0.5);z-index:3000;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px);animation:fadeIn 0.2s ease}
+.rk-ov.hide{display:none}
+.rk-card{background:var(--surface);border-radius:20px;padding:32px 28px 26px;max-width:360px;width:100%;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,0.3);animation:rankPop 0.4s cubic-bezier(0.175,0.885,0.32,1.275)}
+@keyframes rankPop{from{transform:scale(0.6);opacity:0}to{transform:scale(1);opacity:1}}
+.rk-big-icon{font-size:56px;line-height:1;margin-bottom:12px;display:block}
+.rk-popup-title{font-size:13px;font-weight:600;color:var(--tx3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+.rk-popup-rank{font-size:28px;font-weight:900;color:var(--tx);margin-bottom:8px;letter-spacing:-0.5px}
+.rk-popup-msg{font-size:13px;color:var(--tx2);line-height:1.65;margin-bottom:22px}
+.rk-dismiss{padding:10px 28px;background:var(--c1);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font);transition:all 0.15s}
+.rk-dismiss:hover{background:var(--c1d);transform:translateY(-1px)}
+
 /* Canvas overlay for confetti (pointer-events:none so clicks pass through) */
 #rk-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:2999}
 /* ── HOME / YOUR SUBJECTS ── */
@@ -830,22 +1754,22 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
     <button class="help-btn" id="subj-btn" onclick="openSubjectChooser()" style="font-size:13px;font-weight:700;color:var(--tx);background:none;border:none;gap:5px;padding:0">
       <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
       <span id="hdr-title">Physics</span>
-    </button><span id="hdr-overall-rank" style="margin-left: 8px; vertical-align: middle;"><span class="rank-badge rk-master" title="Overall rank"><span class="rank-icon">📚</span><span class="rank-lbl">Getting Started</span></span></span>
+    </button><span id="hdr-overall-rank" style="margin-left: 8px; vertical-align: middle;"></span>
     <span class="hdr-sub" id="hdr-sub">Edexcel GCSE (9–1) · Physics · Separate · Higher</span>
   </div>
   <div class="hdr-actions">
-    <div class="spec-toggle" id="tier-toggle" title="Switch between Higher and Foundation tier" style="display: none;">
+    <div class="spec-toggle" id="tier-toggle" title="Switch between Higher and Foundation tier" style="">
       <button class="spec-btn active" id="btn-higher" onclick="setTier(&#39;higher&#39;)">Higher</button>
       <button class="spec-btn" id="btn-found" onclick="setTier(&#39;foundation&#39;)">Foundation</button>
     </div>
-    <div class="spec-toggle" id="spec-toggle" title="Switch between Combined and Separate Science specifications" style="display: none;">
+    <div class="spec-toggle" id="spec-toggle" title="Switch between Combined and Separate Science specifications" style="">
       <button class="spec-btn com" id="btn-com" onclick="setSpec(&#39;com&#39;)">Combined</button>
       <button class="spec-btn sep active" id="btn-sep" onclick="setSpec(&#39;sep&#39;)">Separate</button>
     </div>
-    <button class="help-btn pet-btn" onclick="openPetModal()" title="Your companion" id="pet-hdr-btn"><svg width="14" height="14" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"></circle><circle cx="5.5" cy="7" r="1.5" fill="currentColor"></circle><circle cx="10.5" cy="7" r="1.5" fill="currentColor"></circle><path d="M5.5 10.5Q8 12.5 10.5 10.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path></svg> Pet</button>
+    <button class="help-btn pet-btn" onclick="openPetModal()" title="Your companion" id="pet-hdr-btn" style=""><svg width="14" height="14" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"></circle><circle cx="5.5" cy="7" r="1.5" fill="currentColor"></circle><circle cx="10.5" cy="7" r="1.5" fill="currentColor"></circle><path d="M5.5 10.5Q8 12.5 10.5 10.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path></svg> Pet</button>
     <button class="coin-counter" id="coin-counter" onclick="openThemes()" title="Revision coins — spend in the theme shop">
       <span class="coin-icon">🪙</span>
-      <span class="coin-bal" id="coin-bal">9817</span>
+      <span class="coin-bal" id="coin-bal">0</span>
     </button>
     <button class="help-btn" onclick="openThemes()">
       <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.4"></circle><circle cx="7" cy="3" r="1" fill="currentColor"></circle><circle cx="10.6" cy="5.5" r="1" fill="currentColor"></circle><circle cx="10.6" cy="8.5" r="1" fill="currentColor"></circle><circle cx="7" cy="11" r="1" fill="currentColor"></circle><circle cx="3.4" cy="8.5" r="1" fill="currentColor"></circle><circle cx="3.4" cy="5.5" r="1" fill="currentColor"></circle></svg>
@@ -858,6 +1782,10 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
     <button class="help-btn" onclick="openTour(0)">
       <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.5"></circle><path d="M5.5 5.5C5.5 4.7 6.1 4.1 7 4.1s1.5.6 1.5 1.4c0 .9-.8 1.2-1.3 1.6C6.8 7.4 6.7 7.7 6.7 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path><circle cx="6.95" cy="10" r=".7" fill="currentColor"></circle></svg>
       How to use
+    </button>
+    <button class="help-btn" id="btn-staffroom" onclick="openStaffRoom()" style="display:none" title="Teacher reference">
+      <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1a3 3 0 100 6 3 3 0 000-6zM2 13c0-2.76 2.24-5 5-5s5 2.24 5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      Staff Room
     </button>
     <button class="rbtn" onclick="confirmReset()">Reset all</button>
     <button class="mob-menu-btn" onclick="openMobMenu()" aria-label="Menu">
@@ -887,7 +1815,7 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
   </div>
   <button class="coin-counter" style="width:100%;justify-content:center;margin-bottom:4px" onclick="openThemes();closeMobMenu()" title="Revision coins">
     <span class="coin-icon">🪙</span>
-    <span style="font-size:12px;font-weight:800;color:#92400e" id="mob-coin-bal">9817</span>
+    <span style="font-size:12px;font-weight:800;color:#92400e" id="mob-coin-bal">0</span>
     <span style="font-size:11px;color:#b45309;margin-left:2px">coins</span>
   </button>
   <button class="help-btn" onclick="openPetModal();closeMobMenu()">
@@ -928,33 +1856,432 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
   </div>
 </div>
 
-<div class="nav" id="nav"></div>
-<div class="main" id="main"><div class="home-wrap"><div class="home-rank-row">
-      <div>
-        <div class="home-heading">Your subjects</div>
-        <div class="home-sub">Pick up where you left off, or add a new subject below.</div>
-      </div>
-      <div class="home-overall-rank">
-        <div class="home-or-lbl">Overall rank</div>
-        <span class="rank-badge rk-master home-or-badge"><span class="rank-icon">📚</span><span class="rank-lbl">Getting Started</span></span>
-      </div>
+<div class="nav" id="nav"><button class="nb" onclick="switchView(&#39;home&#39;)" style="--tc:#6366f1">← Home</button><button class="nb active" onclick="switchView(&#39;dashboard&#39;)" style="--tc:#6366f1">Dashboard</button><button class="nb " onclick="switchView(&#39;SP1&#39;)" style="--tc:#6366f1">SP1</button><button class="nb " onclick="switchView(&#39;SP2&#39;)" style="--tc:#3b82f6">SP2</button><button class="nb " onclick="switchView(&#39;SP3&#39;)" style="--tc:#f59e0b">SP3</button><button class="nb " onclick="switchView(&#39;SP4&#39;)" style="--tc:#10b981">SP4</button><button class="nb " onclick="switchView(&#39;SP5&#39;)" style="--tc:#06b6d4">SP5</button><button class="nb " onclick="switchView(&#39;SP6&#39;)" style="--tc:#e11d48">SP6</button><button class="nb " onclick="switchView(&#39;SP7&#39;)" style="--tc:#8b5cf6">SP7</button><button class="nb " onclick="switchView(&#39;SP8&#39;)" style="--tc:#f97316">SP8</button><button class="nb " onclick="switchView(&#39;SP9&#39;)" style="--tc:#84cc16">SP9</button><button class="nb " onclick="switchView(&#39;SP10&#39;)" style="--tc:#ec4899">SP10</button><button class="nb " onclick="switchView(&#39;SP11&#39;)" style="--tc:#14b8a6">SP11</button><button class="nb " onclick="switchView(&#39;SP12&#39;)" style="--tc:#f43f5e">SP12</button><button class="nb " onclick="switchView(&#39;SP13&#39;)" style="--tc:#a855f7">SP13</button><button class="nb " onclick="switchView(&#39;SP14&#39;)" style="--tc:#22c55e">SP14</button><button class="nb " onclick="switchView(&#39;SP15&#39;)" style="--tc:#0ea5e9">SP15</button></div>
+<div class="main" id="main"><div class="dsb-summary">
+  <div class="dsb-title" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+    <span>Overall revision progress — Separate Science · 413 learning outcomes</span>
+    
+  </div>
+  <div class="dsb-row">
+    <div class="dsb-donuts"><div class="donut-wrap"><div class="donut-canvas-wrap" style="width:78px;height:78px"><canvas data-d="" data-f="0" data-t="413" data-c="#0a6ab0" style="width:78px;height:78px" width="78" height="78"></canvas><div class="donut-inner"><span class="donut-pct" style="color:#0a6ab0">0%</span><span class="donut-sub">revised</span></div></div></div><div class="donut-wrap"><div class="donut-canvas-wrap" style="width:78px;height:78px"><canvas data-d="" data-f="0" data-t="413" data-c="#0a8a50" style="width:78px;height:78px" width="78" height="78"></canvas><div class="donut-inner"><span class="donut-pct" style="color:#0a8a50">0%</span><span class="donut-sub">exam Qs</span></div></div></div><div class="donut-wrap"><div class="donut-canvas-wrap" style="width:78px;height:78px"><canvas data-d="" data-f="0" data-t="413" data-c="#6a1aaa" style="width:78px;height:78px" width="78" height="78"></canvas><div class="donut-inner"><span class="donut-pct" style="color:#6a1aaa">0%</span><span class="donut-sub">reviewed</span></div></div></div></div>
+    <div class="dsb-stats">
+      <div class="dstat"><div class="dstat-lbl">Revised</div><div class="dstat-val" style="color:#0a6ab0">0</div><div class="dstat-sub">of 413</div></div>
+      <div class="dstat"><div class="dstat-lbl">Exam questions</div><div class="dstat-val" style="color:#0a8a50">0</div><div class="dstat-sub">of 413</div></div>
+      <div class="dstat"><div class="dstat-lbl">Mistakes reviewed</div><div class="dstat-val" style="color:#6a1aaa">0</div><div class="dstat-sub">of 413</div></div>
+      <div class="dstat"><div class="dstat-lbl">Fully complete</div><div class="dstat-val" style="color:#1a1f36">0</div><div class="dstat-sub">of 413</div></div>
     </div>
-    <div class="home-grid"><div class="hsc" onclick="openSubjectDashboard(&#39;gcse-physics-edexcel&#39;)" style="--tc:#6366f1">
-        <div class="hsc-head">
-          <div class="hsc-name">Physics</div>
-          <div class="hsc-badge">GCSE (9–1)</div>
-        </div>
-        <div class="hsc-board">Edexcel</div>
-        <div class="hsc-viz"><div style="display:flex;gap:8px;align-items:center;justify-content:center;padding:4px 0"><div style="position:relative;width:52px;height:52px;flex-shrink:0"><canvas data-p="" data-f="117" data-t="413" data-c="#4361ee" style="width:52px;height:52px;position:absolute;inset:0" width="62" height="62"></canvas><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px"><span style="font-size:9px;font-weight:700;color:var(--tx2)">28%</span></div></div><div style="position:relative;width:52px;height:52px;flex-shrink:0"><canvas data-p="" data-f="117" data-t="413" data-c="#f4a261" style="width:52px;height:52px;position:absolute;inset:0" width="62" height="62"></canvas><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px"><span style="font-size:9px;font-weight:700;color:var(--tx2)">28%</span></div></div><div style="position:relative;width:52px;height:52px;flex-shrink:0"><canvas data-p="" data-f="117" data-t="413" data-c="#2ec4b6" style="width:52px;height:52px;position:absolute;inset:0" width="62" height="62"></canvas><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px"><span style="font-size:9px;font-weight:700;color:var(--tx2)">28%</span></div></div></div></div>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px">
-          <div class="hsc-continue">Continue →</div>
-          <span class="rank-badge rk-scholar" title="Scholar"><span class="rank-icon">🎓</span><span class="rank-lbl">Scholar</span></span>
-        </div>
-      </div></div>
-    <button class="help-btn" onclick="openSubjectChooser()" style="font-size:12px;padding:8px 14px">
-      <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.4"></circle><path d="M7 4v6M4 7h6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path></svg>
-      Add another subject
-    </button></div></div>
+  </div>
+  <div class="dsb-legend">
+    <div class="leg-item"><div class="leg-dot" style="background:#0a6ab0"></div>Revised content</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#0a8a50"></div>Exam questions completed</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#6a1aaa"></div>Mistakes reviewed</div>
+  </div>
+</div><div class="grid-lbl">Paper 1</div><div class="grid"><div class="tc" onclick="switchView(&#39;SP1&#39;)" style="--tc:#6366f1">
+  <div class="tc-top"><span class="tc-badge">SP1</span><span class="tc-paper">Paper 1</span></div>
+  <div class="tc-name">Motion</div>
+  <div class="tc-cnt">21 outcomes</div>
+  <div class="tc-pies">
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="21" data-c="#0a6ab0" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Revised</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="21" data-c="#0a8a50" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Exam Qs</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="21" data-c="#6a1aaa" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Reviewed</div>
+    </div>
+  </div>
+</div><div class="tc" onclick="switchView(&#39;SP2&#39;)" style="--tc:#3b82f6">
+  <div class="tc-top"><span class="tc-badge">SP2</span><span class="tc-paper">Paper 1</span></div>
+  <div class="tc-name">Motion and Forces</div>
+  <div class="tc-cnt">30 outcomes</div>
+  <div class="tc-pies">
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="30" data-c="#0a6ab0" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Revised</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="30" data-c="#0a8a50" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Exam Qs</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="30" data-c="#6a1aaa" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Reviewed</div>
+    </div>
+  </div>
+</div><div class="tc" onclick="switchView(&#39;SP3&#39;)" style="--tc:#f59e0b">
+  <div class="tc-top"><span class="tc-badge">SP3</span><span class="tc-paper">Paper 1</span></div>
+  <div class="tc-name">Conservation of Energy</div>
+  <div class="tc-cnt">28 outcomes</div>
+  <div class="tc-pies">
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="28" data-c="#0a6ab0" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Revised</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="28" data-c="#0a8a50" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Exam Qs</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="28" data-c="#6a1aaa" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Reviewed</div>
+    </div>
+  </div>
+</div><div class="tc" onclick="switchView(&#39;SP4&#39;)" style="--tc:#10b981">
+  <div class="tc-top"><span class="tc-badge">SP4</span><span class="tc-paper">Paper 1</span></div>
+  <div class="tc-name">Waves</div>
+  <div class="tc-cnt">32 outcomes</div>
+  <div class="tc-pies">
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="32" data-c="#0a6ab0" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Revised</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="32" data-c="#0a8a50" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Exam Qs</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="32" data-c="#6a1aaa" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Reviewed</div>
+    </div>
+  </div>
+</div><div class="tc" onclick="switchView(&#39;SP5&#39;)" style="--tc:#06b6d4">
+  <div class="tc-top"><span class="tc-badge">SP5</span><span class="tc-paper">Paper 1</span></div>
+  <div class="tc-name">Light and EM Spectrum</div>
+  <div class="tc-cnt">48 outcomes</div>
+  <div class="tc-pies">
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="48" data-c="#0a6ab0" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Revised</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="48" data-c="#0a8a50" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Exam Qs</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="48" data-c="#6a1aaa" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Reviewed</div>
+    </div>
+  </div>
+</div><div class="tc" onclick="switchView(&#39;SP6&#39;)" style="--tc:#e11d48">
+  <div class="tc-top"><span class="tc-badge">SP6</span><span class="tc-paper">Paper 1</span></div>
+  <div class="tc-name">Radioactivity</div>
+  <div class="tc-cnt">69 outcomes</div>
+  <div class="tc-pies">
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="69" data-c="#0a6ab0" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Revised</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="69" data-c="#0a8a50" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Exam Qs</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="69" data-c="#6a1aaa" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Reviewed</div>
+    </div>
+  </div>
+</div><div class="tc" onclick="switchView(&#39;SP7&#39;)" style="--tc:#8b5cf6">
+  <div class="tc-top"><span class="tc-badge">SP7</span><span class="tc-paper">Paper 1</span></div>
+  <div class="tc-name">Astronomy</div>
+  <div class="tc-cnt">23 outcomes</div>
+  <div class="tc-pies">
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="23" data-c="#0a6ab0" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Revised</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="23" data-c="#0a8a50" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Exam Qs</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="23" data-c="#6a1aaa" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Reviewed</div>
+    </div>
+  </div>
+</div></div><div class="grid-lbl">Paper 2</div><div class="grid"><div class="tc" onclick="switchView(&#39;SP8&#39;)" style="--tc:#f97316">
+  <div class="tc-top"><span class="tc-badge">SP8</span><span class="tc-paper">Paper 2</span></div>
+  <div class="tc-name">Energy – Forces Doing Work</div>
+  <div class="tc-cnt">5 outcomes</div>
+  <div class="tc-pies">
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="5" data-c="#0a6ab0" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Revised</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="5" data-c="#0a8a50" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Exam Qs</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="5" data-c="#6a1aaa" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Reviewed</div>
+    </div>
+  </div>
+</div><div class="tc" onclick="switchView(&#39;SP9&#39;)" style="--tc:#84cc16">
+  <div class="tc-top"><span class="tc-badge">SP9</span><span class="tc-paper">Paper 2</span></div>
+  <div class="tc-name">Forces and their Effects</div>
+  <div class="tc-cnt">15 outcomes</div>
+  <div class="tc-pies">
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="15" data-c="#0a6ab0" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Revised</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="15" data-c="#0a8a50" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Exam Qs</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="15" data-c="#6a1aaa" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Reviewed</div>
+    </div>
+  </div>
+</div><div class="tc" onclick="switchView(&#39;SP10&#39;)" style="--tc:#ec4899">
+  <div class="tc-top"><span class="tc-badge">SP10</span><span class="tc-paper">Paper 2</span></div>
+  <div class="tc-name">Electricity and Circuits</div>
+  <div class="tc-cnt">49 outcomes</div>
+  <div class="tc-pies">
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="49" data-c="#0a6ab0" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Revised</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="49" data-c="#0a8a50" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Exam Qs</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="49" data-c="#6a1aaa" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Reviewed</div>
+    </div>
+  </div>
+</div><div class="tc" onclick="switchView(&#39;SP11&#39;)" style="--tc:#14b8a6">
+  <div class="tc-top"><span class="tc-badge">SP11</span><span class="tc-paper">Paper 2</span></div>
+  <div class="tc-name">Static Electricity</div>
+  <div class="tc-cnt">15 outcomes</div>
+  <div class="tc-pies">
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="15" data-c="#0a6ab0" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Revised</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="15" data-c="#0a8a50" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Exam Qs</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="15" data-c="#6a1aaa" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Reviewed</div>
+    </div>
+  </div>
+</div><div class="tc" onclick="switchView(&#39;SP12&#39;)" style="--tc:#f43f5e">
+  <div class="tc-top"><span class="tc-badge">SP12</span><span class="tc-paper">Paper 2</span></div>
+  <div class="tc-name">Magnetism and the Motor Effect</div>
+  <div class="tc-cnt">14 outcomes</div>
+  <div class="tc-pies">
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="14" data-c="#0a6ab0" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Revised</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="14" data-c="#0a8a50" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Exam Qs</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="14" data-c="#6a1aaa" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Reviewed</div>
+    </div>
+  </div>
+</div><div class="tc" onclick="switchView(&#39;SP13&#39;)" style="--tc:#a855f7">
+  <div class="tc-top"><span class="tc-badge">SP13</span><span class="tc-paper">Paper 2</span></div>
+  <div class="tc-name">Electromagnetic Induction</div>
+  <div class="tc-cnt">18 outcomes</div>
+  <div class="tc-pies">
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="18" data-c="#0a6ab0" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Revised</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="18" data-c="#0a8a50" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Exam Qs</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="18" data-c="#6a1aaa" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Reviewed</div>
+    </div>
+  </div>
+</div><div class="tc" onclick="switchView(&#39;SP14&#39;)" style="--tc:#22c55e">
+  <div class="tc-top"><span class="tc-badge">SP14</span><span class="tc-paper">Paper 2</span></div>
+  <div class="tc-name">Particle Model</div>
+  <div class="tc-cnt">25 outcomes</div>
+  <div class="tc-pies">
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="25" data-c="#0a6ab0" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Revised</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="25" data-c="#0a8a50" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Exam Qs</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="25" data-c="#6a1aaa" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Reviewed</div>
+    </div>
+  </div>
+</div><div class="tc" onclick="switchView(&#39;SP15&#39;)" style="--tc:#0ea5e9">
+  <div class="tc-top"><span class="tc-badge">SP15</span><span class="tc-paper">Paper 2</span></div>
+  <div class="tc-name">Forces and Matter</div>
+  <div class="tc-cnt">21 outcomes</div>
+  <div class="tc-pies">
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="21" data-c="#0a6ab0" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Revised</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="21" data-c="#0a8a50" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Exam Qs</div>
+    </div>
+    <div class="pie-group">
+      <div class="pie-canvas-wrap" style="width:38px;height:38px">
+        <canvas data-p="" data-f="0" data-t="21" data-c="#6a1aaa" style="width:38px;height:38px" width="38" height="38"></canvas>
+        <div class="pie-inner">0%</div>
+      </div>
+      <div class="pie-lbl">Reviewed</div>
+    </div>
+  </div>
+</div></div></div>
 
 <!-- SUBJECT CHOOSER -->
 <div class="sj-ov hide" id="sj-modal" onclick="handleSjClick(event)">
@@ -966,7 +2293,31 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
       </div>
       <button class="sj-close-x" onclick="closeSubjectChooser()">×</button>
     </div>
-    <div class="sj-body" id="sj-body"></div>
+    <div class="sj-body" id="sj-body"><div class="sj-qlbl">GCSE</div><div class="sj-board">
+        <div class="sj-board-lbl">Edexcel<span class="sj-board-pill">GCSE</span></div>
+        <div class="sj-subjects"><button class="sj-item current" onclick="switchSubject(&#39;gcse-physics-edexcel&#39;)">
+            <div class="sj-dot"></div>Physics <span style="font-size:9px;opacity:0.7">(current)</span>
+          </button><div class="sj-item soon"><div class="sj-dot"></div>Biology<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Chemistry<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Mathematics<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>English Language<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>English Literature<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>History<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Geography<span class="sj-soon-lbl">coming soon</span></div></div></div><div class="sj-board">
+        <div class="sj-board-lbl">AQA<span class="sj-board-pill">GCSE</span></div>
+        <div class="sj-subjects"><div class="sj-item soon"><div class="sj-dot"></div>Physics<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Biology<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Chemistry<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Mathematics<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>English Language<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>English Literature<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>History<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Geography<span class="sj-soon-lbl">coming soon</span></div></div></div><div class="sj-board">
+        <div class="sj-board-lbl">OCR<span class="sj-board-pill">GCSE</span></div>
+        <div class="sj-subjects"><div class="sj-item soon"><div class="sj-dot"></div>Physics<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Biology<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Chemistry<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Mathematics<span class="sj-soon-lbl">coming soon</span></div></div></div><div class="sj-board">
+        <div class="sj-board-lbl">Eduqas<span class="sj-board-pill">GCSE</span></div>
+        <div class="sj-subjects"><div class="sj-item soon"><div class="sj-dot"></div>Physics<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Biology<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Chemistry<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>English Language<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>English Literature<span class="sj-soon-lbl">coming soon</span></div></div></div><div class="sj-board">
+        <div class="sj-board-lbl">Edexcel iGCSE<span class="sj-board-pill">GCSE</span></div>
+        <div class="sj-subjects"><div class="sj-item soon"><div class="sj-dot"></div>Physics<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Biology<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Chemistry<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Mathematics<span class="sj-soon-lbl">coming soon</span></div><button class="sj-item" onclick="switchSubject(&#39;igcse-cs-edexcel&#39;)">
+            <div class="sj-dot"></div>Computer Science
+          </button></div></div><div class="sj-board">
+        <div class="sj-board-lbl">Cambridge iGCSE<span class="sj-board-pill">GCSE</span></div>
+        <div class="sj-subjects"><div class="sj-item soon"><div class="sj-dot"></div>Physics<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Biology<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Chemistry<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Mathematics<span class="sj-soon-lbl">coming soon</span></div></div></div><div class="sj-qlbl">A-level</div><div class="sj-board">
+        <div class="sj-board-lbl">Edexcel<span class="sj-board-pill">A-level</span></div>
+        <div class="sj-subjects"><div class="sj-item soon"><div class="sj-dot"></div>Physics<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Biology<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Chemistry<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Mathematics<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Further Mathematics<span class="sj-soon-lbl">coming soon</span></div></div></div><div class="sj-board">
+        <div class="sj-board-lbl">AQA<span class="sj-board-pill">A-level</span></div>
+        <div class="sj-subjects"><div class="sj-item soon"><div class="sj-dot"></div>Physics<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Biology<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Chemistry<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Mathematics<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Further Mathematics<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Psychology<span class="sj-soon-lbl">coming soon</span></div></div></div><div class="sj-board">
+        <div class="sj-board-lbl">OCR<span class="sj-board-pill">A-level</span></div>
+        <div class="sj-subjects"><div class="sj-item soon"><div class="sj-dot"></div>Physics A<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Physics B<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Biology A<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Chemistry A<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Mathematics<span class="sj-soon-lbl">coming soon</span></div></div></div><div class="sj-board">
+        <div class="sj-board-lbl">Eduqas<span class="sj-board-pill">A-level</span></div>
+        <div class="sj-subjects"><div class="sj-item soon"><div class="sj-dot"></div>Physics<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Biology<span class="sj-soon-lbl">coming soon</span></div><div class="sj-item soon"><div class="sj-dot"></div>Chemistry<span class="sj-soon-lbl">coming soon</span></div></div></div></div>
   </div>
 </div>
 
@@ -1073,7 +2424,7 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
   </div>
 </div>
 <!-- PET WIDGET (floating) -->
-<div class="pet-widget" id="pet-widget" style="" onclick="openPetModal()"><div class="pet-float-item" style="animation:petBob 2.5s 0s ease-in-out infinite" onclick="openPetModal()" title="Little chair"><svg width="52" height="52" viewBox="0 0 90 90" style="display:block"><rect x="24" y="28" width="36" height="22" rx="4" fill="#c09060"></rect><rect x="26" y="48" width="10" height="14" rx="2" fill="#a07040"></rect><rect x="50" y="48" width="10" height="14" rx="2" fill="#a07040"></rect><rect x="24" y="28" width="36" height="6" rx="4" fill="#e0b080"></rect></svg></div><div class="pet-float-item" style="animation:petBob 2.9s 0.3s ease-in-out infinite" onclick="openPetModal()" title="Study table"><svg width="52" height="52" viewBox="0 0 90 90" style="display:block"><rect x="10" y="28" width="64" height="8" rx="3" fill="#c09060"></rect><rect x="18" y="36" width="7" height="22" rx="2" fill="#a07040"></rect><rect x="59" y="36" width="7" height="22" rx="2" fill="#a07040"></rect></svg></div><div class="pet-float-item" style="animation:petBob 3.3s 0.6s ease-in-out infinite" onclick="openPetModal()" title="Cloud bed"><svg width="52" height="52" viewBox="0 0 90 90" style="display:block"><ellipse cx="45" cy="44" rx="28" ry="14" fill="white"></ellipse><ellipse cx="30" cy="34" rx="14" ry="10" fill="white"></ellipse><ellipse cx="60" cy="34" rx="14" ry="10" fill="white"></ellipse><ellipse cx="45" cy="34" rx="18" ry="12" fill="white"></ellipse><ellipse cx="45" cy="44" rx="26" ry="12" fill="#f0f4ff"></ellipse></svg></div><div class="pet-float-item" style="animation:petPulse 4.5s 0.6000000000000001s ease-in-out infinite" onclick="openPetModal()" title="Trophy"><svg width="52" height="52" viewBox="0 0 90 90" style="display:block"><ellipse cx="45" cy="22" rx="18" ry="14" fill="#f4d040"></ellipse><rect x="35" y="26" width="20" height="24" rx="2" fill="#e0a020"></rect><rect x="22" y="48" width="46" height="6" rx="2" fill="#c08010"></rect></svg></div><div class="pet-float" onclick="openPetModal()"><svg width="70" height="100" viewBox="0 -40 90 130"><g style="animation:petBounce 1.8s ease-in-out infinite;transform-origin:45px 80px">
+<div class="pet-widget" id="pet-widget" style="display: none;" onclick="openPetModal()"><div class="pet-float-item" style="animation:petBob 2.5s 0s ease-in-out infinite" onclick="openPetModal()" title="Little chair"><svg width="52" height="52" viewBox="0 0 90 90" style="display:block"><rect x="24" y="28" width="36" height="22" rx="4" fill="#c09060"></rect><rect x="26" y="48" width="10" height="14" rx="2" fill="#a07040"></rect><rect x="50" y="48" width="10" height="14" rx="2" fill="#a07040"></rect><rect x="24" y="28" width="36" height="6" rx="4" fill="#e0b080"></rect></svg></div><div class="pet-float-item" style="animation:petBob 2.9s 0.3s ease-in-out infinite" onclick="openPetModal()" title="Study table"><svg width="52" height="52" viewBox="0 0 90 90" style="display:block"><rect x="10" y="28" width="64" height="8" rx="3" fill="#c09060"></rect><rect x="18" y="36" width="7" height="22" rx="2" fill="#a07040"></rect><rect x="59" y="36" width="7" height="22" rx="2" fill="#a07040"></rect></svg></div><div class="pet-float-item" style="animation:petBob 3.3s 0.6s ease-in-out infinite" onclick="openPetModal()" title="Cloud bed"><svg width="52" height="52" viewBox="0 0 90 90" style="display:block"><ellipse cx="45" cy="44" rx="28" ry="14" fill="white"></ellipse><ellipse cx="30" cy="34" rx="14" ry="10" fill="white"></ellipse><ellipse cx="60" cy="34" rx="14" ry="10" fill="white"></ellipse><ellipse cx="45" cy="34" rx="18" ry="12" fill="white"></ellipse><ellipse cx="45" cy="44" rx="26" ry="12" fill="#f0f4ff"></ellipse></svg></div><div class="pet-float-item" style="animation:petPulse 4.5s 0.6000000000000001s ease-in-out infinite" onclick="openPetModal()" title="Trophy"><svg width="52" height="52" viewBox="0 0 90 90" style="display:block"><ellipse cx="45" cy="22" rx="18" ry="14" fill="#f4d040"></ellipse><rect x="35" y="26" width="20" height="24" rx="2" fill="#e0a020"></rect><rect x="22" y="48" width="46" height="6" rx="2" fill="#c08010"></rect></svg></div><div class="pet-float" onclick="openPetModal()"><svg width="70" height="100" viewBox="0 -40 90 130"><g style="animation:petBounce 1.8s ease-in-out infinite;transform-origin:45px 80px">
     <ellipse cx="45" cy="80" rx="24" ry="5" fill="rgba(0,0,0,0.08)"></ellipse>
     <ellipse cx="28" cy="44" rx="9" ry="12" fill="#ffd0e8"></ellipse>
     <ellipse cx="28" cy="44" rx="5" ry="7" fill="#ffb8dc"></ellipse>
@@ -1156,7 +2507,6 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
     </div>
   </div>
 </div>
-
 <script>
 // ── THEMES ───────────────────────────────────────────────────────────────────
 // free:true = unlocked by default; cost = coins needed to unlock
@@ -1489,17 +2839,355 @@ function loadTheme(){
   try{const t=localStorage.getItem('gcse_theme');if(t)applyTheme(t);}catch(e){}
 }
 
+// ── SPOTLIGHT ENGINE ──────────────────────────────────────────────────────────
+// Standalone — can be called from console: spotlightElement('#btn-com', 'Title', 'Body text')
+// Returns false if target element not found (tour uses this to skip steps).
+
+const PAD = 10; // padding around highlighted element in px
+
+function spotlightElement(selector, title, body, position, stepLabel, isFirst, isLast){
+  clearSpotlight();
+
+  const target = typeof selector === 'string'
+    ? document.querySelector(selector)
+    : selector; // also accepts a DOM element directly
+  if(!target) return false;
+
+  target.scrollIntoView({behavior:'smooth', block:'nearest'});
+
+  // Small delay so scrollIntoView settles before we measure
+  setTimeout(()=>{
+    _buildSpotlight(target, title, body, position||'below', stepLabel, isFirst, isLast);
+  }, 120);
+  return true;
+}
+
+function _buildSpotlight(target, title, body, position, stepLabel, isFirst, isLast){
+  const r = target.getBoundingClientRect();
+  const W = window.innerWidth, H = window.innerHeight;
+  const top    = Math.max(0, r.top    - PAD);
+  const left   = Math.max(0, r.left   - PAD);
+  const bottom = Math.min(H, r.bottom + PAD);
+  const right  = Math.min(W, r.right  + PAD);
+
+  // Four dark panels
+  const panels = [
+    // top
+    {top:0,    left:0,   width:W,         height:top},
+    // bottom
+    {top:bottom, left:0, width:W,         height:H - bottom},
+    // left (between top/bottom panels)
+    {top:top,  left:0,   width:left,      height:bottom - top},
+    // right
+    {top:top,  left:right, width:W-right, height:bottom - top},
+  ];
+
+  const frag = document.createDocumentFragment();
+
+  panels.forEach(p=>{
+    const d = document.createElement('div');
+    d.className='spl-panel';
+    Object.assign(d.style, {
+      top:p.top+'px', left:p.left+'px',
+      width:p.width+'px', height:p.height+'px',
+    });
+    frag.appendChild(d);
+  });
+
+  // Pulsing ring
+  const ring = document.createElement('div');
+  ring.className = 'spl-ring';
+  Object.assign(ring.style, {
+    top:top+'px', left:left+'px',
+    width:(right-left)+'px', height:(bottom-top)+'px',
+  });
+  frag.appendChild(ring);
+
+  // Tooltip card
+  const tip = document.createElement('div');
+  tip.className = 'spl-tip';
+  const isLastStep = isLast !== false && tourState.step === TOUR_STEPS.length - 1;
+  tip.innerHTML = `
+    ${stepLabel?`<div class="spl-tip-lbl">${stepLabel}</div>`:''}
+    <div class="spl-tip-h">${title||''}</div>
+    <div class="spl-tip-p">${body||''}</div>
+    <div class="spl-tip-foot">
+      <button class="spl-tip-skip" onclick="closeTour()">Skip tour</button>
+      <div class="spl-tip-btns">
+        ${isFirst===false?`<button class="spl-tip-prev" onclick="tourPrev()">← Back</button>`:''}
+        <button class="spl-tip-next" onclick="tourNext()">${isLastStep?"Let's go!":'Next →'}</button>
+      </div>
+    </div>`;
+  frag.appendChild(tip);
+  document.body.appendChild(frag);
+
+  // Position tooltip — prefer position arg, fall back to auto
+  _positionTip(tip, r, position, W, H);
+
+  // Store cleanup fn in tourState so tourNext/prev/close can remove elements
+  tourState.cleanup = clearSpotlight;
+}
+
+function _positionTip(tip, targetRect, position, W, H){
+  // Measure after appending so we know the tip's size
+  const tr = tip.getBoundingClientRect();
+  const TW = tr.width, TH = tr.height;
+  const PAD2 = 14;
+
+  let top, left;
+
+  if(position === 'above'){
+    top  = targetRect.top - PAD - TH - PAD2;
+    left = targetRect.left + (targetRect.width - TW) / 2;
+  } else if(position === 'left'){
+    top  = targetRect.top + (targetRect.height - TH) / 2;
+    left = targetRect.left - PAD - TW - PAD2;
+  } else if(position === 'right'){
+    top  = targetRect.top + (targetRect.height - TH) / 2;
+    left = targetRect.right + PAD + PAD2;
+  } else { // below (default)
+    top  = targetRect.bottom + PAD + PAD2;
+    left = targetRect.left + (targetRect.width - TW) / 2;
+  }
+
+  // Clamp to viewport
+  top  = Math.max(PAD2, Math.min(top,  H - TH - PAD2));
+  left = Math.max(PAD2, Math.min(left, W - TW - PAD2));
+
+  // Auto-flip if below the fold
+  if(position === 'below' && top + TH > H - PAD2){
+    top = targetRect.top - PAD - TH - PAD2;
+    top = Math.max(PAD2, top);
+  }
+
+  tip.style.top  = top  + 'px';
+  tip.style.left = left + 'px';
+}
+
+function clearSpotlight(){
+  document.querySelectorAll('.spl-panel,.spl-ring,.spl-tip').forEach(el=>el.remove());
+}
+
+// Reposition on window resize during a spotlight step
+window.addEventListener('resize', ()=>{
+  // If a spotlight is active, re-render it
+  const step = TOUR_STEPS[tourState.step];
+  if(step && step.type === 'spotlight' && document.querySelector('.spl-ring')){
+    clearSpotlight();
+    const target = document.querySelector(step.target);
+    if(target){
+      const label = `Step ${tourState.step+1} of ${TOUR_STEPS.length}`;
+      _buildSpotlight(target, step.title, step.body, step.position||'below',
+        label, tourState.step===0, tourState.step===TOUR_STEPS.length-1);
+    }
+  }
+});
+
 // ── TOUR ─────────────────────────────────────────────────────────────────────
+// Step types:
+//   modal    — full overlay with illustration and text (current behaviour)
+//   spotlight — darkened page, element highlighted, floating tooltip
+//   navigate  — silent view change, no visible step shown
+//
+// Fields per step:
+//   type, title, body         — all types
+//   illo                      — modal only
+//   target                    — spotlight only (CSS selector)
+//   position                  — spotlight only ('above'|'below'|'left'|'right')
+//   before                    — optional fn() runs before step is shown
+//   demo                      — if true, demo progress data is applied before this step
 const TOUR_STEPS=[
-  {title:'Welcome to your revision tracker',body:'This tool tracks your progress through every GCSE Physics learning outcome on the Edexcel specification. Let\'s take a quick tour.',illo:'welcome'},
-  {title:'Combined or Separate Science?',body:'The very first thing to do is select your course. Use the <strong>Combined / Separate</strong> toggle in the top-right corner. Combined Science shows only the topics and outcomes on your spec — whole topics like Astronomy and Static Electricity disappear automatically, and progress totals update to match.',illo:'spec'},
-  {title:'The dashboard',body:'The dashboard shows all your topics at a glance. Each card has <strong>three pie charts</strong> — one for each revision stage. They fill up as you tick things off.',illo:'dashboard'},
-  {title:'Three stages of revision',body:'For every learning outcome, track three stages: <span style="font-weight:700;color:#4361ee">Revised</span> — you\'ve gone over the content. <span style="font-weight:700;color:#c87330">Exam Qs</span> — you\'ve practised exam questions. <span style="font-weight:700;color:#1a9e96">Reviewed</span> — you\'ve gone back over your mistakes.',illo:'stages'},
-  {title:'Opening a topic',body:'Click any topic card to open it. Inside you\'ll find all learning outcomes arranged into subtopics, each with three checkboxes to tick off one stage at a time.',illo:'topic'},
-  {title:'Bulk ticking',body:'Already covered a whole subtopic? Use the <strong>Tick all</strong> buttons at the top of each section to mark every outcome in one click. Click again to clear them all.',illo:'bulk'},
-  {title:'⚠️ Back up your progress',body:'Your progress is saved in this browser automatically — but <strong>clearing your cookies or browser data will erase it</strong>. To keep it safe, use the <strong>Save code</strong> button in the top bar regularly. It gives you a short code to copy somewhere safe — paste it back in anytime to restore everything, even on a new device.',illo:'savecode'},
-  {title:'A few last things',body:'Outcomes marked <span style="font-weight:700;color:#ea580c;background:#fff7ed;padding:1px 5px;border-radius:3px;border:1px solid #fed7aa;font-size:11px">H</span> are Higher tier only. Your progress <strong>saves automatically</strong> in this browser — it\'ll still be here next time. Tap <strong>How to use</strong> in the header anytime to reopen this guide.',illo:'misc'},
+
+  // ── 1. Welcome ───────────────────────────────────────────────────────────
+  {type:'modal',
+   before(){ tourNavigateTo('home'); },
+   title:'Welcome to your revision tracker',
+   body:'This tool helps you track progress through every learning objective in your course — one tick at a time. Let\'s take a quick look around.',
+   illo:'welcome'},
+
+  // ── 2. Home screen — empty state, subject chooser button ─────────────────
+  {type:'spotlight',
+   target:'.home-empty-btn, .help-btn[onclick="openSubjectChooser()"]',
+   position:'below',
+   title:'Add your first subject here',
+   body:'The home screen is where all your subjects live. When you\'re starting out, tap this button to pick the first subject you\'d like to track.'},
+
+  // ── 3. Apply demo data + navigate to home to show a subject card ──────────
+  {type:'spotlight',
+   before(){ tourApplyDemoData(); tourNavigateTo('home'); },
+   target:'.hsc',
+   position:'right',
+   title:'Your subjects appear here',
+   body:'Once you\'ve started tracking a subject it shows up as a card. You can see an at-a-glance summary of your revision progress across all three stages.'},
+
+  // ── 4. Navigate to dashboard ──────────────────────────────────────────────
+  {type:'spotlight',
+   before(){ tourNavigateTo('dashboard'); },
+   target:'.dsb-summary',
+   position:'below',
+   title:'The subject dashboard',
+   body:'Inside a subject you\'ll see your overall progress at the top — how much you\'ve revised, how many exam questions you\'ve practised, and how many mistakes you\'ve reviewed.'},
+
+  // ── 5. Rank badge ─────────────────────────────────────────────────────────
+  {type:'spotlight',
+   target:'.dsb-title .rank-badge',
+   position:'below',
+   title:'Your revision rank',
+   body:'As you tick off more objectives your rank increases — from Recruit all the way up to Legend. It\'s based on your total progress across all three stages.'},
+
+  // ── 6. Topic card ─────────────────────────────────────────────────────────
+  {type:'spotlight',
+   target:'.tc',
+   position:'right',
+   title:'Topics and their progress',
+   body:'Each topic card shows how far along you are. The visual fills up as you work through it. Click any card to dive in and start tracking your objectives.'},
+
+  // ── 7. Navigate into SP1 ──────────────────────────────────────────────────
+  {type:'spotlight',
+   before(){ tourNavigateTo('SP1'); },
+   target:'.tv-bars',
+   position:'below',
+   title:'Topic progress at a glance',
+   body:'Inside a topic you\'ll see progress bars for all three revision stages. This gives you a quick sense of where the gaps are before you start working through it.'},
+
+  // ── 8. Subtopic tier colours ──────────────────────────────────────────────
+  {type:'spotlight',
+   target:'.sub-hdr',
+   position:'below',
+   title:'Subtopic completion colours',
+   body:'Subtopic headers fill with colour as you complete each stage — <strong style="color:#cd7f32">bronze</strong> when all content is revised, <strong style="color:#a8a8a8">silver</strong> when exam questions are done, <strong style="color:#f59e0b">gold</strong> when mistakes have been reviewed too.'},
+
+  // ── 9. Individual outcome row ─────────────────────────────────────────────
+  {type:'spotlight',
+   target:'.or',
+   position:'above',
+   title:'Track each objective individually',
+   body:'Every learning objective has three checkboxes — one for each revision stage. Work through them in order: revise the content, practise exam questions, then review your mistakes. Once you start ticking, the date and time of your last interaction appears beside the checkboxes — tap it to see how many times you\'ve revisited that objective.'},
+
+  // ── 10. Bulk tick bar ─────────────────────────────────────────────────────
+  {type:'spotlight',
+   target:'.bulk-bar',
+   position:'below',
+   title:'Tick whole subtopics at once',
+   body:'If you\'ve covered an entire subtopic in one sitting, use these buttons to tick everything in one click. You can also clear a whole subtopic if you want to start fresh.'},
+
+  // ── 11. Coin counter ──────────────────────────────────────────────────────
+  {type:'spotlight',
+   target:'#coin-counter',
+   position:'below',
+   title:'Earn revision coins',
+   body:'Every time you tick off an objective for the first time, you earn a revision coin. You\'ll see it fly up to the counter here — these add up as you work through your subjects.'},
+
+  // ── 12. Unlocks store ─────────────────────────────────────────────────────
+  {type:'spotlight',
+   target:'button.help-btn[onclick="openThemes()"]',
+   position:'below',
+   title:'Spend them in the unlock store',
+   body:'Use your coins to unlock new themes, fonts and dashboard layouts. Your teacher may also give you special codes to unlock extra content — enter them here too.'},
+
+  // ── 13. Save code ─────────────────────────────────────────────────────────
+  {type:'spotlight',
+   target:'button.help-btn[onclick="openSaveCode()"]',
+   position:'below',
+   title:'Always keep a save code',
+   body:'Your progress is saved in this browser — but clearing your cookies will erase it. Use this button to generate a save code and keep it somewhere safe. You can restore it on any device.'},
+
+  // ── 14. Done — restore progress, navigate home ───────────────────────────
+  {type:'modal',
+   before(){ tourRestoreProgress(); tourNavigateTo('home'); },
+   title:'You\'re all set!',
+   body:'That\'s the full tour. Your subjects are on the home screen, your progress is tracked across every objective, and your rank grows as you revise. Tap <strong>How to use</strong> in the header anytime to run through this again.',
+   illo:'misc'},
 ];
+
+// ── TOUR NAVIGATION HELPERS ───────────────────────────────────────────────────
+// Silent view change — no scroll, no animation triggers, used mid-tour
+function tourNavigateTo(view){
+  currentView = view;
+  updateView();
+}
+
+// Tour runtime state — tracks what's happening mid-tour
+const tourState={
+  step: 0,              // current step index
+  demoActive: false,    // whether demo progress data is currently applied
+  cleanup: null,        // fn to call before moving to next step (e.g. remove spotlight)
+};
+
+// Run a step's optional before() hook
+function tourRunBefore(step){
+  if(typeof step.before==='function') step.before();
+}
+
+// Restore demo data and cleanup on close/skip
+function tourFullCleanup(){
+  if(tourState.cleanup){tourState.cleanup();tourState.cleanup=null;}
+  if(tourState.demoActive){tourRestoreProgress();tourState.demoActive=false;}
+}
+
+// ── TOUR DEMO DATA ────────────────────────────────────────────────────────────
+// Partial progress snapshot covering SP1 only.
+// SP1a — all three stages fully complete (gold subtopic)
+// SP1b — all revised + exam Qs done (silver subtopic)
+// SP1c — all revised only (bronze subtopic)
+// SP1d — untouched
+function makeTourDemo(){
+  const now = Date.now();
+  const ago = (days, hrs) => now - (days*86400+hrs*3600)*1000;
+  return {
+    // SP1a — gold (all three) — reviewed a couple of days ago
+    SP1a1:{r:true,e:true,m:true, ts:ago(2,3),  tc:3},
+    SP1a2:{r:true,e:true,m:true, ts:ago(2,1),  tc:2},
+    SP1a3:{r:true,e:true,m:true, ts:ago(1,14), tc:4},
+    SP1a4:{r:true,e:true,m:true, ts:ago(1,14), tc:2},
+    SP1a5:{r:true,e:true,m:true, ts:ago(1,10), tc:3},
+    // SP1b — silver (revised + exam Qs) — done yesterday
+    SP1b1:{r:true,e:true,m:false, ts:ago(1,9),  tc:2},
+    SP1b2:{r:true,e:true,m:false, ts:ago(1,9),  tc:2},
+    SP1b3:{r:true,e:true,m:false, ts:ago(1,8),  tc:1},
+    SP1b4:{r:true,e:true,m:false, ts:ago(1,8),  tc:2},
+    SP1b5:{r:true,e:true,m:false, ts:ago(0,20), tc:1},
+    SP1b6:{r:true,e:true,m:false, ts:ago(0,20), tc:1},
+    // SP1c — bronze (revised only) — done earlier today
+    SP1c1:{r:true,e:false,m:false, ts:ago(0,4), tc:1},
+    SP1c2:{r:true,e:false,m:false, ts:ago(0,4), tc:1},
+    SP1c3:{r:true,e:false,m:false, ts:ago(0,3), tc:1},
+    SP1c4:{r:true,e:false,m:false, ts:ago(0,3), tc:1},
+    SP1c5:{r:true,e:false,m:false, ts:ago(0,2), tc:1},
+    SP1c6:{r:true,e:false,m:false, ts:ago(0,2), tc:1},
+    // SP1d — untouched
+  };
+}
+
+let _tourSavedProgress = null;
+let _tourSavedSubject  = null;
+let _tourSavedView     = null;
+
+function tourApplyDemoData(){
+  // Save current state
+  _tourSavedProgress = JSON.parse(JSON.stringify(progress));
+  _tourSavedSubject  = SUBJECT;
+  _tourSavedView     = currentView;
+  // Switch to Physics if not already on it (demo data is Physics-specific)
+  if(SUBJECT.id !== 'gcse-physics-edexcel'){
+    SUBJECT = SUBJECTS.find(s=>s.id==='gcse-physics-edexcel') || SUBJECT;
+  }
+  // Merge demo data into progress without saving to localStorage
+  Object.assign(progress, makeTourDemo());
+  tourState.demoActive = true;
+  // Do NOT navigate here — the tour step's before() handles navigation
+}
+
+function tourRestoreProgress(){
+  if(_tourSavedProgress === null) return;
+  progress    = _tourSavedProgress;
+  SUBJECT     = _tourSavedSubject  || SUBJECT;
+  _tourSavedProgress = null;
+  _tourSavedSubject  = null;
+  _tourSavedView     = null;
+  tourState.demoActive = false;
+  // Do NOT call updateView here — the tour step's before() handles navigation
+}
 function tourIllo(t){
   const I={
     welcome:`<svg width="210" height="108" viewBox="0 0 210 108"><circle cx="105" cy="50" r="14" fill="#4361ee" opacity="0.12"/><circle cx="105" cy="50" r="8" fill="#4361ee"/><ellipse cx="105" cy="50" rx="40" ry="17" fill="none" stroke="#4361ee" stroke-width="1.5" stroke-opacity="0.45"/><ellipse cx="105" cy="50" rx="40" ry="17" fill="none" stroke="#4361ee" stroke-width="1.5" stroke-opacity="0.45" transform="rotate(60 105 50)"/><ellipse cx="105" cy="50" rx="40" ry="17" fill="none" stroke="#4361ee" stroke-width="1.5" stroke-opacity="0.45" transform="rotate(120 105 50)"/><circle cx="145" cy="50" r="5" fill="#4361ee"/><circle cx="85" cy="35" r="5" fill="#2ec4b6"/><circle cx="85" cy="65" r="5" fill="#f4a261"/><text x="105" y="96" text-anchor="middle" font-size="10" font-family="sans-serif" fill="#8a94a6" font-weight="600">SP1–SP15 · 420+ learning outcomes</text></svg>`,
@@ -1558,26 +3246,67 @@ function tourIllo(t){
 }
 let tourStep=0;
 function openTour(s){
-  tourStep=s||0;
+  tourState.step=s||0;
+  tourStep=tourState.step; // keep legacy alias in sync
   const ov=document.getElementById('tour');
   ov.classList.remove('hide');
-  document.getElementById('tour-dots').innerHTML=TOUR_STEPS.map((_,i)=>`<div class="tdot"></div>`).join('');
+  document.getElementById('tour-dots').innerHTML=TOUR_STEPS.map(()=>`<div class="tdot"></div>`).join('');
+  tourRunBefore(TOUR_STEPS[tourState.step]);
   renderTourStep();
 }
-function closeTour(){document.getElementById('tour').classList.add('hide');}
+function closeTour(){
+  document.getElementById('tour').classList.add('hide');
+  tourFullCleanup();
+}
 function handleTourClick(e){if(e.target.id==='tour')closeTour();}
 function renderTourStep(){
-  const s=TOUR_STEPS[tourStep];
-  document.getElementById('tour-lbl').textContent=`Step ${tourStep+1} of ${TOUR_STEPS.length}`;
-  document.getElementById('tour-illo').innerHTML=tourIllo(s.illo);
-  document.getElementById('tour-h').textContent=s.title;
-  document.getElementById('tour-p').innerHTML=s.body;
-  document.querySelectorAll('.tdot').forEach((d,i)=>d.classList.toggle('on',i===tourStep));
-  document.getElementById('tour-prev').style.visibility=tourStep>0?'visible':'hidden';
-  document.getElementById('tour-next').textContent=tourStep===TOUR_STEPS.length-1?"Let's go!":'Next →';
+  const s = TOUR_STEPS[tourState.step];
+  const label = `Step ${tourState.step+1} of ${TOUR_STEPS.length}`;
+  const isFirst = tourState.step === 0;
+  const isLast  = tourState.step === TOUR_STEPS.length - 1;
+
+  if(s.type === 'spotlight'){
+    // Hide the modal overlay, show the spotlight instead
+    document.getElementById('tour').classList.add('hide');
+    const found = spotlightElement(s.target, s.title, s.body,
+      s.position||'below', label, isFirst, isLast);
+    if(!found){
+      // Target not in DOM — skip this step silently
+      if(tourState.step < TOUR_STEPS.length - 1){ tourState.step++; tourStep=tourState.step; renderTourStep(); }
+      else closeTour();
+    }
+    return;
+  }
+
+  // modal type (default)
+  clearSpotlight();
+  document.getElementById('tour').classList.remove('hide');
+  document.getElementById('tour-lbl').textContent = label;
+  document.getElementById('tour-illo').innerHTML  = tourIllo(s.illo);
+  document.getElementById('tour-h').textContent   = s.title;
+  document.getElementById('tour-p').innerHTML     = s.body;
+  document.querySelectorAll('.tdot').forEach((d,i)=>d.classList.toggle('on',i===tourState.step));
+  document.getElementById('tour-prev').style.visibility = isFirst ? 'hidden' : 'visible';
+  document.getElementById('tour-next').textContent = isLast ? "Let's go!" : 'Next →';
 }
-function tourNext(){if(tourStep<TOUR_STEPS.length-1){tourStep++;renderTourStep();}else closeTour();}
-function tourPrev(){if(tourStep>0){tourStep--;renderTourStep();}}
+function tourNext(){
+  if(tourState.cleanup){tourState.cleanup();tourState.cleanup=null;}
+  if(tourState.step<TOUR_STEPS.length-1){
+    tourState.step++;tourStep=tourState.step;
+    tourRunBefore(TOUR_STEPS[tourState.step]);
+    renderTourStep();
+  } else {
+    closeTour();
+  }
+}
+function tourPrev(){
+  if(tourState.cleanup){tourState.cleanup();tourState.cleanup=null;}
+  if(tourState.step>0){
+    tourState.step--;tourStep=tourState.step;
+    tourRunBefore(TOUR_STEPS[tourState.step]);
+    renderTourStep();
+  }
+}
 
 const COLORS=['#6366f1','#3b82f6','#f59e0b','#10b981','#06b6d4','#e11d48','#8b5cf6','#f97316','#84cc16','#ec4899','#14b8a6','#f43f5e','#a855f7','#22c55e','#0ea5e9'];
 
@@ -3412,7 +5141,45 @@ function load(){
 }
 function save(){try{localStorage.setItem(progressKey(),JSON.stringify(progress));}catch(e){}}
 function gv(id,f){return!!(progress[id]&&progress[id][f]);}
-function sv(id,f,v){if(!progress[id])progress[id]={};progress[id][f]=v;save();}
+function sv(id,f,v){
+  if(!progress[id])progress[id]={};
+  progress[id][f]=v;
+  // Stamp last-touched time and increment counter only when ticking ON
+  if(v){
+    progress[id].ts=Date.now();
+    progress[id].tc=(progress[id].tc||0)+1;
+  }
+  save();
+}
+function tsFormat(ts){
+  if(!ts)return'';
+  const d=new Date(ts);
+  const hh=String(d.getHours()).padStart(2,'0');
+  const mm=String(d.getMinutes()).padStart(2,'0');
+  const dd=String(d.getDate()).padStart(2,'0');
+  const mo=String(d.getMonth()+1).padStart(2,'0');
+  const yy=d.getFullYear();
+  return`${hh}:${mm} ${dd}/${mo}/${yy}`;
+}
+function showTcPop(el,id){
+  document.querySelectorAll('.tc-pop').forEach(p=>p.remove());
+  const p=progress[id];if(!p)return;
+  const count=Math.floor((p.tc||1)/1); // each toggle is 1 write, report raw
+  const pop=document.createElement('div');
+  pop.className='tc-pop';
+  pop.innerHTML=`<strong>${count}</strong> interaction${count===1?'':'s'}<br><span style="font-size:10px;color:var(--tx3)">last touched ${tsFormat(p.ts)}</span>`;
+  document.body.appendChild(pop);
+  const rect=el.getBoundingClientRect();
+  let top=rect.top-pop.offsetHeight-6;
+  let left=rect.left;
+  if(top<8)top=rect.bottom+6;
+  left=Math.min(left,window.innerWidth-pop.offsetWidth-8);
+  pop.style.top=top+'px';pop.style.left=left+'px';
+  // Auto-dismiss after 2.5s or on next click anywhere
+  const dismiss=()=>{pop.remove();document.removeEventListener('click',dismiss);};
+  setTimeout(()=>document.addEventListener('click',dismiss),50);
+  setTimeout(dismiss,2500);
+}
 function toggle(id,f){
   const prevRank=currentSubjectRank();
   const prevTopicDone=completedTopics();
@@ -3426,7 +5193,8 @@ function toggle(id,f){
                document.querySelector(`.cb[onclick*="${id}"]`);
     awardCoin(id,f,cbEl);
   }
-  const subtopicDone=checkSubtopicComplete(id);
+  const prevSubTier=subTierForOutcome(id);
+  const subtopicDone=checkSubtopicComplete(id,prevSubTier);
   checkRankUp(prevRank,prevTopicDone,subtopicDone);
   if(wasOff&&gv(id,f))setTimeout(petCelebrateOnTick,200);
   updateView();
@@ -3439,9 +5207,10 @@ function bulkField(sid,f,v){
     const bulkBtn=document.querySelector(`button[onclick*="bulkField('${sid}','${f}'"]`);
     s.outcomes.forEach(o=>{if(outcomeVisible(o)&&!gv(o.id,f))awardCoin(o.id,f,bulkBtn);});
   }
+  const prevBfTier=subTier(s);
   s.outcomes.forEach(o=>{if(outcomeVisible(o))sv(o.id,f,v);});
   const tier=subTier(s);
-  if(tier)_pendingShimmer={id:sid,tier};
+  if(tier&&tier!==prevBfTier)_pendingShimmer={id:sid,tier};
   checkRankUp(prevRank,prevTopicDone,!!tier);
   if(v)setTimeout(petCelebrateOnTick,200);
   updateView();
@@ -3459,9 +5228,10 @@ function bulkAll(sid,v){
       }
     });
   }
+  const prevBaTier=subTier(s);
   s.outcomes.forEach(o=>{if(outcomeVisible(o)){sv(o.id,'r',v);sv(o.id,'e',v);sv(o.id,'m',v);}});
   const tier=v?subTier(s):null;
-  if(tier)_pendingShimmer={id:sid,tier};
+  if(tier&&tier!==prevBaTier)_pendingShimmer={id:sid,tier};
   checkRankUp(prevRank,prevTopicDone,!!tier);
   if(v)setTimeout(petCelebrateOnTick,200);
   updateView();
@@ -3537,7 +5307,7 @@ function updateView(){
     else{renderTopic(t);}
   }
   setTimeout(repaint,0);
-  setTimeout(applyPendingShimmer,80);
+  setTimeout(()=>{applyAllSubtopicTiers();applyPendingShimmer();},0);
 }
 function switchView(id){currentView=id;window.scrollTo(0,0);updateView();}
 
@@ -3748,10 +5518,8 @@ function renderTopic(t){
     if(!subVisible(sub))continue;
     const ss=sStats(sub);
     const sepTag=sub.sep_only?`<span class="sep-tag">Sep only</span>`:'';
-    const tier=subTier(sub);
-    const tierClass=tier?` tier-${tier}`:'';
     h+=`<div class="sub">
-  <div class="sub-hdr${tierClass}" onclick="toggleSub('${sub.id}')">
+  <div class="sub-hdr" onclick="toggleSub('${sub.id}')">
     <div class="sub-left"><span class="sub-id" style="color:${col}">${sub.id}</span><span class="sub-name">${sub.name}</span>${sepTag}</div>
     <div class="sub-right"><span class="sub-prog">${ss.r+ss.e+ss.m}/${ss.n*3} checks</span><span class="chev open" id="${sub.id}_ch">&#8964;</span></div>
   </div>
@@ -3778,6 +5546,7 @@ function renderTopic(t){
   <div class="cbw"><div class="cb r1${rv?' on':''}${cbIconClass()}" onclick="toggle('${o.id}','r')">${cbIcon('r',rv)}</div></div>
   <div class="cbw"><div class="cb r2${ev?' on':''}${cbIconClass()}" onclick="toggle('${o.id}','e')">${cbIcon('e',ev)}</div></div>
   <div class="cbw"><div class="cb r3${mv?' on':''}${cbIconClass()}" onclick="toggle('${o.id}','m')">${cbIcon('m',mv)}</div></div>
+  ${progress[o.id]&&progress[o.id].ts?`<div class="or-ts-wrap"><span class="or-ts" onclick="event.stopPropagation();showTcPop(this,'${o.id}')">${tsFormat(progress[o.id].ts)}</span></div>`:'<div></div>'}
 </div>`;}
     h+=`</div></div>`;
   }
@@ -3924,15 +5693,10 @@ function checkRankUp(prevRank,prevTopicDone,subtopicDone){
   if(isLegend) animLevel=4;                               // Legend always wins
 
   // Fire animation at chosen level
-  if(animLevel===1){
-    fireConfetti(40,false);
-  } else if(animLevel===2){
-    fireConfetti(40,false);
-  } else if(animLevel===3){
-    fireConfetti(80,false);
-  } else if(animLevel===4){
-    fireConfetti(140,true);
-  }
+  // Level 1 = subtopic shimmer only (confetti handled separately via _pendingShimmer)
+  if(animLevel===2)     fireConfetti(40,false);
+  else if(animLevel===3)fireConfetti(80,false);
+  else if(animLevel===4)fireConfetti(140,true);
 
   // Show rank popup if rank changed, or on legend topic complete
   if(rankUp){
@@ -3975,33 +5739,205 @@ function subTier(sub){
   if(allR)return 'bronze';
   return null;
 }
+function subTierForOutcome(outcomeId){
+  for(const t of SUBJECT.topics)
+    for(const sub of t.subtopics)
+      if(sub.outcomes.find(o=>o.id===outcomeId))return subTier(sub);
+  return null;
+}
 
 let _pendingShimmer=null; // {id, tier} — set before updateView, applied after re-render
-function checkSubtopicComplete(outcomeId){
+function checkSubtopicComplete(outcomeId,prevTier){
   for(const t of SUBJECT.topics){
     for(const sub of t.subtopics){
       if(!sub.outcomes.find(o=>o.id===outcomeId))continue;
       const tier=subTier(sub);
-      if(tier)_pendingShimmer={id:sub.id,tier};
+      // Only shimmer if tier has genuinely changed (or is new)
+      if(tier&&tier!==prevTier)_pendingShimmer={id:sub.id,tier};
       return!!tier;
     }
   }
   return false;
+}
+function applyAllSubtopicTiers(){
+  // Apply the persistent tier class to every visible sub-hdr after a render.
+  // Must run BEFORE applyPendingShimmer so the animating subtopic can override.
+  if(currentView==='home'||currentView==='dashboard')return;
+  const t=SUBJECT.topics.find(x=>x.id===currentView);
+  if(!t)return;
+  for(const sub of t.subtopics){
+    const hdr=document.querySelector(`[onclick="toggleSub('${sub.id}')"]`);
+    if(!hdr)continue;
+    // Don't touch headers that are mid-animation
+    if(hdr.classList.contains('shimmer-bronze')||hdr.classList.contains('shimmer-silver')||hdr.classList.contains('shimmer-gold'))continue;
+    hdr.classList.remove('tier-bronze','tier-silver','tier-gold');
+    const tier=subTier(sub);
+    if(tier)hdr.classList.add(`tier-${tier}`);
+  }
 }
 function applyPendingShimmer(){
   if(!_pendingShimmer)return;
   const{id,tier}=_pendingShimmer;_pendingShimmer=null;
   const hdr=document.querySelector(`[onclick="toggleSub('${id}')"]`);
   if(!hdr)return;
-  // Remove any previous tier and shimmer classes
-  hdr.classList.remove('tier-bronze','tier-silver','tier-gold','shimmer-bronze','shimmer-silver','shimmer-gold');
-  // Play shimmer
+  // Remove only shimmer classes — keep existing tier class as the base colour
+  // so upgrading bronze→silver doesn't flash white while the fill starts
+  hdr.classList.remove('shimmer-bronze','shimmer-silver','shimmer-gold');
   hdr.classList.add(`shimmer-${tier}`);
-  // After shimmer, settle into persistent tier colour
+  const dur = 2000;
+  const t0  = performance.now();
+  // Start fuse sparks immediately, synced to the CSS fill animation
+  fireHeaderSparks(hdr, tier, t0, dur);
+  // When fill completes: drop the shimmer, apply new tier
   setTimeout(()=>{
-    hdr.classList.remove(`shimmer-${tier}`);
+    hdr.classList.remove('shimmer-bronze','shimmer-silver','shimmer-gold');
+    hdr.classList.remove('tier-bronze','tier-silver','tier-gold');
     hdr.classList.add(`tier-${tier}`);
-  },750);
+  }, dur + 50);
+}
+
+// Solve cubic-bezier(0.5,0,0.1,1) at time t∈[0,1] — returns eased progress
+// Uses Newton-Raphson to find the x that matches t, then evaluates y.
+function solveCubicBezier(t){
+  const p1x=0.5,p1y=0,p2x=0.1,p2y=1;
+  function cx(u){return 3*p1x*u*(1-u)*(1-u)+3*p2x*u*u*(1-u)+u*u*u;}
+  function cy(u){return 3*p1y*u*(1-u)*(1-u)+3*p2y*u*u*(1-u)+u*u*u;}
+  function dxdu(u){return 3*p1x*(1-u)*(1-3*u)+3*p2x*u*(3*u-2)+3*u*u;}
+  let u=t;
+  for(let i=0;i<8;i++){const d=dxdu(u);if(Math.abs(d)<1e-6)break;u-=(cx(u)-t)/d;}
+  return cy(Math.max(0,Math.min(1,u)));
+}
+
+function fireHeaderSparks(hdr, tier, startTime, duration){
+  // startTime and duration are passed from the fuse loop so both share the same timing
+  const tierColors = {
+    bronze: ['#cd7f32','#e8a050','#f5c87a'],
+    silver: ['#a8a8a8','#c8c8c8','#e8e8e8'],
+    gold:   ['#f59e0b','#fbbf24','#fde68a'],
+  };
+  const cols = tierColors[tier] || tierColors.gold;
+
+  const canvas = document.getElementById('rk-canvas');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const ctx = canvas.getContext('2d');
+
+  const dur = duration || 2000;
+  const t0  = startTime || performance.now();
+  const particles = [];
+
+  function spawnFuseSparks(ox, oy){
+    const n = Math.random() < 0.5 ? 2 : 3;
+    for(let i=0;i<n;i++){
+      const angle = (Math.random()*140 - 110) * Math.PI/180;
+      const speed = Math.random()*3+1.5;
+      particles.push({
+        x:ox, y:oy,
+        vx:Math.cos(angle)*speed,
+        vy:Math.sin(angle)*speed,
+        r:Math.random()*2+1,
+        col:cols[Math.floor(Math.random()*cols.length)],
+        life:1, decay:0.055+Math.random()*0.03,
+        fuse:true,
+        glint: Math.random() < 0.25, // 1 in 4 sparks gets a cross glint
+      });
+    }
+  }
+
+  function spawnFinalBurst(ox, oy){
+    for(let i=0;i<16;i++){
+      const angle = (Math.random()*180 - 150) * Math.PI/180;
+      const speed = Math.random()*5.5+2.5;
+      particles.push({
+        x:ox, y:oy,
+        vx:Math.cos(angle)*speed,
+        vy:Math.sin(angle)*speed,
+        r:Math.random()*3+1.2,
+        col:cols[Math.floor(Math.random()*cols.length)],
+        life:1, decay:0.022,
+        fuse:false,
+        glint: Math.random() < 0.4,
+      });
+    }
+  }
+
+  let finished = false;
+  let lastFuseX = -1;
+
+  (function draw(now){
+    const elapsed = now - t0;
+    const rawT    = Math.min(elapsed / dur, 1);
+    const eased   = solveCubicBezier(rawT);
+    const rect    = hdr.getBoundingClientRect();
+    const oy      = rect.top + rect.height / 2;
+    const ox      = rect.left + eased * rect.width;
+
+    // Spawn fuse sparks while fill is running (throttle to every ~2 frames)
+    if(rawT < 1 && Math.abs(ox - lastFuseX) > 1.5){
+      spawnFuseSparks(ox, oy);
+      lastFuseX = ox;
+    }
+
+    // Final burst exactly when fill completes
+    if(rawT >= 1 && !finished){
+      finished = true;
+      spawnFinalBurst(rect.left + rect.width - 4, oy);
+    }
+
+    // Draw all particles
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let anyAlive = false;
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy; p.vy += p.fuse ? 0.08 : 0.15;
+      p.vx *= 0.97; p.life -= p.decay;
+      if(p.life <= 0) return;
+      anyAlive = true;
+      const alpha = Math.max(0, p.life * (p.fuse ? 0.9 : 1));
+
+      if(p.glint){
+        // Cross/star glint — four short lines from centre
+        const arm = p.r * 2.8;
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        ctx.strokeStyle = 'white';
+        ctx.lineWidth = p.fuse ? 1 : 1.4;
+        ctx.shadowBlur = 6; ctx.shadowColor = p.col;
+        ctx.beginPath();
+        ctx.moveTo(p.x - arm, p.y); ctx.lineTo(p.x + arm, p.y);
+        ctx.moveTo(p.x, p.y - arm); ctx.lineTo(p.x, p.y + arm);
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      // Outer glow halo
+      ctx.save();
+      ctx.globalAlpha = alpha * 0.45;
+      ctx.shadowBlur = p.fuse ? 8 : 12;
+      ctx.shadowColor = p.col;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r * 1.6, 0, Math.PI*2);
+      ctx.fillStyle = p.col; ctx.fill();
+      ctx.restore();
+
+      // Main coloured body
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.shadowBlur = p.fuse ? 6 : 10;
+      ctx.shadowColor = p.col;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = p.col; ctx.fill();
+      ctx.restore();
+
+      // Bright white core
+      ctx.save();
+      ctx.globalAlpha = alpha * 0.9;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r * 0.45, 0, Math.PI*2);
+      ctx.fillStyle = 'white'; ctx.fill();
+      ctx.restore();
+    });
+    ctx.globalAlpha = 1;
+
+    if(!finished || anyAlive) requestAnimationFrame(draw);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  })(t0);
 }
 
 // ── CHECKBOX BURST ────────────────────────────────────────────────────────────
@@ -4144,8 +6080,8 @@ function renderTopicSubCards(t,col){
   }
   for(const sub of t.subtopics){
     if(!subVisible(sub))continue;
-    const ss=sStats(sub),sepTag=sub.sep_only?'<span class="sep-tag">Sep only</span>':'',tier=subTier(sub),tierClass=tier?` tier-${tier}`:'';
-    h+=`<div class="sub"><div class="sub-hdr${tierClass}" onclick="toggleSub('${sub.id}')"><div class="sub-left"><span class="sub-id" style="color:${col}">${sub.id}</span><span class="sub-name">${sub.name}</span>${sepTag}</div><div class="sub-right"><span class="sub-prog">${ss.r+ss.e+ss.m}/${ss.n*3} checks</span><span class="chev open" id="${sub.id}_ch">&#8964;</span></div></div><div class="sub-body" id="${sub.id}_bd"><div class="bulk-bar"><span class="bulk-lbl">Tick all:</span><button class="bb bb1" onclick="bulkField('${sub.id}','r',true)">&#10003; Revised</button><button class="bb bb2" onclick="bulkField('${sub.id}','e',true)">&#10003; Exam Qs</button><button class="bb bb3" onclick="bulkField('${sub.id}','m',true)">&#10003; Reviewed</button><button class="bb bball" onclick="bulkAll('${sub.id}',true)">&#10003; All three</button><button class="bclr" onclick="bulkAll('${sub.id}',false)">&#10005; Clear</button></div><div class="col-hdr"><div class="ch" style="text-align:left;color:var(--tx2)">Learning outcome</div><div class="ch" style="color:var(--c1)">Rev</div><div class="ch" style="color:var(--c2)">Qs</div><div class="ch" style="color:var(--c3)">Err</div></div>`;
+    const ss=sStats(sub),sepTag=sub.sep_only?'<span class="sep-tag">Sep only</span>':'';
+    h+=`<div class="sub"><div class="sub-hdr" onclick="toggleSub('${sub.id}')"><div class="sub-left"><span class="sub-id" style="color:${col}">${sub.id}</span><span class="sub-name">${sub.name}</span>${sepTag}</div><div class="sub-right"><span class="sub-prog">${ss.r+ss.e+ss.m}/${ss.n*3} checks</span><span class="chev open" id="${sub.id}_ch">&#8964;</span></div></div><div class="sub-body" id="${sub.id}_bd"><div class="bulk-bar"><span class="bulk-lbl">Tick all:</span><button class="bb bb1" onclick="bulkField('${sub.id}','r',true)">&#10003; Revised</button><button class="bb bb2" onclick="bulkField('${sub.id}','e',true)">&#10003; Exam Qs</button><button class="bb bb3" onclick="bulkField('${sub.id}','m',true)">&#10003; Reviewed</button><button class="bb bball" onclick="bulkAll('${sub.id}',true)">&#10003; All three</button><button class="bclr" onclick="bulkAll('${sub.id}',false)">&#10005; Clear</button></div><div class="col-hdr"><div class="ch" style="text-align:left;color:var(--tx2)">Learning outcome</div><div class="ch" style="color:var(--c1)">Rev</div><div class="ch" style="color:var(--c2)">Qs</div><div class="ch" style="color:var(--c3)">Err</div></div>`;
     for(const o of sub.outcomes){
       if(!outcomeVisible(o))continue;
       const rv=gv(o.id,'r'),ev=gv(o.id,'e'),mv=gv(o.id,'m');
@@ -4440,7 +6376,7 @@ const UNLOCK_CODES = {
   'MX9Z2QV':   {desc:'All themes, fonts & layouts',  action:()=>forceUnlockAll()},
   'LEHS2025':  {desc:'All themes, fonts & layouts',  action:()=>forceUnlockAll()},
   // Staff room — teacher cheat sheet
-  'THESTAFFROOM': {desc:'Teacher code reference', action:()=>openStaffRoom()},
+  'THESTAFFROOM': {desc:'Teacher code reference', ui_only:true, action:()=>openStaffRoom()},
   // Subject themes — individual
   'PIXEL8F':    {desc:'CS Terminal Light theme',      action:()=>forceUnlock('theme','cs-light')},
   'VOID404':    {desc:'CS Terminal Dark theme',       action:()=>forceUnlock('theme','cs-dark')},
@@ -4547,8 +6483,19 @@ function resetEverything(){
 }
 function loadRedeemedCodes(){
   try{const r=localStorage.getItem('gcse_codes');if(r)redeemedCodes=new Set(JSON.parse(r));}catch(e){}
-  // Re-apply all previously redeemed codes silently
-  redeemedCodes.forEach(code=>{const def=UNLOCK_CODES[code.toUpperCase()];if(def)def.action();});
+  // Re-apply all previously redeemed codes silently.
+  // Uses code.restore() if defined, otherwise code.action() — but only if not ui_only.
+  redeemedCodes.forEach(code=>{
+    const def=UNLOCK_CODES[code.toUpperCase()];
+    if(!def||def.ui_only)return;
+    if(def.restore)def.restore();
+    else def.action();
+  });
+  // Show staff room button if that code was previously redeemed
+  if(redeemedCodes.has('THESTAFFROOM')){
+    const btn=document.getElementById('btn-staffroom');
+    if(btn)btn.style.display='';
+  }
 }
 function saveRedeemedCodes(){
   try{localStorage.setItem('gcse_codes',JSON.stringify([...redeemedCodes]));}catch(e){}
@@ -4586,6 +6533,11 @@ function redeemCode(){
   def.action();
   redeemedCodes.add(raw);
   saveRedeemedCodes();
+  // If this is the staff room code, reveal the persistent header button
+  if(raw==='THESTAFFROOM'){
+    const btn=document.getElementById('btn-staffroom');
+    if(btn)btn.style.display='';
+  }
   res.className='uc-result ok';res.textContent='✓ Unlocked: '+def.desc;
   document.getElementById('uc-input').value='';
   renderUcHistory();
@@ -4595,14 +6547,7 @@ function redeemCode(){
 }
 function renderUcHistory(){
   const hist=document.getElementById('uc-history');
-  const list=document.getElementById('uc-history-list');
-  if(!hist||!list)return;
-  if(redeemedCodes.size===0){hist.style.display='none';return;}
-  hist.style.display='block';
-  list.innerHTML=[...redeemedCodes].map(code=>{
-    const def=UNLOCK_CODES[code]||{desc:'Unknown'};
-    return`<div class="uc-history-item"><span>${code}</span><span>— ${def.desc}</span></div>`;
-  }).join('');
+  if(hist)hist.style.display='none';
 }
 
 
@@ -5524,6 +7469,5 @@ applySubjectToggles();
 updateView();
 if(!localStorage.getItem('gcse_seen_tour')){localStorage.setItem('gcse_seen_tour','1');setTimeout(()=>openTour(0),600);}
 </script>
-
-
-</body></html>
+</body>
+</html>
