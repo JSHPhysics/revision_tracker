@@ -6392,12 +6392,13 @@ const SUBJECTS=[{
 {
   id:"gcse-physics-edexcel-leh",
   hidden:true,
+  inherits_progress_from:"gcse-physics-edexcel",
+  replaces:"gcse-physics-edexcel",
   name:"Physics — LEH Custom",
   exam_board:"Edexcel",
   qualification:"GCSE (9-1)",
-  has_combined_separate:false,
-  tier_mode:"none",
-  columns:["Recall","Calculations","Explanations"],
+  has_combined_separate:true,
+  tier_mode:"higher_foundation",
   topics:[
   {
     id:"SP1",name:"Motion",
@@ -6406,53 +6407,1230 @@ const SUBJECTS=[{
     {
       id:"SP1r",name:"Practice",
       type:"revisit",
-      sep_only:false,papers:[1],
+      sep_only:false,papers:[1,2],
       outcomes:[
         {id:"SP1r1",type:"revisit",tag:"flash",tagLabel:"Flashcards",
          phrases:["I have looked through my flashcards for the first time","I have self-tested using flashcards and identified gaps","I have drilled flashcards confidently and feel ready"],
-         text:"Flashcard practice",higher:false,sep_only:false,papers:[1]},
+         text:"Flashcard practice",higher:false,sep_only:false,papers:[1,2]},
         {id:"SP1r2",type:"revisit",tag:"calc",tagLabel:"Calculations",
          phrases:["I have attempted the worked examples for this topic","I have completed practice calculations and checked my working","I have solved unseen calculation problems without support"],
-         text:"Calculation practice",higher:false,sep_only:false,papers:[1]},
+         text:"Calculation practice",higher:false,sep_only:false,papers:[1,2]},
         {id:"SP1r3",type:"revisit",tag:"expl",tagLabel:"Explanations",
          phrases:["I have read through the key explanations and can follow the reasoning","I have written out explanations from memory and checked them","I can explain the key concepts fluently without notes"],
-         text:"Explanation practice",higher:false,sep_only:false,papers:[1]},
+         text:"Explanation practice",higher:false,sep_only:false,papers:[1,2]},
       ],
     },
     {
       id:"SP1a",name:"Vectors and scalars",
       sep_only:false,papers:[1],
       outcomes:[
-        {id:"SP1a1",text:"State the difference between vector and scalar quantities; give examples of each",higher:false,sep_only:false,papers:[1]},
-        {id:"SP1a2",text:"Calculate resultant vectors using scale diagrams or Pythagoras",higher:false,sep_only:false,papers:[1]},
-        {id:"SP1a3",text:"Explain why displacement, velocity and acceleration are vectors but distance and speed are scalars",higher:false,sep_only:false,papers:[1]},
+        {id:"SP1a1",text:"Describe the difference between weight and mass",higher:false,sep_only:false,papers:[1]},
+        {id:"SP1a2",text:"Explain the difference between a vector and a scalar quantity",higher:false,sep_only:false,papers:[1]},
+        {id:"SP1a3",text:"Describe the difference between displacement and distance",higher:false,sep_only:false,papers:[1]},
+        {id:"SP1a4",text:"Describe the difference between velocity and speed",higher:false,sep_only:false,papers:[1]},
+        {id:"SP1a5",text:"Define the terms: acceleration, force, momentum, energy",higher:false,sep_only:false,papers:[1]},
       ],
     },
     {
-      id:"SP1b",name:"Distance-time graphs",
+      id:"SP1b",name:"Distance/time graphs",
       sep_only:false,papers:[1],
       outcomes:[
-        {id:"SP1b1",text:"State what the gradient of a d-t graph represents",higher:false,sep_only:false,papers:[1]},
-        {id:"SP1b2",text:"Calculate speed from the gradient of a distance-time graph",higher:false,sep_only:false,papers:[1]},
-        {id:"SP1b3",text:"Explain the shape of a d-t graph for uniform and non-uniform motion",higher:false,sep_only:false,papers:[1]},
+        {id:"SP1b1",text:"Recall and use equations relating distance, speed and time (v = d/t)",higher:false,sep_only:false,papers:[1]},
+        {id:"SP1b2",text:"Describe how speed can be measured in a school laboratory",higher:false,sep_only:false,papers:[1]},
+        {id:"SP1b3",text:"Recall typical speeds for walking, running, cycling and travelling by car",higher:false,sep_only:false,papers:[1]},
+        {id:"SP1b4",text:"Interpret distance/time graphs, including what the steepness of the line tells you",higher:false,sep_only:false,papers:[1]},
+        {id:"SP1b5",text:"Represent journeys on distance/time graphs",higher:false,sep_only:false,papers:[1]},
+        {id:"SP1b6",text:"Determine speed from the gradient of a distance/time graph",higher:false,sep_only:false,papers:[1]},
       ],
     },
     {
-      id:"SP1c",name:"Velocity-time graphs",
+      id:"SP1c",name:"Acceleration",
       sep_only:false,papers:[1],
       outcomes:[
-        {id:"SP1c1",text:"State what the gradient and area under a v-t graph represent",higher:false,sep_only:false,papers:[1]},
-        {id:"SP1c2",text:"Calculate acceleration and displacement from a v-t graph",higher:false,sep_only:false,papers:[1]},
-        {id:"SP1c3",text:"Explain the motion of an object from the shape of its v-t graph, including deceleration",higher:false,sep_only:false,papers:[1]},
+        {id:"SP1c1",text:"Recall the formula relating acceleration, velocity and time (a = \\u0394v/t)",higher:false,sep_only:false,papers:[1]},
+        {id:"SP1c2",text:"Use the formula relating acceleration, velocity and time",higher:false,sep_only:false,papers:[1]},
+        {id:"SP1c3",text:"Recall the equation relating acceleration, velocity and distance (v\\u00b2 = u\\u00b2 + 2as)",higher:false,sep_only:false,papers:[1]},
+        {id:"SP1c4",text:"Use the equation relating acceleration, velocity and distance",higher:false,sep_only:false,papers:[1]},
+        {id:"SP1c5",text:"Recall the acceleration in free fall (g \\u2248 9.8 m/s\\u00b2)",higher:false,sep_only:false,papers:[1]},
+        {id:"SP1c6",text:"Estimate the magnitudes of some everyday accelerations",higher:false,sep_only:false,papers:[1]},
       ],
     },
     {
-      id:"SP1d",name:"Equations of motion",
+      id:"SP1d",name:"Velocity/time graphs",
       sep_only:false,papers:[1],
       outcomes:[
-        {id:"SP1d1",text:"Recall the four equations of uniformly accelerated motion",higher:false,sep_only:false,papers:[1]},
-        {id:"SP1d2",text:"Use v=u+at, s=½(u+v)t, s=ut+½at², v²=u²+2as in calculation problems",higher:false,sep_only:false,papers:[1]},
-        {id:"SP1d3",text:"Explain which equation to choose and why, given the known and unknown quantities",higher:false,sep_only:false,papers:[1]},
+        {id:"SP1d1",text:"Represent journeys on velocity/time graphs",higher:false,sep_only:false,papers:[1]},
+        {id:"SP1d2",text:"Interpret velocity/time graphs qualitatively",higher:false,sep_only:false,papers:[1]},
+        {id:"SP1d3",text:"Calculate uniform accelerations from the gradients of velocity/time graphs",higher:false,sep_only:false,papers:[1]},
+        {id:"SP1d4",text:"Determine the distance travelled from the area under a velocity/time graph",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    ],
+  },
+  {
+    id:"SP2",name:"Motion and Forces",
+    sep_only:false,papers:[1],
+    subtopics:[
+    {
+      id:"SP2r",name:"Practice",
+      type:"revisit",
+      sep_only:false,papers:[1,2],
+      outcomes:[
+        {id:"SP2r1",type:"revisit",tag:"flash",tagLabel:"Flashcards",
+         phrases:["I have looked through my flashcards for the first time","I have self-tested using flashcards and identified gaps","I have drilled flashcards confidently and feel ready"],
+         text:"Flashcard practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP2r2",type:"revisit",tag:"calc",tagLabel:"Calculations",
+         phrases:["I have attempted the worked examples for this topic","I have completed practice calculations and checked my working","I have solved unseen calculation problems without support"],
+         text:"Calculation practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP2r3",type:"revisit",tag:"expl",tagLabel:"Explanations",
+         phrases:["I have read through the key explanations and can follow the reasoning","I have written out explanations from memory and checked them","I can explain the key concepts fluently without notes"],
+         text:"Explanation practice",higher:false,sep_only:false,papers:[1,2]},
+      ],
+    },
+    {
+      id:"SP2a",name:"Resultant forces",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP2a1",text:"Explain the difference between scalar and vector quantities",higher:false,sep_only:false,papers:[1]},
+        {id:"SP2a2",text:"Use arrows to represent the direction and magnitude of forces",higher:false,sep_only:false,papers:[1]},
+        {id:"SP2a3",text:"Define a resultant force",higher:false,sep_only:false,papers:[1]},
+        {id:"SP2a4",text:"Calculate resultant forces",higher:false,sep_only:false,papers:[1]},
+        {id:"SP2a5",text:"Explain whether forces on an object are balanced or unbalanced",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP2c",name:"Mass and weight",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP2c1",text:"Describe the difference between mass and weight",higher:false,sep_only:false,papers:[1]},
+        {id:"SP2c2",text:"List the factors that determine the weight of an object",higher:false,sep_only:false,papers:[1]},
+        {id:"SP2c3",text:"Recall the equation for calculating weight (W = mg)",higher:false,sep_only:false,papers:[1]},
+        {id:"SP2c4",text:"Use the equation relating weight, mass and gravitational field strength",higher:false,sep_only:false,papers:[1]},
+        {id:"SP2c5",text:"Describe how weight is measured",higher:false,sep_only:false,papers:[1]},
+        {id:"SP2c6",text:"Describe how the weight of an object is affected by gravitational field strength",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP2f",name:"Momentum",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP2f1",text:"Describe the factors that affect the momentum of an object",higher:false,sep_only:false,papers:[1]},
+        {id:"SP2f2",text:"Calculate the momentum of moving objects (p = mv)",higher:false,sep_only:false,papers:[1]},
+        {id:"SP2f3",text:"Describe examples of momentum in collisions",higher:false,sep_only:false,papers:[1]},
+        {id:"SP2f4",text:"Use conservation of momentum to calculate velocities after collisions",higher:false,sep_only:false,papers:[1]},
+        {id:"SP2f5",text:"Calculate the force needed to produce a change in momentum in a given time",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP2g",name:"Stopping distances",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP2g1",text:"Describe how human reaction times are measured",higher:false,sep_only:false,papers:[1]},
+        {id:"SP2g2",text:"Recall typical human reaction times",higher:false,sep_only:false,papers:[1]},
+        {id:"SP2g3",text:"Describe the link between stopping distance, thinking distance and braking distance",higher:false,sep_only:false,papers:[1]},
+        {id:"SP2g4",text:"Recall the factors that affect stopping distances",higher:false,sep_only:false,papers:[1]},
+        {id:"SP2g5",text:"Describe how different factors affect stopping distances",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP2h",name:"Braking distances and energy",
+      sep_only:true,papers:[1],
+      outcomes:[
+        {id:"SP2h1",text:"Estimate the braking distance of a road vehicle given its mass, speed and braking force",higher:false,sep_only:false,papers:[1]},
+        {id:"SP2h3",text:"Calculate the work done when a force moves through a distance (W = Fd)",higher:false,sep_only:false,papers:[1]},
+        {id:"SP2h4",text:"Describe the factors that affect the kinetic energy of a moving object",higher:false,sep_only:false,papers:[1]},
+        {id:"SP2h5",text:"Calculate the kinetic energy of a moving object (KE = \\u00bdmv\\u00b2)",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP2i",name:"Crash hazards",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP2i1",text:"Calculate the force needed to produce a change in momentum in a given time",higher:false,sep_only:false,papers:[1]},
+        {id:"SP2i3",text:"Describe the dangers caused by large decelerations",higher:false,sep_only:false,papers:[1]},
+        {id:"SP2i4",text:"Explain why large decelerations cause dangers",higher:false,sep_only:false,papers:[1]},
+        {id:"SP2i5",text:"Recall some typical forces involved in road collisions",higher:true,sep_only:false,papers:[1]},
+        {id:"SP2i6",text:"Use knowledge of changes in momentum to estimate forces in road collisions",higher:true,sep_only:false,papers:[1]},
+      ],
+    },
+    ],
+  },
+  {
+    id:"SP3",name:"Conservation of Energy",
+    sep_only:false,papers:[1],
+    subtopics:[
+    {
+      id:"SP3r",name:"Practice",
+      type:"revisit",
+      sep_only:false,papers:[1,2],
+      outcomes:[
+        {id:"SP3r1",type:"revisit",tag:"flash",tagLabel:"Flashcards",
+         phrases:["I have looked through my flashcards for the first time","I have self-tested using flashcards and identified gaps","I have drilled flashcards confidently and feel ready"],
+         text:"Flashcard practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP3r2",type:"revisit",tag:"calc",tagLabel:"Calculations",
+         phrases:["I have attempted the worked examples for this topic","I have completed practice calculations and checked my working","I have solved unseen calculation problems without support"],
+         text:"Calculation practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP3r3",type:"revisit",tag:"expl",tagLabel:"Explanations",
+         phrases:["I have read through the key explanations and can follow the reasoning","I have written out explanations from memory and checked them","I can explain the key concepts fluently without notes"],
+         text:"Explanation practice",higher:false,sep_only:false,papers:[1,2]},
+      ],
+    },
+    {
+      id:"SP3a",name:"Energy stores and transfers",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP3a1",text:"Explain, using examples, that energy is conserved",higher:false,sep_only:false,papers:[1]},
+        {id:"SP3a2",text:"Give examples of energy being moved between different stores",higher:false,sep_only:false,papers:[1]},
+        {id:"SP3a3",text:"Interpret diagrams that represent energy transfers",higher:false,sep_only:false,papers:[1]},
+        {id:"SP3a4",text:"Represent energy transfers using diagrams",higher:false,sep_only:false,papers:[1]},
+        {id:"SP3a5",text:"Describe what happens to wasted energy in energy transfers",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP3b",name:"Energy efficiency",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP3b1",text:"Explain some ways in which energy is transferred wastefully by mechanical processes",higher:false,sep_only:false,papers:[1]},
+        {id:"SP3b2",text:"Explain some ways of reducing unwanted energy transfers in mechanical processes",higher:false,sep_only:false,papers:[1]},
+        {id:"SP3b3",text:"Define what efficiency means",higher:false,sep_only:false,papers:[1]},
+        {id:"SP3b4",text:"Explain how efficiency can be increased",higher:true,sep_only:false,papers:[1]},
+        {id:"SP3b5",text:"Recall and use the formula for calculating energy efficiency",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP3c",name:"Keeping warm",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP3c1",text:"Describe the ways in which energy can be transferred by heating",higher:false,sep_only:false,papers:[1]},
+        {id:"SP3c2",text:"Describe ways of reducing unwanted energy transfers using thermal insulation",higher:false,sep_only:false,papers:[1]},
+        {id:"SP3c3",text:"Explain how different ways of reducing energy transfer by heating work",higher:false,sep_only:false,papers:[1]},
+        {id:"SP3c4",text:"Define the meaning of thermal conductivity",higher:false,sep_only:false,papers:[1]},
+        {id:"SP3c5",text:"Describe the effects of thickness and thermal conductivity of building walls on rate of cooling",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP3d",name:"Stored energies",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP3d1",text:"Describe how different factors affect the gravitational potential energy stored in an object",higher:false,sep_only:false,papers:[1]},
+        {id:"SP3d2",text:"Recall and use the equation for gravitational potential energy (GPE = mgh)",higher:false,sep_only:false,papers:[1]},
+        {id:"SP3d3",text:"Describe how different factors affect the kinetic energy stored in an object",higher:false,sep_only:false,papers:[1]},
+        {id:"SP3d4",text:"Recall and use the equation for kinetic energy (KE = \\u00bdmv\\u00b2)",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP3e",name:"Non-renewable resources",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP3e1",text:"List the non-renewable energy resources in use today",higher:false,sep_only:false,papers:[1]},
+        {id:"SP3e2",text:"Describe the advantages and disadvantages of non-renewable energy resources",higher:false,sep_only:false,papers:[1]},
+        {id:"SP3e3",text:"Compare the advantages and disadvantages of non-renewable energy resources",higher:false,sep_only:false,papers:[1]},
+        {id:"SP3e4",text:"Explain how the use of non-renewable energy resources is changing",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP3f",name:"Renewable resources",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP3f1",text:"List the renewable energy resources in use today",higher:false,sep_only:false,papers:[1]},
+        {id:"SP3f2",text:"Describe the source of energy for different renewable resources",higher:false,sep_only:false,papers:[1]},
+        {id:"SP3f3",text:"Describe the ways in which the different energy resources are used",higher:false,sep_only:false,papers:[1]},
+        {id:"SP3f4",text:"Explain why we cannot use only renewable energy resources",higher:false,sep_only:false,papers:[1]},
+        {id:"SP3f5",text:"Explain how the use of renewable energy resources is changing",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    ],
+  },
+  {
+    id:"SP4",name:"Waves",
+    sep_only:false,papers:[1],
+    subtopics:[
+    {
+      id:"SP4r",name:"Practice",
+      type:"revisit",
+      sep_only:false,papers:[1,2],
+      outcomes:[
+        {id:"SP4r1",type:"revisit",tag:"flash",tagLabel:"Flashcards",
+         phrases:["I have looked through my flashcards for the first time","I have self-tested using flashcards and identified gaps","I have drilled flashcards confidently and feel ready"],
+         text:"Flashcard practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP4r2",type:"revisit",tag:"calc",tagLabel:"Calculations",
+         phrases:["I have attempted the worked examples for this topic","I have completed practice calculations and checked my working","I have solved unseen calculation problems without support"],
+         text:"Calculation practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP4r3",type:"revisit",tag:"expl",tagLabel:"Explanations",
+         phrases:["I have read through the key explanations and can follow the reasoning","I have written out explanations from memory and checked them","I can explain the key concepts fluently without notes"],
+         text:"Explanation practice",higher:false,sep_only:false,papers:[1,2]},
+      ],
+    },
+    {
+      id:"SP4a",name:"Describing waves",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP4a1",text:"Recall that waves transfer energy and information but do not transfer matter",higher:false,sep_only:false,papers:[1]},
+        {id:"SP4a2",text:"Describe waves using the terms frequency, wavelength, amplitude, period and velocity",higher:false,sep_only:false,papers:[1]},
+        {id:"SP4a3",text:"Describe the differences between longitudinal and transverse waves",higher:false,sep_only:false,papers:[1]},
+        {id:"SP4a4",text:"Give examples of transverse and longitudinal waves",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP4b",name:"Wave speeds",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP4b1",text:"Recall the equation relating wave speed, frequency and wavelength (v = f\\u03bb)",higher:false,sep_only:false,papers:[1]},
+        {id:"SP4b2",text:"Use the equation relating wave speed, frequency and wavelength",higher:false,sep_only:false,papers:[1]},
+        {id:"SP4b3",text:"Recall the equation relating wave speed, distance and time",higher:false,sep_only:false,papers:[1]},
+        {id:"SP4b4",text:"Use the equation relating wave speed, distance and time",higher:false,sep_only:false,papers:[1]},
+        {id:"SP4b5",text:"Describe how to measure the velocity of sound in air",higher:false,sep_only:false,papers:[1]},
+        {id:"SP4b6",text:"Describe how to measure the velocity of waves on the surface of water",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP4c",name:"Refraction",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP4c1",text:"Describe what refraction is",higher:false,sep_only:false,papers:[1]},
+        {id:"SP4c2",text:"Describe how the direction of a wave changes when it goes from one material to another",higher:false,sep_only:false,papers:[1]},
+        {id:"SP4c3",text:"Explain some effects of the refraction of light",higher:false,sep_only:false,papers:[1]},
+        {id:"SP4c4",text:"Explain how a change in wave speed can cause a change in direction",higher:true,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP4d",name:"Waves crossing boundaries",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP4d1",text:"Describe some effects of waves being reflected",higher:false,sep_only:false,papers:[1]},
+        {id:"SP4d2",text:"Describe some effects of waves being refracted",higher:false,sep_only:false,papers:[1]},
+        {id:"SP4d3",text:"Describe some effects of waves being transmitted and absorbed",higher:false,sep_only:false,papers:[1]},
+        {id:"SP4d4",text:"Describe how changes in velocity, frequency and wavelength are related when sound waves go from one medium to another",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP4e",name:"Ears and hearing",
+      sep_only:true,papers:[1],
+      outcomes:[
+        {id:"SP4e1",text:"List the parts of the human ear, in the order in which they transmit vibrations",higher:true,sep_only:false,papers:[1]},
+        {id:"SP4e2",text:"Describe the functions of the parts of the ear",higher:true,sep_only:false,papers:[1]},
+        {id:"SP4e3",text:"Describe how sound waves in air are converted to vibrations in solids",higher:true,sep_only:false,papers:[1]},
+        {id:"SP4e4",text:"Describe some factors that affect how well sound waves transfer energy to solids",higher:true,sep_only:false,papers:[1]},
+        {id:"SP4e5",text:"Explain why the human ear can only detect a certain range of frequencies",higher:true,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP4f",name:"Ultrasound",
+      sep_only:true,papers:[1],
+      outcomes:[
+        {id:"SP4f1",text:"Calculate the depth of water from information about time and wave velocity",higher:true,sep_only:false,papers:[1]},
+        {id:"SP4f2",text:"Recall that sound with frequencies greater than 20 000 Hz is called ultrasound",higher:true,sep_only:false,papers:[1]},
+        {id:"SP4f3",text:"Explain how ultrasound is used in sonar",higher:true,sep_only:false,papers:[1]},
+        {id:"SP4f4",text:"Describe uses of ultrasound in body scanning",higher:true,sep_only:false,papers:[1]},
+        {id:"SP4f5",text:"Explain how ultrasound is used in foetal scanning",higher:true,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP4g",name:"Infrasound",
+      sep_only:true,papers:[1],
+      outcomes:[
+        {id:"SP4g1",text:"Recall that sound with frequencies less than 20 Hz is called infrasound",higher:true,sep_only:false,papers:[1]},
+        {id:"SP4g2",text:"Describe some uses of infrasound",higher:true,sep_only:false,papers:[1]},
+        {id:"SP4g3",text:"Recall that some seismic waves are infrasound waves",higher:true,sep_only:false,papers:[1]},
+        {id:"SP4g4",text:"Describe P waves and S waves and the substances through which they can travel",higher:true,sep_only:false,papers:[1]},
+      ],
+    },
+    ],
+  },
+  {
+    id:"SP5",name:"Light and EM Spectrum",
+    sep_only:false,papers:[1],
+    subtopics:[
+    {
+      id:"SP5r",name:"Practice",
+      type:"revisit",
+      sep_only:false,papers:[1,2],
+      outcomes:[
+        {id:"SP5r1",type:"revisit",tag:"flash",tagLabel:"Flashcards",
+         phrases:["I have looked through my flashcards for the first time","I have self-tested using flashcards and identified gaps","I have drilled flashcards confidently and feel ready"],
+         text:"Flashcard practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP5r2",type:"revisit",tag:"calc",tagLabel:"Calculations",
+         phrases:["I have attempted the worked examples for this topic","I have completed practice calculations and checked my working","I have solved unseen calculation problems without support"],
+         text:"Calculation practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP5r3",type:"revisit",tag:"expl",tagLabel:"Explanations",
+         phrases:["I have read through the key explanations and can follow the reasoning","I have written out explanations from memory and checked them","I can explain the key concepts fluently without notes"],
+         text:"Explanation practice",higher:false,sep_only:false,papers:[1,2]},
+      ],
+    },
+    {
+      id:"SP5a",name:"Ray diagrams",
+      sep_only:true,papers:[1],
+      outcomes:[
+        {id:"SP5a1",text:"Recall the law of reflection",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5a2",text:"Draw ray diagrams to show how a mirror forms images",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5a3",text:"Draw ray diagrams to show what happens when light is refracted",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5a4",text:"Describe what total internal reflection is and when it happens",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5a5",text:"Explain the significance of the critical angle in total internal reflection",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP5b",name:"Colour",
+      sep_only:true,papers:[1],
+      outcomes:[
+        {id:"SP5b1",text:"Explain the difference between specular and diffuse reflection",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5b2",text:"Recall that white light is a mixture of different colours of light",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5b3",text:"Explain why surfaces appear to have different colours in terms of differential absorption",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5b4",text:"Explain how filters make coloured light in terms of absorption and transmission",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5b5",text:"Explain the effect of viewing coloured objects in different colours of light",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP5c",name:"Lenses",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP5c1",text:"Define the power of a lens in terms of bending light through a greater angle",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5c2",text:"Describe how the focal length and shape of a lens affect its power",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5c3",text:"Use ray diagrams to show how converging and diverging lenses refract light",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5c4",text:"Compare and contrast the way in which converging and diverging lenses refract light",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5c5",text:"Explain how diverging lenses produce virtual images",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5c6",text:"Explain the different types of image that can be formed by converging lenses",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP5d",name:"Electromagnetic waves",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP5d1",text:"Recall examples of electromagnetic waves",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5d2",text:"Describe the common features of electromagnetic waves",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5d3",text:"Describe the transfer of energy by electromagnetic waves",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5d4",text:"Describe the range of electromagnetic waves that our eyes can detect",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5d5",text:"Describe an effect caused by the different velocities of EM waves in different substances",higher:true,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP5e",name:"The electromagnetic spectrum",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP5e1",text:"Recall the groups of waves in the electromagnetic spectrum in order",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5e2",text:"Recall the colours of the visible spectrum in order",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5e3",text:"Describe how the waves in the electromagnetic spectrum are grouped",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5e4",text:"Describe differences in the ways different parts of the EM spectrum are absorbed and transmitted",higher:true,sep_only:false,papers:[1]},
+        {id:"SP5e5",text:"Describe differences in the ways different parts of the EM spectrum are refracted and reflected",higher:true,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP5f",name:"Using the long wavelengths",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP5f1",text:"Describe how long wavelength EM waves are affected by different substances",higher:true,sep_only:false,papers:[1]},
+        {id:"SP5f2",text:"Explain effects caused by long wavelength EM waves travelling at different velocities in different substances",higher:true,sep_only:false,papers:[1]},
+        {id:"SP5f3",text:"Describe some uses of radio waves",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5f4",text:"Describe some uses of microwaves",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5f5",text:"Describe some uses of infrared radiation",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5f6",text:"Describe some uses of visible light",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5f7",text:"Describe how radio waves are produced and detected by electrical circuits",higher:true,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP5g",name:"Radiation and temperature",
+      sep_only:true,papers:[1],
+      outcomes:[
+        {id:"SP5g1",text:"Describe how the intensity and wavelength of emitted radiation depends on the temperature of the body",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5g2",text:"Explain that power radiated and absorbed must be the same to maintain a body at a constant temperature",higher:true,sep_only:false,papers:[1]},
+        {id:"SP5g3",text:"Explain what happens to the temperature of a body when power radiated is not balanced by power absorbed",higher:true,sep_only:false,papers:[1]},
+        {id:"SP5g4",text:"Describe the factors that affect the energy absorbed and radiated by the Earth",higher:true,sep_only:false,papers:[1]},
+        {id:"SP5g5",text:"Explain how these factors affect the temperature of the Earth",higher:true,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP5h",name:"Using the short wavelengths",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP5h1",text:"Describe how short wavelength EM waves are affected by different substances",higher:true,sep_only:false,papers:[1]},
+        {id:"SP5h2",text:"Explain effects caused by short wavelength EM waves travelling at different velocities in different substances",higher:true,sep_only:false,papers:[1]},
+        {id:"SP5h3",text:"Describe some uses of ultraviolet radiation",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5h4",text:"Describe some uses of X-rays",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5h5",text:"Describe some uses of gamma rays",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP5i",name:"EM radiation dangers",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP5i1",text:"Describe how the potential danger of EM radiation depends on its frequency",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5i2",text:"Describe the harmful effects of microwave and infrared radiation",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5i3",text:"Describe the harmful effects of ultraviolet radiation, X-rays and gamma rays",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5i4",text:"Recall the nature of radiation produced by changes in atoms and their nuclei",higher:false,sep_only:false,papers:[1]},
+        {id:"SP5i5",text:"Recall that absorption of radiation can cause changes in atoms and their nuclei",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    ],
+  },
+  {
+    id:"SP6",name:"Radioactivity",
+    sep_only:false,papers:[1],
+    subtopics:[
+    {
+      id:"SP6r",name:"Practice",
+      type:"revisit",
+      sep_only:false,papers:[1,2],
+      outcomes:[
+        {id:"SP6r1",type:"revisit",tag:"flash",tagLabel:"Flashcards",
+         phrases:["I have looked through my flashcards for the first time","I have self-tested using flashcards and identified gaps","I have drilled flashcards confidently and feel ready"],
+         text:"Flashcard practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP6r2",type:"revisit",tag:"calc",tagLabel:"Calculations",
+         phrases:["I have attempted the worked examples for this topic","I have completed practice calculations and checked my working","I have solved unseen calculation problems without support"],
+         text:"Calculation practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP6r3",type:"revisit",tag:"expl",tagLabel:"Explanations",
+         phrases:["I have read through the key explanations and can follow the reasoning","I have written out explanations from memory and checked them","I can explain the key concepts fluently without notes"],
+         text:"Explanation practice",higher:false,sep_only:false,papers:[1,2]},
+      ],
+    },
+    {
+      id:"SP6a",name:"Atomic models",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP6a1",text:"Describe the structure of an atom (in terms of nucleus and electrons)",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6a2",text:"State where most of the mass of an atom is found",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6a3",text:"State the sizes of atoms and small molecules",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6a4",text:"Describe an early model of the atom",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6a5",text:"Describe how and why our model of the atom has changed over time, including the plum pudding model and Rutherford alpha particle scattering",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP6b",name:"Inside atoms",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP6b1",text:"State what is meant by an isotope",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6b2",text:"Represent isotopes using symbols",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6b3",text:"Explain how atoms of different elements are different (in terms of numbers of electrons and protons)",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6b4",text:"Recall the charges and relative masses of the three subatomic particles",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6b5",text:"Explain why all atoms have no overall charge",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP6c",name:"Electrons and orbits",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP6c1",text:"Describe where electrons are found inside atoms (in terms of shells)",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6c2",text:"Describe when electrons can change orbit",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6c3",text:"Recall what an ion is",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6c4",text:"Describe how ionisation occurs",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6c5",text:"Describe some of the evidence for the Bohr model of the atom",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP6d",name:"Background radiation",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP6d1",text:"Explain what background radiation is",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6d2",text:"Describe how radiation measurements need to be corrected for background radiation",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6d3",text:"List some sources of background radiation",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6d4",text:"Describe how photographic film can be used to detect radioactivity",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6d5",text:"Describe how a Geiger-M\\u00fcller tube works",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6d6",text:"Describe how the amount of radioactivity can be measured",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP6e",name:"Types of radiation",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP6e1",text:"Recall the relative masses and relative electric charges of protons, neutrons, electrons and positrons",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6e2",text:"List five types of radiation emitted in random processes from unstable nuclei",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6e3",text:"State that the five types of radiation are ionising radiations",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6e4",text:"Describe what alpha and beta particles are",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6e5",text:"Describe the nature of gamma radiation",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6e6",text:"Compare the penetrating abilities of alpha, beta and gamma radiation",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6e7",text:"Compare the ionisation abilities of alpha, beta and gamma radiation",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP6f",name:"Radioactive decay",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP6f1",text:"Describe the process of beta-minus (\\u03b2\\u207b) decay",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6f2",text:"Describe the process of beta-plus (\\u03b2\\u207a) decay",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6f3",text:"Explain how the proton and mass numbers are affected by different kinds of radioactive decay",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6f4",text:"Describe what happens during nuclear rearrangement after radioactive decay",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6f5",text:"Balance nuclear equations for mass and charge",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP6g",name:"Half-life",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP6g1",text:"Describe how the activity of a substance changes over time",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6g2",text:"State how half-life can be used to describe the changing activity of a substance",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6g3",text:"Recall the unit of activity (Becquerel, Bq)",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6g4",text:"Describe how half-life can be used to work out how much of a substance will decay in a certain time",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6g5",text:"Carry out calculations involving half-life",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP6h",name:"Using radioactivity",
+      sep_only:true,papers:[1],
+      outcomes:[
+        {id:"SP6h1",text:"Describe how radioactivity is used in smoke alarms",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6h2",text:"Describe how radioactivity is used in irradiating food",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6h3",text:"Describe how radioactivity is used in sterilising equipment",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6h4",text:"Describe how radioactivity is used in tracing and thickness gauging",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6h5",text:"Recall that radioactivity is used in cancer diagnosis and treatment",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP6i",name:"Dangers of radioactivity",
+      sep_only:false,papers:[1],
+      outcomes:[
+        {id:"SP6i1",text:"Describe the hazards of ionising radiation in terms of tissue damage and possible mutations",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6i2",text:"Explain how the dangers of ionising radiation depend on the half-life",higher:false,sep_only:true,papers:[1]},
+        {id:"SP6i3",text:"Explain precautions taken to ensure the safety of patients exposed to radiation, linking these to the half-lives of sources used",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6i4",text:"Explain the precautions taken to reduce risks from radiation and protect people who work with radiation",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6i5",text:"Describe the differences between contamination and irradiation effects",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6i6",text:"Compare the hazards of contamination and irradiation",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP6j",name:"Radioactivity in medicine",
+      sep_only:true,papers:[1],
+      outcomes:[
+        {id:"SP6j1",text:"Describe the advantages and disadvantages of treating tumours with radiation applied internally",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6j2",text:"Describe the advantages and disadvantages of treating tumours with radiation applied externally",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6j3",text:"Explain the use of radioactive tracers in diagnosis",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6j4",text:"Explain the use of PET scanners in diagnosis",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6j5",text:"Explain why isotopes used in PET scanners have to be produced nearby",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP6k",name:"Nuclear energy",
+      sep_only:true,papers:[1],
+      outcomes:[
+        {id:"SP6k1",text:"Describe some advantages of using nuclear power to generate electricity",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6k2",text:"Describe some disadvantages of using nuclear power to generate electricity",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6k3",text:"Evaluate the use of nuclear power to generate electricity",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6k4",text:"Describe three types of nuclear reaction",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6k5",text:"Recall that nuclear reactions can be a source of energy",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP6l",name:"Nuclear fission",
+      sep_only:true,papers:[1],
+      outcomes:[
+        {id:"SP6l1",text:"Describe the products of the fission of U-235",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6l2",text:"Describe what a chain reaction is",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6l3",text:"Explain how a chain reaction is controlled in a nuclear power station",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6l4",text:"Describe how the thermal energy from a chain reaction is converted to electrical energy",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6l5",text:"Recall that the products of nuclear fission are radioactive",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP6m",name:"Nuclear fusion",
+      sep_only:true,papers:[1],
+      outcomes:[
+        {id:"SP6m1",text:"Describe what happens in nuclear fusion",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6m2",text:"Recall that nuclear fusion is the energy source for stars",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6m3",text:"Explain the difference between nuclear fusion and nuclear fission",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6m4",text:"Explain why high temperatures and pressures are needed to make fusion happen",higher:false,sep_only:false,papers:[1]},
+        {id:"SP6m5",text:"Relate the conditions of fusion to the difficulty of making a practical and economic fusion power station",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    ],
+  },
+  {
+    id:"SP7",name:"Astronomy",
+    sep_only:false,papers:[1],
+    subtopics:[
+    {
+      id:"SP7r",name:"Practice",
+      type:"revisit",
+      sep_only:false,papers:[1,2],
+      outcomes:[
+        {id:"SP7r1",type:"revisit",tag:"flash",tagLabel:"Flashcards",
+         phrases:["I have looked through my flashcards for the first time","I have self-tested using flashcards and identified gaps","I have drilled flashcards confidently and feel ready"],
+         text:"Flashcard practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP7r2",type:"revisit",tag:"calc",tagLabel:"Calculations",
+         phrases:["I have attempted the worked examples for this topic","I have completed practice calculations and checked my working","I have solved unseen calculation problems without support"],
+         text:"Calculation practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP7r3",type:"revisit",tag:"expl",tagLabel:"Explanations",
+         phrases:["I have read through the key explanations and can follow the reasoning","I have written out explanations from memory and checked them","I can explain the key concepts fluently without notes"],
+         text:"Explanation practice",higher:false,sep_only:false,papers:[1,2]},
+      ],
+    },
+    {
+      id:"SP7a",name:"The Solar System",
+      sep_only:true,papers:[1],
+      outcomes:[
+        {id:"SP7a1",text:"Describe the different bodies that make up the Solar System",higher:false,sep_only:false,papers:[1]},
+        {id:"SP7a2",text:"Recall the names and order of the planets in the Solar System",higher:false,sep_only:false,papers:[1]},
+        {id:"SP7a3",text:"Describe how ideas about the structure of the Solar System have changed over time",higher:false,sep_only:false,papers:[1]},
+        {id:"SP7a4",text:"Describe how methods of observing the Universe have changed over time",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP7b",name:"Gravity and orbits",
+      sep_only:true,papers:[1],
+      outcomes:[
+        {id:"SP7b1",text:"Recall the factors that affect the strength of the gravitational field",higher:false,sep_only:false,papers:[1]},
+        {id:"SP7b2",text:"Explain why g has different values on different bodies in the Solar System",higher:false,sep_only:false,papers:[1]},
+        {id:"SP7b3",text:"Describe the orbits of moons, planets, comets and artificial satellites",higher:false,sep_only:false,papers:[1]},
+        {id:"SP7b4",text:"Explain why the velocity of a planet changes even if orbiting at a steady speed",higher:false,sep_only:false,papers:[1]},
+        {id:"SP7b5",text:"Describe how changing the speed of an orbiting body affects the radius of its orbit",higher:false,sep_only:false,papers:[1]},
+        {id:"SP7b6",text:"Explain how the radius of a stable orbit is affected by the orbital speed",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP7c",name:"Life cycles of stars",
+      sep_only:true,papers:[1],
+      outcomes:[
+        {id:"SP7c1",text:"Describe the evolution of stars of similar mass to the Sun (nebula \\u2192 main sequence \\u2192 red giant \\u2192 white dwarf)",higher:false,sep_only:false,papers:[1]},
+        {id:"SP7c2",text:"Describe the forces acting on a star in terms of thermal expansion and gravity",higher:false,sep_only:false,papers:[1]},
+        {id:"SP7c3",text:"Explain how the balance of thermal expansion and gravity affects the life cycle of stars",higher:false,sep_only:false,papers:[1]},
+        {id:"SP7c4",text:"Describe the evolution of stars with a mass larger than the Sun",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP7d",name:"Red-shift",
+      sep_only:true,papers:[1],
+      outcomes:[
+        {id:"SP7d1",text:"Describe how the movement of a wave source affects the observed frequency and wavelength",higher:false,sep_only:false,papers:[1]},
+        {id:"SP7d2",text:"Describe the amount of red-shift observed in galaxies at different distances from Earth",higher:false,sep_only:false,papers:[1]},
+        {id:"SP7d3",text:"Explain why the red-shift of galaxies provides evidence that the Universe is expanding",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    {
+      id:"SP7e",name:"Origin of the Universe",
+      sep_only:true,papers:[1],
+      outcomes:[
+        {id:"SP7e1",text:"Describe the Steady State and Big Bang theories",higher:false,sep_only:false,papers:[1]},
+        {id:"SP7e2",text:"Compare the Steady State and Big Bang theories",higher:false,sep_only:false,papers:[1]},
+        {id:"SP7e3",text:"Describe the evidence supporting the Big Bang theory",higher:false,sep_only:false,papers:[1]},
+        {id:"SP7e4",text:"Explain why the Big Bang theory is the currently accepted model",higher:false,sep_only:false,papers:[1]},
+        {id:"SP7e5",text:"Explain how both theories of the origin of the Universe account for red-shift",higher:false,sep_only:false,papers:[1]},
+        {id:"SP7e6",text:"Explain how the discovery of the CMB radiation led to the Big Bang theory becoming the currently accepted model",higher:false,sep_only:false,papers:[1]},
+      ],
+    },
+    ],
+  },
+  {
+    id:"SP8",name:"Energy \\u2013 Forces Doing Work",
+    sep_only:false,papers:[2],
+    subtopics:[
+    {
+      id:"SP8r",name:"Practice",
+      type:"revisit",
+      sep_only:false,papers:[1,2],
+      outcomes:[
+        {id:"SP8r1",type:"revisit",tag:"flash",tagLabel:"Flashcards",
+         phrases:["I have looked through my flashcards for the first time","I have self-tested using flashcards and identified gaps","I have drilled flashcards confidently and feel ready"],
+         text:"Flashcard practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP8r2",type:"revisit",tag:"calc",tagLabel:"Calculations",
+         phrases:["I have attempted the worked examples for this topic","I have completed practice calculations and checked my working","I have solved unseen calculation problems without support"],
+         text:"Calculation practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP8r3",type:"revisit",tag:"expl",tagLabel:"Explanations",
+         phrases:["I have read through the key explanations and can follow the reasoning","I have written out explanations from memory and checked them","I can explain the key concepts fluently without notes"],
+         text:"Explanation practice",higher:false,sep_only:false,papers:[1,2]},
+      ],
+    },
+    {
+      id:"SP8a",name:"Work and power",
+      sep_only:false,papers:[2],
+      outcomes:[
+        {id:"SP8a1",text:"Describe some ways in which the energy of a system can be changed",higher:false,sep_only:false,papers:[2]},
+        {id:"SP8a2",text:"Measure the work done by a force",higher:false,sep_only:false,papers:[2]},
+        {id:"SP8a3",text:"Recall and use the equation linking work done, force and distance (W = Fd)",higher:false,sep_only:false,papers:[2]},
+        {id:"SP8a4",text:"Explain what power means",higher:false,sep_only:false,papers:[2]},
+        {id:"SP8a5",text:"Recall and use the equation linking power, work done and time (P = W/t)",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    ],
+  },
+  {
+    id:"SP9",name:"Forces and their Effects",
+    sep_only:false,papers:[2],
+    subtopics:[
+    {
+      id:"SP9r",name:"Practice",
+      type:"revisit",
+      sep_only:false,papers:[1,2],
+      outcomes:[
+        {id:"SP9r1",type:"revisit",tag:"flash",tagLabel:"Flashcards",
+         phrases:["I have looked through my flashcards for the first time","I have self-tested using flashcards and identified gaps","I have drilled flashcards confidently and feel ready"],
+         text:"Flashcard practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP9r2",type:"revisit",tag:"calc",tagLabel:"Calculations",
+         phrases:["I have attempted the worked examples for this topic","I have completed practice calculations and checked my working","I have solved unseen calculation problems without support"],
+         text:"Calculation practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP9r3",type:"revisit",tag:"expl",tagLabel:"Explanations",
+         phrases:["I have read through the key explanations and can follow the reasoning","I have written out explanations from memory and checked them","I can explain the key concepts fluently without notes"],
+         text:"Explanation practice",higher:false,sep_only:false,papers:[1,2]},
+      ],
+    },
+    {
+      id:"SP9a",name:"Objects affecting each other",
+      sep_only:false,papers:[2],
+      outcomes:[
+        {id:"SP9a1",text:"Describe the effect of a gravitational field on objects",higher:false,sep_only:false,papers:[2]},
+        {id:"SP9a2",text:"Describe the effects of magnetic fields on objects",higher:false,sep_only:false,papers:[2]},
+        {id:"SP9a3",text:"Describe the forces that can occur when objects are in contact with each other",higher:false,sep_only:false,papers:[2]},
+        {id:"SP9a4",text:"Describe the effects of electrostatic fields on objects",higher:false,sep_only:false,papers:[2]},
+        {id:"SP9a5",text:"Describe how pairs of forces occur when objects affect each other",higher:false,sep_only:false,papers:[2]},
+        {id:"SP9a6",text:"Use examples to explain the difference between vector and scalar quantities",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    {
+      id:"SP9b",name:"Vector diagrams",
+      sep_only:false,papers:[2],
+      outcomes:[
+        {id:"SP9b1",text:"Describe how to resolve forces",higher:false,sep_only:false,papers:[2]},
+        {id:"SP9b2",text:"Use scale drawings to work out the net force on an object",higher:false,sep_only:false,papers:[2]},
+        {id:"SP9b3",text:"Draw free body diagrams to represent the forces on an object",higher:false,sep_only:false,papers:[2]},
+        {id:"SP9b4",text:"Explain what happens in situations where several forces are acting on an object",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    {
+      id:"SP9c",name:"Rotational forces",
+      sep_only:true,papers:[2],
+      outcomes:[
+        {id:"SP9c1",text:"Describe situations where forces can cause rotation",higher:false,sep_only:false,papers:[2]},
+        {id:"SP9c2",text:"Recall and use the equation: moment = force \\u00d7 perpendicular distance",higher:false,sep_only:false,papers:[2]},
+        {id:"SP9c3",text:"Use the principle of moments to calculate forces and distances in equilibrium situations",higher:false,sep_only:false,papers:[2]},
+        {id:"SP9c4",text:"Explain how levers transmit the rotational effects of forces",higher:false,sep_only:false,papers:[2]},
+        {id:"SP9c5",text:"Explain how gears transmit the rotational effects of forces",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    ],
+  },
+  {
+    id:"SP10",name:"Electricity and Circuits",
+    sep_only:false,papers:[2],
+    subtopics:[
+    {
+      id:"SP10r",name:"Practice",
+      type:"revisit",
+      sep_only:false,papers:[1,2],
+      outcomes:[
+        {id:"SP10r1",type:"revisit",tag:"flash",tagLabel:"Flashcards",
+         phrases:["I have looked through my flashcards for the first time","I have self-tested using flashcards and identified gaps","I have drilled flashcards confidently and feel ready"],
+         text:"Flashcard practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP10r2",type:"revisit",tag:"calc",tagLabel:"Calculations",
+         phrases:["I have attempted the worked examples for this topic","I have completed practice calculations and checked my working","I have solved unseen calculation problems without support"],
+         text:"Calculation practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP10r3",type:"revisit",tag:"expl",tagLabel:"Explanations",
+         phrases:["I have read through the key explanations and can follow the reasoning","I have written out explanations from memory and checked them","I can explain the key concepts fluently without notes"],
+         text:"Explanation practice",higher:false,sep_only:false,papers:[1,2]},
+      ],
+    },
+    {
+      id:"SP10a",name:"Electric circuits",
+      sep_only:false,papers:[2],
+      outcomes:[
+        {id:"SP10a1",text:"Describe the basic structure of an atom (positions, relative masses and relative charges of subatomic particles)",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10a2",text:"Recognise the circuit symbols for a range of common electrical components",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10a3",text:"Draw diagrams for circuits containing common electrical components",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10a4",text:"Describe and explain the difference between the brightness of identical lamps in series and parallel circuits",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10a5",text:"Describe and explain the effects of different numbers of identical lamps, cells and switches in series and parallel circuits",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    {
+      id:"SP10b",name:"Current and potential difference",
+      sep_only:false,papers:[2],
+      outcomes:[
+        {id:"SP10b1",text:"Describe how to measure voltage",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10b3",text:"Describe how to measure current",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10b4",text:"Describe the conditions needed to produce an electric current",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10b5",text:"Describe the behaviour of current at a junction",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    {
+      id:"SP10c",name:"Current, charge and energy",
+      sep_only:false,papers:[2],
+      outcomes:[
+        {id:"SP10c1",text:"Explain the link between potential difference, charge and energy transferred",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10c2",text:"Recall that the unit of potential difference is the volt (one joule per coulomb)",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10c3",text:"Recall and use the equation E = Q \\u00d7 V",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10c4",text:"Explain the link between electric current and electric charge",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10c5",text:"Explain electric current in metals in terms of electrons",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10c6",text:"Recall and use the equation Q = I \\u00d7 t",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    {
+      id:"SP10d",name:"Resistance",
+      sep_only:false,papers:[2],
+      outcomes:[
+        {id:"SP10d1",text:"Explain the link between resistance and current in a circuit",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10d2",text:"Define the resistance of a component or circuit (R = V/I)",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10d3",text:"Recall and use the equation V = I \\u00d7 R",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10d4",text:"Explain the difference in resistance when two resistors are connected in series or in parallel",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10d5",text:"Calculate the currents, potential differences and resistances in series circuits",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10d6",text:"Explain the design and construction of series circuits for testing and measuring",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    {
+      id:"SP10e",name:"More about resistance",
+      sep_only:false,papers:[2],
+      outcomes:[
+        {id:"SP10e1",text:"Explain how current changes with potential difference in fixed resistors",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10e2",text:"Explain how current and resistance change with potential difference in filament lamps",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10e3",text:"Explain how current and resistance change with potential difference in diodes, including LEDs",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10e4",text:"Describe how the resistance of a light-dependent resistor (LDR) varies with light intensity",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10e5",text:"Describe how the resistance of a thermistor varies with changing temperature (NTC only)",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10e6",text:"Describe the uses of diodes, LDRs and thermistors",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    {
+      id:"SP10f",name:"Transferring energy",
+      sep_only:false,papers:[2],
+      outcomes:[
+        {id:"SP10f1",text:"Describe the energy transfer that occurs when a current passes through a resistor",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10f2",text:"Use the electron and ion model to explain the energy transfer in a resistor and dissipation in the surroundings",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10f3",text:"Explain how unwanted energy transfers in wires can be avoided",higher:true,sep_only:false,papers:[2]},
+        {id:"SP10f4",text:"Recall the advantages of the heating effect of an electric current",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10f5",text:"Recall the disadvantages of the heating effect of an electric current",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10f6",text:"Use the equation E = I \\u00d7 V \\u00d7 t",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    {
+      id:"SP10g",name:"Power",
+      sep_only:false,papers:[2],
+      outcomes:[
+        {id:"SP10g1",text:"Define power and the units used to measure it (energy transferred per second in watts)",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10g2",text:"Recall and use the equation P = E/t",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10g3",text:"Explain how power transfer depends on potential difference and current through a device",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10g4",text:"Recall and use the equation P = I \\u00d7 V",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10g5",text:"Recall and use the equation P = I\\u00b2 \\u00d7 R",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    {
+      id:"SP10h",name:"Transferring energy by electricity",
+      sep_only:false,papers:[2],
+      outcomes:[
+        {id:"SP10h1",text:"Describe energy transfers from d.c. batteries and the a.c. mains supply to motors and heaters",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10h2",text:"Explain the difference between direct and alternating voltage",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10h3",text:"Compare alternating and direct current (in terms of movement of charge)",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10h4",text:"Recall the frequency and voltage of the UK domestic supply (50 Hz, 230 V)",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10h5",text:"Describe the power ratings of some domestic electrical appliances and changes in stored energy when in use",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    {
+      id:"SP10i",name:"Electrical safety",
+      sep_only:false,papers:[2],
+      outcomes:[
+        {id:"SP10i1",text:"Explain the difference between the functions of the live and the neutral wires",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10i2",text:"Explain how circuit breakers make circuits safer",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10i3",text:"Explain how the earth wire and the fuse make circuits safer",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10i4",text:"Explain why switches and fuses are connected in the live wire",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10i5",text:"Recall the potential differences between the live, neutral and earth wires",higher:false,sep_only:false,papers:[2]},
+        {id:"SP10i6",text:"Explain the danger of a connection between the live wire and earth",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    ],
+  },
+  {
+    id:"SP11",name:"Static Electricity",
+    sep_only:false,papers:[2],
+    subtopics:[
+    {
+      id:"SP11r",name:"Practice",
+      type:"revisit",
+      sep_only:false,papers:[1,2],
+      outcomes:[
+        {id:"SP11r1",type:"revisit",tag:"flash",tagLabel:"Flashcards",
+         phrases:["I have looked through my flashcards for the first time","I have self-tested using flashcards and identified gaps","I have drilled flashcards confidently and feel ready"],
+         text:"Flashcard practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP11r2",type:"revisit",tag:"calc",tagLabel:"Calculations",
+         phrases:["I have attempted the worked examples for this topic","I have completed practice calculations and checked my working","I have solved unseen calculation problems without support"],
+         text:"Calculation practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP11r3",type:"revisit",tag:"expl",tagLabel:"Explanations",
+         phrases:["I have read through the key explanations and can follow the reasoning","I have written out explanations from memory and checked them","I can explain the key concepts fluently without notes"],
+         text:"Explanation practice",higher:false,sep_only:false,papers:[1,2]},
+      ],
+    },
+    {
+      id:"SP11a",name:"Charges and static electricity",
+      sep_only:true,papers:[2],
+      outcomes:[
+        {id:"SP11a1",text:"Explain how rubbing an insulator transfers electrons",higher:false,sep_only:false,papers:[2]},
+        {id:"SP11a2",text:"Recall the charged particles found in an atom",higher:false,sep_only:false,papers:[2]},
+        {id:"SP11a3",text:"Explain why, when certain materials are rubbed together, they end up with opposite charges",higher:false,sep_only:false,papers:[2]},
+        {id:"SP11a4",text:"Recall the rules of attraction and repulsion between charges",higher:false,sep_only:false,papers:[2]},
+        {id:"SP11a5",text:"Explain how attraction by induction occurs",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    {
+      id:"SP11b",name:"Dangers and uses of static electricity",
+      sep_only:true,papers:[2],
+      outcomes:[
+        {id:"SP11b1",text:"Describe what earthing is",higher:false,sep_only:false,papers:[2]},
+        {id:"SP11b2",text:"Explain how earthing works",higher:false,sep_only:false,papers:[2]},
+        {id:"SP11b3",text:"Explain how lightning occurs and why we sometimes get shocks from everyday objects",higher:false,sep_only:false,papers:[2]},
+        {id:"SP11b4",text:"Explain how electrostatic sprayers work",higher:false,sep_only:false,papers:[2]},
+        {id:"SP11b5",text:"Describe some hazards caused by charged objects discharging, and how earthing can reduce risks",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    {
+      id:"SP11c",name:"Electric fields",
+      sep_only:true,papers:[2],
+      outcomes:[
+        {id:"SP11c1",text:"Recall what an electric field is",higher:false,sep_only:false,papers:[2]},
+        {id:"SP11c2",text:"Recall how the direction of an electric field is defined",higher:false,sep_only:false,papers:[2]},
+        {id:"SP11c3",text:"Interpret information shown by field lines",higher:false,sep_only:false,papers:[2]},
+        {id:"SP11c4",text:"Describe the shape and direction of the electric field around a point charge and between charged plates",higher:false,sep_only:false,papers:[2]},
+        {id:"SP11c5",text:"Explain how static electricity effects can be explained using the idea of an electric field",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    ],
+  },
+  {
+    id:"SP12",name:"Magnetism and the Motor Effect",
+    sep_only:false,papers:[2],
+    subtopics:[
+    {
+      id:"SP12r",name:"Practice",
+      type:"revisit",
+      sep_only:false,papers:[1,2],
+      outcomes:[
+        {id:"SP12r1",type:"revisit",tag:"flash",tagLabel:"Flashcards",
+         phrases:["I have looked through my flashcards for the first time","I have self-tested using flashcards and identified gaps","I have drilled flashcards confidently and feel ready"],
+         text:"Flashcard practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP12r2",type:"revisit",tag:"calc",tagLabel:"Calculations",
+         phrases:["I have attempted the worked examples for this topic","I have completed practice calculations and checked my working","I have solved unseen calculation problems without support"],
+         text:"Calculation practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP12r3",type:"revisit",tag:"expl",tagLabel:"Explanations",
+         phrases:["I have read through the key explanations and can follow the reasoning","I have written out explanations from memory and checked them","I can explain the key concepts fluently without notes"],
+         text:"Explanation practice",higher:false,sep_only:false,papers:[1,2]},
+      ],
+    },
+    {
+      id:"SP12a",name:"Magnets and magnetic fields",
+      sep_only:false,papers:[2],
+      outcomes:[
+        {id:"SP12a1",text:"Describe how magnets affect each other",higher:false,sep_only:false,papers:[2]},
+        {id:"SP12a2",text:"Explain the difference between permanent and induced magnets",higher:false,sep_only:false,papers:[2]},
+        {id:"SP12a3",text:"Describe the uses of permanent and temporary magnetic materials",higher:false,sep_only:false,papers:[2]},
+        {id:"SP12a4",text:"Describe the shapes of magnetic fields, including variations in strength",higher:false,sep_only:false,papers:[2]},
+        {id:"SP12a5",text:"Describe how the shape of magnetic fields can be shown using plotting compasses",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    {
+      id:"SP12b",name:"Electromagnetism",
+      sep_only:false,papers:[2],
+      outcomes:[
+        {id:"SP12b1",text:"Recall that a current can create a magnetic effect",higher:false,sep_only:false,papers:[2]},
+        {id:"SP12b2",text:"Relate the shape and direction of the magnetic field around a straight wire to the direction of the current",higher:false,sep_only:false,papers:[2]},
+        {id:"SP12b3",text:"Recall the factors that affect the strength of the magnetic field around a wire",higher:false,sep_only:false,papers:[2]},
+        {id:"SP12b4",text:"Describe the magnetic field inside and outside a coil of wire carrying a current",higher:false,sep_only:false,papers:[2]},
+        {id:"SP12b5",text:"Explain the shape and strength of the magnetic field around a solenoid",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    {
+      id:"SP12c",name:"Magnetic forces",
+      sep_only:false,papers:[2],
+      outcomes:[
+        {id:"SP12c1",text:"Recall that forces are produced when a current flows in a magnetic field",higher:true,sep_only:false,papers:[2]},
+        {id:"SP12c2",text:"Explain what causes the forces produced when a current flows in a magnetic field",higher:true,sep_only:false,papers:[2]},
+        {id:"SP12c5",text:"Use the formula F = BIl relating force, magnetic field strength, current and length",higher:true,sep_only:false,papers:[2]},
+        {id:"SP12c7",text:"Explain how the force on a conductor in a magnetic field is used to cause rotation in electric motors",higher:true,sep_only:true,papers:[2]},
+      ],
+    },
+    ],
+  },
+  {
+    id:"SP13",name:"Electromagnetic Induction",
+    sep_only:false,papers:[2],
+    subtopics:[
+    {
+      id:"SP13r",name:"Practice",
+      type:"revisit",
+      sep_only:false,papers:[1,2],
+      outcomes:[
+        {id:"SP13r1",type:"revisit",tag:"flash",tagLabel:"Flashcards",
+         phrases:["I have looked through my flashcards for the first time","I have self-tested using flashcards and identified gaps","I have drilled flashcards confidently and feel ready"],
+         text:"Flashcard practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP13r2",type:"revisit",tag:"calc",tagLabel:"Calculations",
+         phrases:["I have attempted the worked examples for this topic","I have completed practice calculations and checked my working","I have solved unseen calculation problems without support"],
+         text:"Calculation practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP13r3",type:"revisit",tag:"expl",tagLabel:"Explanations",
+         phrases:["I have read through the key explanations and can follow the reasoning","I have written out explanations from memory and checked them","I can explain the key concepts fluently without notes"],
+         text:"Explanation practice",higher:false,sep_only:false,papers:[1,2]},
+      ],
+    },
+    {
+      id:"SP13a",name:"Electromagnetic induction",
+      sep_only:false,papers:[2],
+      outcomes:[
+        {id:"SP13a1",text:"Describe how to produce an electric current by induction on a small scale",higher:true,sep_only:true,papers:[2]},
+        {id:"SP13a2",text:"Describe how electromagnetic induction is used in alternators and dynamos",higher:true,sep_only:true,papers:[2]},
+        {id:"SP13a3",text:"Describe how different factors affect the size and direction of an induced current",higher:true,sep_only:false,papers:[2]},
+        {id:"SP13a4",text:"Describe how the magnetic field produced by an induced potential difference opposes the original change",higher:true,sep_only:false,papers:[2]},
+        {id:"SP13a5",text:"Explain how microphones work in terms of changing pressure variations into variations in electric current",higher:true,sep_only:true,papers:[2]},
+        {id:"SP13a6",text:"Explain how loudspeakers change variations in current to variations in air pressure",higher:true,sep_only:true,papers:[2]},
+      ],
+    },
+    {
+      id:"SP13b",name:"The national grid",
+      sep_only:false,papers:[2],
+      outcomes:[
+        {id:"SP13b1",text:"Explain how a transformer works",higher:true,sep_only:false,papers:[2]},
+        {id:"SP13b2",text:"Recall that transformers can change the voltage of an alternating current",higher:true,sep_only:false,papers:[2]},
+        {id:"SP13b3",text:"Use the turns ratio equation for transformers",higher:true,sep_only:true,papers:[2]},
+        {id:"SP13b4",text:"Describe how the national grid transmits electricity around the country",higher:false,sep_only:false,papers:[2]},
+        {id:"SP13b5",text:"Explain why step-up and step-down transformers are used in the national grid",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    {
+      id:"SP13c",name:"Transformers and energy",
+      sep_only:false,papers:[2],
+      outcomes:[
+        {id:"SP13c1",text:"Recall the law of conservation of energy",higher:false,sep_only:false,papers:[2]},
+        {id:"SP13c2",text:"Recall that the power of an electric current is given by current multiplied by voltage",higher:false,sep_only:false,papers:[2]},
+        {id:"SP13c3",text:"Use the power equation for transformers",higher:false,sep_only:false,papers:[2]},
+        {id:"SP13c4",text:"Recall and use equations relating current, voltage, power and resistance",higher:true,sep_only:false,papers:[2]},
+        {id:"SP13c5",text:"Use equations to explain the advantages of power transmission in high-voltage cables",higher:true,sep_only:true,papers:[2]},
+        {id:"SP13c6",text:"Explain where and why step-up and step-down transformers are used in the transmission of electricity in the national grid",higher:false,sep_only:false,papers:[2]},
+        {id:"SP13c7",text:"Explain why electrical energy is transferred at high voltages from power stations and at lower voltages for domestic use, as this improves efficiency by reducing heat loss in transmission lines",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    ],
+  },
+  {
+    id:"SP14",name:"Particle Model",
+    sep_only:false,papers:[2],
+    subtopics:[
+    {
+      id:"SP14r",name:"Practice",
+      type:"revisit",
+      sep_only:false,papers:[1,2],
+      outcomes:[
+        {id:"SP14r1",type:"revisit",tag:"flash",tagLabel:"Flashcards",
+         phrases:["I have looked through my flashcards for the first time","I have self-tested using flashcards and identified gaps","I have drilled flashcards confidently and feel ready"],
+         text:"Flashcard practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP14r2",type:"revisit",tag:"calc",tagLabel:"Calculations",
+         phrases:["I have attempted the worked examples for this topic","I have completed practice calculations and checked my working","I have solved unseen calculation problems without support"],
+         text:"Calculation practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP14r3",type:"revisit",tag:"expl",tagLabel:"Explanations",
+         phrases:["I have read through the key explanations and can follow the reasoning","I have written out explanations from memory and checked them","I can explain the key concepts fluently without notes"],
+         text:"Explanation practice",higher:false,sep_only:false,papers:[1,2]},
+      ],
+    },
+    {
+      id:"SP14a",name:"Particles and density",
+      sep_only:false,papers:[2],
+      outcomes:[
+        {id:"SP14a1",text:"Describe the arrangements of particles in solids, liquids and gases",higher:false,sep_only:false,papers:[2]},
+        {id:"SP14a2",text:"Use the particle model to explain the different properties of solids, liquids and gases",higher:false,sep_only:false,papers:[2]},
+        {id:"SP14a3",text:"Recall the formula relating density, mass and volume (\\u03c1 = m/V)",higher:false,sep_only:false,papers:[2]},
+        {id:"SP14a4",text:"Use the formula relating density, mass and volume",higher:false,sep_only:false,papers:[2]},
+        {id:"SP14a5",text:"Use the particle model to explain why solids, liquids and gases have different densities",higher:false,sep_only:false,papers:[2]},
+        {id:"SP14a6",text:"Describe what happens to the mass of a substance when it changes state",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    {
+      id:"SP14b",name:"Energy and changes of state",
+      sep_only:false,papers:[2],
+      outcomes:[
+        {id:"SP14b1",text:"Explain how heating affects the particles in a substance or object, including changes of state",higher:false,sep_only:false,papers:[2]},
+        {id:"SP14b2",text:"Describe how the temperature of an object changes with time while being heated or cooled to make it change state",higher:false,sep_only:false,papers:[2]},
+        {id:"SP14b3",text:"Define the term specific heat capacity",higher:false,sep_only:false,papers:[2]},
+        {id:"SP14b4",text:"Define the term specific latent heat",higher:false,sep_only:false,papers:[2]},
+        {id:"SP14b5",text:"Explain the difference between specific heat capacity and specific latent heat",higher:false,sep_only:false,papers:[2]},
+        {id:"SP14b6",text:"Explain ways of reducing unwanted energy transfer through thermal insulation",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    {
+      id:"SP14c",name:"Energy calculations",
+      sep_only:false,papers:[2],
+      outcomes:[
+        {id:"SP14c1",text:"Use the formula Q = mc\\u0394T relating change in thermal energy, mass, temperature change and specific heat capacity",higher:false,sep_only:false,papers:[2]},
+        {id:"SP14c2",text:"Use the formula Q = mL relating thermal energy, mass and specific latent heat",higher:false,sep_only:false,papers:[2]},
+        {id:"SP14c3",text:"Recall that the value of specific latent heat is different for melting/solidifying and for evaporating/condensing",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    {
+      id:"SP14d",name:"Gas temperature and pressure",
+      sep_only:false,papers:[2],
+      outcomes:[
+        {id:"SP14d1",text:"Explain how the movement of particles causes gas pressure",higher:false,sep_only:false,papers:[2]},
+        {id:"SP14d2",text:"Explain how changing the temperature of a gas affects the speed of its particles",higher:false,sep_only:false,papers:[2]},
+        {id:"SP14d3",text:"Explain how temperature affects the pressure of a fixed mass of gas at constant volume",higher:false,sep_only:false,papers:[2]},
+        {id:"SP14d4",text:"Explain the significance of absolute zero",higher:false,sep_only:false,papers:[2]},
+        {id:"SP14d5",text:"Convert temperatures between the Kelvin and Celsius temperature scales",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    {
+      id:"SP14e",name:"Gas pressure and volume",
+      sep_only:true,papers:[2],
+      outcomes:[
+        {id:"SP14e1",text:"Explain how gases can be compressed or expanded by pressure changes",higher:false,sep_only:false,papers:[2]},
+        {id:"SP14e2",text:"Explain how the pressure of a gas produces a force at right angles to any surface",higher:false,sep_only:false,papers:[2]},
+        {id:"SP14e3",text:"Explain why changing the volume of a gas changes the pressure",higher:false,sep_only:false,papers:[2]},
+        {id:"SP14e4",text:"Use the formula p\\u2081V\\u2081 = p\\u2082V\\u2082 relating pressure and volume changes at constant temperature",higher:false,sep_only:false,papers:[2]},
+        {id:"SP14e5",text:"Explain why doing work on a gas can increase its temperature",higher:true,sep_only:false,papers:[2]},
+      ],
+    },
+    ],
+  },
+  {
+    id:"SP15",name:"Forces and Matter",
+    sep_only:false,papers:[2],
+    subtopics:[
+    {
+      id:"SP15r",name:"Practice",
+      type:"revisit",
+      sep_only:false,papers:[1,2],
+      outcomes:[
+        {id:"SP15r1",type:"revisit",tag:"flash",tagLabel:"Flashcards",
+         phrases:["I have looked through my flashcards for the first time","I have self-tested using flashcards and identified gaps","I have drilled flashcards confidently and feel ready"],
+         text:"Flashcard practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP15r2",type:"revisit",tag:"calc",tagLabel:"Calculations",
+         phrases:["I have attempted the worked examples for this topic","I have completed practice calculations and checked my working","I have solved unseen calculation problems without support"],
+         text:"Calculation practice",higher:false,sep_only:false,papers:[1,2]},
+        {id:"SP15r3",type:"revisit",tag:"expl",tagLabel:"Explanations",
+         phrases:["I have read through the key explanations and can follow the reasoning","I have written out explanations from memory and checked them","I can explain the key concepts fluently without notes"],
+         text:"Explanation practice",higher:false,sep_only:false,papers:[1,2]},
+      ],
+    },
+    {
+      id:"SP15a",name:"Bending and stretching",
+      sep_only:false,papers:[2],
+      outcomes:[
+        {id:"SP15a1",text:"Explain that more than one force is needed to distort an object",higher:false,sep_only:false,papers:[2]},
+        {id:"SP15a2",text:"Describe the difference between elastic and inelastic distortion",higher:false,sep_only:false,papers:[2]},
+        {id:"SP15a3",text:"Describe the relationship between force and extension for a spring",higher:false,sep_only:false,papers:[2]},
+        {id:"SP15a4",text:"Describe the relationship between force and extension for a rubber band",higher:false,sep_only:false,papers:[2]},
+        {id:"SP15a5",text:"Compare the force\\u2013extension relationship for different objects",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    {
+      id:"SP15b",name:"Extension and energy transfers",
+      sep_only:false,papers:[2],
+      outcomes:[
+        {id:"SP15b1",text:"Recall the equation that links force, extension and the spring constant (F = ke)",higher:false,sep_only:false,papers:[2]},
+        {id:"SP15b2",text:"Use the formula relating force, extension and spring constant",higher:false,sep_only:false,papers:[2]},
+        {id:"SP15b3",text:"Recall that work has to be done to stretch a spring",higher:false,sep_only:false,papers:[2]},
+        {id:"SP15b4",text:"Use the formula relating the energy transferred to the extension of a spring (E = \\u00bdke\\u00b2)",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    {
+      id:"SP15c",name:"Pressure in fluids",
+      sep_only:true,papers:[2],
+      outcomes:[
+        {id:"SP15c2",text:"Describe the pressure in a fluid as being due to the fluid and atmospheric pressure",higher:false,sep_only:false,papers:[2]},
+        {id:"SP15c3",text:"Explain how pressure is related to area and a force normal to the surface",higher:false,sep_only:false,papers:[2]},
+        {id:"SP15c4",text:"Recall the formula relating force, pressure and area (p = F/A)",higher:false,sep_only:false,papers:[2]},
+        {id:"SP15c5",text:"Use the formula relating force, pressure and area",higher:false,sep_only:false,papers:[2]},
+        {id:"SP15c6",text:"Describe how pressure in fluids increases with depth and density",higher:false,sep_only:false,papers:[2]},
+      ],
+    },
+    {
+      id:"SP15d",name:"Pressure and upthrust",
+      sep_only:true,papers:[2],
+      outcomes:[
+        {id:"SP15d1",text:"Explain why the pressure in a liquid depends on density and depth",higher:true,sep_only:false,papers:[2]},
+        {id:"SP15d2",text:"Use the equation p = h\\u03c1g relating pressure in a fluid to height, density and gravitational field strength",higher:true,sep_only:false,papers:[2]},
+        {id:"SP15d3",text:"Explain how upthrust occurs",higher:true,sep_only:false,papers:[2]},
+        {id:"SP15d4",text:"Relate the upthrust to the floating or sinking of objects immersed or partially immersed in fluids",higher:true,sep_only:false,papers:[2]},
+        {id:"SP15d5",text:"Recall that the upthrust is equal to the weight of fluid displaced",higher:true,sep_only:false,papers:[2]},
+        {id:"SP15d6",text:"Explain the factors that determine whether or not an object will float or sink",higher:true,sep_only:false,papers:[2]},
+      ],
+    },
+    {
+      id:"SP15e",name:"Core Practical",
+      sep_only:true,papers:[2],
+      outcomes:[
+        {id:"SP15e1",text:"Describe how to investigate the extension and work done when applying forces to a spring",higher:false,sep_only:false,papers:[2]},
       ],
     },
     ],
@@ -6545,9 +7723,17 @@ function applySubjectToggles(){
 
 // ── DATA ACCESS ───────────────────────────────────────────────────────────────
 function findSub(sid){for(const t of SUBJECT.topics){const s=t.subtopics.find(x=>x.id===sid);if(s)return s;}return null;}
-function progressKey(subj){const s=subj||SUBJECT;return s.id==='gcse-physics-edexcel'?'gcse_p3':'gcse_p_'+s.id;}
-function specKey(subj){const s=subj||SUBJECT;return 'gcse_spec_'+s.id;}
-function tierKey(subj){const s=subj||SUBJECT;return 'gcse_tier_'+s.id;}
+function progressKey(subj){
+  const s=subj||SUBJECT;
+  // If this subject inherits progress from another, use that subject's key
+  if(s.inherits_progress_from){
+    const base=SUBJECTS.find(x=>x.id===s.inherits_progress_from);
+    if(base)return progressKey(base);
+  }
+  return s.id==='gcse-physics-edexcel'?'gcse_p3':'gcse_p_'+s.id;
+}
+function specKey(subj){const s=subj||SUBJECT;const bid=s.inherits_progress_from||s.id;return 'gcse_spec_'+bid;}
+function tierKey(subj){const s=subj||SUBJECT;const bid=s.inherits_progress_from||s.id;return 'gcse_tier_'+bid;}
 function optionKey(subj){const s=subj||SUBJECT;return 'gcse_opts_'+s.id;}
 // Column label helpers — read from SUBJECT.columns, fall back to defaults
 const COL_DEFAULT = ['Revised','Exam Qs','Reviewed'];
@@ -9240,6 +10426,10 @@ function _buildOptGrid(subj){
 
 function renderSubjectChooser(){
   const LOADED_IDS=new Set(SUBJECTS.map(s=>s.id));
+  // Build set of subject IDs that are replaced by an unlocked variant
+  const replacedBySids=new Set(
+    SUBJECTS.filter(s=>s.replaces&&unlockedSubjects.has(s.id)).map(s=>s.replaces)
+  );
   const qualifications=['GCSE','A-level'];
   // Unique boards per qualification, preserving order
   const boards={};
@@ -9258,7 +10448,8 @@ function renderSubjectChooser(){
         const isCurrent=item.sid&&SUBJECT.id===item.sid;
         const subjDef=SUBJECTS.find(s=>s.id===item.sid);
         const hiddenAndLocked=subjDef&&subjDef.hidden&&!unlockedSubjects.has(item.sid);
-        if(loaded&&!hiddenAndLocked){
+        const isReplaced=replacedBySids.has(item.sid);
+        if(loaded&&!hiddenAndLocked&&!isReplaced){
           const subj=SUBJECTS.find(s=>s.id===item.sid);
           const isPickingThis=_optPickerSubj&&_optPickerSubj.id===item.sid;
           const hasOpts=subj&&subj.has_options;
