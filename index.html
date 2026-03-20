@@ -457,6 +457,18 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
 .opt-confirm{width:100%;padding:9px;border-radius:8px;border:none;background:var(--c1);color:white;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font);transition:all 0.15s;margin-bottom:10px}
 .opt-confirm:hover{background:var(--c1d)}
 .opt-confirm:disabled{opacity:0.4;cursor:default}
+/* ── PET MODAL ── */
+.pet-modal-ov{position:fixed;inset:0;background:rgba(10,14,35,0.5);z-index:2500;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px);animation:fadeIn 0.18s ease}
+.pet-modal-ov.hide{display:none}
+.pet-modal-card{background:var(--surface);border-radius:16px;max-width:420px;width:100%;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,0.28);animation:slideUp 0.22s ease;overflow:hidden}
+.pet-modal-hdr{padding:16px 20px 12px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.pet-modal-title{font-size:15px;font-weight:800;color:var(--tx)}
+.pet-modal-body{overflow-y:auto;flex:1;padding:14px 18px 18px}
+.pet-action-btn{padding:6px 12px;border-radius:7px;border:1px solid var(--bd2);background:var(--surface2);cursor:pointer;font-family:var(--font);font-size:11px;font-weight:600;color:var(--tx2);transition:all 0.15s}
+.pet-action-btn:hover{background:var(--surface3);border-color:var(--c1);color:var(--tx)}
+
+
+.pet-widget{position:fixed;bottom:0;left:10px;z-index:150;pointer-events:none;background:transparent}
 /* ── REVISIT OUTCOMES ── */
 .or-revisit{display:grid;grid-template-columns:1fr 110px;align-items:center;padding:9px 14px;border-bottom:1px solid var(--bd);gap:12px;min-height:44px}
 .col-hdr-revisit{display:grid;grid-template-columns:1fr 110px;padding:5px 14px;background:var(--surface2);border-bottom:1px solid var(--bd);border-top:1px solid var(--bd)}
@@ -732,7 +744,7 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
   --c1:#0a6ab0;--c1d:#085090;--c2:#0a8a50;--c2d:#086a38;--c3:#6a1aaa;--c3d:#521488;}
 
 /* ── PET SYSTEM ── */
-.pet-widget{position:fixed;bottom:0;left:10px;z-index:150;pointer-events:none;display:flex;align-items:flex-end;gap:4px;width:auto;padding:0}
+
 .pet-float{pointer-events:all;cursor:pointer;user-select:none;width:80px;display:flex;flex-direction:column;align-items:center}
 .pet-float-item{pointer-events:all;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;flex-shrink:0}
 .pet-float svg{filter:drop-shadow(0 2px 4px rgba(0,0,0,0.15))}
@@ -742,53 +754,7 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
 .pet-modal-hdr{padding:16px 20px 12px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .pet-modal-title{font-size:15px;font-weight:800;color:var(--tx)}
 .pet-modal-body{overflow-y:auto;flex:1;padding:14px 18px 18px}
-.pet-scene{background:var(--surface2);border-radius:12px;height:190px;position:relative;overflow:hidden;margin-bottom:14px;border:1px solid var(--bd)}
-.pet-scene-bg{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:0}
-.pet-scene-pet{position:absolute;bottom:0;left:50%;transform:translateX(-50%);z-index:2}
-.pet-scene-item{position:absolute;bottom:0;right:24px;z-index:1}
-.pet-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
-.pet-stat{background:var(--surface2);border-radius:8px;padding:8px 10px;border:1px solid var(--bd)}
-.pet-stat-lbl{font-size:10px;color:var(--tx3);margin-bottom:4px;display:flex;justify-content:space-between}
-.pet-stat-bar{height:5px;background:var(--track);border-radius:3px;overflow:hidden}
-.pet-stat-fill{height:100%;border-radius:3px;transition:width 0.4s}
-.pet-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
-.pet-action-btn{padding:9px 12px;border-radius:9px;border:1px solid var(--bd2);background:var(--surface2);cursor:pointer;font-family:var(--font);font-size:12px;font-weight:600;color:var(--tx2);display:flex;align-items:center;gap:6px;transition:all 0.15s}
-.pet-action-btn:hover{background:var(--surface3);border-color:var(--c1);color:var(--tx)}
-.pet-action-btn:disabled{opacity:.4;cursor:default}
-.pet-shop-tabs{display:flex;gap:6px;margin-bottom:10px}
-.pet-shop-tab{flex:1;padding:7px 0;font-size:11px;font-weight:600;border:1px solid var(--bd2);border-radius:7px;background:var(--surface2);cursor:pointer;font-family:var(--font);color:var(--tx3);transition:all 0.15s}
-.pet-shop-tab.on{background:var(--c1);color:var(--surface);border-color:var(--c1)}
-.pet-shop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
-.pet-shop-item{border-radius:9px;border:1.5px solid var(--bd);padding:7px 4px 6px;text-align:center;cursor:pointer;transition:all 0.15s;background:var(--surface2)}
-.pet-shop-item:hover{border-color:var(--c1)}
-.pet-shop-item.equipped{border-color:var(--c1);background:color-mix(in srgb,var(--c1) 8%,var(--surface))}
-.pet-shop-item.owned:not(.equipped){border-color:var(--c3)}
-.pet-item-name{font-size:9px;color:var(--tx2);margin-top:3px;line-height:1.3}
-.pet-item-cost{font-size:9px;font-weight:600;color:var(--c2);margin-top:1px}
-.pet-item-owned{font-size:9px;font-weight:600;color:var(--c3)}
-.pet-chooser{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
-.pet-choose-card{border-radius:10px;border:2px solid var(--bd);padding:10px 6px;text-align:center;cursor:pointer;transition:all 0.15s;background:var(--surface2)}
-.pet-choose-card:hover{border-color:var(--bd2)}
-.pet-choose-card.chosen{border-color:var(--c1);background:color-mix(in srgb,var(--c1) 8%,var(--surface))}
-.pet-choose-name{font-size:12px;font-weight:600;color:var(--tx);margin-top:6px}
-.pet-choose-desc{font-size:10px;color:var(--tx3);margin-top:2px;line-height:1.4}
-/* Idle: very subtle scaleY breathing from the base — shadow stays grounded */
-@keyframes petIdle{0%,100%{transform:scaleY(1)}40%{transform:scaleY(1.018)}60%{transform:scaleY(1.018)}}
-/* Happy: mostly at rest, one small hop per 9s cycle, lands with light squash */
-@keyframes petBounce{0%,60%,100%{transform:translateY(0) scaleY(1)}65%{transform:translateY(-8px) scaleY(1.06)}70%{transform:translateY(-9px) scaleY(1.05)}76%{transform:translateY(2px) scaleY(0.95)}82%{transform:translateY(0) scaleY(1)}}
-/* Sad: slow subtle droop then settle — heavy sigh feel */
-@keyframes petSad{0%,100%{transform:scaleY(1)}50%,70%{transform:scaleY(0.982)}}
-/* Sleep: very gentle sway, low amplitude */
-@keyframes petSleep{0%,100%{transform:rotate(0deg)}30%{transform:rotate(-1.2deg)}70%{transform:rotate(1.2deg)}}
-/* Pixel idle: subtle scale pulse */
-@keyframes petPulse{0%,100%{transform:scaleY(1)}40%,60%{transform:scaleY(1.016)}}
-/* Apex idle: very slow rock — crystal swaying */
-@keyframes petRock{0%,100%{transform:rotate(0deg)}35%{transform:rotate(-1.8deg)}65%{transform:rotate(1.8deg)}}
-@keyframes petBlink{0%,90%,100%{transform:scaleY(1)}95%{transform:scaleY(0.08)}}
-/* Celebrate: big one-off hop, quick return */
-@keyframes petCelebrate{0%,100%{transform:translateY(0) scale(1)}15%{transform:translateY(-18px) scale(1.14)}35%{transform:translateY(-19px) scale(1.12)}55%{transform:translateY(3px) scale(0.93)}70%{transform:translateY(0) scale(1)}}
-/* Walk step — grounded footstep bob on the outer container */
-@keyframes petStep{0%,100%{transform:translateY(0) scaleY(1)}20%{transform:translateY(-5px) scaleY(1.04)}35%{transform:translateY(0) scaleY(0.96)}55%{transform:translateY(-4px) scaleY(1.03)}70%{transform:translateY(0) scaleY(0.97)}}
+@keyframes petBubbleIn{0%{opacity:0;transform:translateX(-50%) translateY(4px)}100%{opacity:1;transform:translateX(-50%) translateY(0)}}
 @keyframes starPop{0%{transform:translateY(0) scale(0);opacity:1}60%{transform:translateY(-30px) scale(1.2);opacity:1}100%{transform:translateY(-50px) scale(0.8);opacity:0}}
 .pet-star-pop{position:fixed;pointer-events:none;z-index:400;font-size:18px;animation:starPop 0.8s ease-out forwards}
 /* ── RANKS ── */
@@ -1754,7 +1720,7 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
   --c1:#0a6ab0;--c1d:#085090;--c2:#0a8a50;--c2d:#086a38;--c3:#6a1aaa;--c3d:#521488;}
 
 /* ── PET SYSTEM ── */
-.pet-widget{position:fixed;bottom:0;left:50%;transform:translateX(-50%);z-index:150;pointer-events:none;display:flex;justify-content:center;align-items:flex-end;gap:4px;width:auto;max-width:420px;padding:0 8px}
+
 .pet-float{pointer-events:all;cursor:pointer;user-select:none;width:80px;display:flex;flex-direction:column;align-items:center}
 .pet-float-item{pointer-events:all;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;flex-shrink:0}
 .pet-float svg{filter:drop-shadow(0 2px 4px rgba(0,0,0,0.15))}
@@ -1888,7 +1854,7 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
       <button class="spec-btn com" id="btn-com" onclick="setSpec(&#39;com&#39;)">Combined</button>
       <button class="spec-btn sep active" id="btn-sep" onclick="setSpec(&#39;sep&#39;)">Separate</button>
     </div>
-    <button class="help-btn pet-btn" onclick="openPetModal()" title="Your companion" id="pet-hdr-btn" style=""><svg width="14" height="14" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"></circle><circle cx="5.5" cy="7" r="1.5" fill="currentColor"></circle><circle cx="10.5" cy="7" r="1.5" fill="currentColor"></circle><path d="M5.5 10.5Q8 12.5 10.5 10.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path></svg> Pet</button>
+    <button class="help-btn pet-btn" onclick="openPetModal()" title="Your companion" id="pet-hdr-btn" style="display:none"><svg width="14" height="14" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"></circle><circle cx="5.5" cy="7" r="1.5" fill="currentColor"></circle><circle cx="10.5" cy="7" r="1.5" fill="currentColor"></circle><path d="M5.5 10.5Q8 12.5 10.5 10.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path></svg> Pet</button>
     <button class="coin-counter" id="coin-counter" onclick="openThemes()" title="Revision coins — spend in the theme shop">
       <span class="coin-icon">🪙</span>
       <span class="coin-bal" id="coin-bal">0</span>
@@ -2444,127 +2410,6 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
 </div>
 
 <!-- PET MODAL -->
-<div class="pet-modal-ov hide" id="pet-modal" onclick="handlePetOvClick(event)">
-  <div class="pet-modal-card">
-    <div class="pet-modal-hdr">
-      <div class="pet-modal-title" id="pet-modal-title">Qubit</div>
-      <button class="sj-close-x" onclick="closePetModal()">×</button>
-    </div>
-    <div class="pet-modal-body" id="pet-modal-body">
-    <div class="pet-scene">
-      <div class="pet-scene-item" style="right:4px"><svg width="58" height="58" viewBox="0 0 90 90"><rect x="24" y="28" width="36" height="22" rx="4" fill="#c09060"></rect><rect x="26" y="48" width="10" height="14" rx="2" fill="#a07040"></rect><rect x="50" y="48" width="10" height="14" rx="2" fill="#a07040"></rect><rect x="24" y="28" width="36" height="6" rx="4" fill="#e0b080"></rect></svg></div><div class="pet-scene-item" style="right:62px"><svg width="58" height="58" viewBox="0 0 90 90"><rect x="10" y="28" width="64" height="8" rx="3" fill="#c09060"></rect><rect x="18" y="36" width="7" height="22" rx="2" fill="#a07040"></rect><rect x="59" y="36" width="7" height="22" rx="2" fill="#a07040"></rect></svg></div><div class="pet-scene-item" style="right:120px"><svg width="58" height="58" viewBox="0 0 90 90"><ellipse cx="45" cy="44" rx="28" ry="14" fill="white"></ellipse><ellipse cx="30" cy="34" rx="14" ry="10" fill="white"></ellipse><ellipse cx="60" cy="34" rx="14" ry="10" fill="white"></ellipse><ellipse cx="45" cy="34" rx="18" ry="12" fill="white"></ellipse><ellipse cx="45" cy="44" rx="26" ry="12" fill="#f0f4ff"></ellipse></svg></div><div class="pet-scene-item" style="right:178px"><svg width="58" height="58" viewBox="0 0 90 90"><ellipse cx="45" cy="22" rx="18" ry="14" fill="#f4d040"></ellipse><rect x="35" y="26" width="20" height="24" rx="2" fill="#e0a020"></rect><rect x="22" y="48" width="46" height="6" rx="2" fill="#c08010"></rect></svg></div>
-      <div class="pet-scene-pet"><svg width="90" height="130" viewBox="0 -40 90 130"><g style="animation:petBounce 1.8s ease-in-out infinite;transform-origin:45px 80px">
-    <ellipse cx="45" cy="80" rx="24" ry="5" fill="rgba(0,0,0,0.08)"></ellipse>
-    <ellipse cx="28" cy="44" rx="9" ry="12" fill="#ffd0e8"></ellipse>
-    <ellipse cx="28" cy="44" rx="5" ry="7" fill="#ffb8dc"></ellipse>
-    <ellipse cx="62" cy="44" rx="9" ry="12" fill="#ffd0e8"></ellipse>
-    <ellipse cx="62" cy="44" rx="5" ry="7" fill="#ffb8dc"></ellipse>
-    <circle cx="45" cy="52" r="28" fill="#ffd0e8"></circle>
-    <circle cx="45" cy="52" r="22" fill="#fff0f8"></circle>
-    <g style="animation:petBlink 3.5s ease-in-out infinite;transform-origin:45px 48px">
-    <ellipse cx="36" cy="48" rx="5.5" ry="6.5" fill="#2d1040"></ellipse>
-    <ellipse cx="54" cy="48" rx="5.5" ry="6.5" fill="#2d1040"></ellipse>
-    <circle cx="38" cy="46" r="2" fill="white"></circle>
-    <circle cx="56" cy="46" r="2" fill="white"></circle>
-  </g>
-    <path d="M37,52 Q45,60 53,52" fill="none" stroke="#c060a0" stroke-width="2.2" stroke-linecap="round"></path>
-    <ellipse cx="31" cy="57" rx="5" ry="3" fill="#f4a0c8" opacity=".5"></ellipse>
-    <ellipse cx="59" cy="57" rx="5" ry="3" fill="#f4a0c8" opacity=".5"></ellipse>
-    <g transform="translate(0,-28) scale(1)"><rect x="28" y="30" width="34" height="22" rx="2" fill="#1a1a2a"></rect><rect x="20" y="50" width="50" height="6" rx="2" fill="#2a2a3a"></rect><rect x="32" y="24" width="26" height="8" rx="1" fill="#1a1a2a"></rect></g>
-  </g></svg></div>
-    </div>
-    <div class="pet-stats">
-      <div class="pet-stat">
-        <div class="pet-stat-lbl"><span>Hunger</span><span style="font-weight:600;color:var(--c2)">100%</span></div>
-        <div class="pet-stat-bar"><div class="pet-stat-fill" style="width:100%;background:var(--c2)"></div></div>
-      </div>
-      <div class="pet-stat">
-        <div class="pet-stat-lbl"><span>Energy</span><span style="font-weight:600;color:var(--c1)">65%</span></div>
-        <div class="pet-stat-bar"><div class="pet-stat-fill" style="width:65%;background:var(--c1)"></div></div>
-      </div>
-      <div class="pet-stat">
-        <div class="pet-stat-lbl"><span>Mood</span><span style="font-weight:600;color:var(--c3);text-transform:capitalize">happy</span></div>
-        <div class="pet-stat-bar"><div class="pet-stat-fill" style="width:95%;background:var(--c3)"></div></div>
-      </div>
-      <div class="pet-stat">
-        <div class="pet-stat-lbl"><span>Friendship</span><span style="font-weight:600;color:#f4a261">0 days</span></div>
-        <div class="pet-stat-bar"><div class="pet-stat-fill" style="width:0%;background:#f4a261"></div></div>
-      </div>
-    </div>
-    <div class="pet-actions">
-      <button class="pet-action-btn" onclick="petFeed()" disabled="">
-        <span style="font-size:14px">🍎</span> Feed <span style="font-size:10px;color:var(--tx3);margin-left:auto">costs coins</span>
-      </button>
-      <button class="pet-action-btn" onclick="petPlay()">
-        <span style="font-size:14px">⚡</span> Play <span style="font-size:10px;color:var(--tx3);margin-left:auto">+2 coins</span>
-      </button>
-      <button class="pet-action-btn" onclick="petRest()">
-        <span style="font-size:14px">😴</span> Rest <span style="font-size:10px;color:var(--tx3);margin-left:auto">+energy</span>
-      </button>
-      <button class="pet-action-btn" onclick="petRename()">
-        <span style="font-size:14px">✏️</span> Rename
-      </button>
-    </div>
-    <div class="pet-shop-tabs">
-      <button class="pet-shop-tab on" onclick="setPetShopTab(&#39;food&#39;)">Food</button>
-      <button class="pet-shop-tab" onclick="setPetShopTab(&#39;hat&#39;)">Hats</button>
-      <button class="pet-shop-tab" onclick="setPetShopTab(&#39;furniture&#39;)">Room</button>
-    </div>
-    <div class="pet-shop-grid" id="pet-shop-grid"><div class="pet-shop-item " onclick="petShopClick(&#39;apple&#39;)">
-      <svg width="40" height="40" viewBox="0 0 90 90" style="display:block;margin:0 auto"><circle cx="45" cy="34" r="16" fill="#e84040"></circle><path d="M45,18 Q51,11 57,14" fill="none" stroke="#40a040" stroke-width="2.5" stroke-linecap="round"></path><ellipse cx="38" cy="27" rx="5" ry="8" fill="#f06060" opacity=".28"></ellipse></svg>
-      <div class="pet-item-name">Apple</div>
-      <div class="pet-item-cost">🪙 5</div>
-    </div><div class="pet-shop-item " onclick="petShopClick(&#39;carrot&#39;)">
-      <svg width="40" height="40" viewBox="0 0 90 90" style="display:block;margin:0 auto"><path d="M34,16 L45,50 L56,16 Z" fill="#f07820"></path><path d="M36,16 C41,9 49,9 54,16" fill="none" stroke="#40a040" stroke-width="2.5" stroke-linecap="round"></path></svg>
-      <div class="pet-item-name">Carrot</div>
-      <div class="pet-item-cost">🪙 5</div>
-    </div><div class="pet-shop-item " onclick="petShopClick(&#39;cookie&#39;)">
-      <svg width="40" height="40" viewBox="0 0 90 90" style="display:block;margin:0 auto"><circle cx="45" cy="34" r="18" fill="#c07030"></circle><circle cx="37" cy="30" r="2.5" fill="#6a3010"></circle><circle cx="50" cy="25" r="2" fill="#6a3010"></circle><circle cx="54" cy="38" r="2.5" fill="#6a3010"></circle><circle cx="40" cy="44" r="2" fill="#6a3010"></circle></svg>
-      <div class="pet-item-name">Cookie</div>
-      <div class="pet-item-cost">🪙 8</div>
-    </div><div class="pet-shop-item " onclick="petShopClick(&#39;sandwich&#39;)">
-      <svg width="40" height="40" viewBox="0 0 90 90" style="display:block;margin:0 auto"><rect x="18" y="22" width="44" height="8" rx="5" fill="#e8c060"></rect><rect x="18" y="29" width="44" height="6" rx="1" fill="#70c040"></rect><rect x="18" y="34" width="44" height="5" rx="1" fill="#f8a040"></rect><rect x="18" y="38" width="44" height="5" rx="1" fill="#e07040"></rect><rect x="18" y="42" width="44" height="8" rx="5" fill="#e8c060"></rect></svg>
-      <div class="pet-item-name">Sandwich</div>
-      <div class="pet-item-cost">🪙 10</div>
-    </div><div class="pet-shop-item " onclick="petShopClick(&#39;cupcake&#39;)">
-      <svg width="40" height="40" viewBox="0 0 90 90" style="display:block;margin:0 auto"><rect x="26" y="38" width="38" height="16" rx="4" fill="#e8a060"></rect><path d="M24,38 Q45,22 66,38" fill="#ff90c0"></path><circle cx="45" cy="24" r="5" fill="#ff50a0"></circle></svg>
-      <div class="pet-item-name">Cupcake</div>
-      <div class="pet-item-cost">🪙 12</div>
-    </div><div class="pet-shop-item " onclick="petShopClick(&#39;pizza&#39;)">
-      <svg width="40" height="40" viewBox="0 0 90 90" style="display:block;margin:0 auto"><polygon points="45,12 72,56 18,56" fill="#f0c040"></polygon><polygon points="45,17 69,53 21,53" fill="#e05030"></polygon><circle cx="36" cy="40" r="4" fill="#c83020"></circle><circle cx="52" cy="32" r="3.5" fill="#c83020"></circle></svg>
-      <div class="pet-item-name">Pizza</div>
-      <div class="pet-item-cost">🪙 15</div>
-    </div></div>
-    <div style="display:flex;align-items:center;gap:8px;margin-top:10px;padding:8px 10px;background:var(--surface2);border-radius:8px;border:1px solid var(--bd)">
-      <span style="font-size:11px;color:var(--tx3);flex:1">Hat position</span>
-      <button class="pet-action-btn" style="padding:4px 10px;font-size:13px" onclick="nudgeHat(4)">↑</button>
-      <span style="font-size:10px;color:var(--tx3);width:28px;text-align:center">0</span>
-      <button class="pet-action-btn" style="padding:4px 10px;font-size:13px" onclick="nudgeHat(-4)">↓</button>
-      <button class="pet-action-btn" style="padding:4px 10px;font-size:11px" onclick="nudgeHat(0,true)">reset</button>
-    </div>
-  </div>
-  </div>
-</div>
-<!-- PET WIDGET (floating) -->
-<div class="pet-widget" id="pet-widget" style="display: none;" onclick="openPetModal()"><div class="pet-float-item" style="animation:petBob 2.5s 0s ease-in-out infinite" onclick="openPetModal()" title="Little chair"><svg width="52" height="52" viewBox="0 0 90 90" style="display:block"><rect x="24" y="28" width="36" height="22" rx="4" fill="#c09060"></rect><rect x="26" y="48" width="10" height="14" rx="2" fill="#a07040"></rect><rect x="50" y="48" width="10" height="14" rx="2" fill="#a07040"></rect><rect x="24" y="28" width="36" height="6" rx="4" fill="#e0b080"></rect></svg></div><div class="pet-float-item" style="animation:petBob 2.9s 0.3s ease-in-out infinite" onclick="openPetModal()" title="Study table"><svg width="52" height="52" viewBox="0 0 90 90" style="display:block"><rect x="10" y="28" width="64" height="8" rx="3" fill="#c09060"></rect><rect x="18" y="36" width="7" height="22" rx="2" fill="#a07040"></rect><rect x="59" y="36" width="7" height="22" rx="2" fill="#a07040"></rect></svg></div><div class="pet-float-item" style="animation:petBob 3.3s 0.6s ease-in-out infinite" onclick="openPetModal()" title="Cloud bed"><svg width="52" height="52" viewBox="0 0 90 90" style="display:block"><ellipse cx="45" cy="44" rx="28" ry="14" fill="white"></ellipse><ellipse cx="30" cy="34" rx="14" ry="10" fill="white"></ellipse><ellipse cx="60" cy="34" rx="14" ry="10" fill="white"></ellipse><ellipse cx="45" cy="34" rx="18" ry="12" fill="white"></ellipse><ellipse cx="45" cy="44" rx="26" ry="12" fill="#f0f4ff"></ellipse></svg></div><div class="pet-float-item" style="animation:petPulse 4.5s 0.6000000000000001s ease-in-out infinite" onclick="openPetModal()" title="Trophy"><svg width="52" height="52" viewBox="0 0 90 90" style="display:block"><ellipse cx="45" cy="22" rx="18" ry="14" fill="#f4d040"></ellipse><rect x="35" y="26" width="20" height="24" rx="2" fill="#e0a020"></rect><rect x="22" y="48" width="46" height="6" rx="2" fill="#c08010"></rect></svg></div><div class="pet-float" onclick="openPetModal()"><svg width="70" height="100" viewBox="0 -40 90 130"><g style="animation:petBounce 1.8s ease-in-out infinite;transform-origin:45px 80px">
-    <ellipse cx="45" cy="80" rx="24" ry="5" fill="rgba(0,0,0,0.08)"></ellipse>
-    <ellipse cx="28" cy="44" rx="9" ry="12" fill="#ffd0e8"></ellipse>
-    <ellipse cx="28" cy="44" rx="5" ry="7" fill="#ffb8dc"></ellipse>
-    <ellipse cx="62" cy="44" rx="9" ry="12" fill="#ffd0e8"></ellipse>
-    <ellipse cx="62" cy="44" rx="5" ry="7" fill="#ffb8dc"></ellipse>
-    <circle cx="45" cy="52" r="28" fill="#ffd0e8"></circle>
-    <circle cx="45" cy="52" r="22" fill="#fff0f8"></circle>
-    <g style="animation:petBlink 3.5s ease-in-out infinite;transform-origin:45px 48px">
-    <ellipse cx="36" cy="48" rx="5.5" ry="6.5" fill="#2d1040"></ellipse>
-    <ellipse cx="54" cy="48" rx="5.5" ry="6.5" fill="#2d1040"></ellipse>
-    <circle cx="38" cy="46" r="2" fill="white"></circle>
-    <circle cx="56" cy="46" r="2" fill="white"></circle>
-  </g>
-    <path d="M37,52 Q45,60 53,52" fill="none" stroke="#c060a0" stroke-width="2.2" stroke-linecap="round"></path>
-    <ellipse cx="31" cy="57" rx="5" ry="3" fill="#f4a0c8" opacity=".5"></ellipse>
-    <ellipse cx="59" cy="57" rx="5" ry="3" fill="#f4a0c8" opacity=".5"></ellipse>
-    <g transform="translate(0,-28) scale(1)"><rect x="28" y="30" width="34" height="22" rx="2" fill="#1a1a2a"></rect><rect x="20" y="50" width="50" height="6" rx="2" fill="#2a2a3a"></rect><rect x="32" y="24" width="26" height="8" rx="1" fill="#1a1a2a"></rect></g>
-  </g></svg></div></div>
 
 <!-- SAVE CODE MODAL -->
 <div class="sc-ov hide" id="sc-modal" onclick="handleScClick(event)">
@@ -2682,6 +2527,7 @@ function cycleConf(id){
   const cur=gvn(id,'conf');
   const next=(cur+1)%4;
   sv(id,'conf',next||false); // sv stamps ts when value is truthy; pass false on reset to clear ts
+  if(next>0) setTimeout(petCelebrateOnTick,200);
   updateView();
 }
 
@@ -8355,6 +8201,7 @@ function checkRankUp(prevRank,prevTopicDone,subtopicDone){
   if(animLevel===2)     fireConfetti(40,false);
   else if(animLevel===3)fireConfetti(80,false);
   else if(animLevel===4)fireConfetti(140,true);
+  if(animLevel>=1) setTimeout(()=>petCelebrateAchievement(animLevel), 250);
 
   // Show rank popup if rank changed, or on legend topic complete
   if(rankUp){
@@ -8382,7 +8229,14 @@ function showRankPopup(rank,title,msg){
   document.getElementById('rk-popup-msg').textContent=msg;
   document.getElementById('rk-modal').classList.remove('hide');
 }
-function closeRankPopup(){document.getElementById('rk-modal').classList.add('hide');}
+function closeRankPopup(){
+  document.getElementById('rk-modal').classList.add('hide');
+  // Fire any pet achievement that was waiting for this popup to close
+  if (_deferredAchievementLevel > 0) {
+    const lvl = _deferredAchievementLevel;
+    setTimeout(()=>_firePetAchievement(lvl), 300);
+  }
+}
 
 // ── SUBTOPIC SHIMMER ──────────────────────────────────────────────────────────
 // Returns the completion tier for a subtopic: 'gold'|'silver'|'bronze'|null
@@ -9108,7 +8962,14 @@ const UNLOCK_CODES = {
   'TEAMPHYSICS':  {desc:'Physics themes + Share Tech Mono', action:()=>{forceUnlock('theme','phys-osc');forceUnlock('theme','phys-signal');forceUnlock('font','sharetechmono');}},
   'WAVE440':      {desc:'Physics Oscilloscope Dark theme',   action:()=>forceUnlock('theme','phys-osc')},
   'SIGNAL2V':     {desc:'Physics Signal Light theme',        action:()=>forceUnlock('theme','phys-signal')},
-  'PETMODE':     {desc:'Unlock pet companion system', action:()=>{petEnabled=true;localStorage.setItem('gcse_pet_enabled','1');updatePetWidget();alert('Pet system unlocked! Click the Pet button in the header.');}},
+  'PETMODE':     {desc:'Unlock pet companion system', action:()=>{
+    petEnabled=true;
+    localStorage.setItem('gcse_pet_enabled','1');
+    updatePetWidget();
+    const hb=document.getElementById('pet-hdr-btn');
+    if(hb)hb.style.display='';
+    alert('Pet system unlocked! Click the paw button in the header.');
+  }},
   'COINMAX':     {desc:'Set coins to 9999 (debug)', action:()=>{coinBalance=9999;saveCoins();updateCoinDisplay();}},
   // Subject reveals
   'DEBUGMODE':  {desc:'Debug subjects (CS, Psychology, Example options)', action:()=>{unlockSubject('igcse-cs-edexcel');unlockSubject('aqa-psychology-alevel');unlockSubject('example-options-debug');}},
@@ -9156,7 +9017,7 @@ function renderStaffRoom(){
       ['TEAMCHEM',    'Chemistry — Lab Light & Crucible Dark + Rajdhani'],
       ['TEAMBIO',     'Biology — Specimen Light & Cell Dark + Comfortaa'],
       ['TEAMCLASSICS','Classical Civ — Papyrus & Pompeii + Cinzel'],
-      ['TEAMPHYSICS','Physics — Oscilloscope Dark & Signal Light + Share Tech Mono'],
+      ['TEAMPHYSICS', 'Physics — Oscilloscope Dark & Signal Light + Share Tech Mono'],
     ]},
     {title:'🔬 Subject themes — individual',rows:[
       ['PIXEL8F','CS Terminal Light'],['VOID404','CS Terminal Dark'],
@@ -9165,13 +9026,21 @@ function renderStaffRoom(){
       ['SCROLL7','Classics Papyrus Light'],['POMPEII','Classics Pompeii Dark'],
       ['WAVE440','Physics Oscilloscope Dark'],['SIGNAL2V','Physics Signal Light'],
     ]},
-    {title:'⚡ Master codes',rows:[
+    {title:'📚 Subject reveals — unlocks hidden subjects in the chooser',rows:[
+      ['LEHPHYS25','LEH Custom Physics — Joshua\'s bespoke spec variant'],
+      ['DEBUGMODE','Debug subjects — iGCSE CS, AQA Psychology, Example options (dev only)'],
+    ]},
+    {title:'🐾 Extras',rows:[
       ['PETMODE','Unlock the pet companion system'],
-      ['COINMAX','Set coins to 9999 (debug only)'],
+    ]},
+    {title:'⚡ Master codes',rows:[
       ['MX9Z2QV','Unlock everything — all themes, fonts & layouts'],
       ['LEHS2025','Unlock everything (school code)'],
       ['THESTAFFROOM','Open this teacher reference page'],
-      ['RESETALL','⚠️ Reset all student progress, coins and unlocks'],
+    ]},
+    {title:'⚠️ Debug / admin only — do not share with students',rows:[
+      ['COINMAX','Set coins to 9999'],
+      ['RESETALL','Reset all student progress, coins and unlocks'],
     ]},
   ];
 
@@ -9481,713 +9350,669 @@ ${padLi}${completeLi}
 // ── PET SYSTEM ────────────────────────────────────────────────────────────────
 
 // ── Data ─────────────────────────────────────────────────────────────────────
-const PET_TYPES = {
-  qubit: {
-    name: 'Qubit', desc: 'Soft, round and warm. Always curious.',
-    bodyAnim: 'petBob', shape: 'circle',
-    svgBody: (mood,hat,furniture,held) => petSvgCircle(mood,hat,furniture,held),
-  },
-  pixel: {
-    name: 'Pixel', desc: 'Digital screen-face. Precise and dependable.',
-    bodyAnim: 'petPulse', shape: 'square',
-    svgBody: (mood,hat,furniture,held) => petSvgSquare(mood,hat,furniture,held),
-  },
-  apex: {
-    name: 'Apex', desc: 'Crystal creature. Sharp, ambitious, always pointing up.',
-    bodyAnim: 'petRock', shape: 'triangle',
-    svgBody: (mood,hat,furniture,held) => petSvgTriangle(mood,hat,furniture,held),
-  },
+
+
+
+// ── PET SPRITE SYSTEM ─────────────────────────────────────────────────────────
+
+const PET_SPRITES={
+  idle:{frames:4,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAAgCAYAAADaInAlAAADU0lEQVR42u2bvW7iQBDHx5tFRwNKi6CMlOZa6hNRCvwWPAIF6ahO10GRR7i3MEV0iDptmkgpQbSIa4zsE1etYy/rr/XM2g4eyUVsKf+Z385MdscOQGONNdZYY1dqVoMgm/HejzMAgL/fWGXqY/tgYQCghhMXPBUUlf5h6gAAwO2zrfTBlH6SDzp+cA0AZ1l8dlwBAMCyNz5jg1AEHwQrdIU2xULI+oepEzCQYy+jQ4R90FkDpgNAZJwsbsIOUwfC/oSTYXZcRaqB0gc59jL0MX4Xw3TAFICt04K3+xeYDDlMhhxMW9n6qtZPugeQu8DWaUWe/371P1tQd0zSht/uX2Bge8rFkP3A9qEK+ln559VnebJe2MD2ggsAIpWA3QWS4AtfhFFUY9n6efmj/wmoAgCVdvupHVx3f26CiyIJy9Sn5s+LABB29xR60PFhdlyhnAhE8ABerLZsv/5+g3nnhFr9Zemb4M+yAYBcACiDF9rt/ii4Is/7I1h2x2hVWKa+Cf68CABh7m4dAQBdQOsCKhPaQrfdH4G7W0fuywtTV31q/ryOC3DthsmfNziLL0TW+1XUZ0UdUIlhApDPvO7CjWS+yH65IrAmlEn6cgsO3zc9IdU1VmUA/n5jfX9/VD5zd+vgku/PjiuUYYyuvrtbow2DqPnzVADweD7YjhJAHBhRhVgbwK3TimyG3IULW6cVnLupLa/+vHMC6AJOARDz51UGkARhYHvw8fD5M9U4umx9av5a7wJU7YkSQJy+fCaed05k7yKqqI/Bv9AmcGB7wQhUDCAoAFwMO35aqQMRSvhJ+hTvQuKSD4M/qzMA1RQMew6vij1u5i4WAWsKGBc7Jn+GWpnIY+C46p8MOXn1Jy3+wPZS9YskgdCOW/ysCZhFn+lCSAKAVYV5qp+yC1XF8iZgFg6srgCqqr3sjmsVO9d34ga+svn7jSU+QJ0dVxdt1124F1Uojl8iCXQ3w2HtOP2kBMwzhEsfFIQ+fhROiCxUASgafJp+uAJM6Oc9hpn8JC4p/nAyFeoA/n5jLXvj4L102ImPh3/KcygmAFk/bCb04+z22Q6q04SpWj9G/FzXgbIBqPRNzCDS2q8pfSz+rI4A5P+MMW1l62PyZ18JwLUYJv//wpGCWVuFbsUAAAAASUVORK5CYII="},
+  walk:{frames:6,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAAgCAYAAABEmHeFAAAEM0lEQVR42u2cMU/rMBDHL8HV69KqawQjEgtr5wrUIf0W/QgMsFUMqBsd+hH4FmFAD3VmZXkSY1HXCpYg8pS3vAuO49IkPR8t3EmRaAqc/fPfZ/vsBEBMTExMTExMTExM7CeZtysFVUEvBQBIFjOvyneUvl36EP5fw9+jKIRrgaigly7PIgAA6EwHOR8q6KXnL7cAADBph+T+dd/oH+vJ2TGEvxv+qmYhUnSoAwAAmARhSgnB9L08izL/pm8O04RQqDeHAIU/LX9/F4fj5VmUi3po5y+31vvUNo8a8Hh0B8OugmFXZb65/At/Ov7+JgA4KpssZh4OeyYAhMDhfx41YB41AADgYPCeXQBQaAjXXIQ/HX9/kx6IF0cUwMpzC1AFvfTx6C7nTzf9nmsxCH96/qpsAQDerU7nUSNzfPOQOFn8IQCbHQzes8YZdpWTMth8Ny+a2c+HF9oXrQTOX27J5uLC3y1/n7JwriLgKgB4Hf7eyy7KKPQhvtXwTRu//mKpv/Cn4a+2OQLaol8ZAKPWm7PGR9/N/ZPsXvx8//H9/glAG0hHAZsJfxr+SgRYQ3z/faPf5v4JxM/3uft6+USA28tfiQC324S/W1MiwN0z4U9n/qYNYQPNBZ/Dv57+AwCIr+Oc8FB8piA5dkiF/+b8t34n+DMA5hRAv08hwGQx847/9K3fxc/32WW77+JcjPCn5++LAOuJ4On078rfp1yECn+3/NcW0DwMtS4LoQ+DlBtB5mJwHjWyvLMNAGUD2BiYDaNvALn2Lfzp+KuyPVAHEF/HawFAmyYCJouZdwz9dDmICtmRp1NwLsB1GRoU4xj2yBte+JfnD62klm8lAqwXfbjsuwuwjo2vPBhdprmRsO7+h78pANwCxy1oLgBlpwKufNv8j19/sR6J5uBfNgC4OAJSuW1qlMHfNQFyNsJXR/+qZeDogJ8FAFx8U58GtdV/lfZYjkNzRoGqInQpgPGVV+rAGeVhsM/qTiUCKvYco0DZNnDaAUaXaS4ScE9BuM7db2PkL8vdRSDgDgAc5lep/E8zfBqpMx1YG99cdFHm/39y5y9j8XVcDMw1kiBqR0SYPQCtC2DUessNuy6yQPi/JkGYDqGYD8cNmZuHBCbtsPB3VNaZDuCxe1cQgct1GLLHqG4LACZ/zvbHdDDyrzXSlv3FYVfB+CrJfbb1QKr8swlhEoTZwxG6CHUBcmRdzKlgZ9rP7bpSCV8XH34+hn5hWqSLEAMAZVmqBADMQrkIALresAz4rLLOv+opWFWl8YfQsFZeB+DyGK4Jf9IOAR54XsuBguTMCpVliO3gMgVt24+wBQAX4re1Pdlaq8piTC+E/qYAE4CLTmBGxG0zjv0PWydEEboSXtm6uxT/qimh+XIsp1Mgm/MMQBCyvCDJBpfL96pOyP1iqE1Hi+/oG1+KVac8/wDJJDi77iLzbQAAAABJRU5ErkJggg=="},
+  run:{frames:6,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAAgCAYAAABEmHeFAAAEcUlEQVR42u1cvU7jQBAeg9FZQo7SRqFEoklLHQWliN+CR6BIJAqLIkqDkiKPcG+RFOhQ6mtpkChBaVEOgaMY+YpjnfX6J/7Z2c2h+aRId+tiZr/Z+Wa8uxiAQCAQCAQCgUAgEPYUZqMdmI12UPQZgfj/FuS/3b4Hb7fvgUi22WgH18cfwfXxBwWB+C8EoygJ4pi/XBjiuL9cGBgBeL2aRcbqUwcAAPqreWR8Uuuh+CByINrIeibbNvEvh3+zCgFfJAQxAhq9AIsAHq9XM6hPHZjUerEgYJHPc1CfOuE8zUY7woNsDoh/HP4Pqjj0PDuCh7M7uDw34fJ8m0v91RxUlEJmn/mg2r5uEP8aWqCHszsAADhxNjEyGH7+9lFKIbMv2lZpP60NEFsBjDaA+JfP/0GZyScRwI/xaqCCfBX2dykgW5hYKkj84/BfyNOkyVsDK/z36YB7YPvQX82l9qO67TPSmR+8P8+zozDwTAFlg/iXz/9BkezPmryI0Z8fKKVfh33dCkj84/Fvls1+Nnmr2QnHvJf77fNmB6AG0lRAt33dCkj84/BfSarY5NnErWYHvJf7yDhPkGyosr9VwE0hBXTtNWoPTPxX51/N28o3wD4oIPEvn/9vkQBpKoOpfvugwMR/df5zb4Py+7wAAN7YixhmxkWHZJ0QZtkXFYAfV3FCyeaPuQCIfxz+c1UAf7kwWtANXp34UbxIgjhuNTuVD0N029cN4h8Pla5CeGMPni4+U59jvwSqtK9TAdPuAamav277mPwbZUkYDQ1wb4KYc/wxOFMPjACotJ/mQ9YuBF+Gq/iQtvjSFocq/lXax+T/oKpj1sCC01+H4U8snej9nwL7uhQwze5oGJ1W0vz7q7mU6xhp4rOLfxW9vwz+SyeAexPEAgGAcwKYpj5JCsDsy7qLs2sRnjgbeLr4DH+uvQbXXoPV7KBciBsNjchJp8iBbP53iU9W/DFjIIt/Ogeo2H4wBQ5h+xEFlHkGwBY/2xPP0wLIxjYBN3sRI2tgxU6Ai3QAue8C5S1p2C++SSqo0z6mAvvLhVGfOsB+eTGp9cIfZhvqjb3Envt/6gDMvA48z0wYDf3MYLPFJ5P4r0UQScA8l52wg69Kgfk5TBq9wOW2Ir2xF/NB9rYj45/9/+H8LpYEog/sBRjrPTBLAAsnWN7sO3E2cAnRrSj+BQTrCjCfgDz+tQGH6AmY3YYcak/Cp4vPKPc13CRsQTemyBEfaqB1399qdqAPczkJIEK8j1GfOkre9pNsq0jAMtXHtdfStwCzwM9bRcIlofXYhT7MUezzFYjFgQmQN94kVuEi/JeuI0V6Ugyk/SkcRhJMGr3Iffi0O+ls8dPFN5wKJMaBiSDbhHDtdeEKZObJvqS/w2Sf4+D7PYy+L8kHZp+1SLorEK/CmLc/xX4cAMJyryvxWBegyr4Yh9ZjF/p2eQHM9+0UBd+dKeIDbz/tWznYOxFZFUjFYtAZExWcF4lDuOVcgncq1RIWXOybNNQGKU2AKkn4FxXpAiDO5T6QAAAAAElFTkSuQmCC"},
+  jump:{frames:8,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAAgCAYAAAD9qabkAAAFeklEQVR42u1dPU8bTRAem0Nxg/W2CMpINLTUEVEK+1/wEyigs1JE7qDIT8i/MAV6EXVamldKCaJFSXMRfnVpmMt4vbv34Z2ZPd+OdBJ3xszuzj7PPLN3twAkS+axbP9Dke1/KNJIbKcN0hAk84H/5XwBAAD/fJ2W15fP9wP83LyWrGMxTkMQPwjpOQWaJACRCN7IoAAAuPh5U1673p8UHG3w9Z9+nggoEcBWZ2ATfDYASgHh5XyxogiwLaFJwNV/qkBwDLgIKJUANZg2sbAcAQAAPC52V86/fV/+JYLxBLhBKOXf1X8kH0qAHH1PBOCoBU0ZWrJwCoAIAbjAiEDkIIGHo1s4nL6K+/eRgEkAnHPQV251eS1k0CYASAIU/NwEoBkAbd8PR7cAAFYA2kAYGoAu8Ev4t81BSQVk80+TIDcGXHdgEH++9RG2NYC3GnCtYRx1oCMAhTMAzHWopG80G/hGl6Py5/eX5IO9ZfA4aPtH0GM7aHseF7twdpKVRMA1BzXNoYCKtRKoRb+HVb+wfL4fmAs+j4tdeDi6hYej23Lw+2Iv5wuQui9Os78LfKbNf73bGv91FAi93pe5iPg7O8lW+nzx86bx3Bw2cUoHHQ8ceGxIm0a0BaHWAyqUBK7Hk40C0DT7IvhGB6flsfL5wSlcjyfB2qLt36dA8Hj/7055SMxByfmHCZgLf5UEECMDUwViZqjQwa9SQLYMyW0IuvzpDvKnu/KcXqfE1FX/MSgQ7fnHjb9a3+hSDcgZ9L7WoJrmUyBo+dPdKjmNw69Hac4/TvwNUw2YatBNlIBZApjg7LoC0oy/BP6GTdmnjzWgpn/zlld+lZcZD8cfz+l12z3y0P7NDEyvh/IfowqRjD83/lpRFmVaPKdMTH8Ow4CvjRhwtvc7MAPr+F8+3w+O4VPxMl2/DWSC0Lw+Ojjd+H60tv+685BLgWjHXwJ/Q4jc0iq4PQv/+Pi/8/dDT0BN/9oKJIb4c1oWgok0a0BOBRKDf1cWPpy+wo+Pf8+5nobT9B+rAtGefyHxV6kAYq4BtRahYvF/OH0ta09c/JF8H0PKv7YC0ow/N/6yLteAfTdfLRpMInpeSJLwr62ANE0Cf8O2LNSXGlDbvw2A8y8D5wJUyNrTBX4p/zEokBgUMCf+srYs1IcaMGYFxJ19feA/O8lgdLnj/G6Ih3AoiTRRIOibxrDL8efG30Z3AfpSA8ZUgyIAfcaVhdG379XgEG1A8sGjiQJB33iEGAfN+PtKsBD4y9o0YP5lALPPhZeBu7wKbU6a4/8+QVP/9O+0bUudDUGkrAn4JdrhUyAhQEfPv31fwmwK0cU/BP6CPrvI8RCEbxDwySsAgDnsBGHfJqBz+Q/xnnY1CHdYgfb2ElS5+aepOvKrfG0CzvZ+rzyCG1oJSvTfHv9CPP6+eYgJ2IW/JiSQtcn+kjVg0xXo+a93AHs37Jtk+vxL3YbiNhy76/1JMbPUwVQG0wwYYu3FtvlpHQVivgOwbfGvq4DqYjDKt1eq2K/OCw+cu8VK3P6iQLABoCoDc98Gc23MGZp8MIbmSzGu/sOYv+9S8ZdQQJl2A0IvgIWUviaZ2GQXdxZaPt8PbADgzMBtjfP+uy3zu/q/TfHnnvtZncGgGahuDahV/40OTuECbjaeBGYNZ3spxOVfYl9A7gxclf1tm1JKt4Gr/zHE37UGU1cB1sVgrecAaAaiE1GyBqwiHxcDc2yMWeV/28yWFenciKWdUgpEKv50DeYM1vckCIG/rM0AaNSA5gDkV7l1T3qJGrDKv1YG5gSA6+9qlBsxKBDp+HPhL2hRwbsnu44EbvrfaZL1Q4HEGP82+Mvadl6TgTUyoKb/rkhwCTkcswLRnn9t7A9CuzQTkZ4Q9wAAAABJRU5ErkJggg=="},
+  attack1:{frames:4,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAAgCAYAAADaInAlAAADyklEQVR42u1bvU7jQBAem43ODVFaK1ci0dBSR0EU8VvwCBShi65AdKTII/AWSREdSk1LcxJlUFqUa4IwyhXcmMlm19ld78QJ+JNcYDv+Zudvd2YXgAoVKlSoUKHCd0Rg+qKIW0sAgHQ2CWyeVSgO1C+C6pk+c9F/YCrAy+UQAAAag2RNgO58BAAA/XrnSzqBbACq8KIGsNE9Am1Ade+q/6BsAWwNIH+/DANQPcjj9y2Hjl/mdrWBcBHq5XIIjUGyFhXd+Qj6cWfJqYDGIMm+v+aAnrnzMB3W4PF4nP1995BmBuGWQ8XtinDTC+lsEjQGiVKAx+MxXJwK+MrA8TcGCUyHNZgOawAA8DN5yy4AgItTkemiOx9ppw1XfuT1zR3aeB2HAC7ZR8StJSeHCo/H45UxU9B7vgNCxK0lcqtQlDsoKoDsHHcPqde1gDwFUC5V+uNYh+jm4egqUr7fO3z1Jgs3t1EGUBk/uoqy6+j3QXZxZAHT7MNVAdD5dpMBAABu/v7YG+5wVwe/jfRnCpkfxx8129m18rzZhn694yUQuLlFEQEQi+f7FQGg7q8i0GUfxNEVeXCYslQiKuD4cexRsw2L5/uV+7JxdpE7LCoAJaP3sSbex9T7rbqMuyxc2dnnOyAs8mPVHCQbiDP9cWWfvEUoAMDidrGSfjEFy2lZ1anbNW5hIgCNRBRAFYX0fnc+8m4IEyfz7XzpbBKcwPnyJVkvxWj2Ud2Pmu1CZeA2uMWuDn7XoAqE6bCWlb7Kerz+uZ7R6Zeb28sagFOAfck+ug7g05m6KYX88n7FStPKYJ2iC8JN3KbOZb0dnNcB9N2NU/HmVQF0GuDqRCr5iEzYiTOBqZ7yZFBx2+g/LBoV2AHEEsx3K1a1CHo6e9e+b2MAV8XfXAdWDulbBuTXcds0oELfAvjeCTv5c65Jve/Z1Tt8zS7uQyk310Fu19G0F8EhJ+U2tUPIJQA36P4DB6/O8anxy4r+i1NhxG3iBCGHAL6yQF72KdP58nZGaYTTizv6XW2xl6c5uCPPJfVvMnA/7rAeXaPcNg0o4aKEjwg4gK+M/ydxMqN1YWQc/UVqfh/6t3ECYaIE/BiNgMXtYi0ScRHG7eXbWljRb/XjzrIn1eI6HfjogbjqH+ofvzPNOMJEiH7cyXbmaATQcoz2AbiMjxHArXibOlynA59OaKt/GxsYTwFy6sODoj42PGwiAOXgVvwm0IOy2zgaz6V/r4tArsH3fmE2e9ua8+VFv+7/IsqGi/5DV+8va6MHudPZJODcbXQZ+7bKO5/6/wfJVITsVEftbgAAAABJRU5ErkJggg=="},
+  attack2:{frames:6,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAAgCAYAAABEmHeFAAAEsklEQVR42u1csU7rMBQ9CanoQtW1gvFJLKzMCMTQ/kU/gaFsFUOVjQ79BP6iHdBDnVlZkBhBXREsRQTlDXCDkzrBbXxtk5cjeSCpsM/xvb7Xvm6BGjVq1KhRo0aNGjVq1JAg6BzFQecoXvddjRouw1M1/uezKQCgPekhWsw98d3gZQYAGLe6qXdVcn7Z82gx98R3VeRedf7BOsYPAM9nU7QnvZjIk/GbmoCsyNwTkOUvoj3ppfiPO92Ycxw2NHCBPyd3b1MB2pMeACDrALqjQLZ/MQJlHZAjAuXxf5w2Un9f3UaV1MA2f27uP0aAaDH32pNeahCP0wbu9q+l5KsG4g8g4bzXe8de7z2lR/8wSLQYvMww7nTjKqREVefvq35Q9HgSgEToHwaJAIOXGTg3xM9nUyub7rv965WJF/UgkA6csKGBK/x1c1dKgYi8inNc3UasIbAo9JpOg5rnTennhztvWsdiWwOb/Lm5K0UAmfE3z5tJ+/N3K2kcUUA1+nBtwMV076fJB4DwdVv7OGxp4AJ/Tu6+y+R/ij6mQm+2f+Lf3D1OWur97jHGra6WhcAFDWzxN8E9KEOesHy6SZFHC9o2QnnRh/DnXHixY24DRvyJe3P3GMunm9TzrGFUSQNT/Lm5+2XJi0TF5+NWtxKph038zxqY4h64LILt6FNrUH3ufpkByvK/7AA5Qy9X9CnahAHA8nKZCv0U/rMpAVeV3LQGLvHXzT1QIS96IpGXeaH4fPAy026IKk6m2/mixdw7wGn83Fs9BhRXH9nz5u4xTOThnBqU5U/pjPj/XOIe/NbJNw3ZQvA4bSRHv1kMd96AFlYMIKtvFfkvL5cAPotWWdA9Mld4+arkswQfTj5yP0+FEM7QK4s+BI7Qm1cBfTj5SNpw5y1pFP3ovoqsqRwRuqBBtJh7B/enUv7Ly+VKKwJVcl2Z/7WvQ+cNkOMylKzfolMAMQxyVaKl/QljWsf5VXRyQQNVHVSRvVJvk7tfdlWkCjAdQekuw9uKPkWTHo68tSbkN2tQNA5TqRcn92ATIwhHHoYXsXTydR6/5e1BPlMPsEafPIQj76vqKK9Ohq/bSpOgOk5XNCjaD3LBBHdfq3EYLMKI9484+s1zfLHkbmL1t6lB3gJgIv0xxd3f1AiKJl/XZbi8/m07X9HNWHElEtsmq/+mGnBeSe8fBghHHsKRl7oQqWL4uoxf5/w7XQlW2XSaQnb1Xze9oa8LUmjn1oCzEizTQRwPFcFEx990HLIvZNFeQIcdBJsYwecKuIUqQ/wmFAAMMFNe/fP+n4lx0y1MLidI89+yyluHE/gKRpCEPNHzZee9dP5t69chdPcbLeYetXGru2L8eRpUEbJUrIi/7rlQ2XuwfSd43OnG4vdBCeJxlLgTZ8vzvpxQ5vli5dXE5P+kAXcqVqSBjtSjLH+ddRiyvXAUYXgRp7QIz8vNv3IKlF398n4VgiMNoT6+0y/zhifb1In5NmcUWlcDE9HXFH/R9vpoIBxFqb3Iw8lHqfnXugnmSn2+vf7dmPMVrX50mmHqd5FsauAKf3KEPhpIrmXclu/b39T7bV1oor4pL7fVv8kFwCUNbPM/uD/Vyv0fDDkk6pIBju8AAAAASUVORK5CYII="},
+  walk_attack:{frames:6,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAAgCAYAAABEmHeFAAAE4klEQVR42u1cvU7jQBAeByPSJEobhRKJhjY1CqKI3yKPQAFdRHFKR4o8Am+RFOhQ6rQ0J1GC0iJogjDyFXdjJutdxz8zayfxSCtdNidm55tvZjY7awNUUkkllVRSSSWVVFJJJfskTgXBZnHb5wH97C/nju47Or+rGOhsjPuOG39uHQ7HIiQXqJKP6rFBPrd9HrxdTdfmWhMv1H/9Pgvnx81+ISSQxoFigLbT7xADCftV/FsTj9X/bsZFBKgwQoJ2P+ACQUc+ugZVr60s/HY1jegHALh+n7HaXzT+Ot1ouy4B2BASiCz+d2EL5WV6CE+nD+Hn+4UPYRYSIGAS/fskGATqvFQCkPS/kyUL0FKEhkttA7DMocHH3lcEDJWIEmt4On2I6Lapvyj8dfqpzWoCkNIv5f9angjEoWYB0749qyD5dASkc4Muf0GLI78N/WXAXyUa+gJtH3Td0HZu/RR/Cf+7aQBAZVTpy/QwVCy1FdAZXr+ph/8+uSFfNHz2Ulyk/p/s96VdjzT+SRIABseg64qsQRL/WpkzIC19JuNVGX0c7Yz+OALYrEAmAuI4+X0QDs4qYAN/t+wZUNWNeuudXji3en38+b7TA2jy/SArWr9JbOCvqz5JCDhsfIoFHzf+btkB0Dr/v/FoeL3Tg9Xr49o8BWhb9e8DAYvG393WDLgvsusELFrcfQdgG6XCn09qeR2hA5oTfPXMeXW3WnM8Ol8lBFeHsmj9ReO/6/4vdSfYX86dM7gM3rzodQha9nXz9U4vd0OmaP1lEHr8TQmo24LR+ev3GYyb/dL7v5YnAnUAoHBmQN0ani++jf+f/gh02+eBbtjSL5kBpfH3l3Pn7M+lkWg4dPOcHWFJ/DcuUNeGjzuFoGWQqxFkuhCna4MDwFrmMREhjYNMa4jTL3kh0Db+uj7Qy/QwPPfXEVAaAy783aQRqJbBTQBAU85wekKCZBjBQRj5tm4omvTb2IbYwD9uG3LsfcHzBYgngKT4QyPbPaxaIgA0ZfAfAN/hGDY+w8EBgIn8o19OqkwoGYQm/Zz3YYrCPykBaQfYFvmRAxT/rB34XKdAtAUucQVAZ3hcuz/pGvI6iQahSb/UpTQTAVG3jZuoebAX5UeGNdSyAJCEANygbyK/7eyfRDiCIM0aRh9H4oG3qQJL3AbV2c9VfTNXABvbD1PWS5Lh6eDO/mkCMQ8hNpFfeguWNgGUYRdgdQtkrbSlMBoJTgcNBokLeqp+ycxnqr7SmTiNH2xs/0obABwk85dzpzXxAEea7G/6ezg4CaCe+uBnriCQzn7bLKu7lfb0Ky3/3LI6gRoxbvcDWMwAFj+6j70vGDY+18ou5/EfCcTw4etB140EITZk7hd+SHx/OXfwIW3VlqzSmnjw1H2IkEByK4r2Y1ZX/a7FX2gN1AfUfuwFZH0QJ3EjSLcA9Rxa8ghO91woDUap53E3bUlaEw+kXguivvbDdDiAJET8OQNPxZ8mABP+UrrVnQDuDtS+D3sjDABgeBtEWtK0HY0ASF7DVbPvuNkHWNhpemEmynMqlKcKxgn6QfIMXtcQG94G0JpcRghow/dswZUm89FFmN5KIBUEtByXUWw0gHRBiCSUIl5S2yXJb9oSqi/HEgmAOOV0j27j+oEOXFu6TUFo+8VQeavFLuqmv7fSrucvXSpmcs4SSZAAAAAASUVORK5CYII="},
+  climb:{frames:4,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAAgCAYAAADaInAlAAACs0lEQVR42u1avW7CMBA+IneqVHWN1J0la2eWDOQt+ggMDH2FSgx9hL5FGFiYu7KwV2KNUNUORXKXOjJWIP4536XgT4oA4eT77nznn3MAEhISEhKuFCPbhiKfSACAw249CmkTE4o/hgZO+2PaZS3g8+VLfr58SV2M2eb59ls+336fbBOqQV19/NgaOO3Xufv4z/nnFDIbAc2sbn83sxpMEpFP5Hy/bH/P90vAdkIzq0FdPoaGcnPab5MY8/0S1OXCLXxIm1kN96+V1A2mhOoQLg2c9mNz9wbAYbce3b9WR1nwUd/AZrw6avf2fmi/L+6mUeeqj/oGAOCsBiwMzf4+bvQA0Ikfqh8AgPZT74ynRxG9EzbjFTxUP0f8VBo47Xfhdg2+3oYin7SOt81MHyFD1XDp3JlNIxsBLu18wKnhkrkzmwh0xdOjQFsJc2q4Bu6MM6uxsyBxI48ACZePFAApABKGBqoqolUAqO0FJzg1UHPriz8K7qyvAFNsS68HY9UBQjWEZiGX/ZvxioQ7O+cA5QTbSNSLEVyZiKFBZaFrJprcGEN5bLsFxh7UJA/JPF8tXRrm+2WwlhBuAIBFPpW+I4EvN/kiUN+vKuMxCkEugWjumSlP6DC5Xae8Lm4X3wtsZ1AfDceYhw+79aiA8siBTVWT6Tb5Y3KLITqgC8W2tNaghsGQRZh+r8tIZg7BvhrUfa7crgkoYjogdBfQFYg+HUgNTm7X4M9iOQDLCeo5fWuBIdQrOKEOgVwD8KIqgdjvIQwBfy/DRAt88Z+cYRo7hJNKbn+E1lwEZodQLggBADawGlRAUnMX2xLgLmznJYLILYsVmJ2uz3EFlJKKn9v+Ln7lh0U+laQBoJNTdMKpOV3tEqg7gdr+c/yhu450HHzlsIocsw5gRlzf/7ERm5/b/pjP/wXivJsCvuX7QQAAAABJRU5ErkJggg=="},
+  death:{frames:8,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAAgCAYAAAD9qabkAAAE7ElEQVR42u1dPU/jQBAdG6NzQ0RrhRLpGlrqKIgi+Rf8BIrQUaF0pOAn3L9IihMo9bXXIFGC0qJc4xMmviJZ33hZf6w9u07ieRK6ix2862Tfmze7swaAwWC0Fs42dsoLerH4f7SYO0XHGQzGngiAF/Ti9+tp8vr4YQjRYu54QS8eLWfJ8UlnwCLAYNTlG0djBoMFoGw0TkifisbBIDYpBHL0ZzAYNHB13vx+PQUsCFgMRstZyhVQIov8ptpjMHgOQOEAAABep4ep1z9+ReR5uWg3ry2eC2AwDAuAIOPv7z/hZPjx5RwmqCAnBSFl4fFvfOX7bo/+sggwGKZSgDzyA0Dq+NW5R9KhsuQHABj/+cbfIINRh29Fb1CRH5Py9AadOIpgtJzBJBjEFBFZtON3+8mx8O3p//luH6ADpG0yGOwAUPTPI7+NiCzIH749Qfj2lLzGxyedAX+TDAa1A5CjfxsjslhpYHfBaN0cwDZEZCEwfrcPfrefvMbHKWsEvKAXC9J7QS8W98lLjoxWzgE0ifA+BP/GT7kMlTiI1QAK8iNhieW2xDF2A4zWOgDTiBZz5/hhmBKBIphYBhSRX3UMuwQGY28FQC7ECe9D65Y8aTdDCKiifxVxYBFg7Dq0KwHzVgEEIU0UA6kECRcfUVlznAaUnRPhlIBhxR2vVuu5KdclG2+FcwCv08PUakB4H8Lr9BBOHw9spAIxACT7D0Q/RPtj2PThaO04TG9KYjD5KMm39Q4gKxLL0djkfgBl1FW4EJwK1HEEug6AXUC7yB+tVvE+iUBhKXDWuZPhB5w+Hqwj8aYAyAb5s4CLkEzvTmQ0Q0L801Q/9s0BuEUk1InCFKTLI//4zvkyD8DYf/Kp2mxSBGzcn632XOoIXEcEish/de5lbkwSfahbhBQt5g6udNTpu00iNk2+pgiIIzBFH8rci2jTxD039TmKdt0qEbhoJYDafh8/DGHSGSTkz6sNGC1nMOkMrG4RNlkfkEX6pq2wTQLKRJT/tSGinus6FPZfbpvqulXvxaWMwCZEQDwU9AvpCkSgCRdAXR9QZpDaEoG6A7WIeDbuQyWi+5bTa3+vpey9JvnrEA8/d1AcyyTcplRYAK8E1N2QtBGBWBBbVwhwKXEdJ2LSflbtT90lMd3fF21iwuq2LbcpXtsWAdW9NAmXkvwUm4CixdzBP5I4KEXg5eITXi4+jbgQXfLLbqBOalB2gJQVh6rphCrv1hm8YrBn/U6Za1Fb5TppRNNuypgDUEVg6ADcDqe5kTeJvp20CNhcGz97vky2IpN8MBXqAYpExO/2KzmSsqlA0aDC0Vt1bdU1sibddCIYfh/ug5wLUzsHqsi7r0VAyhRAHqBZkUvk4OM7B8padqoUQZ6nOHu+TNqdBAOjjxDH+x9M5ahVZ7p1BqpMhG0f3FXFp4qjouzztn+ulbcDi/X4q3P103ptiwA+L0qCqQVJVPwVzQ1kPTClSo5alyxlr1fFQcjX3AZS6ohgFQdD6dq2AdqbgQDWM/M4z8ZzALZsv42/TCS7nyx3JD8VqcpfUGpiwKjEIW+w6y7XlbmG7lxCnkOimKBsG7QdAF6Wa7LU1obQFLUhzufN+O/CHgFVXl6n4KbsNXRJivP4XbXcOy0AWWvybQfJ/gfFBJ2N6F9ERopUhGLWW2elw3TeX7ZycBfwDwveejThH5pGAAAAAElFTkSuQmCC"},
+  hurt:{frames:4,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAAgCAYAAADaInAlAAADeklEQVR42u2bvW4aQRCA59aLcg2IFkFpyU1aaoSVgnsLHsEF7qgsOlPwCHkLKKxE1GndRHJJRGuRBnRYlyLZzbK5vZ+9mV1MbqSVzGF5Z7+dmd2ZOQPUUksttdTyn0pw7gryziARPx+36yDvObUeLuYqw8GZAWQBoILDO4Nk/+Or/Bx2h/LntOdUm8M7g+T1bgkAAO1FlGqIlIahzp+lg40e3AJAok8+2a0AAGDeGSWUIMSmq4agPU8ojFCF/3q3lAz0tfuIEKoONnvAbAAIi9MndyWq9/sQwUBd+2S3gsludeKN1PNj/C2GqQA2gON2HejenmcYLjZgs2zA880TjPscxn3uzRAx1hoUnUiNAptl4+T7z9+Of0NQa4QWBvU7QBEJu0OSu8jzzRP0ojjVGHQOmAzK8i87Pytj9UJ6USwHAJx4gqsw6CoKZG2+YCGEMhoU5Y9+BPgCYOP9VJK29vA+lOP6y5Uc2E5AzZ9XASDk+l75onmEyW5FnhHkRQGMjEDAB4iNa9dl9vMDTJsHJwaIwZ8VAwClAFyS6PDF2sPuUA79DjJvjVCigAv+vAoAY1GmBd6jAKWItat1iT9RR41A5AaIwZ+fO4BaaPnzGmf1jSj6/BznZ1UVSJsMA0DZIhBVLUDPufeP+38qkeKz+txHhZQkDbx0AHlG+PH7J2OmIUbac6xiEDX/XAX1KlTeLRTbC8vWA7ArgaY8fLNsyLxfl2nzgGYA1PyZrRW+3L4Zfx8rDy6bRlGUgU1RoBfF8HL7Jse0eZADuxRMyT+wtUJdMex+gG0lkKoXkLZ+3RspNp+af6VLYC+KZQlUFCB8br44B7F7ATr82UNgDMUueyEY/Nm5AcDoAVC2hWcPgbHmTlEFpebPUOFUBIDZAMIwAlPo7UVx5kWMMgpgGyCzsb5xn3sD4FOy4FNI0btHFf7skjbIRQXO1JZVL2DUBpinQykjs1fgiqTwEnaHSVo4tzGCqpfR43YdtBeRfPfvt/fHMhXTvXDaPAC0gCQTKCqiE4mWBqovP4rwJywwDYDwAB+vhVGkgGXTMIrXwURY170fgz8v4gXzzkj2pVUF1GKEmodeYgtYl/YikuctpYjXz9NCPwb/wkeAPrkLACbvN/XCXV/E0sIvlfFT8Ue9BLo4+0SY9xll9P/MORex4c/eEwCqM/69bT6mDr8AQ6keq70FIHIAAAAASUVORK5CYII="},
+  push:{frames:6,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAAgCAYAAABEmHeFAAAD+klEQVR42u2cv07jQBDGx761Lg0WbRRKJJq0qSNQiuQt8ggU0F11uo4UPAJvYQp0KDUtDRKlUdqIa3zCKFccs6w3Gzvxzm5wMp9kCTlI3+xvZ/96tQAsFovFYrFYLBZrnxQ0MWjR7i8AAPLZNNjkN0pvlx7M3x//gDoI1wki2v3F/DwBAIDD61HBQ7T7i4vXWwAAmMRDcn/VG/2xnD4bBvOn4y8IgligoQoAAGDSHi4oIeje8/NE+uvePqQkwlK5fSQg87fnHzZ9OJ6fJ4VeD3Xxemt8T600ieDx5A7GPQHjnpDevvyZvx3/kAqAj8Lms2mAw54OACH48E+TCNIkAgCAo9GbfABgqSJcc2H+dvxDqhaIj49eAAvvOwFFu794PLkr+KlS37lOBuZPw1/UCQDgzWiaJpE0vnnInSz+EIBJR6M3WTnjnnASg8m7ddmSfx9fKj8c5HDxeks2F2f+9PxDV8G56gFXAcDn+Pc3+VD2Qp/Jtxq+rl9/vnspP/Ovz180pQc09X7rAPhx8NdZ5aN3q3Mq32Uv95+/d04BYiAdBUxi/vX5C05Ay+T78EbfVucUspf7wns1Pk7Ar8VfcAI2R8yfXoITsNli/nYKKSvCBNoXfB/+6vYfAEB2lRUSD5NPT0gfX0iZfz3+jfoSXAZAnwKo7ykSMJ9Ng+7TwPhb9nIvH9N7F+dimD8N/5AT0D4Jns/eV/4/5SKU+dPz3ygo/TBU1S6EOgxSfgjSF4NpEsl9ZxMAygowMdArRv0A5Nqb+dvxF3VaoAogu8oqAUDsbicE3z2fgfMELGOC5Vd7HBfe2+Sfz6ZBFwaL+SjZCv+y5K/LXzQJQNWwKJPgIAefUsuPe++TeCi3H5Fd0xNwHf6UUz4b/jj1q+IfULRCfV6mVsIkHi5VInUPsM4wSOG/SQz6ORiMwYW/L/5V5XfNv4p9Hf6BiyAwENNhKJseaV1vV/7bLv+++7uo/9BVALsovfzqufR9LP+2RcFfuArMR+vXz6W77v1Mc8/WZUvOPzGGNImg+zSQxxB2pfcvm/Jsgz+u+Wz4C6oEVIXmpkUc9eIHtwHVRaAvf9x1wGO3GEP3aSC9cBHmwn/f+WdXmTyCrcZw85ADxP/9qvgLiha4pI6/K0MwAQvbYLHfK0uez94Li07V22Uc2OMtfQvYQf6rRj/cBjYtfNfhL2zNdfjU+/5l+vUzgHFPlCaga03iIcCD39sQykYhn/zVDmBVArrW4fXI6ku31QiQJhFAsr3Cf4XkcznHrdMJ7FMHgPcSTdrD2leyCBtzlI/Tjh83Auz8NSNN7ASovzV43dmyTUqfd9+YwNq0fopG6PImtCaMQF8h4fXF7iYx/QOsaXaH4bVw9wAAAABJRU5ErkJggg=="},
+  throw:{frames:4,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAAgCAYAAADaInAlAAAEWklEQVR42u1bTWsaURQ9Y0bqRs3Oii66CCSLrAqWNATEEIj+g2Y3/6BZaCkldCFSSuMigdJ1FwX7D8ZCSHBTSgOlARctZFGKqU1XqdlYnGAXyXu+GWcm8/HeaIwHHtE3mnPn3nPfx30jMMUUU0wxxRRT3EZITj8oJ7N9ANDaDcnNtSn8g/iXgPUze82L/yWnBpxtqgCA2Z3CkAHFTh0AUI3lhYjA7ib9OsBLAFg+0fys7wlIDFjfe/W/NGoD3PKzAhwFv9EPRn7eQrDiN3J79UHIi1Fnm6ppVhQ7dctsmTS01DCa83tQMjKUjEzvPwgfmHELXQMYVdhSw7rrbw81YVloNQKxohM5ArBTQHN+DwCQLvSGAmL0BU9b5GS235zfG+LlwR1yozqCdKFHG4ChLBCZAUT9pAU1ApEAmAWB7fObkW6Cz4Nb5mEAEYeSkXWjAc+gE37WjpYapjctgtfK0QSRUoS+nisxF6Iaip06qsl8n8coIJI75McA0ub2Z2jjmYmi1e/GBrsAGFE5v3NjuGVnBvRcGbAV/TcRmWdlA+GPpHK07670V/eZ37E4F1uccHdPDgbXUzkgBsfc8qgNGGfx2YHcPwl849MH3fXs0jrexR8C/bgwbuL3SCqH7smBrp+Njy8BiDZgHMXnZlFIUbv8c7pxrhNEdmkdrXGuMo7zXnthd1n3/kfpS2Dis8Px6oXluiRRi1IhqPtHePriFV4+e9Jv/foqTZwArBzNKwDGYfVe+j6AeCDcVrsQ9rUdErUokADe7Lzmxg0A3e0uFbkxGdj+YqdOK5O+dgHGog8xQNfHGGBWoPFa/EnUolD3jwCAZpNxsSUaWrshLX5fcxV8EdxGdE8OaDPrd1oMCo3agOugnK5QEZhlE2/xOc1EJ/Cb/XZJeLx6Yfl5Nwth2csQCPWSnOz7TQ2IicsMo+iM/ZFUjmtJWGs3pEWs9c8Kquvvdv78hJ/534o7XejheHXw3ms5XnZqQBPDdfDu9qAKKPI8QDldwYPaI90ibFTic7uAFbn4Sxd6dGdUwYynLTCXUnCkFKEG8Ai+1m5IszsF3SHQ5433WNhdxrfHHwHwUb8IVMrSlQ3iV/12NRGn8FwKtoLIA5nL4INOP6Sx5c9RHUmTsjivMrCjqXC7O1QIc+uDEFf1c7z5q1HAE7coEVTKEiplCS01jJYa1p2H3FSERPxTXgGwEoETh4sQATn2tjoWFj21OBkFuAvAbSaOE3iLYBSBH5sRgAx/IhYivOCk8jXpcOsDx6Vgct5eKWuWcz7ZBZCRQ+Tixyg8sv2rxvJCCkFu7eANJSOjUtaw9bxvmYCsD7jVAYw7AQVhphBxYboVC2IbZsddTea5Pqpt92SwlR0i9vwKwroEBADlqijn1f+yF0OAwYOZQWUbi+u4gxBg0A+msiIAAFqiP/Tnf667gCCKMOR3AVq7IQUx59v9LmIUCWC3EPXi/5CfINzGRZbdvQdVheTp//9w11m41j9CHwAAAABJRU5ErkJggg=="},
+  owlet_idle:{frames:4,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAAgCAYAAADaInAlAAADP0lEQVR42u2Zv2saYRjHv3dcIVOWrhJcOmjhEFM6OWnI4CCSKVNIOolU0kHyR4iDxXBxKiKdS3Gwizo5ZShyEB26ZcyYtSXXoZyc5/uer/q+975X7wFBzh+f5/28770/ngPiiCOOOOKII4444ti70KKWcDpTckjXZ9O+tg983mFERYDLtX9+X/ms0xvCasERmYdsvij/huoCgrhuVC5OFu+tFhyeOcjmi/ZvqCwgnSk5JG613qb+pvrpI7ccZPPD8G+oKmAbNgDY9hyyBh9vPq3jefrXVRRAY/tjMh5hMh5ttFZGiR+Gf11FAdTR7Wn8ZDwCTRJL7tt0vmy+CP96VAU8Pz0K2WGz5i6DL8K/rpKATae7ZCKLZCILABh0Gxh0G4vruXxh51lIZf7z0+MS358Xl01gtd6G1awFCgCA4vnVovHFyxskE1kUz68AiDkSuUxSDLoNFC9vtv5fM1tevM/lC8rySVzXv+e3a/0bqgnw5rCJAB7hlZXOlBzTTCnL5+Vf9yfgvgAgbAHeHEj8oNno8OgYh0fHXHPxnq9V4IsIXVUBs2lfs1q3zN/P5QvI5QuL0T8Zj3aqSs6mfc07G4bNJ4UI/3qUBNAkWM0aTDMVyowVFj8s/8Y2Avy7U6tZQ6c35FoJ80hYOZkE3QmmmYLVuuUy+GTzw/C/NknWo6GbAADuAtKZkvPuzy98sR9CZ8vmi/ZvsN4FMjsAAN7XP+OD+Xblmjfum9eA8UZIcabTGzLxc6cV7sdflyvCv7aJgPvm9VoBB6cVrus/6Q6o1tswzdRKPgf/5HPj09julEvj88jB/zBIlH9N5Q4g8VeKU2evoJ29BgDcvXyFbc+58IM6fykI/F0HwbpyPOsA9NcWNl4C1kmoXDz4BKRg23PmKhSv9Y+0IxZZhZQVy+5PqP59RbRAD3pUBajKpj2dU7XtRlQ6gBrffuPOswnifQR17yZauzvlH8ALlo5grNMvC3sdnzQANymhM+0B3D8kJeHdgbrr7y6NV40ftBT52aIKYEFLIa393sG08zEQALMA3vJl86kFH0kPrHi334iqABJfVPmZNcLk8/KvR1GAmS1L7WjZfJ7+9f9JwL4ET/9/ARP9f5N0cI/uAAAAAElFTkSuQmCC"},
+  owlet_walk:{frames:6,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAAgCAYAAABEmHeFAAAEBklEQVR42u2bMWsbMRiGX5srdMrSNYRQ6OAWRHGgkye7ZMhQTKZOoe3kmphkMP0RxhSXhKunYPILSgZ3STJ5CrQYQ5I9Y8f+gLhDrKt8kc7SWdLFzvdCILnY/qRH7/edpJMBEolEIpFIJBKJRCKRHolyhMBML1+/G8uuXw1PiOUC8g/IgGZxR79/3Ptf9/gUYQfjx5AIy8Y/IAOmj8tV23kb/R52MHbJgvjb5R+QAZNjy+LWmwfK99T3d50kAfF3wz8gA9qLDQCj0TXIgIvDP0gDftkNqIod1+D8DABQKleknzEPA+Lvh38+qQGLAIBD0J0rzyOx74PzM6gY6bRdp//E3z3/fNrOuwKQFN+HAXX7//fPjbPFJvH3xz9vEtw1AJPBd2VAE62vFrG+WgQA9Hst9Hut6HqpXDE2IfH3zz+ve8uRARAbEG+Y7VueDwOaxN96/zH6EdXvte5dcxGf+NvhP7UIvhqe5FixGjVatrhQiXd+68MX8b3GizFWrEInvqqT/V4rakMaiQxM+m9DWfM3ib8s/ANZA/jtkLGCVwDiYM2K79qIsvhhu6GsSitrG3eV+ebX3LGz4m8Sf1n4J06BxP3lLBSPH7YbyteurG1EEGwNQtg51H59qVxBqVyJzDc4P5v7oRTxd88/b9Io3wDE6VAWBtRlELYbYKwA1xWT+NvnnzPdFZi1MBJ3KXw9jAnbDXSPT+92QCb74LYGQHdnhMcHgLBz6Cw28bfLP0iTgToAbC4K4wCSKiFjBWsG5PrEXgEAjkaX3sxP/O/zV43BPPwDMuBsHY0u0T0+nRoIAHjT/Db190V7DwheUAGwGPtqeJLD5C4QHwMb/IOsM1AXQH1/17sB4wvC2s4l6s2DqOJetPemXvN0s4bS3a9jKgBux4CxgpQ/FE/GUyeA6ww07Tyfg9oCkHb+GbVn+wly288AAN9vC9ZPg5oasLRZs56AWRYA1Rio+MMwfpB1BmYNwER88HV2RGy0Qey7WAB41ZfydxQ/ywKQZgysToFUC7Gj0TSAz0M4l20AD1VJOzBhuzHTgLaSIMsC4EMBGW/2IpQParz/9eYBWPUncAvrOzA0Bnrqxvibbr8Gi2JCfi5ENIDMgLYfwAifNQbU5uOxJe+zIlaszv09g0UsAEnjLy7+08bWToD4/jNviJiBwLWzgQCQ+EDEdfVVMWHF6tShLVvGjx9MU22J1p9/BZusfVwkoUkBAP5/S8t2AZA+AZ4clRD5m06/gnkaIctAn/O/geUFt44hfVZhU4aujh+o+i8rAC7Mn+kaQLUYSzq27CIJ4hXxocml+XRMmKXxXE79kqaE/NSo910gHly4NPZxdlsBd+zr3L4sCX1/Z8DW3WLJYqdOgn9OChu/t9fGCwAAAABJRU5ErkJggg=="},
+  owlet_run:{frames:6,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAAgCAYAAABEmHeFAAAEn0lEQVR42u1bv0tcQRD+Tl7AyiaQSkQCKbzA47iktFIRYnEcVqmOJNXLEUmKkCb/gRxBUI6rRPwLDgsDQa2sQpDjwSkkXcqUqYMvhe5zs7d7t2/f/jAyA4Kcdzcz38x8MztvBUhISEhISEhISEhISEhISEhI7r5UTD9YrTUy2evng4OKD8ND6w8thH9A4Ku1Rvbn8nLkZ2fvS8b+flf1E/53C/+oaMWnZ33le5LWSv57dwuZTTYIrT80AxL+bvCv6CqTOd5+v638TBwvoLu1YyUhQuvXTYTe/hG6WzvWC4Hwd4d/5MJ5AEjTi2DBt6k/NAMS/m7xj0ycF+X05BgAsLi0LP0O00QIrX8S8OOSoP3uTekiIPzd4z9lYhSv+PTkGOlZX2qgDngm4PvQz9twGxiQ8HeD/1TZ6v/966eTA44ueC70F7Xh9OQ4Z0Hdw5ot/YR/OfynbBg7P1vH/GwdAHC4t4nDvc389cWlZZRdi02qdtv6J4HviwEJf/f4R7oAdDsb0r+tPX8pff1wbxNrLz4Ygx7Xm/nvstnStX5d/3//+pkHX7RlfraOmQdzTvUT/uXwVxbA+eCgEteb2SQAXAh/cKnWGlkcL3jXz3wv6j9jPxb8688WPggS/n7wn9IBQgRAVY0AMDP3BDNzT6wCwq+3fOk/HxxUVP6LDMh+RhhQwY5FE5Hwd4d/pGNIdwuZCIJKbqp1OZ/RyqzBGBvoztO29csSwDcbEv7u8Dc+BMtYoNvZQBwvwEfLDKnfNwMT/u7w167Maq2RPf3zAwCwmw6V7+vtH90YavFRPAAw/byItrjSLzLgpM0Iv6Ww8TAsrjeD+s/jHyL+rvCPihiymw7R2z/Cq/ixNAjM+a+dt/gWPbJ6D0R190O0hYlt/XwC7qZDdDsbI0HodjZyDGw8COMDb+K/6QF8XPIViT/7vItLcbbwj4oqTlorSFrDvArjeGEEkOnVBFA8mLBR/fxqLGldFWXSf4bK+n0AwOvBRyxeva00+OMSQMWEfALYDj6/EmSxGOO/dUlaK0jTJLdBVhDTq0mu/9RSHogENGkU0r2MF9kAJGkNgfV7XAD8HhST1grQt/+9suJj/rbfb/8TeNYdGfNwqztrDKjah7vyX8cGX/FncRhHQCYTSKSbCL530SaJ4F+/nAWnVxNrGyCTfTjPuv/7f2iJJDSOgCTbqKx0B+ANkM1cLAESiwc/WRLwwZclf6/5Gbi8mf1s2qDVBfvfnTCg4EPGim6E+a79t30HXyzCIrdDXRWgTQIqdB1amnjXbaf98BOQB/7YGQOM2zz4SP4i3cdHEfJjlyvhfZA9E+jtHyG9jr9P4rFBQKXOAHG9idCjkc2ti2n3UTGgj0Tg/Q6RfMBV11lcWnaiX3YlRIyBbALRxT8qk/whRfeyliX2G9uF2AiSDi6CJeFdFg5PaffRGB3NCkD1GDyuN3E+OKhUa41MtuZyMYPyNjD9bES6TR3Ixu5ddx7niz9U4bEpIHT3aRuOYJEJ6EyBL4dFG0S9YhH6sMtXB1KRCyt8n+OWKh9uS9czsYNadYHDuKrIxDUxjUHuYiCbRsoQ319YBEW+tZ0ZrAAAAABJRU5ErkJggg=="},
+  owlet_jump:{frames:8,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAAgCAYAAAD9qabkAAAF4klEQVR42u1dMWsbTRAdiQukSpPWBLfKB0u4GFeqJBOIiyBSpRJxqkPEOIXIjzAi2MQoqozxDwjGhT8wtitXLoI5kF24S5kylSHGl0Lay+q0e7d3tzu7snZAIGxZs9qZ9+bN3J4M4MyZM2fOnDmbP6u4LZgte/7iTcT7+dXlYWUe/DtzNrfAf/7iTXR3fz/12Nk7jujvH6p/Z3rMc1swGxU//HEgfE3QXomf97cgUlmNTft3CsS1AHMNfh7wOt2vwr8hpAb9rR0lgDDtX5aIBvsn0N/acUSAoQAcA9sLfgCAMLx+EP5tVSC2KEJV+PNUBGLEwBA5ItAL/qSdn50CAEC90eS+R9FYmPZfhoQ6nz4+SBLQhT+vjON57AFN+mcT//zsNI5JEhDhjwMgfks5+WD4t02BmI6/bvx5s8LAphUIln/Z6vv7109jykOXf9sUiOn8w8Cf53rA2e1BFxd8AABYfbcGR3ubo+fvP8Pigg+r79YAoNxaOt2v0O+to/q3RYGYjj8W/jxbGTht47EUiGkFlAbAMcCm7GhvE1bff9ZOPjr826JATOcfJv6qZRmY91rZIGZtwDxOwa8uDyvEbymrYEV9E78FhNSMDr6y9npxwY9VyNHeZqxCFhd8qDeaUPRgkg35h4W/qm0MnGcN52enMQvKDmtUM7AO/5S5kwBMk+NPnr2EJ89eKiEB6p+Vtlj+WQLKUiD0MaVABOpkFvIPewZUtYmBsz48hgKxQQFRINLDLTJWbzSh3mjG8vv87LTUQIqqAUz/lHxEBKjbbMi/vDOgsvir2sbAsgT0+9fPiQ3gDad096Cq/csYrwr3e+tASA0FMJj+TSgQk/mXx78q/Hk86UnBgM3A46qTOXUVDZ8AIK5A48GI1im4bv90P5J7kbYmlUdxTfoX+U5TICNrllIgpvOPXQNvuKfaqrYxMJWAWUMoXQrEJgUkK8UH+yf/YqThHP4H8p9R/5gKxHT+Yc+APJsYOIuAMBSISQWUBcLdcJj6Gl0T6OXudkwCaWtQ7d+0AsLOv+kZEESyayiKv+os9aDYPaDpHpSdS7AgFPWGhNRg6e4GVN2XT30H7RXYDYfxGugjabfHg1KX39LIL80vVSAXvQ2tCsRE/HXjz3M9oL0KaJqMRgB8/CrQnmi8gWjQXoEwDKDfW4fB/skUGJe72xCG10rmHyyJsKqD55fa41cB1EdPI56qm7X4Y+BP6m7ALPmH3QMmKyBNSJ0y2Ab/FIC3xwP4QAZT8bjobUyAQHUc2KFo0F6BoD0EePsIKm+fAgDAt/spQBRaQ9rVGJaEACDhv8YSEDWl+0BIDS56G8JWSUf8s9q/MviTIoDdcMhlXl4C1kfVKZrlKTRbfYjfgiL+2fdRfVuuKB66EjAJfpOGsY5k/Jfubrh5P9g/geDgdUxAa5sbsNzdVh5/NtZZM5iluxuAHMfwpb8PIGb8cRAIqaElYF4Folr65vXPuXyj/N6ArAqsinxpNZcBXRheT5yM06lAMFuf1LbsYDL/VcWfXQeNdZL0k/l4ezzIrQBz3w48mYT8BFTZA1L/sgqk84+ElN2emUcBdTRWYWxj9i4CWOcTX+t/gPvJ1kdV75vsr3ngH4z9U0sezcX+YpDOp4/a4i87g8mDQSu/FFQ0gAraw5iARBswPZRRU31ZBSQiJNa/yiqcBgBRBdad+PRsgq7DKon1S1VlmvyooP/+B74xChCr/VGlAL2iCzDd/+mSwMnqI6pAaf5VVqHx30aiL6IIssGDZqqvfGQZ23qpqrqy8eetQacK0YU9qcuAshJMZwWS3QBBD1am+khXIOofAwS0AoeNLwCXuEAnfguuLg8rJv8PgE4FYkP8sWYwnuRmCCsQj4F19IB52E/nIGoejVcV2dywZZ3YCuQhzGAKzwCwe0C5DcDtAUX+TVVgnQAQva8JwNmgQHS1INj4UzoE1JGAossyugnIFv/O7FQgNsa/CP68oh/eJAObqIAm/c+KBEeSw9YqENP5V8T+Avs8K0ixxz2NAAAAAElFTkSuQmCC"},
+  owlet_attack1:{frames:4,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAAgCAYAAADaInAlAAAD60lEQVR42u1av2vbQBh9NuqaJdAphKx24TAKZPJkl0IzGJOpU2g7OSYhGUz+COMhIcH1VEzoXIIHF0rsyVOgwQji7hk7ZioUog7JqRf5pDtJdyeb6oEgcRy978f7nu7OBjJkyJAhQ4YMGTL8d8hlJYiOYqnm8l6fTQe5ZeO2lin5RWm8c3M597fexRW6J3B11UIXt7UMyS9y4ykau6+9n7sncFXVQTd3TkUAVASPAZxrE0Ea7lMs1Vxe7s3WWeD/EFJQUgcT3JbqAJpH+0onIE33iZM/ADjOz6XhthYx+UWxXpHrAcBkPAIAlCtV7j3ixGOS21q05EWNN+0+YfyT8ciL0R+Xc3MJYteVCk8Hdz5pALz3yohHVIA03Ud2AO5/3RlZb+jkzqcdQFz+yXjkOZDsYlEHNtZsbKzZAIBhv41hv+29Xq5UE8UiErwK7nzaAcg234T7RK3B9rsP3sVi2G/PvSYLYte9KwyquC1eABS8ZzsbAA/Dfhvb74+VFL7bOQh0Hyo8fxwbazZWXq4n4p5NBzli111RDVSDXbsUSzWXkIJ2zrw/AHrRPaXJ5GXVzxMddR/atKSPgaAaBIkSAFbWN7GyvqmsJuwORxe3FTWAIEuk5Pd3PxIXXaR+3e7DxtM9geuvQxD+uUXVe1TF3ZFQF5J9pMXlzosmUhblShXlStVrQJLkeeJbJPAmsds5ACEFrmsWSzWXd5ngTuQAQQH4XaDbOfCOglUeBJl0n6iTGGbH9DiWNj9kHRF6ZpGEW8lRsIkA0rQ/2d1J82gfH8krAMBn55b7PnYAJuOR0sUj5WbBxuHnVu4AUZPXdRJn2n3YrWlj9xa9i6u5WlBuit/feyi/aSiNw1/3ZuuMKwoALHf8o2BeAGzyFFut06DkEx/HpuU+onWJ4zRASMGrBVuD684htlqnUkJMOijPRLHzArmdVQDA3vSZKwr7YEVJvrF76ymQkAKuO4dzglA9hVHdR+epJHs2QR2BrYF/IHTHIPloDBWBlbQIrPo+PURTnw73USkC4VBcvsXe8ar3O82fTjh/nQKtj8moIrCwBEjLfUInjxH+Y/O/iBrs8k78VKBX/wY8UO7zSAtQK1ER0hYEx31Ub/94ExzWfNEhl1IRhqwvZEUgtQ2kN+ORs+pjn8NpfDdQtbX67uUCT/l//eONs38XoNKFpOrP8FPup7ilHMeSLIIb9HUsXuK6mh82ATrtP+iTSp3NT1L/KD2IvQagx8Q6Py0Lm4DexRXw5D46my/KP60Fnqr6K10E6kreP/UmxBc2/cSuYzYd5ATHvMYRp/75uOpL6/v/lHs2HeRMbvlkcjc5/ap4/gL7F50VpeEhOQAAAABJRU5ErkJggg=="},
+  owlet_attack2:{frames:6,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAAgCAYAAABEmHeFAAAE20lEQVR42u1bv0scQRT+TjatjZBKxPYMWeQEKyuVQCxEUlmJSXWKkhTiHxGOYDBcrgrhSB3EIoFwZ2UVUI4FtbdMaRUIuCnO2czNze3O7L6Z2cvugwM99b73Y9773nuzAqWUUkoppZRSSimllFJKKaWUUhCplC7Ql7n59VD2/nXvtPI/Y/+P9nvjGADXBz+4PBn6WavdQfMIoSlfuMR2rQN/5qixvXEKQB4PPpP61mr0dfMIIZUfXGIXwf4KhQIsCfoKfDCWBC7YZ25+PZTZvntwPPJvfL9K4geX2EWx36NWYPfNHnkVckm9uvYDQBDcjDV2kez38h4Al9SbxHoAcH7WBQAsLa9IPyONPi6xi2a/l8cAxB182+wTh39+1o10FPUKLk/g1zZID55p7CLaP5FVAdnvqiRPkgNcso9qAbj7dWtl3rCBPY72z07XMDtdG/qZ7D2lBHAdAB3887NuxECqw7IJ4YPw7fNbfPv8Nnp/aXklky5JCW8Sexzs54XHZl2JCraXpECzsR9rPACsbb6MwNe2DzE7XcPa5ksA6u1I0uF3Rf9xPniwURqMte3DVHi87rLW0iR2Ee338hqAOMcz+pPpMTtdw+TjmUzY173Til/bCJN8QC18sZibXw99vwoXUiT7J0QF2Avo71Rtil/biF46kpb+VIIh+iCOESdnFjA5s0DmD37DZRu7KPZ7ugqM6ssY+N3thfHst0X/173TSvMIoeiHUfKvWq5ErVrajRSrwqozESU2pf3iTKaqky37vbwGQNXpLkRWCJqN/eg2XNxGUd5g62IbYWq/OoTDCtZg3PZlLJ9pTU1tfyXNYKqiQJYE0L2EY5Xm7vYiYgCKCqi7nWI+APqPhCTNUio6psW2dROfttWlWo5ktd9LQ0NxvRjFcyB5oH8+ALtv9vDKfwIA+BRcxQYgCG5wftYlHR4ZNi+8HiK2ieHU5mrZpv2ejgKqwTd1E2ub/vnqU9+6QqvdGfIFX3kA4PePFpae1Un1EP2+e3AsPRQAeGzyG/FWu+OkNZUd9jj7dZLAU1WADz6TxYP3o4IfUgxgLtgnaS4Jgjp8vxr5gvfBz8ZrLB68V0rErIViIClePELlxRQAYKc3wIpkSaA7EJuS+tYqWu3OgN/rJ88j+5++0/OrpwNc37qKKpDvV/Gz8XooIairsCv2kfWe/N0EYwTeB2JBMK2DYmtIygQ6+Fn7/6QFici+acTLegj46vPxnt7xLthHORAnz7FzOBV9z+znB3PZIGyyTTSdBHwbKt/8jD74aTdfSWxgLAHyIq7YJ7bycYnfP/xfkg649i5cuTff+A7cM+wPxm9vRQYQD2HzqK8DXwRM3ocw+/vx75pLgKz0R54QEvah3HywxwHECh53+OM+z1b7Qb2FyurHPBdXpTUoc6bM+Xz14ddQLgynbi2Ezwqji52vf6JyLlY/ShZS8j+Hz7Af9CZlnFH7+FH2U8dCJfnTYHqKhyDReD7wpg5/nBNMtj+6wTdQQbX8Tx2DNPabWEaI8WftcBbfp54B2FBjkmrjKmCr3QEGej+7MuqpWVsDrg3/581+8R4o6+EnH4JNGS9WfZvBl1U/tsqbm18P89Jrm/J/3uxvNvZJ/99jIm32uxpuGPZ177Ri4to/i+02q79r/7uynzr+fwGdO1BrLA6ddQAAAABJRU5ErkJggg=="},
+  owlet_walk_attack:{frames:6,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAAgCAYAAABEmHeFAAAFCUlEQVR42u1bQUsbQRR+Cdurl15FpNBDUlhCBE85GSnoIQRPPYW2pxgMegj+CAlFUWJORaTnEjxYKOrJk7QlBNS7R4+eCoVsDzrrZDKzO7P7ZmZj9kFAo9nvzTfvfe+92Q1AaqmlllpqqaWWWmqppZZaaqlNiWUmzeF8oeLx3r/pn2SmAX/aDZt/Z9IWPvjTG/tb9/gMOrvg6QxE2/jTLkC6+HeSTkDQwonVa8v+z51d8DB9sY3/0gPQNv9OkgnIFyoeD6/R2hd+prG1gRaEtvGnIQBt8+8klYAoiwcAGAxurSUfJv60BKBt/p0oxOsmQLR41i4vzgEAoLRU5l4jqg+28W3zb1sATPKfDXIgCQoowr68OAeRjzLkRSHfBH4S+FcJQBKEsrNK0vY/G3XxugiQxX+4v9My6MmuXQd+0vm3LUA6+M+qgJtSQFmbny3C/GwRAABOj3bg9GjHf7+0VI6tQmFqi41vm/8kCIDp/c9GDYCH+7sRB1jHsEsea6sfPvkv2k6PdsbeUzG3WPVfQaYLf1L4ty1AWPyPDME3/ZOMW6z6TvOGC5GRxa9+3KY/qzyM0T6o4GMY7Wu+UPFcN2ccn6xdVcWx+KcTP4h/UZCdHu34PsTlwMT+Z3kOENKCAkCnAorwO+2m8DMzcwswM7eASg59vGgKn/DvFqvG+SfYMvtvQohM7L+jEgCmSejsgifrw7NalP0eOc5RIFEiWSXGxrfNv0gARG0JCb6Hu98Ttf9ZFadMK7CsD512E1w3x1WsfKHisS+T+LrXrot/UoVkrbRUhtJS2W9/MATABP8Z1VOBsMGIPqXQeUeYte7x2TMhuweBfayKb1Hxda3dJP+yN8M67aa/fnIfwvb+oz0Kwcs2GQIwLF+oeI2tDfjsvgMAgK+Da6nFhw1PqgMiwaeN9kWUfLqqgCn+RW1gUCVy3RyaAMi2onHEx0kqAXTm12vX0D0+C02Eq/YmlN7X0YOOxaN9GUuuZ/zYjyMkIQCJAIg411X9wkSI589VexPAeYs3BLPgsgqsayAbDOrgujmuP1ftTVhs7UkpoGx5FpXfem0Z6rVrf+313gpk1l4DAMB6P1qVweQfOwAXW3uhPmBXnyARarT2uQK02NqDX4rx58iC81SPJYMosOj2fNzelygfWxHI4k0Y7Yd/UtLDabWCeFDhHyvx2IRnfWDx//7souOLRMjHXnvli8/hUJ1zR5UEEgS0EtNBqFMFRvzprcD69mv/98PhqMLzj8jiqT8b/H4FQJw3wiogweclBOEfC5PlgPYhCN+kAMU1J64qsBloZNEU5iPut7AA9+i+Gtu/bvUHwJDgH6DcwQw7/QjjH7MF41dhMb4ObF2G/p1gjOOvwEcyAoI/6HpxB1Ce8pBKyPbAlxfn6LfxsZUPJfFDqp8RHyjxGQxulePPSepGMIvwGq2nIe/7P1/OHwNQ3xDGJiJAM3AAJK3Xk++oVefx2mYTgH0uh913lm8d7Q/xgQgK7QM9/EfFduI4wMtAjckQ2BJoxuY+2dhpN8EtVkfUnvw/dhUUHYk23nwBd5gbS0KsxKOu4fESkOw/Xf10tJrcO8BPJz40/9qGYJ4DvAw02f/FPW2K0xKZwjTdfqqsnycAuuYsazOAaBgLemxWRxKMtyPJMp3BJxOENgMPu+rImFuswk3/JBP32S4nDjjdo5t4dltArmfqewO8JDT9nQXMQf8FYXtR/fkP3hVtDfwtsJcAAAAASUVORK5CYII="},
+  owlet_climb:{frames:4,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAAgCAYAAADaInAlAAACsUlEQVR42u1awUoDMRCdhhz8EQ9WWIpnT1U8Fr/AgycpBXvwMzysuCyeRPwC8Si2p548iBTUnxHXQxtJw253J5lk2t19INSW7HvzMkkm0wK0aNGiRYuGooMd0O0Nsrz3vz6eO6FEc2qoG7fEks/fn1bev3t8BQCANIbMtxGcGurKLW3JFS7Ojlf+92EEp4a6c3fKBBSR50Fl5EJMQmYCl4YmcAsqAWZGDsejwjPLlwmUGprCLagE5CG0CVQamsQtqAsW81zigKmBYjcKEb/r5NtwC18ZOJ9/Bze/SAPHCuSMHxP32h1geHXLsoL1SeDSUAfuKsmXew2MDk4BAOCwf+QkII0T67GcGprELfK6SuoKEUV79hO4HKs/ryo4NTSNW2xbQddyBz6Lf35/0X/Jw0tGVfhwauDi7vYGWShu8mug3pHiAqcGV+5ub5ANx6Ng3KLsTFJFCUYAVRuYU4NaRVzxD8ejINyyzAAAgPNoHwAA7uefa8nfri+XT90lX1k2GlQM2MnQV2EaJ0G5KeLGQGK2ISWmCDsnF4sX0wl0e4OM6ssgXQtGw2H/CGbTifNd2pZ7CWsfbLkx3lf+PcCiKr0p7UDNiILPm/yqGiju0bbxu3J/fTx30hgo4q7kvcSbsP4MojbeRoPCbDqx2oLVJJi8GG7Xukfn98ktMQZwIo2TyhrUtu+y++hjMdcq88ix1aDGYbmxC1D6NMC1BshLRJsJDA1ObmzyC18GUF4DzYJoU/sPnIiivf/Vj/Fe1MkEVYRyrkAfi2ldP8A18eU2mWEGuxH9cmY/bH7zQJYAXNuuy9fMPhMyNLfyweXmJV3JbfvWLpOutnjzvsxhPie/dtRlQRNAJw8xCUVnel7TJFQyciah2e93qXlqVQS2wKNS5ph9ADPjyj73Dd/83PH7fP4fWvx+LZFyNawAAAAASUVORK5CYII="},
+  owlet_death:{frames:8,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAAgCAYAAAD9qabkAAAFU0lEQVR42u1dP0hbQRj/EiJ06tJViqsWHpKKUyYjQjNIcHIS7ZRKxQ7i0rlLyaBUYqa2hM5FHOqSOjkJFQlUBzfHQhfn8F4He8/zcnfv/r17ycv3A8G8vLy7mPv9vt/33fcMAAKBGFsURmGSM7PLEf346vK4gB8dAmGP0igQv3dxFB9rd7rQ2oMIxQCByKkA8IhP0FhbfPS4tQcRigAC4SEFYK14GlF4ZnY5Yom/ufNJ+pqz05/oBBCItByALCLTltyWhCbkp1+LIoBAOBQAGfF5ltzGjvPIz4v0AACVheqj472LIwjKdfw0EQhXAiAipCwib757ayQCquQn5/Dm8F8U0AUgEBoouiI/AECvd+10cvR4d39uhedNTZbxk0QgXDgAlWgss+O6+bjqeDTRa6sb8OPrx/h4bX0XXQACYesAZGSkozGx47xzVcmcNAaL2upG/MOCFgMEAmHgAHQiscyO+8TT5y+FLgSBQBikAHQ0bjW3tOx4bX0XpibLJEorW3G6gt/uTMc7C63mltAVENvPpiWu7T+v9wFTDEQuBYAmoiyq8mw4seI8YspAk2lmdjka6PSTiAAAQBBMOy8+0sTnuaKgXI9QCBC5EgCWiEEw7X0yV5fHhaBcV0pFiDtpd7oQBNPQ2jtwRsikdIg8F5TrWHBE5DMF0InEJBe/u/2VyiRFqUi7071/3iP5WSFAEUCMMoqSSKx8kcpCFSoL1dj+2+TiqmMT8gMAzPVvhPcppEV+BMI3+mEY9cMwcnlNrbsBeS6g1dyKyegqFyepwFz/5tHx+Z39gXPPm9vwZKkBlfuH3nNzdAHjQz4AgFKxmKvPueAiItLR2JUdZ8dud7pw3tweOO/L7l8AAHhz+T4+RpqUdOZhE/2Dch0LgmNC/n4YRnkSgUQH8Dp4AQAAn3u/MyM/qUk01pg5rEwAwDMAADic/RCLALWDgZE5ZySMF25GJMybA1C6Gajd6cZCILLj581tqCw1rEmX1I1IFwTb9RNofH8FhZVBEUDkh3y8vDdPkdj3e6HHK6mQkI2+PDs+v7MPvd61VT++Dvl5InAYfoOz0wPvnYG+6gA0EXwtGBH5soqGxIa7Io7KeyFjpkFU10U9XREomZAwFoSViYfoGz6c5/qmnIddAcF2YP0EIHwY26QG4EoEXI8rWiDDUJTyRUBW9GxycVMRdfV3Zt9vViJKfi/qkl8VlYWqk605WYGN7VVgBEgLulufIhHoXRw5ed+q0cFXBCkViwWbxUoiaJKg+XQzeSvoOa0B2JDfFGT7jz2mTEBqG9LWhQTluvGdjbQbsHUEZIFmZRVlFtyUPLqv51lw3bHZMV2mESZ/v2ERn5IN+WnrDXC//Wabf4vIImoTbqwtPtqJ4DgBLREgLkCnLVkkAtQ1jVID1QWiuphE9jeJkDrnJs2PJ2S0qKRtwdkxs7bgQyUAvAgsy7150Zfk375z8NbegbH9583XZVeg7b0DqqlA0sLiEY1+zLsGj/y6kZM+jy3i6ZDCxnnYRN68NgFxHQC7QFXyWdp6p0l6UVRm+g+iNHcBbFIDk4WmY/11FipLhGFf3Kbik2XkHYUag/EXg7hu/7UVAUaAUvnmIFKQJC5JNAe6mKgqFqIc1ZYsqtczcRAu+gPS2lbT2VVIY47DUrNJglErsOj/Bvj8gg7amaQ1ZtJ3EvL+ZwC7a6E6zywWDE8cZItddY4619CtJcgckosC5bhB2wHQC9zVdpdtvp7VGOR5WcV/FFqReXm5aRqicw1dktJ5/Kha7pEWALzpJT0xUqmEpxH9k8joIhWx7SHQmYePtmXfOxZp4h+Ot1kvZcveNgAAAABJRU5ErkJggg=="},
+  owlet_hurt:{frames:4,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAAgCAYAAADaInAlAAADgUlEQVR42u2av2/aQBTHv7bcNUvWKMoKlSxEqk5MEFVqBoSYOlQo7URQUTqgLv0PEANVkMsUIf6ACmVIpAqYmDKgyBLp0K1jx84R7hCda8C//e5sqJ9kCcyPe/d533t3985AaqmlllpqqaX2P5q0Tc5mc2XD7v7D/bWUhnKHBcACr89Htp+r+YowIeyaCKUkA/AKvJ0QeAXCzZf+cAyt2xMihNgEmM2VjWyubDwulxtXb/DdYJ9TtmfXltdF6YNXv9cZMA7bxF+hGIX12on5WuvCiKrGbK5s+B31cUw7jdal4+8aHz+QMBDFXwoTCDcAqpqB1u2FTkkUwY86Fbj54NZ3ZrPphCQli+AvUzYOALr+Y6tXxUEEOJtOMJtOAs3VPIMfhr8cBQI1gLhTv1f7Vviz6QT6fGSbmqP2QSR/OWz64wkgqunzEXgtxpj9+f1LuAh58JfDjkBeAOK0h/trSc1XzLqCV7o9Osjj6CAPALgZtHEzaJv3C8VSYBEG5W9tf92vSFOA3/mGGsB6AOISAfPDzU7fvDMvq90M2hv3wpqfBae1XcYfgG/+ilNVjf2JGwAnR07PPkUKAO/07Xs3oWbEtymYv2ynfraFiAOANRPEtQ20218DgNZpOn537/AYe4fHJNlHJH85SQCSuB7wa4ViCYViyRx9FLUAEfzlpAIImwV4ngc4BUHrNKGqGdIRK4q/nFQAcaZ+ryBonebKtb5uoKoEiuDv6aTfrUl/OP7nUIRScNSiELUIsrmy8eLxJwDgSl8I6btI/oqfL71XnwsFEKUiqM9HUPMVgzIIV/oC/eHY5MDsZevLyvu7zgUKr+oAQNo+T/5K0gBQlIN5iKBeO0G9tkCjdQmt00R/OMZd52KDB4+zEJ78laAAWIFCVTPkACjPAihE4OaPyaP6DFJ1HwDwdbmyf98KASpBATAHnpwSByAJZu27mX4rt6h/ew2puo9z+S3O8ZmsPREClHcpQHGWkJk5nc7xEmBUU+J2wGbbZdil8zAiiJqBmD+sJOvU937lFliys/gJ122gHwG6lZADCcAPANZ54AkAGwFhAaz/LsyBErUoARhOD4OaIrXMvVQ+WAdEoVjyxT9oEU5JMoBtmG6CjLawIsjmyoZt8An4K0kG4LQIsqZ53g+fBH1ETJT4qfiTLgJFAGCVvjizDO/zBpH85W0CkATwu+bDX2D8kcLUzbMuAAAAAElFTkSuQmCC"},
+  owlet_push:{frames:6,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAAgCAYAAABEmHeFAAADzklEQVR42u2cv2vbQBTHX8QNmfIXhJAlgxM4jFM6ebJLhgzGY6fQZjLGph5C/4jgwaVBZCohf0Hx4CnJlKmkJQhiD908ZsxcUAf7xFnWySfp3sk/3hcCjuz4++5z757uTlIASCQSiUQikUgkEolE2hBtEYL0OizW/Kjjw+c+cV0R/owSML2v9+fn3HvXt3fg9sDfhIGwDvwZJaAZX6HG2YfgtdsDH5MF8c/On1EC6ntH+TYvviv/ptlpoQwC4m+OP6MExPEGAPC8EVACLjd/lhX8uiegyjusx4d7AAAoV6qR35GFAfHH4+/oBrAKAAQE3blyFsltf3y4BxUjndiJf378HRONxwIQ528jAXXb//Y6RltsEn9c/k5ac2wASTofKwGTaH+3BPu7JQAAGNxcwuDmMjherlQTJyHxt8Pf0TWIO92+vY5nAggHZvqUZyMBk/iffvwc/Mga3FzOHcPwJ/7p+SsXwcPn/hYv1f00VUQ0/vTTV3lhkngxxkv14HXU4kYGoIpDxJBGMoM4fwzJ3kn9ib++2KIApiD8ZqdlFYDcWYfFms95IZdT6/C5vxXl73bbyqq0s3c8qczj35m9ddpP/NPz154CyfvLeSjs73bbys/u7B0HEEx1gtu70v58uVKFcqUaJN/jw33mi1LEH4e/kzYo2wDk03EeCajLwO22gfMCYFdM4m+Gv3ZQUbsCixZG8i6FrYsxbrcN17d3kx2Q6T64qQ44LNb8d//+AgDAD+9F+TnhDwDg9q6MeRN/8/xZ1hGoA8DkojAMIK4Scl4wloDBvLhY85udFpzzo5n33l98m/n9V/cLPLED1BvTNo2/7GuKP1s1AKKhugCw5sONs+gKJOJ6YgfB7kt4UblJBQBLqjPAOT+C7ZMGbJ80oDw5FMuf2QAg7wGbWgyqElDI8wIAAQQT/rodIyqztH2XeSAsA/9FBWDV+CcOJskVwqg5apb5YBJvDP+827/p/hj972AGsG6i9q9f+x2sL17H6r9ox2Fm/l2qz92cturVP8/+x+LPMOCr9oxtwbfp73kjuL6dXZ/wUl328te5/SIB5Qtltvs/HIMYfFO/WP4MaxTarDTyRQ+x9Wf7gXTPG0HzYjRXZWzEkSd/zxsB54W5rVeMxzEXFeCos46RbdAk1d/0Y4C6yW/6oouuVPfg2x58YQ55xWFTk+efrzLdKMdMVZ88wC9D8uU1x1YVgU0qANI1Dj/tIEg9AHRvlTWl8O3BpOUpAuEYVun/IbGsSYnxvGecX8Rh39a9+lGDUHjnUf2X4Qy0DAkfXuwmiek/XXzGVsOn7VEAAAAASUVORK5CYII="},
+  owlet_throw:{frames:4,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAAgCAYAAADaInAlAAAElUlEQVR42u1ZMUgbURj+Es7VpdgpVIc6RPGQCMUhUDDS0g4SnDoUaZ1SqVREpNC5HUIQixIzqUgHJxGHBEUDgoOIDemVKjiUEqSD4OIkFLwO+q7vLu/Oe3fvXSK9DwIxwfzf///f/7//fweECBEiRIgQIUKE+O8QCUPAj67eIZ31+VF1I3LXbCt3yflmSbxWWa/7rrCyjfwsdFmxkGVbuQvON1p8Tr4TZEYGjff5WeiiOMm2rTSz881SeSy7Y1Nztv8zNvFWSByCsK00q/PNID4v/gOAph3fGdtKszpvl/ggxeckPIK98g4AIDmQYv6GFy5B2o76JUBIuD2v3TrfKPHdBprDXnkHdlzdxI839jJsK34JsBKjVdahJtLSqk5W5fHyuDirGe+Lq0vmL3PjUv2nbftBtNEEmqXyvKIjlkBHLIHd/U3TqyOWwMVZzXMndNPxiG0AKC5nUVzOGp8nB1KubEcbTcCL7Yuzmsm2lZMs4dFQ1Th+nVaMV3usDe2xNgBAqfwN7z9l8f5TlrtQ1ETaeDnh+YvXxotGcTlb9xnXEUAbZrVXmgALxeUsnr+a9hTso+pGRE2kdWLbmkwnmwAMuze8PR8DVh6s5NPbB432WBsyI4OejkCab1fvkK6qcekdTGk0AVYQunqH9OLqEnb3N03fPe5/ylS9CPHZ8bDGwCn5IuYguxUXAPK5cduO1Pqg77o71r56nwHcELBD64M+g4QIkLZaKn8ztdW6YUuyGPOz86ZLJzfJF2WbR0DJgRSSAymjAPbKO/C8BgZJwE0VEBHQyZApPhaCTL4TWEWYz41DVePw0rG5HwbRRsjenc+No7CyLW0Xz4wMGr9vJ75rpISKzzoP8AhATaRxcVbD6e9qxK9t62bj1IlVNY787DyEXAXTBEgCzEGoTwwvAdfKt6l+2eKj5wGe1RCAr+TTtkfVbh0AFrUftt3ptjj56gBO7c9anSKSz1K+VllHRyyBX6cVYeqXsS5ebhXQer9TKIdDpRNjE28xqnabPn809dn090HuHZJPMra3s54F4Lb1EQJ+VrDbBsNRtdtUCVbx+V0Bvd4RXG4VjKQcclah2xxkRsx+H+Te1QlC0465YqCIIEeIEAIiz17r+beo/TAqga4ASnzSRGBdwchZXFjZRubnCSLD9wC8RB790juOSRDDLYbtN/ggdwhkYWn6HACwcAWhCXASAQBTS7SKT4YInIavQrqEzNozRIbv4fvkPnpmhoTaHpuac7RPsND7EW+q7kUQFb2PBonFhydYmj43BMjaDvxcR3OviukS9LVrLt8n94OzvfbHsMuLKI8CmbdQwy1NIwie4UemCHpm+tEz0x/oMFpIl7Bw9QU9M3zHj+sjgLQfqwjUdAm4+ncvQJIQ9CRO2v9eecfxGYaMCyIWD+Fr8M01MOsYsK7BPPcgihciLOfp8zeI5BdWtoEb8TFs6yK52D0mt0u+LLCeBZCLOa/x9zwEkrkgyGpzazsIAdo9NRV5C+lUgKLmsqhIcrKdJ44fVTciR9WNSBBnPqv6CYdGFYDI+Ef9JAH/IZx8D6IARMf/L1hFduapenOwAAAAAElFTkSuQmCC"},
+  dude_idle:{frames:4,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAAgCAYAAADaInAlAAADQ0lEQVR42u2avW7aUBTH/zZ3aEWkZOlAKiQPmSI/QiUaNY/QpQMbD4C6Z/Je8QDZPGTpI6SikfoADChTB6RAM3RppaIgBLhDeqzLrW0u5h5fPnykDLESfse/+8G5xwbKKKOMMsooo4wyyji4cHYxaVFrROq12eOdcyh86xPAlgDiVu9v42tPNwMAwCJosedhm8/hX5gSIIJWxClA1BqRzKV4+cHD080AkefTDUUcOdjmc/l3NhVASczDzvMHDvrGJ0EWGwDG55cAEA+C6Rxs8zn9uyYELIIWnEE/lpC0RXHJTwqTOdjmc/sXbAKYtkJabfJW6F5dA8DSKuCKovnc/t08Augn/pCr61iCSQHqzRNzMupiMuou5QAAlWY7Zk9G3Y1XoW1+Ef7dXRNwSFGEf1FqXj9evL4w8jfbwHfzJrAKwCGAVgPxq/e38TFI/v7j5su/p/F3ZpdZV4BaBCUJ4CzCdAoi+Ti2T3wO/2KbBcwe75zx+WXm+VcOqsJNncVt84vwL3ZNQBKX2rAoaPstil+Ef7HtA0AS5GPOf4VMwjnc1OSzzef2r5WkqDUyBagzkKMV263+AgC8+/g5k72vfC7/2jvAl0/vtQVwxNtXbzCc9uI86JoaX39+wwVO9o7P5V97B4g8H8NpD99//1ktYHzCsgLmYQfDaS++LudCcXZ8hPoPYYwvrz5bfCrsOPw7uyBA3v4WQQsPp7PM/zHFT9p6dflUP2w68DKfw/9aRWCl2UZdEnB2fFR44yLyfNQH/dRBIPkcgz8PO4AGf9N3A9K+83X8E18AWu8HuOsmEnl+puQ4AQPPAdJErMrB9ONYdRCIb2qy6cY87GizI8/X8uDmXoUpSXC2QudhB5Vme2kQ0lYfF1ueBKoHzgmh3nvSGOS5f5FXAlWd9X/dpofT2XMyXjGrodJsYx52lvim+w/0mlXk+fF9y3zVA7VhqQOXtwaQ2Un8tDEg/jqTQKsIpA9UJahnT7kPbbIItMnP+ipKOnpxvQ6W1gdQc1Dbv6tyEVqzEVgpQJ51JgXY5qfFImjBgd2nf2lnf+PvBKYKYHzql4fP3YJduZ0WyDfl391FAYugZXWgbfNN+nf3ScChhEn/fwHer2/+QREahAAAAABJRU5ErkJggg=="},
+  dude_walk:{frames:6,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAAgCAYAAABEmHeFAAAEJElEQVR42u2cvW4aQRDH546VlQhLdpPCDigUriwXfoBIjhU/QpoUVLkHQOmpro94AIpIFG7yCI4IUh7AheUqBZI/KNIkUpCRhbkU9p6GZe8LZu4MzF+iMDrzn/3tzNxyeweASCQSiUQikUgkEolEayJHEGSX2jkKzPfGg56wXEL+jiRgdt/y5Vn43t1pHwAAJr63NoWwSvzVqgBQvhdwxqF2jgLsq/XyYw3uTvsQ1A400ICbhfCn4+8UXYGLAtAxPHRajwPqX5DHEOcNADDcPwEACCeBIwbhz8NfLUMHTAIw8T1wngAEtQPSGJK8baKOQfjz8VeSgNmkuw3uxG6zDQAw1QUlAZeDv8sGwLJOpQKgX+Egmu0QAmUCmmPXnqObLoxuulMxAACU6o3Qe3TTJWEg/Hn5u5KAyyXhTytXEvD5SvjnwHief3rx+pjkmHlVlH/58gyG+yfhZ5cvz8KrMHj54fQvVnL8q8hfLVO1agD47ygAnDGkWYNzfBkW/vT83UXMowBwT4J+xQGgiGM86DnmMgPLHLu+CqHhU18FEf70/FXRFZgCQOwGTJ4JGOWrN6GAOfmEPz3/5ApJ2AHkBmDzjwKAuw7lBKidowBfZYkSx26o8Oflr4quwLRdKA6AbSOEuvt8//IBAADef/4WCz8PCX86/k7RFZjWv1v+kxoAh//V7hgAAH79/Re+/+7V25ljf/z+CcfDbXJ/4c/DXxVdgWm1t7U5FUcsANgG6uSrdFpwfX8exqG9rHEO6ce/rvy1KhuHLPzVugNIq1K9AZVOC5z+BehuhGPh1nNoAI9jXy3+qQugeqvgandceAJe35/PJAWXzKVHqd6Ah04LqmgSbJw4Yij6DGQbex4NAM8BB//U+wBusw1vPn2dMtjb2px5cQOobBzGDpI6Ac1lRqnegKB2EOtDdTOaOXbT08ZfH0Ptr2NIGjsnf8y3equsXln3HzLfDOc225HmGgD300mUAObthrZEqN4qMn/bF9+k5MPHcdwRmtQA9Pg570bF/M08mKf43CyDx0UQl4R5JKAtBupYxoOeM/E9mPheOPlZuiFn8Uc1n6IaQF7eOAazEPRtGFkasFp0MgAAqk87jlHrskWTUPleoL1wEpoxzAMgjf8TqCAyIdGOq959pT4LTnwPSuh6O14H60SkTkDNXn+22QB0HJxn3rj5x015Xn+VpeKwoQ7kodOaKQQWCACx18Lz7D6YwcT3WJ4FxsmH/3ab7djkw7c/UMSSpgFgcTUAs/FhLxxD1qfR1CJBmNee8/xlBA0gr8THCZiX4hiaDYm6ANOM32wAlIWXlxILIGoXUj+HausCHM+Emh3xuYkz+aKSUDekon+TiPqsk3ZJOB70nEW/bKtFzNGHBHl0YhvcvLyjirCIpVfWs8Wqe5vLsyzx/Addh9uqh/NKQgAAAABJRU5ErkJggg=="},
+  dude_run:{frames:6,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAAgCAYAAABEmHeFAAAEKklEQVR42u1cvW4aQRCehS0cOZLdpMAO0hWponuESAQlj5AmBR0PgNK7oo94AHcUbvIIjhykPAAFcpUCyT8UqSIF2UKHLwWey7LcAXc3u4Ot+TpjzLfz7cw3s3ecAQQCgUAgEAgEAoFAIBAIBM8fqswf61ojtl+LJgPla/Hc/NwQ/ZkKAAPfvzxPXrs7GwMAwEO37VwIbv5dSXzRnyCWIsGbgSNefA7g7mwMcRDiB8cuRODm53ZA0Z9Wf0URPGL69iMAQCKCGo9IE4Kbn9sBRX96/TVV8GmIg5DMCbj5uR1Q9Hejvy66EKx2sxIrJ6cAADDv9xIHcAUO/k1J8NBtg3rceBebL/rT618pQozB399cwP3NxZIYAADVVicJ/v7mInVWKxO4b/5SDuiAW/Sn01+D4Ek6sOhPo3/lKYuwd9yEvePmxvc8dQcW/d3pX6gAcDEowP7leXIKN9sPlQBZ/ObPWfzPIQFEf3f6ayoRsmYwV6MANz83RH8abNUBoslA2W3GhF39OINh8GWvhHDzczug6O9O/1KHYJsUb0KAh/bHzb8LDij6l9d/68rEgwSetNfBPIVTVf8u8GeJ7toBda0Rx0EIajxiiZ+b36X+uTvA96+fAADgw5dva4OnhK414srJKcz7PRZ+TgfE2DE2rvirrc6z1F8VScLr2RB+/fmb/O79q3cr7//x+yc0p4dkDmQmAQc/hwOacZubfHUUbR0/zvBUa8jLv+sTgC7iBK/7PVDTEVwdRUmwNt4cvASY0jqgyX99MFwS2wf/Q7fN7oBxEALMhov4PMRfll/XGjHVCOhiAil0CK62OgAAUH90A1MMRP1WO/tqcLXVSbgTsR3ALr44CKE5XhQ+bsRaB4RDkgSwN7d+q5PYs+Kv32rArkUNDn4cwZrTw1z6kxSAWYFpbuAb834PIAihPh4tbYS9Aa7mYF8OHE0GSnfb/+9iBuHSGtYlKPUh1N73TdpTXQY2TQhjX3DT6K/yLCCtvagUIajd3y5A7EDzfi+Tv+zsmzWDm3PwJpdEB6Scg+2zkIu4s+ZvcwbfpL1ZxNR7kMVdRAudd/5OJTMSgtp5s5Jw1REip0mQt/tQJ3/WWex6NkxidjXymDHobjuunJyyaJ+nCzk9A5hOGAdhkhAso5AhhouN1932SvfJOmiZxe8y+e2zUOzpxtc6A1rkAf1NP3MMxDjNCaBecgLQZZJ/5TxgbL5r4MMPyO2KP5oMlAZY6YQovq2Bj8Rfp7vvh9GrrU6SC6748TO33Yc8XUhvU31p16KjyUDpWiNWJcjzOIB9LToRhemrxlmdwOWTYCuH4seDMVfym1MAF7/C7lPQBHQR0ZHAV8D2Gmxeuwh9rMvuQL5gFz7GzrUXnMWXVgx516HziM6JrDX4WNs6E8DW7HsO59yTXfufP2VM4B8+oQq28jwglwAAAABJRU5ErkJggg=="},
+  dude_jump:{frames:8,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAAgCAYAAAD9qabkAAAFHklEQVR42u1cvW4UQQz2JlMEgZQ0FCFZ6QoqlEdACid4BBqKdPcAEX2q61EeIF0KGh4BBCfxACkiKopIhFxBhUQEii5Zmnhxhtl/ezx7O5YidBfuPs/Yn/15djcA0aJFixYtWrThWRK3oH9mNncz+73FfJYMBT9aLACDJv79L+/z936/PQMAgJvpRJyI2vjRBGIat6A/5KfEQ7v3agS/355BNtrBgGYSJNTGjwokKoBI/gK7fPICACAnYXJ2ykoIbfyoQAJTALECh0N+l2WjHbZOrI0fogIJZRTk4J9pA+yqwGY6yWIhkDfstjQOKwdHAABwfXyYd+Blwq8qQjfTCSS3hUei+IRGfE7+ma5BGOIM6Avf3nMk35/vHwEAYG1rfCcZVvf2cyn85/tHWNsad4qFNn5ICkQ7/6T4ZziC4KsCayuQqICGrYC04i/JP9MVfCgzYJxB/9na1pjl//RBgWjHX5p/K20qMP7kX3JwlFdhtRnwFjMb7TglWp/x7Y63tjXOkx87EA0+FwGL8OnrIvxlm71DiL8E/0ycAfs1g9bxhV6OWzZ8nwpEO/4++LcCPTMNBaKFv5jPEopjm919cQZGH7omoDZ+iApEO//Y1U2cAfsxg5YRDzHBk/zWxPepQEKNPyf/TNPNt09hXRVYugL6lIDa+LddOKMd5j8Z5zgF50o8TXzELiK9bwWinX8S/DNtnNCeAYdoH968BACA56/fOX9Pk38Z8UNSQJrGzT/TpwqsrUA08Z89fArnVyc5EfE92z79+Axj2FgafG0FpBl/H/xrdQYwlBkwJPzVvX3YPj6E8/WTO2Sz7fH6A4BLxkOizd2cfBr4oSmQEBQwJ/+SpklQZhIVuOwyjA8FEgI+3fvr40M4vzop/Ux6YUSwfeNTP7LRDpxfncDXn7+qFcjlxtLknzT/aiuAOAOGgb+6tw/pdALfHi1EccqSLr0wlfhmc7fzFRhb4jdRIPj5ZbkKI8W/2gpAqwJrK5AQFJCtABDDRcL0wuRzaFcCurr/6t4+XB8fVuJ32Yey/b6ZTgBzsag40XsBOGKhHX8cKyT4Z5osfigzoOtWzqb49DtaP6tdkHhIwrSAhBKG5LfxAcCbD/SQLQUjhhtq/CX4lzR1wvcMKF0B65IO110Xn6MLufYeSYiv7U7MpQDsvae4RWokvbjbTyRigMXHpYLs7t9m70OJf5UfZdxrEn/TxomyGRAd6HovNCZf2wrIPQNqncJX+ZTPnwKGe2cAsqqunJ6dshWexXyW4OO1+P24XvovVSFUHXAUoZDjj4W2TAHV5WCry4AYcCn5VyZ96QHY4/UHlTMg90M5tPi58LkJaKaTzCaAKxa0A0veBUdn8YSQk/sefOq/ASgdhco+y11wt4nqqpN/EmMYrtnmYBts08YB+po6Ibn4XHKShJcknU2yurM3JSFHQi7ms6SIAJgI3B24rfnGlrjyVBX/svMPV+y5CpJ9BkPXn5JHkRs32y4dyK5GVIJxJwLdgKoAcHYfuwPVOQDzQQLpDlyFvZjPEsnn3puuX0p9uBSIqwvTEYTrOQgsREVnMOiHfd7QJA9NLUcqOpCdgBIzIN2AqgBwdd8yKeiSYVwFKDRzdUWaG6H46VOBuMjn+wymSAGx/01A3xXYNQM2CYCPJLDxbQWk0YElCVD0vRrjRggKRNu4+MfasiQSsOhAULoANcXPBvAkWlQg/vNPmn+m7eI1K7BGB9TE74sEly4CoSsQ7fxrY38Bor0gYKY3xqIAAAAASUVORK5CYII="},
+  dude_attack1:{frames:4,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAAgCAYAAADaInAlAAADqElEQVR42u1avWobQRD+7rwEBwXiVrEFKlIZFXkDYeJHSJNCnR7AuHd1ffADuHPhJo/goAjyCMZVCkGQVKRJIMIuZF0Ka469zWpvbzV7P8oNqJHlm2++nfl2dm6BxhprrLHGGmusscb+OwsaCtxMtPux+t1yPg7q5juoW/BVWfjW/W3y3cPNBACwioZeufDhW3ABENEw3vVEEO1+LMdO9vJjFw83E8TdHpEac/Pgy3ewLQBKgqfry+cHTu68JkFZ6mOKHwAWx6cAkCwEJw8+fQsOAKtoiGANIO72vFVAWeqTFb/OuHjw7VtUOfgqSK+p4uSEDC+uACClhHXwHboAoE/ykIurBAR38Fbqs/YXd3vaLYLTP8X9OB3hcTpK8QAAe4OzBM/jdLQVniJ8h1UNfiv1YU6CnT7V1AlsmdK7qxa6/NP+4Qn2D08yf1NX6TUZYSIOWve3STMqqxAHB0X4FnkBqFWoA+CzCm0C4yZ+00JkbUU+FInbd+gCgD4mAASi7racjwNVbdQZiGy0FXHMAorwLSwAGAdAvoKvovqYYqdRLApIfE7fok7Blym9i+PT1FH3Hyk1NKOb+hGbAqEizOvbtvjsxoXtvhGAqgBc1Z81fi5KfWgBR61fAID355+N8asJsGk7tJbpdj/O65t1FAwAXz59sAawS9JLyb+Khnj7+lWKC+JDjf3rz284wQFrH5TXt61ZK8CPN0sAwPfff7IBLA5YX4SUoT6q76frSwSTOxAPZDIf8mIdvXiXTb4FVtHux9Tb5PHN0gTKADprAJSJajamMnXBW4VVUJ+9wRmeri8THtTKlI1r8V18d2YC6Nq/jxF5AQBIQOgA+DBf8ueiPHIx+DYZw97g7HmBo6HRt7zt2CSByAOACDcR0JkJ1lehZauPbTWqFaieQuSF2Wabirs9HK2fofon3+rvTWshXIKnRZHVIKvj3YZwADhS9uCi1EfeZgiLLgk6M5GaRaiECyDOc/zLm4RUeMHkLtcaCFcSZDWgRNBloI/K0yWejwkgXTTRnTJUPFmkczSmm5JQpzC2SWB1BqWHkfNN3bc8ieOaA6j7sDpo0cmgj0shm3oCXQPKfRKx4V/1LQ+fnHuApBKAzODljPN1K8dGgYpcfLU38qZEFvy7Ko7zfQD5HqBvGTZVAP2tU/A9gGQApWwPvi/FcvPPeiHEV/DqwuuC9/UiSFf9q2iYyGyV3nq68B+6Zl9Z9//J93I+Dsq4/WOKvcjq5/LzF9F8nHMvCj47AAAAAElFTkSuQmCC"},
+  dude_attack2:{frames:6,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAAgCAYAAABEmHeFAAAEyUlEQVR42u1cvW4TQRD+zl4hUJCgNcSSC6rIBW/gIPIINBTu/AAWfSr3yA+QzkUaHiEosZQHoIhSUViCxEUakIiIkJ2jSOZYb+5n727m9mx2pDR24plvvpn5dm/XAbx58+bNmzdv3rx58+bNm7f/xAKfgmKmWr3QfG0xnwab7rtOMThrgE0BXwb71vlR9NrvwxkA4HY0EM2FS991ioEVDxd4NRqEm94IqtULdexkT9538PtwhrDTpaSG3Hlw6btOMThTgCTw1ATLyfjuA2dnok3gSn3S8APA9c4eAERFwJkHl77rFIME/4oD/O1ogOAefNjpik1AV+qThT/OuPLg0nfdYpDgX60zAa6kl6adTkhj/wAAVpRw03y7ikGS/0YR8PQTfcj+QZSAqsCvqM+9v7DTjZVITv+E++biGDcXxyt5AIBmfxjFc3NxXCoel77rEoM0/411Bp+oPsxN4K1eDx04+VfrlJA6yL83e3v88k3t+W8UBZYFriz4Osh/nFFMlIOt86NoM6ZPIYkCcOm7SAzrwL/KC97swjjwklPYhlgp8s0iyJJiCUVy6btOMXBZowh4+kkDzzEF6mCL+TQwp41u5gAgKSbyyzyVcum7TjFIrj6UBfjUA7CqwNdBfdKw0zUAVND4Ln3njcFcihStCSn+1ToR4FJ6r3f2Vh71PpDSlM1Y0nrUphhoCOX1zTl8kmLQB57OfbM/TC640SAs0wTc/FsFolq9VALMhHARkHX9oir1oQI+3voBAHj74VMqfpOApOWgbZyq1Qvz+pY4ibepARu7HQ2scUvzb60Anz++syZgk+SfiL8dDfDq2dOVXFA+TOwnV6d4g+es+6C8vjfVuPm3VoBvLxYAgK8/f2UTcP2c9SKYC/UxfS8nYwSzM1AeyPR86MW6/eh1dvItYlWtXkhr2zy+JVSwagWogn+ru0Bhp4v2PQE0icxptDKprnm7vg7q0+wPsZyMozyYk1k3ruIv4rt9qYAO/32sxXwaqNGArQmKmM6zvs8ow7/KSwCAiIQ4AiTMhfwnTR59GEibHgMR3h4NUn3ryy6Jm7nLyTh1k5v1t2WUierw5OoUu5OH7xfhX+UhgAourQDal4r1KrBr9bGdxuYENp9C6IVZpgjCThfb959h+iff5u9zNoFeB+brWYUfoPyV9WZ/iN3JXbFz8K+KgKei1NUg64lHGcAAsG2swatSn7jJF9cE7UsV4Y8rcAWE+nKCuwlp8ASzM/FDSLPYl5NxbFPQEChT+HFLL2qC73++lFfZokWgqwE1QtwEkpi8cY3HbZT46AWjqMx4soqOYwInNWGcwrg8idf9S30/o9kfYnsyXmkCGkKsT4FoGZIkc/ruWz+J4zoHSDp8CRIaoX2pxL6KF7cnSJp8nE+ibPJv+tYP36S4SMPPWfyUgzjlMRsgr09lNQmBTPD6xJHqehsFqrL409bErEpkkX8JxSlS/Nz+zUfROv/B7AxtqH+rD+klkG7694CllyFpE5Dea1d86zA6gDGWR9L/FKDK/Nv459zg592A69wXvQfW4AxQCnyzP1wpfv1rcFKb77Tppx/k1OnWa1VXIFzip3v/NldNxBogz0mexORZzKfBYj4NXNw1T8Ne5fR3nX9X+Ln5/wuklC2PhSxBbQAAAABJRU5ErkJggg=="},
+  dude_walk_attack:{frames:6,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAAgCAYAAABEmHeFAAAErklEQVR42u1cvW4aQRCeg1XkiEh244I4SBSpLIo8gCWM7EdIk4KOB0DuXdFHPIC7K9z4ERxhpDwABXKVAsk/FGkSKcjIAi5FPJe99e797uwecJ90jTH+Zr6dmZ39OQMUKFCgQIECBQoUKFCgQIECWwJnHY1m1aYn/mwxHTrbwr/t0Km/s46OV26v/Z89XU4AAGDV65AHom3+bS9AFPqzdRGAVZse7zji7Zc6PF1OwKs30CGPwhbb/HkPQNbreJR2UOnv2M7ALM4jZoenAAC+CM5krNUO2/x5mIHCNHi6nMDS7ZP5Tqk/y3sFjHJeBq/e0GaHbf48zEBRGqx6HXBe/NbtO7X+LO8CqLKdr4Sl8wsAgEAVooIN/k0OQNv6l8gEkPSpWcVH5+cPA5g/DAJiAACU213f+fnDILMNtvlt668KQHz8IDq/8INQZwEwoT9bhwpYwI7+YQEIALBz0AqsR8rtrr8WmT8MYOeg5eV9V6yU9wq4zSj0N6Bxmi/tHLS0/E5SVG6vYXZ46v/tyu21vwvCT//OZLyR/Lb138TxZ+uWsXH6YX47bNP4bWsvtmCqAFyX8S9lIVcJoAuL6dARp3keIjf2wOh81v7TNr9t/VU24BMWgDrsMKE/s52BaSA6jgsvIB78PPCb1P8lAEMPwEwWAAr9ozMk4gTQhACs2vT4bTYVZKeRqoVgEtuy8OteCJvWX8avCkC+6udl/EnWACYrIAbwt6+fAQDg5Owq1Hnxe6qpOOlBTVL+TZmBcBYIC0DZNqzu6k+lv2M7A+PyLt0+3D+P4MfvP/7nx/tHr75z8/M7tGZ7kT1ooipRbXpevZGIX/c1CFszEPIPKr9iByAFP5X+LK8VUBz0crsLH9w+3O+OAs6K+Lj7DmBGY0cSflZtaj0Esj0DHe8fwf3zyLcjNABhTzs/1fjHToCTsytYun24sSQAovbI4O794r+zks91Vn/pIDyPYvHrvA9jKwDTFgAKxNE/sX9JBCi3u3Dsgm8AlQCyKX/p9gNH7ark0LkNqGo9+CSM2o3JmgSbHoBpOoFar6PUv/aYbFlbSiXCm0++AOJDDa/ekDrJB78zGQceHdU/qQ2BJEh5JUHaBr5oH6W/rot4qgIQVoQosXT7vv46uEppv6gipxAAqz8GQVTwL6ZDh3/4ZNDRkpTb3VdJgDbovIimWvhGBaB/LVrzXSAch6gApLyNivqXzi+UY2AkAcJE0HECu+p1AJ+wChzHaT4ZKBJRtIHqAFAMQOoWMKoAiDFgil9WiPgClOiMJ0sQ4M5DjWDAeScYgIdc5XYXyu0uLN0+1CZjUsEX06HDeh0POcTZx6s3AjZg4C+mQ4cBeLoKAsC/vf4ytxZD/wEA7t4vSIIP/Udfef/RBuSkGouoMUDb0iLRPrjMAHH7jfJ9WNnCWNcOT9qWZNXrkL6LHAgEwQbx/r/YglGfRaj0N8GN2ssSIMk4xG6BsPJGCUDd/8nENgFsy0wiqnXD8cB2RFz/UPvPv3+gswU2CZYl+xzFFETxTig/HecRlJe/RA3EnSHb/5OIataJaglxViRNgDByvkc3sfiRiWuKW5WEJhd9SbXZFm5+vZXUnr8UiC+MNIJkLgAAAABJRU5ErkJggg=="},
+  dude_climb:{frames:4,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAAgCAYAAADaInAlAAACzUlEQVR42u1Zu4rbQBS9Iw2GkMCmdbBBRapFhf/ALNlPSJNCnT5ApHelPuwHuNtim3xCAhHkA7ZYtjYkWEVqsxC0njS+QprIeszTK88BN/auzrlnztx5CMDBwcHBwcHBweHsQET+iU6XjP+uyDNiUrhNDWPiJiLkrx+/ld893W0AAGCfxkaMsKlhjNx0iIAqOeLVpwCe7jbAghAfyHSaYEvDWLk9GQFV+FECAAAsCBvblC4TTGgYM7enQgAPGybo0jB2bg8czhqeygRiK7I5C1RqOAdu1wFcB3BwAZAAnkVtwqaGl87tOsAJQscxWigARZ6R3eW1UALJ5kHJrZhNDTa46XTJvNUaWBCCCW4qYswx8ufbG+vtT5WGtlloon4/SsorXp3ctI8Bu8tr8Fbr3g8lmwflAy6qgU6Xg69HcRaisSa5q8AuoNN72mUAmvD9y0cAAPjw+evRBP748xMAAK7grdL10FuthTSwIJQOox8lwtwHg4VDIMqtpAPweH/xBgCgFNP2N7A7XEZIvhjhgzhUg0qY4i7yjNA0lqp7iPekj/GYst9/7zsLmG9pmX7ZTVhTJxqiQYaf3wOwIBxcv+xmUIa7Ly9tS2GtHa3WMDtsNJrEzLe0FKsD+zTurUHVCaA6GH6UDOJueo4I/1BuZcfAIs8IfqprUhsxzjr8yB4Dizwj+zT+bzeMJsy3tFGDjPFda3JX/ce808GN/L/eFbXwDfFe+CII201T+lQWj8/hl6TZZFHrNnzr1Y22+nXBjxKYTRZl2Hh+kfB7oiKQDEWYNH82WdRmhMp9h2j9uoBdsCkEKvipbDt6vr0xOvh8KzTJfQr1V/nx8keGn8ILRDkjLAz+KQE3m1YCYHoQqm2w3CEDMGYpBLZDuE/jmg9GA8CT6x6EY2t6kWfERghM19/GL3vica+Dzxz9Xhlyt2J84rp+1w3d/Lbr1/n8f1dAnrFV46LSAAAAAElFTkSuQmCC"},
+  dude_death:{frames:8,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAAgCAYAAAD9qabkAAAFFElEQVR42u1dPU4bQRT+1mzhiEhJk8I4SBSpEEeIZKxwhDQp6HwAlJ7KfcQB6ChocoREDhIHSIGoUlgiQEGTSEGgaNlNYZ4zHu/szu/uYr9PovHaOwPM9/PezALAYDAYDAZj+RA1fYJxp5fJryXXJxH/6hiMBRYAIv7q+Zfpa3fHYwBAOhywEDAYdQhAFY4cd3qZSHwRJAIPRweIxmcsAgxGFQJQlSMXkR8Abjd3AACt/UMWAQbDlW8upHz2YQN3x2NkG1t0s8yFjGXkz0O2seU8LoPBCcDRkUkEXBxZHovurUoe3A9gMNzQCuLIOX0CW/LfX45wfzmaEQOZ/PeXI6sxGQwuAQyQ58it/UMAk6YcJQAGg/HEE4CpI6/s7k3J78ORaex2t492tz8nQKL40PUgCtnpZeIXLxnG0iaAqrF6/mUudYj1P5UcIVIHkf3+cjTzervbz7jnwFhaAdBxWxtHTq5PotvNnbmeQ1EPgsoO3yIQd3qZTHwCvd7u9nnngbG4JYAqkpe5cUjI44WK/Cryy0LAJQFjqRKAzo6AuB3oKwXIxKfuPzwLji75RRHgJMBYyATwSEZtN6Y4TuS3JQWNe3c8nn7NTXr/cCZt8GlABiNwCSASXz6IM3VkT0iuT6Kie4pi8+3mdOreVbo/lwKMqpGkaZakqde1pnUSkLbbiiCeA/DlxnGnl41Wf5W+782L5wCA9at4KiBVCQAwaXpyAll88gFA3GpFizQHrR7A10/vAQDvPn4udWSf9Xhr/xDbRwf4+fe71mcu1pKJEKDHW3WMIMRL0jSrSwRCjBubkJCEAAC2X72de/+3m1P08dIb+YHJAaPXjwJTJATk/gC8PZzEaB4JQ5KhLhLWiUg3+j9ITvzj95/cKL5+FcP1iUBVyVHUF8jbgjQtR2zLgEUvAeomn6rurWoeoeN/1alCHC8yIWE6HExjdpkT29bhKvLrlhnR+Mz6ycSm9wFEIlS9+JtAQDGG+5qDLrlDiUAdvQVxzNiEhNnGFtbHZ0oRWL+Kg8TvdDhAhP9n/4uEQTwVaDp+cn0Stbt9692AEMeEVQRsSlOqKgKK73GpxW3Fw9fPWf5+6/j9iWO2TBx4ZXdvIgJX8UzNrRILH9tj6XBQSKiV3T2tcsBQBKw+Sw9K+doW1Nny8b0tVLRoXBYrbWGVCVqVaabOhl4jewAqASDyy65LTnuxlsy4v20NTnOQCVkmTqoSwfWPk4jEtikJ5O/BxWHriuJ5Dm2TPvLmbxLnXROP/Pk6yqkmpTdtAZDJn0c6qrvF+tuVgL56BK4iYNsTyBMDl59FmUPqLCbVoi9akLJL2pJfRTy6FtqNVUK27Akglt02Hg4ypUIUxH2RcK7OZ6Vkj+P6eiDJF/nFBGH73IBuKVC2mGXHle+dd4888puSR3yfOAdTF3ZxThrXhvRNcuygApBHWtN6NiTpSaDkFCD2CWIgC/lUYrvbhy9hMInbvheqTISmL25b8amqVLIV5cYJgC5CnP5zEYGZ60AWQpBoq4+6/SohEOt/XbEoqlFdyKJ7P5sE4eN8QJ3bajYJxmdqawIim5pbPJBT11N5YjIJNaaqISlfF0kunwfQnWcdC8a0IaY7R5N72DQSVQlJFKhlr+2DJYCZuF3jU3BVCE3ZGHSdEkHeZ57CCcG8uty2DDG5hylJxTr+qUbuJy0AZXvyywov/xEpp0FXhfuXkdFHKeJ6hsBkHlUcW/axI9MU/AN17Vf9EpRLkAAAAABJRU5ErkJggg=="},
+  dude_hurt:{frames:4,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAAgCAYAAADaInAlAAADXUlEQVR42u2avY7aQBSFj80oQiLSbpOCZZEoUq0o8gCRCMo+Qlo6HgBtn8p9xAOko9gmj0BEkPIAFIgqhaXlp0iTSEGLEOAUyThjZ2zsYa5/WB+Jxkaaud+ce2d8baBQoUKFChUq9BRl5G3CrNpy/Nd2q7FRLOWZG4Av/GYx+u9eudZO1AjnZEIjDwBYteXIFl5mBOp5AEBlNnSvPd7bAICD1U3MCDr5G1kHEHXxqU3Aqi1HjFvU472N/aD/B6g9JTMBBX8jywDiLj6VCcJiB4D1zS0AwGk0yUxAxd/UAeBgdWHYUxeCrETlVcdil0k3A0r+jAwA4JySBarZzw+K5VrboSjFPNvFUmy+/wgAnixM3YAR+bOsA8hS9vPYuTHLtbZnPy51eu5eTGVC3fxNVQCbxcgzGQ6AD75ZjM5qK8iaAXXxZwXm+OJ9h1P/k4XxTdUJHBuAEkBa8u/FldnQfQwT9988ycwqgN1qbKiaiLIhVJkN3V/YIYzCCBT82amTCAJwDofB3WpsrG9uQ5+/RfFDGGVDSDd/MwKAwPvUAFSqAHU7mMctxn6wuu7pn8CApPyZKgB/IwIAkLP9L04V4I9a0iySPIZRmlAn/0iTZNVWKAC/A3UBCHsDmGQFYNWWM6r8AAC8vfsUGjuFASj5R64Anz+8iwxAV9CqnUAKvXnxGvPtxOXAr/n15ftXtHGpfXwq/pErgNNoYr6d4NvPX8cBrC+RVhtYdxUQs28/6GO+nbj3RBZcLy+eo75k2isAFX8WB8D1oI/5xcQzmAwA1ulmPlUbttTpoW518XC1+xcrsaj5m7EBLJlnMP8vK2VfRytatvc6jSbqS+bhIKq+ZGRvREudHq6fvdLK31QFECRKAGlrP+ij1Om5jZ4wI1Ae/nTyV2oFJxG86t6fhEqdntQI1DxEAwaNR9oJ5BMQT531v92mh6ud674TGz+OrJyrmEBHI4pZXYfHxGMXjbAf9D0xG/aUvA/Ax5XxNzCNtQZGlDIUBMD/7Ok0mm77MY3Pwii/B5SVYtmjF0UPgGc2BX8zShYY9jR0cH/peQrf6YufYVGKs6Tiz04CANrXn0HZL5Z56mZR1C4cRfYnwd/UOakkAPAyn2aVOVjdTFY5Ff5mngAk8aYvD4uvcw6/ASlK78qJs8L6AAAAAElFTkSuQmCC"},
+  dude_push:{frames:6,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAAgCAYAAABEmHeFAAADvElEQVR42u2csW4aQRCG/z1vkYhIcZPCSSxRpLJ4hEi2ZT9CmhTueAArvSv6iAdwR+Emj0CEkfwAKZBrijgUbtIgWxFwKfCelvUdx3ln9jiYX6LwybqZ/XZ2d3Z2ARCJRCKRSCQSiUQikWhLpASBn/TeYew+m4z6wrUi/JUEoJ/d2m03efZwNQQAzFrNrRkIVeevNxGAbjVjTj/03mFs2zV6/bWOh6sh4nrDwI25WQh/P/6q7BFICcD4MO20540bDsh9WGYbAMYHpwCQdAKHD8Kfjr+u2gyYB2DWakI9AYjrDVIf8mynidoH4U/LX0sAvlxmtrFn4ujiEgAWZkEJwPXlHwUBkJKnUgEwn6RBF5cJBMoAdNtubD7e9fB411vwAQB2zs4T2493PRIGwp+efyQBWF0Jf39FEoDVkPBn4ur7glcfjkn+p2r2a7ddjA9Ok3fXbrtJFcZOP9RwsJHt3xT+uqoj1wCw/84CwOnDKjk4x2ZY+NPwj6iMZwHg7gTzWQaAwo/JqK/cNMOW23ZThTDwqasgwp+Gvy57BBYEsPQAJmQAZtk1h1BgDj7hT8O/kFN5J4DcANLsZwGwZx3KDtB7h7FdZckSx2mo8Kfnr8segS+ZhZYBSDsIoZ59fn7/AgA4evc5qbhkBR+3hL8ff1X2CHyJ/V7t7wIAIwOCc/lNa38W8Ov7GxyPd9ntbwv/rLb78NcUIzCUDIATAzwHxPX9DY6xy+6X3fHX9zfJ809v3wDjud+UQVgWf6OTbz82hr+mBOCCMADsQxjOq7ouCBtAKPsnOMe008bvf7+w/0cvXEyjsi/8V+NvFwKy+GsuR6addgLA3hCFuCO/c3aOo858+XVLcKHsf+y0oTB4Vo0JZV/4txfsZ/EvfBlulfxzXURdBy/a/jhAKXSZ7BWojPZXQRHHS9NSAN8NURH406fR/2zHT7whzNp8GfuuD772i2yA7RSAq/15/N3BF5r/Ku3X3PBtR6jhGwB2GcxuvAuB2r5JNdz81wZtck/u/Ddt8uHmn9YHiX3oUvkbe3n8NeUIVMPBvK76fr78hsp13bJbqGBLY+HOMtx+uG1XAPafujUEA7cP1HCAfWiWr0KmTcBppVf7DlKeHxGFcdtwXG8ECf5lS2DI4C/7kpvdB/a9m1AM3D4Ive+ZtZpeB48RRwBuS/CVlWPnrcLbMgHMWk1MRn3l44P2Ma4CjvrJqK/Mz22IFgOw7GoTd67PKe0dlAG/aZSxiYlDBUDaIOT++ZN1X4HWIeDdzW4Rn/4DFti9EY+gedEAAAAASUVORK5CYII="},
+  dude_throw:{frames:4,src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAAgCAYAAADaInAlAAAEMklEQVR42u1az2sTQRT+NlmktdV4ksY2ECGXtjmIIPQWAoWCePXgIbf8AUFBROwpIuJBchAP0lsPPXgtFKE0DbTgsYVQ8bbVpJH21GBskDTroZnt7HR3uz9mJondDwrNJuz73nvfe29mdoEQIUKECBEiRIgQVw5KGAJ/UOMZnb3WaVSUYbOtDJvzg5L4sb1149rJigYA6BbzQmMhwrbKi4BazOsyhNDvyqN9Jxh9ksTJigY9mSZB1XlzEmVbCUqAiOB0uXR2Q60qJCH9rLzL/AeA1sw8ABiJ4BkHkbZVHgS6xTyUHgE9meZeAf2sPDf+W4FXHETbVgfZ+UEQn1PF0R0psrgEAKZOOAy2I34IkD/jJotLBgmezvsWn8U6gRcH4ne7Xka7XjbFAQCiuYLhf7teDsRFhm3VLwEAGJnMmmZyNFcw5nG7XsbIZJZrNfaz8i7D7dePTSurX3psOHY1g7zdGiTxsRiZzAIAJpRjYPYBKl+/mL7PzC0gOXUfQOz/EwBxPuhvhs026TytmXlj4XmYKwAAplebAIBvj24CgCGIzNwCapxtE//G9taNnRA9AhWt6joGqh8C9Gc7AjxwY/bB+f8D1Fb1ZBrRXuJZ0EJY29jFizfv8Pblc712sKPwEoEbfm7HodpvAk6waqtEBKLFRx8ytWbmjXH0+2HBNvmsEN5fBz6WPnCzbXX+QoOsg7ycBURcELD9ngcBu/kfWVzC9GoTaxu7AGBU04Ry7ChCsh0UAbfJF42TFc0U+24xb6x/pKwB2MQbxgUE/umfu0BPBHQ1iRIfz+QHqX62C9Db7AtVbLET4nYSyBKgA01W30EIBBWgSPHRMVABT/t5Eovm4Q/wmv/0vVkxsnnh3gGIASvD0VzBNwG3XSD16Rl39YsA4RHf30YT4J58kgO7eG8ebSGLW/wEoMYzutOqlyXjlYBtxRXzprb3fTSB+P42Dl99tg16P0E4bB5tIRUbR0KPCRUiifvm0Zbpeio2DrQ4dwA3s48Q8UrAi8ONZQAOySbiU+MZXVYXIImv/d05uxAblyq8FGMvcaDyfRjklwiXuct0ATvVs+oX9VCIXWgCQO1O58LvEgdyDlijuQKmlkvn4pO1C3CCVwV6FYGT2Ihtsh3kLQK6ExIxJLQqflqIQESnuawT0/67RcRNEpz2mKcBFegnCW4rjPeTQZZHNFeAnkyb+PhJQuAucO2eb7sRLwpkF1unyyUoWtUIgCznSdBltVovfMhppMydiKJVfcdd9aI0qzlIDCd6M5HMRhkrYNruIIhAdKXb7v8p217jr/ohYrUoEvEunNfAK1r1wrMAXm8lWZ3Eyd5+uj1v8eKz7x5Kv4olG062ZYmPcLASoejuR+zz6DwRnuRkVH+3mEenUVE6jYoi4+0fq+onHNCnAuAZ/0iQJOAKwsl3WeOPZ/z/ARR0OqnvqSxIAAAAAElFTkSuQmCC"},
 };
 
-const PET_ITEMS = [
-  // Foods (consumable)
-  {id:'apple',     cat:'food', name:'Apple',       cost:5,  effect:{hunger:20}, svg: '<circle cx="45" cy="34" r="16" fill="#e84040"/><path d="M45,18 Q51,11 57,14" fill="none" stroke="#40a040" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="38" cy="27" rx="5" ry="8" fill="#f06060" opacity=".28"/>'},
-  {id:'carrot',    cat:'food', name:'Carrot',      cost:5,  effect:{hunger:15}, svg: '<path d="M34,16 L45,50 L56,16 Z" fill="#f07820"/><path d="M36,16 C41,9 49,9 54,16" fill="none" stroke="#40a040" stroke-width="2.5" stroke-linecap="round"/>'},
-  {id:'cookie',    cat:'food', name:'Cookie',      cost:8,  effect:{hunger:30}, svg: '<circle cx="45" cy="34" r="18" fill="#c07030"/><circle cx="37" cy="30" r="2.5" fill="#6a3010"/><circle cx="50" cy="25" r="2" fill="#6a3010"/><circle cx="54" cy="38" r="2.5" fill="#6a3010"/><circle cx="40" cy="44" r="2" fill="#6a3010"/>'},
-  {id:'sandwich',  cat:'food', name:'Sandwich',    cost:10, effect:{hunger:35}, svg: '<rect x="18" y="22" width="44" height="8" rx="5" fill="#e8c060"/><rect x="18" y="29" width="44" height="6" rx="1" fill="#70c040"/><rect x="18" y="34" width="44" height="5" rx="1" fill="#f8a040"/><rect x="18" y="38" width="44" height="5" rx="1" fill="#e07040"/><rect x="18" y="42" width="44" height="8" rx="5" fill="#e8c060"/>'},
-  {id:'cupcake',   cat:'food', name:'Cupcake',     cost:12, effect:{hunger:45}, svg: '<rect x="26" y="38" width="38" height="16" rx="4" fill="#e8a060"/><path d="M24,38 Q45,22 66,38" fill="#ff90c0"/><circle cx="45" cy="24" r="5" fill="#ff50a0"/>'},
-  {id:'pizza',     cat:'food', name:'Pizza',       cost:15, effect:{hunger:55}, svg: '<polygon points="45,12 72,56 18,56" fill="#f0c040"/><polygon points="45,17 69,53 21,53" fill="#e05030"/><circle cx="36" cy="40" r="4" fill="#c83020"/><circle cx="52" cy="32" r="3.5" fill="#c83020"/>'},
-  // Hats
-  {id:'partyhat',  cat:'hat', name:'Party hat',    cost:20, svg: '<path d="M34,52 L45,16 L56,52 Z" fill="#e83048"/><ellipse cx="45" cy="52" rx="13" ry="4" fill="#f0c040"/><circle cx="45" cy="16" r="4" fill="white"/>'},
-  {id:'bow',       cat:'hat', name:'Cute bow',     cost:25, svg: '<path d="M24,32 Q33,22 42,32 Q33,42 24,32 Z" fill="#f4609a"/><path d="M48,32 Q57,22 66,32 Q57,42 48,32 Z" fill="#f4609a"/><circle cx="45" cy="32" r="6" fill="#ff80b8"/>'},
-  {id:'flowercrown',cat:'hat',name:'Flowers',      cost:30, svg: '<path d="M18,44 Q45,28 72,44" fill="none" stroke="#70c040" stroke-width="2.5"/><circle cx="26" cy="41" r="6" fill="#f8e040"/><circle cx="45" cy="30" r="6" fill="#f84060"/><circle cx="64" cy="41" r="6" fill="#8060f0"/>'},
-  {id:'santahat',  cat:'hat', name:'Santa hat',    cost:35, svg: '<path d="M26,52 L26,30 L55,30 L55,52 Z" fill="#e82020"/><ellipse cx="42" cy="52" rx="14" ry="4.5" fill="white"/><circle cx="55" cy="30" r="6" fill="white"/>'},
-  {id:'tophat',    cat:'hat', name:'Top hat',      cost:40, svg: '<rect x="28" y="30" width="34" height="22" rx="2" fill="#1a1a2a"/><rect x="20" y="50" width="50" height="6" rx="2" fill="#2a2a3a"/><rect x="32" y="24" width="26" height="8" rx="1" fill="#1a1a2a"/>'},
-  {id:'wizardhat', cat:'hat', name:'Wizard hat',   cost:55, svg: '<path d="M28,52 L45,10 L62,52 Z" fill="#6030b0"/><ellipse cx="45" cy="52" rx="18" ry="5" fill="#8040e0"/><text x="43" y="38" font-size="12" fill="#f0d040" font-family="sans-serif">✦</text>'},
-  {id:'crown',     cat:'hat', name:'Crown',        cost:80, svg: '<path d="M22,52 L22,36 L32,44 L45,26 L58,44 L68,36 L68,52 Z" fill="#f4b840"/><circle cx="32" cy="43" r="4" fill="#e84848"/><circle cx="45" cy="28" r="4" fill="#4361ee"/><circle cx="58" cy="43" r="4" fill="#2ec4b6"/>'},
-  {id:'gradcap',   cat:'hat', name:'Grad cap',     cost:100, svg: '<polygon points="45,18 66,32 24,32" fill="#1a1a2a"/><rect x="31" y="32" width="28" height="6" rx="1" fill="#1a1a2a"/><line x1="62" y1="32" x2="66" y2="46" stroke="#f4b840" stroke-width="2.5"/><circle cx="66" cy="47" r="4" fill="#f4b840"/>'},
-  // Furniture (scene items)
-  {id:'cactus',    cat:'furniture', name:'Cactus',       cost:25, svg: '<rect x="42" y="22" width="10" height="32" rx="3" fill="#40a040"/><ellipse cx="34" cy="34" rx="8" ry="10" fill="#40a040"/><ellipse cx="56" cy="40" rx="8" ry="9" fill="#40a040"/><rect x="40" y="52" width="14" height="6" rx="2" fill="#a06030"/>'},
-  {id:'lamp',      cat:'furniture', name:'Desk lamp',    cost:35, svg: '<rect x="43" y="36" width="8" height="22" rx="2" fill="#808090"/><ellipse cx="47" cy="26" rx="12" ry="14" fill="#e0e040" opacity=".9"/><ellipse cx="47" cy="26" rx="9" ry="10" fill="#f8f060" opacity=".7"/><circle cx="47" cy="26" r="3" fill="#f0c000"/>'},
-  {id:'chair',     cat:'furniture', name:'Little chair', cost:40, svg: '<rect x="24" y="28" width="36" height="22" rx="4" fill="#c09060"/><rect x="26" y="48" width="10" height="14" rx="2" fill="#a07040"/><rect x="50" y="48" width="10" height="14" rx="2" fill="#a07040"/><rect x="24" y="28" width="36" height="6" rx="4" fill="#e0b080"/>'},
-  {id:'table',     cat:'furniture', name:'Study table',  cost:50, svg: '<rect x="10" y="28" width="64" height="8" rx="3" fill="#c09060"/><rect x="18" y="36" width="7" height="22" rx="2" fill="#a07040"/><rect x="59" y="36" width="7" height="22" rx="2" fill="#a07040"/>'},
-  {id:'bookshelf', cat:'furniture', name:'Bookshelf',    cost:65, svg: '<rect x="18" y="10" width="48" height="54" rx="3" fill="#c09060"/><rect x="22" y="14" width="40" height="12" rx="1" fill="#e0b080"/><rect x="22" y="28" width="10" height="12" rx="1" fill="#e84848"/><rect x="34" y="28" width="9" height="12" rx="1" fill="#4361ee"/><rect x="45" y="28" width="10" height="12" rx="1" fill="#2ec4b6"/><rect x="22" y="42" width="40" height="12" rx="1" fill="#e0b080"/>'},
-  {id:'cozybed',   cat:'furniture', name:'Cozy bed',     cost:55, svg: '<rect x="12" y="40" width="60" height="20" rx="6" fill="#e8c0a0"/><rect x="12" y="40" width="60" height="10" rx="6" fill="#f0d0b8"/><ellipse cx="26" cy="38" rx="12" ry="9" fill="white"/><rect x="10" y="56" width="10" height="6" rx="2" fill="#c09060"/><rect x="64" y="56" width="10" height="6" rx="2" fill="#c09060"/>'},
-  {id:'cloudbed',  cat:'furniture', name:'Cloud bed',    cost:80, svg: '<ellipse cx="45" cy="44" rx="28" ry="14" fill="white"/><ellipse cx="30" cy="34" rx="14" ry="10" fill="white"/><ellipse cx="60" cy="34" rx="14" ry="10" fill="white"/><ellipse cx="45" cy="34" rx="18" ry="12" fill="white"/><ellipse cx="45" cy="44" rx="26" ry="12" fill="#f0f4ff"/>'},
-  {id:'starbed',   cat:'furniture', name:'Star bed',     cost:110, svg: '<polygon points="45,12 49,24 62,24 52,32 56,44 45,36 34,44 38,32 28,24 41,24" fill="#f4d040"/><rect x="14" y="44" width="62" height="16" rx="4" fill="#e8b030"/>'},
-  {id:'trophy',    cat:'furniture', name:'Trophy',       cost:90, svg: '<ellipse cx="45" cy="22" rx="18" ry="14" fill="#f4d040"/><rect x="35" y="26" width="20" height="24" rx="2" fill="#e0a020"/><rect x="22" y="48" width="46" height="6" rx="2" fill="#c08010"/>'},
-  {id:'poster',    cat:'furniture', name:'Poster',       cost:45, svg: '<rect x="20" y="10" width="44" height="46" rx="3" fill="#80b0e0"/><rect x="24" y="14" width="16" height="16" rx="2" fill="#f0f4ff"/><rect x="44" y="14" width="16" height="16" rx="2" fill="#c8e0f8"/><rect x="24" y="34" width="16" height="14" rx="2" fill="#c8e0f8"/><rect x="44" y="34" width="16" height="14" rx="2" fill="#f0f4ff"/><rect x="18" y="54" width="48" height="6" rx="2" fill="#5090c0"/>'},
-];
+// Animation definitions: frames, ms-per-frame, loop
+const PET_ANIMS = {
+  idle:{sheet:'idle',frames:4,spf:180,loop:true},
+  walk:{sheet:'walk',frames:6,spf:100,loop:true},
+  run:{sheet:'run',frames:6,spf:80,loop:false},
+  jump:{sheet:'jump',frames:8,spf:80,loop:false},
+  attack1:{sheet:'attack1',frames:4,spf:100,loop:false},
+  attack2:{sheet:'attack2',frames:6,spf:90,loop:false},
+  walk_attack:{sheet:'walk_attack',frames:6,spf:90,loop:false},
+  climb:{sheet:'climb',frames:4,spf:120,loop:true},
+  death:{sheet:'death',frames:8,spf:120,loop:false},
+  hurt:{sheet:'hurt',frames:4,spf:100,loop:false},
+  push:{sheet:'push',frames:6,spf:100,loop:true},
+  throw:{sheet:'throw',frames:4,spf:100,loop:false},
+  owlet_idle:{sheet:'owlet_idle',frames:4,spf:180,loop:true},
+  owlet_walk:{sheet:'owlet_walk',frames:6,spf:100,loop:true},
+  owlet_run:{sheet:'owlet_run',frames:6,spf:80,loop:false},
+  owlet_jump:{sheet:'owlet_jump',frames:8,spf:80,loop:false},
+  owlet_attack1:{sheet:'owlet_attack1',frames:4,spf:100,loop:false},
+  owlet_attack2:{sheet:'owlet_attack2',frames:6,spf:90,loop:false},
+  owlet_walk_attack:{sheet:'owlet_walk_attack',frames:6,spf:90,loop:false},
+  owlet_climb:{sheet:'owlet_climb',frames:4,spf:120,loop:true},
+  owlet_death:{sheet:'owlet_death',frames:8,spf:120,loop:false},
+  owlet_hurt:{sheet:'owlet_hurt',frames:4,spf:100,loop:false},
+  owlet_push:{sheet:'owlet_push',frames:6,spf:100,loop:true},
+  owlet_throw:{sheet:'owlet_throw',frames:4,spf:100,loop:false},
+  dude_idle:{sheet:'dude_idle',frames:4,spf:180,loop:true},
+  dude_walk:{sheet:'dude_walk',frames:6,spf:100,loop:true},
+  dude_run:{sheet:'dude_run',frames:6,spf:80,loop:false},
+  dude_jump:{sheet:'dude_jump',frames:8,spf:80,loop:false},
+  dude_attack1:{sheet:'dude_attack1',frames:4,spf:100,loop:false},
+  dude_attack2:{sheet:'dude_attack2',frames:6,spf:90,loop:false},
+  dude_walk_attack:{sheet:'dude_walk_attack',frames:6,spf:90,loop:false},
+  dude_climb:{sheet:'dude_climb',frames:4,spf:120,loop:true},
+  dude_death:{sheet:'dude_death',frames:8,spf:120,loop:false},
+  dude_hurt:{sheet:'dude_hurt',frames:4,spf:100,loop:false},
+  dude_push:{sheet:'dude_push',frames:6,spf:100,loop:true},
+  dude_throw:{sheet:'dude_throw',frames:4,spf:100,loop:false},
+};
 
+const PET_TYPES = {
+  pink:  {name:'Pinky', desc:'Soft and round. Always curious.',  prefix:'',       color:'#e04ea0'},
+  owlet: {name:'Ghost', desc:'Wide-eyed and wise.',               prefix:'owlet_', color:'#7b5ea7'},
+  dude:  {name:'Bloop', desc:'Cool and collected.',               prefix:'dude_',  color:'#4a9e6a'},
+};
+
+// Preloaded Image objects, keyed by sheet name
+const _petImgs = {};
+function _petPreload() {
+  for (const [key, def] of Object.entries(PET_SPRITES)) {
+    const img = new Image();
+    img.src = def.src;
+    _petImgs[key] = img;
+  }
+}
+
+// ── Pet state ─────────────────────────────────────────────────────────────────
 let petEnabled = false;
 let petData = {
-  type: null,          // 'qubit'|'pixel'|'apex'
-  name: 'Pet',
-  mood: 'happy',       // happy|neutral|sad|sleep
-  hunger: 80,          // 0-100
-  energy: 80,          // 0-100
-  friendship: 0,       // 0+, days visited
-  lastVisit: 0,        // timestamp
-  lastHungerTick: 0,   // timestamp
-  hat: null,
-  furniture: [],
-  ownedItems: [],
+  name: null,
+  type: 'pink',
+  coins: 0,
 };
-let petShopTab = 'food';
-let petModalTab = 'pet'; // 'pet'|'shop'
-let petCelebrating = false;
 
 function loadPetData() {
   try {
-    const d = localStorage.getItem('gcse_pet');
-    if (d) {
-      const p = JSON.parse(d);
-      petData = {...petData, ...p};
-    }
+    const d = localStorage.getItem('gcse_pet_data');
+    if (d) petData = {...petData, ...JSON.parse(d)};
   } catch(e) {}
 }
 function savePetData() {
-  try { localStorage.setItem('gcse_pet', JSON.stringify(petData)); } catch(e) {}
+  try { localStorage.setItem('gcse_pet_data', JSON.stringify(petData)); } catch(e) {}
 }
 
-function petTick() {
-  if (!petData.type) return;
-  const now = Date.now();
-  // Hunger: depletes fully over 24hrs
-  if (petData.lastHungerTick) {
-    const hrs = (now - petData.lastHungerTick) / 3600000;
-    petData.hunger = Math.max(0, petData.hunger - hrs * (100/24));
+// ── Canvas renderer ───────────────────────────────────────────────────────────
+const PET_SCALE  = 3;    // 32px sprite → 96px rendered
+const PET_FW     = 32;   // frame width in sprite
+const PET_FH     = 32;   // frame height in sprite
+const PET_RW     = PET_FW * PET_SCALE;  // 96px
+const PET_RH     = PET_FH * PET_SCALE;  // 96px
+
+let _petCanvas    = null;
+let _petCtx       = null;
+let _petAnim      = 'idle';
+let _petFrame     = 0;
+let _petElapsed   = 0;
+let _petLastTime  = null;
+let _petRaf       = null;
+let _petFlipped   = false;
+
+// Walk state
+let _petWalkX     = 10;
+let _petWalkDir   = 1;
+let _petWalkRaf   = null;
+const PET_WALK_SPD = 1.0; // px/frame
+
+function _petDraw(ts) {
+  if (!_petCtx || !_petCanvas) return;
+
+  const anim = PET_ANIMS[_petAnim] || PET_ANIMS.idle;
+  const img  = _petImgs[anim.sheet];
+  if (!img || !img.complete) { _petRaf = requestAnimationFrame(_petDraw); return; }
+
+  if (_petLastTime === null) _petLastTime = ts;
+  const dt = Math.min(ts - _petLastTime, 100);
+  _petLastTime = ts;
+
+  _petElapsed += dt;
+  if (_petElapsed >= anim.spf) {
+    _petElapsed -= anim.spf;
+    _petFrame++;
+    if (_petFrame >= anim.frames) {
+      if (anim.loop) {
+        _petFrame = 0;
+      } else {
+        _petFrame = anim.frames - 1; // hold last frame
+      }
+    }
   }
-  petData.lastHungerTick = now;
-  // Friendship: +1 per calendar day visited
-  const today = new Date().toDateString();
-  if (petData.lastVisitDay !== today) {
-    petData.lastVisitDay = today;
-    petData.friendship = (petData.friendship||0) + 1;
-    // Mood boost for visiting
-    petData.mood = 'happy';
-    petData.energy = Math.min(100, (petData.energy||80) + 20);
+
+  _petCtx.clearRect(0, 0, PET_RW + 1, PET_RH + 1); // logical size (DPR handled by scale)
+  _petCtx.save();
+  if (_petFlipped) {
+    _petCtx.translate(PET_RW, 0);
+    _petCtx.scale(-1, 1);
   }
-  // Mood: determined by hunger + energy
-  const h = petData.hunger, en = petData.energy||80;
-  if (h < 10) petData.mood = 'sad';
-  else if (en < 15) petData.mood = 'sleep';
-  else if (h > 60 && en > 50) petData.mood = 'happy';
-  else petData.mood = 'neutral';
-  savePetData();
+  _petCtx.imageSmoothingEnabled = false;
+  _petCtx.drawImage(
+    img,
+    _petFrame * PET_FW, 0, PET_FW, PET_FH,
+    0, 0, PET_RW, PET_RH
+  );
+  _petCtx.restore();
+
+  _petRaf = requestAnimationFrame(_petDraw);
 }
 
-// ── SVG generators ────────────────────────────────────────────────────────────
-function petEyes(cx, cy, mood) {
-  if (mood === 'sleep') {
-    return `<g style="animation:petBlink 999s">
-      <rect x="${cx-12}" y="${cy-2}" width="9" height="3" rx="1.5" fill="#2d1040"/>
-      <rect x="${cx+3}" y="${cy-2}" width="9" height="3" rx="1.5" fill="#2d1040"/>
-    </g>`;
-  }
-  const sad = mood === 'sad';
-  return `<g style="animation:petBlink 3.5s ease-in-out infinite;transform-origin:${cx}px ${cy}px">
-    <ellipse cx="${cx-9}" cy="${cy}" rx="5.5" ry="${sad?5:6.5}" fill="#2d1040"/>
-    <ellipse cx="${cx+9}" cy="${cy}" rx="5.5" ry="${sad?5:6.5}" fill="#2d1040"/>
-    <circle cx="${cx-7}" cy="${cy-2}" r="2" fill="white"/>
-    <circle cx="${cx+11}" cy="${cy-2}" r="2" fill="white"/>
-  </g>`;
-}
-function petMouth(cx, cy, mood) {
-  if (mood === 'happy') return `<path d="M${cx-8},${cy+4} Q${cx},${cy+12} ${cx+8},${cy+4}" fill="none" stroke="#c060a0" stroke-width="2.2" stroke-linecap="round"/>`;
-  if (mood === 'sad')   return `<path d="M${cx-8},${cy+10} Q${cx},${cy+3} ${cx+8},${cy+10}" fill="none" stroke="#c060a0" stroke-width="2.2" stroke-linecap="round"/>`;
-  if (mood === 'sleep') return `<path d="M${cx-5},${cy+6} Q${cx},${cy+9} ${cx+5},${cy+6}" fill="none" stroke="#c060a0" stroke-width="2" stroke-linecap="round"/>`;
-  return `<path d="M${cx-6},${cy+6} Q${cx},${cy+10} ${cx+6},${cy+6}" fill="none" stroke="#c060a0" stroke-width="2" stroke-linecap="round"/>`;
-}
-// Hat baseline offsets: hat brim is designed at y≈52, shift to sit on each head
-// qubit head top ≈ y24 → dy = 24-52 = -28
-// pixel head top ≈ y26 → dy = 26-52 = -26
-// apex head tip ≈ y10 → dy = 10-52 = -42 + scale 0.80
-const HAT_BASE = {qubit:{dy:-28,sc:1,tx:0}, pixel:{dy:-26,sc:1,tx:0}, apex:{dy:-42,sc:0.80,tx:4}};
-// Per-hat overrides (some hats have different natural baseline)
-const HAT_OVERRIDE = {
-  bow:         {qubit:{dy:-40}, pixel:{dy:-38}, apex:{dy:-50,sc:0.75}},
-  flowercrown: {qubit:{dy:-36}, pixel:{dy:-34}, apex:{dy:-46}},
-  santahat:    {qubit:{dy:-28}, pixel:{dy:-26}, apex:{dy:-38,sc:0.78}},
-};
-
-function petHatOffset(hatId, petType) {
-  const base = {...(HAT_BASE[petType]||{dy:-28,sc:1,tx:0})};
-  const over = (HAT_OVERRIDE[hatId]||{})[petType]||{};
-  const nudge = ((petData.hatNudge||{})[hatId])||0;
-  return {dy:(over.dy??base.dy)+nudge, sc:over.sc??base.sc, tx:over.tx??base.tx};
+function _petStartDraw() {
+  if (_petRaf) cancelAnimationFrame(_petRaf);
+  _petLastTime = null;
+  _petFrame    = 0;
+  _petElapsed  = 0;
+  _petRaf = requestAnimationFrame(_petDraw);
 }
 
-function petHatSvg(hatId, petType) {
-  if (!hatId) return '';
-  const item = PET_ITEMS.find(i=>i.id===hatId);
-  if (!item) return '';
-  const {dy,sc,tx} = petHatOffset(hatId, petType);
-  return `<g transform="translate(${tx},${dy}) scale(${sc})">${item.svg}</g>`;
-}
-function petBodyAnim(mood) {
-  // Mood animations — shared across pet types
-  if (mood==='happy') return 'petBounce 9s ease-in-out infinite';
-  if (mood==='sad')   return 'petSad 8s ease-in-out infinite';
-  if (mood==='sleep') return 'petSleep 6s ease-in-out infinite';
-  // Neutral idle — use pet type for personality (called with extra arg from SVG functions)
-  return 'petIdle 7s ease-in-out infinite';
-}
-function petIdleAnim(type) {
-  // Each pet has a distinct idle personality at rest
-  if (type==='pixel')    return 'petPulse 8s ease-in-out infinite';
-  if (type==='apex')     return 'petRock 11s ease-in-out infinite';
-  return 'petIdle 7s ease-in-out infinite'; // qubit: subtle breathe
-}
-function petSvgCircle(mood, hat) {
-  const m = mood||'happy', cx=45, cy=52;
-  const eyeY = cy - 10, sad = m==='sad', sleep = m==='sleep';
-  let eyes, mouth;
-  if (sleep) {
-    eyes = `<path d="M${cx-13},${eyeY+3} Q${cx-8},${eyeY-5} ${cx-3},${eyeY+3}" fill="none" stroke="#3d1060" stroke-width="2.5" stroke-linecap="round"/>
-      <path d="M${cx+3},${eyeY+3} Q${cx+8},${eyeY-5} ${cx+13},${eyeY+3}" fill="none" stroke="#3d1060" stroke-width="2.5" stroke-linecap="round"/>`;
-    mouth = `<path d="M${cx-4},${eyeY+17} Q${cx},${eyeY+20} ${cx+4},${eyeY+17}" fill="none" stroke="#c060a0" stroke-width="1.5" stroke-linecap="round"/>`;
-  } else {
-    const ew=sad?5:6.5, eh=sad?5.5:7.5, oy=sad?1:0;
-    eyes = `<ellipse cx="${cx-10}" cy="${eyeY+oy}" rx="${ew}" ry="${eh}" fill="#3d1060"/>
-      <ellipse cx="${cx+10}" cy="${eyeY+oy}" rx="${ew}" ry="${eh}" fill="#3d1060"/>
-      <circle cx="${cx-8}" cy="${eyeY+oy-3}" r="2.8" fill="white"/>
-      <circle cx="${cx+12}" cy="${eyeY+oy-3}" r="2.8" fill="white"/>
-      <circle cx="${cx-12}" cy="${eyeY+oy+1}" r="1.2" fill="white" opacity="0.7"/>
-      ${sad?`<ellipse cx="${cx-10}" cy="${eyeY+9}" rx="2" ry="3" fill="#b8d8ff" opacity="0.75"/>`:''}`;
-    mouth = m==='happy'
-      ? `<path d="M${cx-10},${eyeY+18} Q${cx},${eyeY+28} ${cx+10},${eyeY+18}" fill="none" stroke="#d05090" stroke-width="3.5" stroke-linecap="round"/>`
-      : sad
-        ? `<path d="M${cx-8},${eyeY+25} Q${cx},${eyeY+18} ${cx+8},${eyeY+25}" fill="none" stroke="#c04080" stroke-width="2.2" stroke-linecap="round"/>`
-        : `<path d="M${cx-6},${eyeY+22} Q${cx},${eyeY+26} ${cx+6},${eyeY+22}" fill="none" stroke="#c060a0" stroke-width="2" stroke-linecap="round"/>`;
-  }
-  return `<g style="animation:${petBodyAnim(m)};transform-origin:${cx}px 80px">
-    <ellipse cx="${cx}" cy="80" rx="24" ry="5" fill="rgba(0,0,0,0.09)"/>
-    <ellipse cx="${cx-22}" cy="${cy-24}" rx="9" ry="12" fill="#d870b8"/>
-    <ellipse cx="${cx-22}" cy="${cy-24}" rx="5.5" ry="7.5" fill="#f6badf"/>
-    <ellipse cx="${cx+22}" cy="${cy-24}" rx="9" ry="12" fill="#d870b8"/>
-    <ellipse cx="${cx+22}" cy="${cy-24}" rx="5.5" ry="7.5" fill="#f6badf"/>
-    <circle cx="${cx}" cy="${cy}" r="27" fill="#c860a8"/>
-    <circle cx="${cx}" cy="${cy}" r="24" fill="#e890cc"/>
-    <circle cx="${cx}" cy="${cy+1}" r="21" fill="#f6c4e8"/>
-    <circle cx="${cx}" cy="${cy+2}" r="18" fill="#feeaf6"/>
-    <ellipse cx="${cx}" cy="${cy+13}" rx="11" ry="8" fill="rgba(255,255,255,0.38)"/>
-    <ellipse cx="${cx}" cy="${cy+14}" rx="6" ry="5" fill="rgba(255,255,255,0.30)"/>
-    <ellipse cx="${cx-27}" cy="${cy+5}" rx="8" ry="6" fill="#e890cc" stroke="#c860a8" stroke-width="0.8"/>
-    <ellipse cx="${cx+27}" cy="${cy+5}" rx="8" ry="6" fill="#e890cc" stroke="#c860a8" stroke-width="0.8"/>
-    <ellipse cx="${cx-10}" cy="${cy+27}" rx="10" ry="6.5" fill="#e890cc" stroke="#c860a8" stroke-width="0.8"/>
-    <ellipse cx="${cx+10}" cy="${cy+27}" rx="10" ry="6.5" fill="#e890cc" stroke="#c860a8" stroke-width="0.8"/>
-    <ellipse cx="${cx}" cy="${cy-2}" rx="17" ry="19" fill="rgba(255,235,250,0.35)"/>
-    ${eyes}
-    <ellipse cx="${cx-16}" cy="${cy+8}" rx="7" ry="4.5" fill="#e050a0" opacity="${sad?'0.18':'0.32'}"/>
-    <ellipse cx="${cx+16}" cy="${cy+8}" rx="7" ry="4.5" fill="#e050a0" opacity="${sad?'0.18':'0.32'}"/>
-    ${mouth}
-    ${m==='happy'?`<path d="M${cx+30},${cy-19} l2,-3.5 l2,3.5 l3.5,2 l-3.5,2 l-2,3.5 l-2,-3.5 l-3.5,-2 z" fill="#f0b0e0" opacity="0.85"/>
-      <path d="M${cx-31},${cy-9} l1.5,-2.5 l1.5,2.5 l2.5,1.5 l-2.5,1.5 l-1.5,2.5 l-1.5,-2.5 l-2.5,-1.5 z" fill="#d898d8" opacity="0.7"/>`:''}
-    ${sleep?`<text x="${cx+21}" y="${cy-17}" font-size="8" font-style="italic" fill="#c890d8" opacity="0.75">z</text>
-      <text x="${cx+28}" y="${cy-25}" font-size="6" font-style="italic" fill="#c890d8" opacity="0.5">z</text>`:''}
-    ${petHatSvg(hat,'qubit')}
-  </g>`;
+function petPlayAnim(name) {
+  const prefix = (PET_TYPES[petData.type||'pink']||PET_TYPES.pink).prefix;
+  const full = prefix + name;
+  if (_petAnim === full) return;
+  _petAnim  = full;
+  _petFrame = 0;
+  _petElapsed = 0;
+  _petLastTime = null;
 }
 
-
-function petSvgSquare(mood, hat) {
-  const m = mood||'happy', cx=45, cy=50;
-  const screenX=cx-13, screenY=cy-19, sw=26, sh=22;
-  const sleep=m==='sleep', sad=m==='sad';
-  const screenBg = sleep ? '#0c1e3a' : '#152640';
-  const led = sad ? '#4888c8' : '#28dab8';
-  let sc = '';
-  if (sleep) {
-    sc = `<text x="${cx}" y="${screenY+10}" text-anchor="middle" font-size="6" fill="#2a5080" letter-spacing="3">z z z</text>`;
-  } else if (m==='happy') {
-    sc = `<rect x="${cx-11}" y="${screenY+3}" width="9" height="9" rx="2" fill="${led}"/>
-      <rect x="${cx+2}" y="${screenY+3}" width="9" height="9" rx="2" fill="${led}"/>
-      <rect x="${cx-10}" y="${screenY+4}" width="3.5" height="3.5" rx="0.8" fill="white" opacity="0.7"/>
-      <rect x="${cx+3}" y="${screenY+4}" width="3.5" height="3.5" rx="0.8" fill="white" opacity="0.7"/>
-      <rect x="${cx-8}" y="${screenY+15}" width="3" height="2.5" rx="0.8" fill="${led}"/>
-      <rect x="${cx-5}" y="${screenY+14}" width="2" height="2.5" rx="0.8" fill="${led}"/>
-      <rect x="${cx-3}" y="${screenY+13}" width="6" height="2.5" rx="0.8" fill="${led}"/>
-      <rect x="${cx+3}" y="${screenY+14}" width="2" height="2.5" rx="0.8" fill="${led}"/>
-      <rect x="${cx+5}" y="${screenY+15}" width="3" height="2.5" rx="0.8" fill="${led}"/>`;
-  } else if (sad) {
-    sc = `<rect x="${cx-11}" y="${screenY+3}" width="9" height="8" rx="2" fill="${led}"/>
-      <rect x="${cx+2}" y="${screenY+3}" width="9" height="8" rx="2" fill="${led}"/>
-      <rect x="${cx-10}" y="${screenY+4}" width="3.5" height="3" rx="0.8" fill="white" opacity="0.5"/>
-      <rect x="${cx+3}" y="${screenY+4}" width="3.5" height="3" rx="0.8" fill="white" opacity="0.5"/>
-      <rect x="${cx-8}" y="${screenY+14}" width="3" height="2.5" rx="0.8" fill="${led}"/>
-      <rect x="${cx-5}" y="${screenY+15}" width="2" height="2.5" rx="0.8" fill="${led}"/>
-      <rect x="${cx-3}" y="${screenY+16}" width="6" height="2.5" rx="0.8" fill="${led}"/>
-      <rect x="${cx+3}" y="${screenY+15}" width="2" height="2.5" rx="0.8" fill="${led}"/>
-      <rect x="${cx+5}" y="${screenY+14}" width="3" height="2.5" rx="0.8" fill="${led}"/>`;
-  } else {
-    sc = `<rect x="${cx-11}" y="${screenY+3}" width="9" height="8" rx="2" fill="${led}"/>
-      <rect x="${cx+2}" y="${screenY+3}" width="9" height="8" rx="2" fill="${led}"/>
-      <rect x="${cx-10}" y="${screenY+4}" width="3.5" height="3" rx="0.8" fill="white" opacity="0.65"/>
-      <rect x="${cx+3}" y="${screenY+4}" width="3.5" height="3" rx="0.8" fill="white" opacity="0.65"/>
-      <rect x="${cx-6}" y="${screenY+14}" width="12" height="2.5" rx="1.2" fill="${led}"/>`;
-  }
-  return `<g style="animation:${m==='neutral'||(!m)?petIdleAnim('pixel'):petBodyAnim(m)};transform-origin:${cx}px 80px">
-    <ellipse cx="${cx}" cy="80" rx="22" ry="5" fill="rgba(0,0,0,0.09)"/>
-    <rect x="${cx-1.5}" y="${cy-46}" width="3" height="22" rx="1.5" fill="#5898d8"/>
-    <circle cx="${cx}" cy="${cy-47}" r="4" fill="${sleep?'#1a3050':'#20c8a0'}"/>
-    <circle cx="${cx}" cy="${cy-47}" r="2.5" fill="${sleep?'#102030':'#70e8d0'}"/>
-    <rect x="${cx-22}" y="${cy-29}" width="44" height="53" rx="11" fill="#245ab0"/>
-    <rect x="${cx-32}" y="${cy-9}" width="12" height="10" rx="3.5" fill="#3470c0" stroke="#245ab0" stroke-width="0.8"/>
-    <rect x="${cx+20}" y="${cy-9}" width="12" height="10" rx="3.5" fill="#3470c0" stroke="#245ab0" stroke-width="0.8"/>
-    <rect x="${cx-16}" y="${cy+22}" width="11" height="9" rx="3" fill="#245ab0"/>
-    <rect x="${cx+5}" y="${cy+22}" width="11" height="9" rx="3" fill="#245ab0"/>
-    <rect x="${cx-18}" y="${cy+29}" width="14" height="5" rx="2.5" fill="#3470c0"/>
-    <rect x="${cx+4}" y="${cy+29}" width="14" height="5" rx="2.5" fill="#3470c0"/>
-    <rect x="${cx-20}" y="${cy-27}" width="40" height="49" rx="10" fill="#3470c0"/>
-    <rect x="${cx-16}" y="${cy-23}" width="32" height="41" rx="8" fill="#64a0e8"/>
-    <rect x="${cx-13}" y="${cy-20}" width="26" height="35" rx="6" fill="#8ec4f8"/>
-    <rect x="${screenX}" y="${screenY}" width="${sw}" height="${sh}" rx="4" fill="${screenBg}"/>
-    <rect x="${screenX}" y="${screenY}" width="${sw}" height="${sh}" rx="4" fill="none" stroke="${sleep?'#1c3460':'#22c8a8'}" stroke-width="0.8" opacity="${sleep?'0.3':'0.65'}"/>
-    ${sc}
-    <circle cx="${cx-7}" cy="${cy+21}" r="2" fill="${m==='happy'?'#22c8a8':'#162e58'}" opacity="0.9"/>
-    <circle cx="${cx}" cy="${cy+21}" r="2" fill="${m==='happy'?'#22c8a8':'#162e58'}" opacity="0.7"/>
-    <circle cx="${cx+7}" cy="${cy+21}" r="2" fill="${m==='happy'?'#22c8a8':'#162e58'}" opacity="0.5"/>
-    ${petHatSvg(hat,'pixel')}
-  </g>`;
-}
-
-
-function petSvgTriangle(mood, hat) {
-  const m = mood||'happy', cx=45, cy=54;
-  const tipY=cy-30, wideY=cy-2, baseY=cy+24;
-  const outer=`${cx},${tipY} ${cx+23},${wideY} ${cx+17},${baseY} ${cx-17},${baseY} ${cx-23},${wideY}`;
-  const mid  =`${cx},${tipY+10} ${cx+18},${wideY+1} ${cx+13},${baseY-3} ${cx-13},${baseY-3} ${cx-18},${wideY+1}`;
-  const inner=`${cx},${tipY+18} ${cx+12},${wideY+2} ${cx+9},${baseY-8} ${cx-9},${baseY-8} ${cx-12},${wideY+2}`;
-  const core =`${cx},${tipY+23} ${cx+7},${wideY+4} ${cx+5},${baseY-14} ${cx-5},${baseY-14} ${cx-7},${wideY+4}`;
-  const wingL=`${cx-23},${wideY} ${cx-33},${wideY-8} ${cx-30},${wideY+10}`;
-  const wingR=`${cx+23},${wideY} ${cx+33},${wideY-8} ${cx+30},${wideY+10}`;
-  const sleep=m==='sleep', sad=m==='sad';
-  const gold=sleep?'#c0a820':'#f0c830';
-  const midC=sleep?'#509028':'#72cc38';
-  const innC=sleep?'#68b030':'#90e050';
-  const coreC=sleep?'#a0d060':'#d8f888';
-  const eyeY=wideY-10;
-  let eyes, mouth;
-  if (sleep) {
-    eyes=`<path d="M${cx-14},${eyeY+3} L${cx-8},${eyeY-2} L${cx-14},${eyeY-4}" fill="none" stroke="#1a5010" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M${cx+8},${eyeY+3} L${cx+14},${eyeY-2} L${cx+8},${eyeY-4}" fill="none" stroke="#1a5010" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
-    mouth=`<path d="M${cx-3},${eyeY+13} Q${cx},${eyeY+16} ${cx+3},${eyeY+13}" fill="none" stroke="#286010" stroke-width="1.5" stroke-linecap="round"/>`;
-  } else {
-    const oy=sad?2:0;
-    eyes=`<ellipse cx="${cx-10}" cy="${eyeY+oy}" rx="5.5" ry="${sad?4.5:6}" fill="#1a5010" transform="rotate(${sad?8:-10} ${cx-10} ${eyeY+oy})"/>
-      <ellipse cx="${cx+10}" cy="${eyeY+oy}" rx="5.5" ry="${sad?4.5:6}" fill="#1a5010" transform="rotate(${sad?-8:10} ${cx+10} ${eyeY+oy})"/>
-      <circle cx="${cx-8}" cy="${eyeY+oy-2}" r="2.2" fill="white"/>
-      <circle cx="${cx+12}" cy="${eyeY+oy-2}" r="2.2" fill="white"/>
-      ${sad?`<ellipse cx="${cx-10}" cy="${eyeY+9}" rx="1.8" ry="3" fill="#a8e8ff" opacity="0.75"/>`:''}`;
-    mouth=m==='happy'
-      ?`<path d="M${cx-8},${eyeY+14} Q${cx},${eyeY+22} ${cx+8},${eyeY+14}" fill="none" stroke="#1a8010" stroke-width="3" stroke-linecap="round"/>`
-      :sad
-        ?`<path d="M${cx-7},${eyeY+21} Q${cx},${eyeY+14} ${cx+7},${eyeY+21}" fill="none" stroke="#286010" stroke-width="2.2" stroke-linecap="round"/>`
-        :`<path d="M${cx-5},${eyeY+17} Q${cx},${eyeY+21} ${cx+5},${eyeY+17}" fill="none" stroke="#2a8018" stroke-width="2" stroke-linecap="round"/>`;
-  }
-  return `<g style="animation:${m==='neutral'||(!m)?petIdleAnim('apex'):petBodyAnim(m)};transform-origin:${cx}px 80px">
-    <ellipse cx="${cx}" cy="80" rx="20" ry="5" fill="rgba(0,0,0,0.09)"/>
-    ${m==='happy'?`<line x1="${cx}" y1="${tipY-2}" x2="${cx}" y2="${tipY-13}" stroke="${gold}" stroke-width="2.2" stroke-linecap="round" opacity="0.9"/>
-      <line x1="${cx+5}" y1="${tipY}" x2="${cx+12}" y2="${tipY-9}" stroke="${gold}" stroke-width="1.3" stroke-linecap="round" opacity="0.65"/>
-      <line x1="${cx-5}" y1="${tipY}" x2="${cx-12}" y2="${tipY-9}" stroke="${gold}" stroke-width="1.3" stroke-linecap="round" opacity="0.65"/>
-      <path d="M${cx+30},${wideY-14} l2.5,0 l0,-2.5 l0,2.5 l2.5,0 l-2.5,0 l0,2.5 l0,-2.5 z" fill="${gold}" opacity="0.8"/>`:''}
-    <polygon points="${wingL}" fill="#30a020" stroke="#186010" stroke-width="0.8" stroke-linejoin="round"/>
-    <polygon points="${wingR}" fill="#30a020" stroke="#186010" stroke-width="0.8" stroke-linejoin="round"/>
-    <line x1="${cx-23}" y1="${wideY}" x2="${cx-30}" y2="${wideY-3}" stroke="${gold}" stroke-width="0.9" opacity="0.65"/>
-    <line x1="${cx+23}" y1="${wideY}" x2="${cx+30}" y2="${wideY-3}" stroke="${gold}" stroke-width="0.9" opacity="0.65"/>
-    <polygon points="${outer}" fill="#186a10" stroke="#0e4008" stroke-width="1.8" stroke-linejoin="round"/>
-    <polygon points="${mid}" fill="${midC}"/>
-    <polygon points="${inner}" fill="${innC}"/>
-    <polygon points="${core}" fill="${coreC}"/>
-    <polygon points="${cx},${tipY+23} ${cx+5},${wideY+6} ${cx-5},${wideY+6}" fill="rgba(255,255,255,0.32)"/>
-    <line x1="${cx}" y1="${tipY}" x2="${cx+13}" y2="${baseY-3}" stroke="rgba(255,255,255,0.10)" stroke-width="0.8"/>
-    <line x1="${cx}" y1="${tipY}" x2="${cx-13}" y2="${baseY-3}" stroke="rgba(255,255,255,0.10)" stroke-width="0.8"/>
-    <line x1="${cx-21}" y1="${wideY}" x2="${cx+21}" y2="${wideY}" stroke="rgba(255,255,255,0.07)" stroke-width="0.8"/>
-    <line x1="${cx}" y1="${tipY}" x2="${cx+23}" y2="${wideY}" stroke="${gold}" stroke-width="1" opacity="0.35"/>
-    <line x1="${cx}" y1="${tipY}" x2="${cx-23}" y2="${wideY}" stroke="${gold}" stroke-width="1" opacity="0.35"/>
-    ${eyes}
-    ${mouth}
-    <circle cx="${cx}" cy="${tipY}" r="${m==='happy'?4:3}" fill="${gold}" opacity="${sleep?'0.4':'0.95'}"/>
-    <circle cx="${cx}" cy="${tipY}" r="${m==='happy'?2:1.5}" fill="white" opacity="${sleep?'0.2':'0.8'}"/>
-    <circle cx="${cx-13}" cy="${baseY+3}" r="5" fill="#228a14" stroke="${gold}" stroke-width="1.2"/>
-    <circle cx="${cx+13}" cy="${baseY+3}" r="5" fill="#228a14" stroke="${gold}" stroke-width="1.2"/>
-    <circle cx="${cx-13}" cy="${baseY+3}" r="3" fill="${innC}"/>
-    <circle cx="${cx+13}" cy="${baseY+3}" r="3" fill="${innC}"/>
-    <circle cx="${cx-13}" cy="${baseY+2}" r="1.5" fill="${coreC}"/>
-    <circle cx="${cx+13}" cy="${baseY+2}" r="1.5" fill="${coreC}"/>
-    ${petHatSvg(hat,'apex')}
-  </g>`;
-}
-
-
-function petSvgFull() {
-  if (!petData.type) return '';
-  const t = PET_TYPES[petData.type];
-  return `<svg width="90" height="130" viewBox="0 -40 90 130">${t.svgBody(petData.mood, petData.hat)}</svg>`;
-}
-function petSvgSmall() {
-  if (!petData.type) return '';
-  const t = PET_TYPES[petData.type];
-  return `<svg width="70" height="100" viewBox="0 -40 90 130">${t.svgBody(petCelebrating?'happy':petData.mood, petData.hat)}</svg>`;
-}
-
-// ── Floating widget ───────────────────────────────────────────────────────────
-// ── PET WALK SYSTEM ───────────────────────────────────────────────────────────
-let _walkX    = null;   // current left px for widget
-let _walkDir  = 1;      // 1=right, -1=left
-let _walkRaf  = null;
-let _sceneWalkX   = null;
-let _sceneWalkDir = 1;
-let _sceneWalkRaf = null;
-
-const PET_WALK_SPEED  = 0.55;  // px per frame (~33fps = ~18px/s)
-const PET_SCENE_SPEED = 0.7;
-
-function _applyStep(el){
-  if(!el)return;
-  el.style.animation='petStep 0.55s ease-in-out infinite';
-}
-function _clearStep(el){
-  if(!el)return;
-  el.style.animation='';
-}
-function _flipEl(el, dir){
-  if(!el)return;
-  // Flip the inner SVG so the pet faces the direction of travel
-  const svg=el.querySelector('svg');
-  if(svg)svg.style.transform=dir<0?'scaleX(-1)':'scaleX(1)';
-}
-
-function startPetWalk(){
-  if(_walkRaf)return;
-  const w=document.getElementById('pet-widget');
-  if(!w||w.style.display==='none')return;
-  const floatEl=w.querySelector('.pet-float');
-  _applyStep(floatEl);
-  _walkX=parseInt(w.style.left)||10;
-  _walkRaf=requestAnimationFrame(_petWalkTick);
-}
-
-function stopPetWalk(){
-  if(_walkRaf){cancelAnimationFrame(_walkRaf);_walkRaf=null;}
-  const w=document.getElementById('pet-widget');
-  const floatEl=w&&w.querySelector('.pet-float');
-  _clearStep(floatEl);
-}
-
-function _petWalkTick(){
-  const w=document.getElementById('pet-widget');
-  if(!w||!petEnabled||!petData.type){_walkRaf=null;return;}
-  const maxX=window.innerWidth-w.offsetWidth-10;
-  if(_walkX===null)_walkX=10;
-  _walkX+=PET_WALK_SPEED*_walkDir;
-  if(_walkX>=maxX){_walkX=maxX;_walkDir=-1;_flipEl(w.querySelector('.pet-float'),-1);}
-  if(_walkX<=10)  {_walkX=10;  _walkDir=1; _flipEl(w.querySelector('.pet-float'),1);}
-  w.style.left=_walkX+'px';
-  _walkRaf=requestAnimationFrame(_petWalkTick);
-}
-
-// Scene walk — within the pet modal scene box
-function startSceneWalk(){
-  if(_sceneWalkRaf)return;
-  const scene=document.querySelector('.pet-scene');
-  const petEl=document.querySelector('.pet-scene-pet');
-  if(!scene||!petEl)return;
-  _applyStep(petEl);
-  const sceneW=scene.offsetWidth;
-  _sceneWalkX=petEl.offsetLeft||sceneW/2-35;
-  _sceneWalkRaf=requestAnimationFrame(_sceneWalkTick);
-}
-
-function stopSceneWalk(){
-  if(_sceneWalkRaf){cancelAnimationFrame(_sceneWalkRaf);_sceneWalkRaf=null;}
-  const petEl=document.querySelector('.pet-scene-pet');
-  if(petEl){_clearStep(petEl);petEl.style.left='';petEl.style.transform='translateX(-50%)';}
-}
-
-function _sceneWalkTick(){
-  const scene=document.querySelector('.pet-scene');
-  const petEl=document.querySelector('.pet-scene-pet');
-  if(!scene||!petEl){_sceneWalkRaf=null;return;}
-  const sceneW=scene.offsetWidth;
-  const petW=petEl.offsetWidth||70;
-  const minX=8, maxX=sceneW-petW-8;
-  if(_sceneWalkX===null)_sceneWalkX=minX;
-  _sceneWalkX+=PET_SCENE_SPEED*_sceneWalkDir;
-  if(_sceneWalkX>=maxX){_sceneWalkX=maxX;_sceneWalkDir=-1;_flipEl(petEl,-1);}
-  if(_sceneWalkX<=minX){_sceneWalkX=minX;_sceneWalkDir=1; _flipEl(petEl,1);}
-  petEl.style.left=_sceneWalkX+'px';
-  petEl.style.transform='none';
-  _sceneWalkRaf=requestAnimationFrame(_sceneWalkTick);
-}
-
-function updatePetWidget() {
+// ── Walk system ───────────────────────────────────────────────────────────────
+function startPetWalk() {
+  if (_petWalkRaf) return;
   const w = document.getElementById('pet-widget');
-  const hb = document.getElementById('pet-hdr-btn');
+  if (!w || w.style.display === 'none') return;
+  _petWalkX = parseInt(w.style.left) || 10;
+  petPlayAnim('walk');
+  _petWalkRaf = requestAnimationFrame(_petWalkTick);
+}
+
+function stopPetWalk() {
+  if (_petWalkRaf) { cancelAnimationFrame(_petWalkRaf); _petWalkRaf = null; }
+  petPlayAnim('idle');
+}
+
+function _petWalkTick() {
+  const w = document.getElementById('pet-widget');
+  if (!w || !petEnabled) { _petWalkRaf = null; return; }
+  const maxX = window.innerWidth - PET_RW - 10;
+  _petWalkX += PET_WALK_SPD * _petWalkDir;
+  if (_petWalkX >= maxX) { _petWalkX = maxX; _petWalkDir = -1; _petFlipped = true; }
+  if (_petWalkX <= 10)   { _petWalkX = 10;   _petWalkDir =  1; _petFlipped = false; }
+  w.style.left = _petWalkX + 'px';
+  _petWalkRaf = requestAnimationFrame(_petWalkTick);
+}
+
+// ── Widget render ─────────────────────────────────────────────────────────────
+function updatePetWidget() {
+  const w   = document.getElementById('pet-widget');
+  const hb  = document.getElementById('pet-hdr-btn');
   if (hb) hb.style.display = petEnabled ? '' : 'none';
-  if (!petEnabled) { w.style.display='none'; return; }
-  if (!petData.type) { w.style.display='none'; return; }
+  if (!petEnabled) { if (w) w.style.display = 'none'; return; }
+  if (!w) return;
   w.style.display = '';
-  // Start/restart the walk loop whenever widget is shown
+  // Build canvas if needed
+  if (!_petCanvas) {
+    const dpr = window.devicePixelRatio || 1;
+    _petCanvas = document.createElement('canvas');
+    // Physical pixels = rendered size × DPR for crisp rendering on retina
+    _petCanvas.width  = PET_RW * dpr;
+    _petCanvas.height = PET_RH * dpr;
+    // CSS size stays at intended rendered size
+    _petCanvas.style.cssText = `display:block;width:${PET_RW}px;height:${PET_RH}px;image-rendering:pixelated;image-rendering:crisp-edges;cursor:pointer;background:transparent;pointer-events:all`;
+    _petCanvas.title = 'Your companion';
+    _petCanvas.onclick = petTap;
+    _petCtx = _petCanvas.getContext('2d', {alpha: true});
+    // Scale context so drawImage coordinates stay in logical pixels
+    _petCtx.scale(dpr, dpr);
+    w.innerHTML = '';
+    w.appendChild(_petCanvas);
+    _petStartDraw();
+  }
   stopPetWalk();
   setTimeout(startPetWalk, 50);
-  const fArr = Array.isArray(petData.furniture)?petData.furniture:[];
-  const itemsHtml = fArr.map((id,i)=>{
-    const item = PET_ITEMS.find(x=>x.id===id);
-    if (!item) return '';
-    return `<div class="pet-float-item" style="animation:${getFurnitureAnim(id,i)}" onclick="openPetModal()" title="${item.name}"><svg width="52" height="52" viewBox="0 0 90 90" style="display:block">${item.svg}</svg></div>`;
-  }).join('');
-  w.innerHTML = `${itemsHtml}<div class="pet-float" onclick="openPetModal()">${petSvgSmall()}</div>`;
 }
 
-function getFurnitureAnim(id, idx) {
-  const beds = ['cozybed','cloudbed','starbed'];
-  const pulse = ['cactus','lamp','poster','trophy'];
-  if (beds.includes(id) && petData.mood==='sleep') return 'petBob 6s ease-in-out infinite';
-  if (pulse.includes(id)) return `petPulse ${3+idx*0.5}s ${idx*0.2}s ease-in-out infinite`;
-  return `petBob ${2.5+idx*0.4}s ${idx*0.3}s ease-in-out infinite`;
-}
+// ── PET REACTION SYSTEM ──────────────────────────────────────────────────────
+
+const PET_MESSAGES = [
+  "Keep going!",
+  "You're doing it, you're doing it!",
+  "Way to go!",
+  "You're doing awesome!",
+  "Another one!",
+  "You've got this!",
+];
+
+const PET_BIG_MESSAGES = [
+  "Subtopic complete!",
+  "Smashed it!",
+  "That's a whole section done!",
+  "Outstanding work!",
+];
+
+const PET_TOPIC_MESSAGES = [
+  "TOPIC MASTERED!",
+  "Full topic done! Incredible!",
+  "That's the whole topic!",
+];
+
+// Throttle + deduplication
+let _lastReactionTime = 0;
+const REACTION_COOLDOWN = 2500;
+let _bubbleTimeout = null;
+let _bubbleTrackRaf = null;
+// Pending achievement: if a bigger one arrives, it cancels smaller pending reactions
+let _pendingReactionLevel = 0;  // 0=none, 1=tick, 2=subtopic, 3=topic
+let _pendingReactionTimer = null;
 
 function petCelebrateOnTick() {
-  if (!petData.type) return;
+  if (!petEnabled || !_petCanvas) return;
+  const now = Date.now();
+  if (now - _lastReactionTime < REACTION_COOLDOWN) return;
+  // Don't queue a tick-level reaction if a bigger one is already pending
+  if (_pendingReactionLevel > 1) return;
+  _lastReactionTime = now;
+  _pendingReactionLevel = 1;
+  if (_pendingReactionTimer) clearTimeout(_pendingReactionTimer);
+  _pendingReactionTimer = setTimeout(() => {
+    if (_pendingReactionLevel !== 1) return; // superseded
+    _pendingReactionLevel = 0;
+    const roll = Math.random();
+    if      (roll < 0.40) { _petDoJump(1); }
+    else if (roll < 0.80) { _petShowBubble('normal'); }
+    else                  { _petDoJump(1); setTimeout(()=>_petShowBubble('normal'), 350); }
+  }, 150); // small delay so achievement reactions can supersede
+}
+
+// Called from checkRankUp with the animLevel so we can tier the reaction
+function petCelebrateAchievement(level) {
+  if (!petEnabled || !_petCanvas) return;
+  // Cancel any pending lower-level reaction
+  if (_pendingReactionTimer) { clearTimeout(_pendingReactionTimer); _pendingReactionTimer = null; }
+  _pendingReactionLevel = level;
+  _lastReactionTime = Date.now();
+
+  // If a rank/topic popup is currently visible, defer until it's dismissed
+  const popup = document.getElementById('rk-modal');
+  if (popup && !popup.classList.contains('hide')) {
+    // Store for closeRankPopup to fire
+    _deferredAchievementLevel = level;
+    return;
+  }
+  _firePetAchievement(level);
+}
+
+let _deferredAchievementLevel = 0;
+
+function _firePetAchievement(level) {
+  _pendingReactionLevel = 0;
+  _deferredAchievementLevel = 0;
+  if (level >= 3) {
+    _petTopicCelebration();
+  } else if (level >= 1) {
+    _petDoJump(1.5);
+    setTimeout(()=>_petShowBubble('big'), 200);
+  }
+}
+
+// Triple jump with continuous sparkles for topic complete
+function _petTopicCelebration() {
+  const prefix = (PET_TYPES[petData.type||'pink']||PET_TYPES.pink).prefix;
+  const anim = PET_ANIMS[prefix+'jump'] || PET_ANIMS.jump;
+  const singleJumpDur = anim.frames * anim.spf;
+  const heights = [1.4, 1.8, 2.2];
+  heights.forEach((h, i) => {
+    setTimeout(() => {
+      _petDoJump(h);
+      // Sparkles at the peak of each jump
+      setTimeout(() => _petSparkles(20 + i*6), singleJumpDur * 0.45);
+    }, i * (singleJumpDur + 80));
+  });
+  // Bubble after all three jumps settle
+  setTimeout(() => _petShowBubble('topic'), heights.length * (singleJumpDur + 80) + 200);
+}
+
+function _petDoJump(heightMult) {
+  petPlayAnim('jump');
+  const prefix = (PET_TYPES[petData.type||'pink']||PET_TYPES.pink).prefix;
+  const anim = PET_ANIMS[prefix+'jump'] || PET_ANIMS.jump;
+  const dur = anim.frames * anim.spf + 100;
+  const w = document.getElementById('pet-widget');
+  if (w) {
+    const lift = Math.round(18 * heightMult);
+    w.style.transition = `bottom ${anim.frames*anim.spf*0.3}ms ease-out`;
+    w.style.bottom = lift + 'px';
+    setTimeout(() => {
+      w.style.transition = `bottom ${anim.frames*anim.spf*0.4}ms ease-in`;
+      w.style.bottom = '0px';
+    }, anim.frames * anim.spf * 0.5);
+  }
+  setTimeout(() => { if (petEnabled) petPlayAnim('walk'); }, dur);
+}
+
+function _petShowBubble(size) {
+  if (!petEnabled) return;
+  const existing = document.getElementById('pet-bubble');
+  if (existing) existing.remove();
+  if (_bubbleTimeout) clearTimeout(_bubbleTimeout);
+  if (_bubbleTrackRaf) { cancelAnimationFrame(_bubbleTrackRaf); _bubbleTrackRaf = null; }
+
+  const w = document.getElementById('pet-widget');
+  if (!w || w.style.display === 'none') return;
+
+  let msg, fontSize, padding, duration, borderWidth, borderCol;
+  if (size === 'topic') {
+    msg = PET_TOPIC_MESSAGES[Math.floor(Math.random()*PET_TOPIC_MESSAGES.length)];
+    fontSize = '14px'; padding = '9px 16px'; duration = 4500;
+    borderWidth = '2.5px'; borderCol = '#f0c040';
+  } else if (size === 'big') {
+    msg = PET_BIG_MESSAGES[Math.floor(Math.random()*PET_BIG_MESSAGES.length)];
+    fontSize = '13px'; padding = '7px 14px'; duration = 3500;
+    borderWidth = '2px'; borderCol = 'var(--c1)';
+  } else {
+    msg = PET_MESSAGES[Math.floor(Math.random()*PET_MESSAGES.length)];
+    fontSize = '12px'; padding = '6px 11px'; duration = 3200;
+    borderWidth = '1.5px'; borderCol = 'var(--bd2)';
+  }
+
+  const bubble = document.createElement('div');
+  bubble.id = 'pet-bubble';
+  bubble.textContent = msg;
+
+  function positionBubble() {
+    const r = w.getBoundingClientRect();
+    bubble.style.left   = (r.left + r.width/2) + 'px';
+    bubble.style.bottom = (window.innerHeight - r.top + 8) + 'px';
+  }
+
+  bubble.style.cssText = `
+    position:fixed;
+    transform:translateX(-50%);
+    background:var(--surface);
+    border:${borderWidth} solid ${borderCol};
+    border-radius:12px;
+    padding:${padding};
+    font-size:${fontSize};
+    font-weight:700;
+    color:var(--tx);
+    white-space:nowrap;
+    z-index:160;
+    text-shadow:-1px -1px 0 rgba(0,0,0,0.18),1px -1px 0 rgba(0,0,0,0.18),-1px 1px 0 rgba(0,0,0,0.18),1px 1px 0 rgba(0,0,0,0.18);
+    box-shadow:0 2px 10px rgba(0,0,0,0.18);
+    pointer-events:none;
+    animation:petBubbleIn 0.18s ease;
+  `;
+  positionBubble();
+  document.body.appendChild(bubble);
+
+  function track() {
+    if (!bubble.parentNode) return;
+    positionBubble();
+    _bubbleTrackRaf = requestAnimationFrame(track);
+  }
+  _bubbleTrackRaf = requestAnimationFrame(track);
+
+  _bubbleTimeout = setTimeout(() => {
+    if (_bubbleTrackRaf) { cancelAnimationFrame(_bubbleTrackRaf); _bubbleTrackRaf = null; }
+    if (bubble.parentNode) {
+      bubble.style.opacity = '0';
+      bubble.style.transition = 'opacity 0.35s';
+      setTimeout(() => bubble.remove(), 350);
+    }
+  }, duration);
+}
+
+// Sparkles burst from pet position
+function _petSparkles(count) {
+  if (!petEnabled) return;
   const w = document.getElementById('pet-widget');
   if (!w) return;
-  petCelebrating = true;
-  updatePetWidget();
-  // Star pop
-  const star = document.createElement('div');
-  star.className = 'pet-star-pop';
-  const wr = w.getBoundingClientRect();
-  star.style.left = (wr.left + wr.width/2 - 9) + 'px';
-  star.style.top = (wr.top - 10) + 'px';
-  star.textContent = '✦';
-  document.body.appendChild(star);
-  setTimeout(() => { star.remove(); petCelebrating=false; updatePetWidget(); }, 900);
+  const rect = w.getBoundingClientRect();
+  const cx = rect.left + rect.width/2;
+  const cy = rect.top + rect.height/3;
+  const colors = ['#FFD700','#FF6EC7','#7DF9FF','#ADFF2F','#FF8C00','#FF4444','#AA88FF'];
+  const n = count || 18;
+  for (let i = 0; i < n; i++) {
+    const spark = document.createElement('div');
+    const angle = (i / n) * Math.PI * 2 - Math.PI * 0.5 + (Math.random()-0.5) * 0.8;
+    const speed = 40 + Math.random() * 70;
+    const col = colors[Math.floor(Math.random()*colors.length)];
+    const size = 3 + Math.floor(Math.random()*5);
+    const shape = Math.random() < 0.5 ? '50%' : '2px';
+    spark.style.cssText = `
+      position:fixed;left:${cx}px;top:${cy}px;
+      width:${size}px;height:${size}px;
+      background:${col};border-radius:${shape};
+      pointer-events:none;z-index:161;
+      box-shadow:0 0 4px 1px ${col};
+    `;
+    document.body.appendChild(spark);
+    spark.animate([
+      {transform:'translate(-50%,-50%) scale(1)', opacity:1},
+      {transform:`translate(calc(-50% + ${Math.cos(angle)*speed}px), calc(-50% + ${Math.sin(angle)*speed}px)) scale(0)`, opacity:0},
+    ], {
+      duration: 480 + Math.random()*280,
+      easing: 'ease-out',
+      fill: 'forwards',
+      delay: Math.random()*80,
+    }).onfinish = () => spark.remove();
+  }
+}
+
+// ── PET TAP INTERACTION ───────────────────────────────────────────────────────
+let _lastTapTime = 0;
+const TAP_COOLDOWN = 10000; // 10s
+
+function petTap(e) {
+  const now = Date.now();
+  if (now - _lastTapTime < TAP_COOLDOWN) {
+    // During cooldown — open modal instead
+    openPetModal();
+    return;
+  }
+  _lastTapTime = now;
+
+  // Idle in place: play attack1 (little bounce/react) then return to idle briefly
+  const prefix = (PET_TYPES[petData.type||'pink']||PET_TYPES.pink).prefix;
+  const reactAnim = prefix + 'attack1';
+  const reactDur = (PET_ANIMS[reactAnim]||PET_ANIMS.attack1).frames
+                 * (PET_ANIMS[reactAnim]||PET_ANIMS.attack1).spf + 80;
+  stopPetWalk();
+  petPlayAnim('attack1');
+  // After reaction, idle briefly then resume walking
+  setTimeout(() => {
+    petPlayAnim('idle');
+    setTimeout(() => { if (petEnabled) { petPlayAnim('walk'); startPetWalk(); } }, 1200);
+  }, reactDur);
+
+  // Burst hearts from tap position
+  _petHeartBurst(e);
+}
+
+function _petHeartBurst(e) {
+  const w = document.getElementById('pet-widget');
+  if (!w) return;
+  const rect = w.getBoundingClientRect();
+  // Use tap coords if available, otherwise centre of widget
+  const cx = (e && e.clientX) ? e.clientX : rect.left + rect.width / 2;
+  const cy = (e && e.clientY) ? e.clientY : rect.top + rect.height / 2;
+
+  const count = 7;
+  for (let i = 0; i < count; i++) {
+    setTimeout(() => {
+      const heart = document.createElement('div');
+      // Randomise size and horizontal drift
+      const size  = 14 + Math.floor(Math.random() * 10);
+      const drift = (Math.random() - 0.5) * 36;
+      const hue   = Math.random() < 0.6 ? '#FF6EC7' : (Math.random() < 0.5 ? '#FF4444' : '#FFD700');
+      heart.style.cssText = `
+        position:fixed;
+        left:${cx + drift}px;
+        top:${cy}px;
+        font-size:${size}px;
+        line-height:1;
+        pointer-events:none;
+        z-index:162;
+        user-select:none;
+        transform:translate(-50%, -50%) scale(0);
+        color:${hue};
+        text-shadow: 0 0 6px ${hue};
+      `;
+      heart.textContent = '♥';
+      document.body.appendChild(heart);
+
+      // Pop in, float up, fade out
+      const riseY = 50 + Math.random() * 40;
+      const wobble = (Math.random() - 0.5) * 20;
+      heart.animate([
+        { transform: `translate(-50%, -50%) scale(0)`,        opacity: 0   },
+        { transform: `translate(-50%, -60%) scale(1.2)`,      opacity: 1,  offset: 0.15 },
+        { transform: `translate(calc(-50% + ${wobble}px), calc(-50% - ${riseY * 0.5}px)) scale(1)`, opacity: 1,  offset: 0.5  },
+        { transform: `translate(calc(-50% + ${wobble*1.5}px), calc(-50% - ${riseY}px)) scale(0.7)`, opacity: 0   },
+      ], {
+        duration: 900 + Math.random() * 400,
+        easing: 'ease-out',
+        fill: 'forwards',
+        delay: i * 80,
+      }).onfinish = () => heart.remove();
+    }, i * 60);
+  }
 }
 
 // ── Modal ─────────────────────────────────────────────────────────────────────
 function openPetModal() {
-  petTick();
-  document.getElementById('pet-modal').classList.remove('hide');
+  stopPetWalk();
+  const ov = document.getElementById('pet-modal');
+  if (!ov) return;
+  ov.classList.remove('hide');
   renderPetModal();
-  // Start scene walk after render settles
-  setTimeout(startSceneWalk, 80);
 }
+
 function closePetModal() {
-  document.getElementById('pet-modal').classList.add('hide');
-  stopSceneWalk();
+  const ov = document.getElementById('pet-modal');
+  if (ov) ov.classList.add('hide');
+  stopPetWalk();
+  setTimeout(startPetWalk, 80);
 }
-function handlePetOvClick(e) { if(e.target.id==='pet-modal') closePetModal(); }
+
+function handlePetOvClick(e) {
+  if (e.target === e.currentTarget) closePetModal();
+}
 
 function renderPetModal() {
   const body = document.getElementById('pet-modal-body');
-  if (!petData.type) { renderPetChooser(body); return; }
-  document.getElementById('pet-modal-title').textContent = petData.name || PET_TYPES[petData.type].name;
+  if (!body) return;
+  const title = document.getElementById('pet-modal-title');
+  if (title) title.textContent = petData.name || 'Your companion';
 
-  const fArr=Array.isArray(petData.furniture)?petData.furniture:[];
-    const furnitureSvgs=fArr.map(id=>{
-      const it=PET_ITEMS.find(i=>i.id===id);return it?it.svg:'';
-    });
-  const hungerPct = Math.round(petData.hunger);
-  const energyPct = Math.round(petData.energy||80);
-  const friendshipDays = petData.friendship||0;
-
+  // Render a larger preview canvas in the modal
+  const previewSize = PET_RW * 2; // 192px
+  const prefix = (PET_TYPES[petData.type||'pink']||PET_TYPES.pink).prefix;
+  // Base animation names (without prefix)
+  const baseAnims = ['idle','walk','run','jump','attack1','attack2','walk_attack','climb','death','hurt','push','throw'];
+  const currentBase = _petAnim.replace(prefix,'');
   body.innerHTML = `
-    <div class="pet-scene">
-      ${furnitureSvgs.map((svg,i)=>`<div class="pet-scene-item" style="right:${4+i*58}px"><svg width="58" height="58" viewBox="0 0 90 90">${svg}</svg></div>`).join('')}
-      <div class="pet-scene-pet">${petSvgFull()}</div>
-    </div>
-    <div class="pet-stats">
-      <div class="pet-stat">
-        <div class="pet-stat-lbl"><span>Hunger</span><span style="font-weight:600;color:var(--c2)">${hungerPct}%</span></div>
-        <div class="pet-stat-bar"><div class="pet-stat-fill" style="width:${hungerPct}%;background:var(--c2)"></div></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:14px;padding:8px 0">
+      <div style="display:flex;gap:8px;margin-bottom:2px">
+        ${Object.entries(PET_TYPES).map(([k,pt])=>`
+          <button class="pet-action-btn" onclick="petSetType('${k}')"
+            style="${petData.type===k?'border-color:'+pt.color+';color:'+pt.color:''}">
+            ${pt.name}
+          </button>`).join('')}
       </div>
-      <div class="pet-stat">
-        <div class="pet-stat-lbl"><span>Energy</span><span style="font-weight:600;color:var(--c1)">${energyPct}%</span></div>
-        <div class="pet-stat-bar"><div class="pet-stat-fill" style="width:${energyPct}%;background:var(--c1)"></div></div>
+      <canvas id="pet-modal-canvas"
+        style="image-rendering:pixelated;image-rendering:crisp-edges;border-radius:12px;background:transparent;border:1px solid var(--bd)"></canvas>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center">
+        ${baseAnims.map(a=>`
+          <button class="pet-action-btn" onclick="petPreviewAnim('${a}')"
+            style="${currentBase===a?'border-color:var(--c1);color:var(--c1)':''}">${a}</button>
+        `).join('')}
       </div>
-      <div class="pet-stat">
-        <div class="pet-stat-lbl"><span>Mood</span><span style="font-weight:600;color:var(--c3);text-transform:capitalize">${petData.mood||'happy'}</span></div>
-        <div class="pet-stat-bar"><div class="pet-stat-fill" style="width:${petData.mood==='happy'?95:petData.mood==='neutral'?60:petData.mood==='sleep'?50:20}%;background:var(--c3)"></div></div>
-      </div>
-      <div class="pet-stat">
-        <div class="pet-stat-lbl"><span>Friendship</span><span style="font-weight:600;color:#f4a261">${friendshipDays} days</span></div>
-        <div class="pet-stat-bar"><div class="pet-stat-fill" style="width:${Math.min(100,friendshipDays)}%;background:#f4a261"></div></div>
-      </div>
-    </div>
-    <div class="pet-actions">
-      <button class="pet-action-btn" onclick="petFeed()" ${hungerPct>=100?'disabled':''}>
-        <span style="font-size:14px">🍎</span> Feed <span style="font-size:10px;color:var(--tx3);margin-left:auto">costs coins</span>
-      </button>
-      <button class="pet-action-btn" onclick="petPlay()" ${energyPct<10?'disabled':''}>
-        <span style="font-size:14px">⚡</span> Play <span style="font-size:10px;color:var(--tx3);margin-left:auto">+2 coins</span>
-      </button>
-      <button class="pet-action-btn" onclick="petRest()">
-        <span style="font-size:14px">😴</span> Rest <span style="font-size:10px;color:var(--tx3);margin-left:auto">+energy</span>
-      </button>
-      <button class="pet-action-btn" onclick="petRename()">
-        <span style="font-size:14px">✏️</span> Rename
-      </button>
-    </div>
-    <div class="pet-shop-tabs">
-      <button class="pet-shop-tab${petShopTab==='food'?' on':''}" onclick="setPetShopTab('food')">Food</button>
-      <button class="pet-shop-tab${petShopTab==='hat'?' on':''}" onclick="setPetShopTab('hat')">Hats</button>
-      <button class="pet-shop-tab${petShopTab==='furniture'?' on':''}" onclick="setPetShopTab('furniture')">Room</button>
-    </div>
-    <div class="pet-shop-grid" id="pet-shop-grid">${renderPetShopGrid()}</div>
-    ${petData.hat ? `<div style="display:flex;align-items:center;gap:8px;margin-top:10px;padding:8px 10px;background:var(--surface2);border-radius:8px;border:1px solid var(--bd)">
-      <span style="font-size:11px;color:var(--tx3);flex:1">Hat position</span>
-      <button class="pet-action-btn" style="padding:4px 10px;font-size:13px" onclick="nudgeHat(4)">↑</button>
-      <span style="font-size:10px;color:var(--tx3);width:28px;text-align:center">${((petData.hatNudge||{})[petData.hat])||0}</span>
-      <button class="pet-action-btn" style="padding:4px 10px;font-size:13px" onclick="nudgeHat(-4)">↓</button>
-      <button class="pet-action-btn" style="padding:4px 10px;font-size:11px" onclick="nudgeHat(0,true)">reset</button>
-    </div>` : ''}
-  `;
-  setTimeout(repaint,0);
-}
-
-function renderPetChooser(body) {
-  document.getElementById('pet-modal-title').textContent = 'Choose your companion';
-  body.innerHTML = `
-    <p style="font-size:12px;color:var(--tx3);margin-bottom:14px;line-height:1.6">Pick a companion to keep you company during revision. They'll live in the corner of the screen, celebrating when you tick things off!</p>
-    <div class="pet-chooser">
-      ${Object.entries(PET_TYPES).map(([k,t])=>`
-        <div class="pet-choose-card" onclick="choosePet('${k}')">
-          <svg width="70" height="100" viewBox="0 -40 90 130">${t.svgBody('happy',null)}</svg>
-          <div class="pet-choose-name">${t.name}</div>
-          <div class="pet-choose-desc">${t.desc}</div>
-        </div>`).join('')}
+      <p style="font-size:11px;color:var(--tx3);text-align:center;margin:0">More features coming soon</p>
     </div>`;
+
+  // Draw on modal canvas
+  const mc  = document.getElementById('pet-modal-canvas');
+  if (!mc) return;
+  const mdpr = window.devicePixelRatio || 1;
+  mc.width  = previewSize * mdpr;
+  mc.height = previewSize * mdpr;
+  mc.style.width  = previewSize + 'px';
+  mc.style.height = previewSize + 'px';
+  const mctx = mc.getContext('2d', {alpha: true});
+  mctx.scale(mdpr, mdpr);
+  let mFrame = _petFrame, mElapsed = 0, mLast = null, mRaf = null;
+
+  function drawModal(ts) {
+    const anim = PET_ANIMS[_petAnim] || PET_ANIMS.idle;
+    const img  = _petImgs[anim.sheet];
+    if (!img || !img.complete) { mRaf = requestAnimationFrame(drawModal); return; }
+    if (mLast === null) mLast = ts;
+    const dt = Math.min(ts - mLast, 100); mLast = ts;
+    mElapsed += dt;
+    if (mElapsed >= anim.spf) {
+      mElapsed -= anim.spf;
+      mFrame = (mFrame + 1) % anim.frames;
+    }
+    mctx.clearRect(0, 0, previewSize, previewSize);
+    mctx.imageSmoothingEnabled = false;
+    // Centre the sprite in the preview
+    const off = (previewSize - PET_RW * 2) / 2;
+    mctx.drawImage(img, mFrame * PET_FW, 0, PET_FW, PET_FH, off, off, PET_RW * 2, PET_RH * 2);
+    // Store RAF id on canvas so closePetModal can cancel it
+    mc._raf = requestAnimationFrame(drawModal);
+  }
+  mc._raf = requestAnimationFrame(drawModal);
+  // Cancel on close
+  const origClose = closePetModal;
 }
 
-function choosePet(type) {
+function petPreviewAnim(name) {
+  petPlayAnim(name);
+  renderPetModal();
+}
+
+function petSetType(type) {
+  if (!PET_TYPES[type]) return;
   petData.type = type;
-  petData.name = PET_TYPES[type].name;
-  petData.mood = 'happy';
-  petData.hunger = 80;
-  petData.energy = 80;
-  petData.friendship = 0;
-  petData.lastHungerTick = Date.now();
-  petData.lastVisitDay = new Date().toDateString();
-  petData.ownedItems = [];
-  petData.hat = null;
-  petData.furniture = null;
   savePetData();
-  updatePetWidget();
-  renderPetModal();
-}
-
-function renderPetShopGrid() {
-  const items = PET_ITEMS.filter(i=>i.cat===petShopTab);
-  return items.map(item => {
-    const owned = petData.ownedItems.includes(item.id) || item.cat==='food';
-    const furnitureArr=Array.isArray(petData.furniture)?petData.furniture:[];
-    const equipped = (item.cat==='hat'&&petData.hat===item.id)||(item.cat==='furniture'&&furnitureArr.includes(item.id));
-    const canAfford = coinBalance >= item.cost;
-    const cls = equipped?'equipped':owned&&item.cat!=='food'?'owned':'';
-    return `<div class="pet-shop-item ${cls}" onclick="petShopClick('${item.id}')">
-      <svg width="40" height="40" viewBox="0 0 90 90" style="display:block;margin:0 auto">${item.svg}</svg>
-      <div class="pet-item-name">${item.name}</div>
-      ${item.cat==='food'
-        ? `<div class="pet-item-cost">🪙 ${item.cost}</div>`
-        : owned
-          ? `<div class="pet-item-owned" style="color:${equipped?'var(--c1)':'var(--c3)'}">${equipped?'on':'owned'}</div>`
-          : `<div class="pet-item-cost" style="color:${canAfford?'var(--c2)':'#999'}">🪙 ${item.cost}</div>`
-      }
-    </div>`;
-  }).join('');
-}
-
-function setPetShopTab(tab) {
-  petShopTab = tab;
-  const g = document.getElementById('pet-shop-grid');
-  if (g) g.innerHTML = renderPetShopGrid();
-  document.querySelectorAll('.pet-shop-tab').forEach(b => b.classList.toggle('on', b.textContent.toLowerCase()===tab||(tab==='furniture'&&b.textContent==='Room')));
-}
-
-function petShopClick(id) {
-  const item = PET_ITEMS.find(i=>i.id===id);
-  if (!item) return;
-  if (item.cat === 'food') {
-    if (coinBalance < item.cost) { alert('Not enough coins!'); return; }
-    coinBalance -= item.cost;
-    saveCoins(); updateCoinDisplay();
-    petData.hunger = Math.min(100, petData.hunger + item.effect.hunger);
-    petTick();
-    savePetData();
-    renderPetModal();
-    return;
-  }
-  if (!petData.ownedItems.includes(id)) {
-    if (coinBalance < item.cost) { alert('Not enough coins!'); return; }
-    if (!confirm(`Buy ${item.name} for ${item.cost} coins?`)) return;
-    coinBalance -= item.cost;
-    saveCoins(); updateCoinDisplay();
-    petData.ownedItems.push(id);
-  }
-  // Toggle equip
-  if (item.cat === 'hat') petData.hat = petData.hat===id ? null : id;
-  if (item.cat === 'furniture') {
-    const arr = Array.isArray(petData.furniture)?petData.furniture:[];
-    const idx = arr.indexOf(id);
-    if (idx>=0) petData.furniture=arr.filter(x=>x!==id);
-    else if(arr.length<4) petData.furniture=[...arr,id];
-    else { alert('You can have up to 4 items in the room at once. Remove one first.'); return; }
-  }
-  savePetData();
+  petPlayAnim('idle');
+  // Rebuild image cache isn't needed — all sprites preloaded
   renderPetModal();
   updatePetWidget();
-}
-
-function nudgeHat(delta, reset) {
-  if (!petData.hat) return;
-  if (!petData.hatNudge) petData.hatNudge = {};
-  if (reset) { petData.hatNudge[petData.hat] = 0; }
-  else { petData.hatNudge[petData.hat] = ((petData.hatNudge[petData.hat]||0) + delta); }
-  savePetData();
-  renderPetModal();
-  updatePetWidget();
-}
-function petFeed() {
-  // Open food tab
-  petShopTab = 'food';
-  renderPetModal();
-}
-function petPlay() {
-  if ((petData.energy||80) < 10) return;
-  petData.energy = Math.max(0, (petData.energy||80) - 15);
-  petData.mood = 'happy';
-  coinBalance += 2;
-  saveCoins(); updateCoinDisplay();
-  savePetData();
-  renderPetModal();
-  updatePetWidget();
-}
-function petRest() {
-  petData.energy = Math.min(100, (petData.energy||80) + 30);
-  petData.mood = 'sleep';
-  savePetData();
-  renderPetModal();
-  updatePetWidget();
-}
-function petRename() {
-  const n = prompt('Give your companion a name:', petData.name || PET_TYPES[petData.type].name);
-  if (n && n.trim()) {
-    petData.name = n.trim().slice(0,20);
-    savePetData();
-    document.getElementById('pet-modal-title').textContent = petData.name;
-  }
 }
 
 // ── SAVE CODE ────────────────────────────────────────────────────────────────
@@ -10551,10 +10376,25 @@ loadRedeemedCodes();
 loadPetData();
   petEnabled=!!localStorage.getItem('gcse_pet_enabled');
   loadUnlockedSubjects();
-  setTimeout(()=>{petTick();updatePetWidget();setTimeout(startPetWalk,100);},300);
+  loadPetData();
+  _petPreload();
+  setTimeout(()=>{updatePetWidget();setTimeout(startPetWalk,100);},300);
 applySubjectToggles();
 updateView();
 if(!localStorage.getItem('gcse_seen_tour')){localStorage.setItem('gcse_seen_tour','1');setTimeout(()=>openTour(0),600);}
 </script>
+
+<!-- PET MODAL -->
+<div class="pet-modal-ov hide" id="pet-modal" onclick="handlePetOvClick(event)">
+  <div class="pet-modal-card">
+    <div class="pet-modal-hdr">
+      <span class="pet-modal-title" id="pet-modal-title">Your companion</span>
+      <button onclick="closePetModal()" style="background:none;border:none;cursor:pointer;color:var(--tx3);font-size:18px;line-height:1;padding:0">&#10005;</button>
+    </div>
+    <div class="pet-modal-body" id="pet-modal-body"></div>
+  </div>
+</div>
+<!-- PET WIDGET (floating) -->
+<div class="pet-widget" id="pet-widget" style="display:none;position:fixed;bottom:0;left:10px;z-index:150;pointer-events:none"></div>
 </body>
 </html>
