@@ -367,7 +367,11 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
   .tv-bars{gap:8px}
   /* Subtopic col headers */
   .col-hdr{grid-template-columns:1fr 48px 48px 48px}
-  .or{grid-template-columns:1fr 48px 48px 48px 80px}
+  /* Outcome rows: timestamp drops to row 2 under text, not beside checkboxes */
+  .or{grid-template-columns:1fr 48px 48px 48px;grid-template-rows:auto auto;align-items:center}
+  .or .ot{grid-column:1;grid-row:1}
+  .or .cbw{grid-row:1}
+  .or .or-ts-wrap{grid-column:1;grid-row:2;padding-left:0;padding-top:2px}
   /* Bulk bar wraps */
   .bulk-bar{flex-wrap:wrap;gap:5px}
   /* Home cards */
@@ -1393,7 +1397,11 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px
   .tv-bars{gap:8px}
   /* Subtopic col headers */
   .col-hdr{grid-template-columns:1fr 48px 48px 48px}
-  .or{grid-template-columns:1fr 48px 48px 48px 80px}
+  /* Outcome rows: timestamp drops to row 2 under text, not beside checkboxes */
+  .or{grid-template-columns:1fr 48px 48px 48px;grid-template-rows:auto auto;align-items:center}
+  .or .ot{grid-column:1;grid-row:1}
+  .or .cbw{grid-row:1}
+  .or .or-ts-wrap{grid-column:1;grid-row:2;padding-left:0;padding-top:2px}
   /* Bulk bar wraps */
   .bulk-bar{flex-wrap:wrap;gap:5px}
   /* Home cards */
@@ -9754,8 +9762,8 @@ function _petShowBubble(size) {
 
   function positionBubble() {
     const r = w.getBoundingClientRect();
-    bubble.style.left   = (r.left + r.width/2) + 'px';
-    bubble.style.bottom = (window.innerHeight - r.top + 8) + 'px';
+    bubble.style.left   = Math.round(r.left + r.width/2) + 'px';
+    bubble.style.bottom = Math.round(window.innerHeight - r.top + 8) + 'px';
   }
 
   bubble.style.cssText = `
@@ -9774,6 +9782,9 @@ function _petShowBubble(size) {
     box-shadow:0 2px 10px rgba(0,0,0,0.18);
     pointer-events:none;
     animation:petBubbleIn 0.18s ease;
+    will-change:left,bottom;
+    backface-visibility:hidden;
+    -webkit-font-smoothing:antialiased;
   `;
   positionBubble();
   document.body.appendChild(bubble);
